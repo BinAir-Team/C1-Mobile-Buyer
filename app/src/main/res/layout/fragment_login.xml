@@ -9,19 +9,21 @@
 
     <TextView
         android:id="@+id/tvWelcomeBack"
-        android:layout_width="wrap_content"
+        android:layout_width="349dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:drawableRight="@drawable/wpesawat"
         android:text="Welcome Back"
         android:textColor="@color/white"
         android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="32dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvWelcomeBackDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:text="Fill form bellow to access more features"
         android:layout_below="@id/tvWelcomeBack"/>
 
