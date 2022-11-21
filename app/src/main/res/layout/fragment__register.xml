@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_blue"
+    tools:context=".ui.fragment.Fragment_Register">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tvWelcomeBack"
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:drawableRight="@drawable/wpesawat"
+        android:text="Welcome Back"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvWelcomeBackDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Fill form bellow to access more features"
+        android:layout_below="@id/tvWelcomeBack"/>
+
+    <com.github.captain_miao.optroundcardview.OptRoundCardView
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        android:layout_alignParentBottom="true"
+        app:optRoundCardBackgroundColor="@color/white"
+        app:optRoundCardCornerRadius="32dp"
+        app:optRoundCardRightTopCorner="true"
+        app:optRoundCardLeftTopCorner="true"
+        app:optRoundCardLeftBottomCorner="false"
+        app:optRoundCardRightBottomCorner="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/labelUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="50dp"
+                android:text="Username"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:layout_alignParentTop="true"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usernameInputContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black"
+                app:hintTextColor="@color/orange"
+                android:layout_below="@id/labelUsername"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/orange">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameInput"
+                    android:layout_width="351dp"
+                    android:layout_height="41dp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/labelEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:text="Email"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:layout_below="@id/usernameInputContainer"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailInputContainer"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                android:layout_width="351dp"
+                android:layout_height="42dp"
+                android:layout_below="@id/labelEmail"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="24dp"
+                android:textColorHint="@color/black"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/orange"
+                app:hintTextColor="@color/orange">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/labelphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone Number"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:layout_below="@id/emailInputContainer"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PhoneInputContainer"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                android:layout_width="351dp"
+                android:layout_height="42dp"
+                android:layout_below="@id/labelphone"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="24dp"
+                android:textColorHint="@color/black"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/orange"
+                app:hintTextColor="@color/orange">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PhoneInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/labelPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Password"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:layout_below="@id/PhoneInputContainer"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black"
+                app:hintTextColor="@color/orange"
+                android:layout_below="@id/labelPassword"
+                app:passwordToggleEnabled="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/orange">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/labelRePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Retype Password"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:layout_below="@id/passwordInputContainer"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RepasswordInputContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black"
+                app:hintTextColor="@color/orange"
+                android:layout_below="@id/labelRePassword"
+                app:passwordToggleEnabled="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/orange">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/RepasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btnSignin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RepasswordInputContainer"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/orange"
+                android:text="Sign In"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"/>
+
+
+        </RelativeLayout>
+    </com.github.captain_miao.optroundcardview.OptRoundCardView>
+
+</RelativeLayout>
