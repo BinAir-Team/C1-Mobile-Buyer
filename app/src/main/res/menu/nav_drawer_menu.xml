@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/navBookFlight"
+            android:title="Book Flight"
+            android:icon="@drawable/ic_home_grey" />
+        <item android:id="@+id/navSchedule"
+            android:title="Schedule"
+            android:icon="@drawable/ic_schedule_grey" />
+        <item android:id="@+id/navHistory"
+            android:title="Ticket History"
+            android:icon="@drawable/ic_history_grey" />
+        <item android:id="@+id/navWishlist"
+            android:title="Wishlist"
+            android:icon="@drawable/ic_wishlist_grey" />
+        <item android:id="@+id/navLogout"
+            android:title="Log out" />
+    </group>
+</menu>
