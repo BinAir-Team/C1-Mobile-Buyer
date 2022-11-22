@@ -5,28 +5,28 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_blue"
-    tools:context=".ui.fragment.Fragment_Register">
+    tools:context=".ui.fragment.RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/tvWelcomeBack"
+        android:id="@+id/tvWelcome"
         android:layout_width="349dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
         android:drawableRight="@drawable/wpesawat"
-        android:text="Welcome Back"
+        android:text="Welcome ! ! !"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvWelcomeBackDetail"
+        android:id="@+id/tvWelcomeDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="24dp"
         android:text="Fill form bellow to access more features"
-        android:layout_below="@id/tvWelcomeBack"/>
+        android:textColor="@color/white"
+        android:layout_below="@id/tvWelcome"/>
 
     <com.github.captain_miao.optroundcardview.OptRoundCardView
         android:layout_width="match_parent"
