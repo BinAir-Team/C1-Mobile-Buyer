@@ -28,12 +28,32 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showBottomNavigation()
         setAutoComplete()
+        changeTripType()
+    }
+
+    private fun changeTripType() {
+        binding.apply {
+            cvPulangPergi.setOnClickListener {
+                cvPulangPergi.setBackgroundColor(Color.parseColor("#13A2D7"))
+                tvPulangPergi.setTextColor(Color.parseColor("#FFFFFF"))
+                cvSekaliJalan.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                tvSekaliJalan.setTextColor(Color.parseColor("#7D8C9C"))
+                tglPulangInputContainer.visibility = View.VISIBLE
+            }
+            cvPulangPergi.setOnClickListener {
+                cvPulangPergi.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                tvPulangPergi.setTextColor(Color.parseColor("#7D8C9C"))
+                cvSekaliJalan.setBackgroundColor(Color.parseColor("#13A2D7"))
+                tvSekaliJalan.setTextColor(Color.parseColor("#FFFFFF"))
+                tglPulangInputContainer.visibility = View.GONE
+            }
+        }
     }
 
     private fun setAutoComplete() {
         val fruits = arrayOf("Apple","Anggur","Apricot", "Banana", "Cherry", "Date", "Grape", "Kiwi", "Mango", "Pear")
         //Creating the instance of ArrayAdapter containing list of fruit names
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context!!, R.layout.select_dialog_item, fruits)
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, fruits)
         val actv = binding.etFrom
         actv.threshold = 1 //will start working from first character
         actv.setAdapter(adapter) //setting the adapter data into the AutoCompleteTextView

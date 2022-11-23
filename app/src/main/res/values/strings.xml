@@ -28,4 +28,6 @@
     <string name="label_penumpang">Penumpang</string>
     <string name="ex_jml_penumpang">1</string>
     <string name="label_kelas">Kelas</string>
+    <string name="label_sekali_jalan">Sekali Jalan</string>
+    <string name="label_pulang_pergi">Pulang Pergi</string>
 </resources>

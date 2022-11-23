@@ -31,13 +31,13 @@
                 android:layout_height="40dp"
                 android:backgroundTint="@color/main_blue"
                 android:padding="8dp"
-                app:cardBackgroundColor="@color/main_blue"
                 app:cardCornerRadius="32dp"
                 android:layout_alignParentStart="true">
                 <TextView
+                    android:id="@+id/tvSekaliJalan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sekali Jalan"
+                    android:text="@string/label_sekali_jalan"
                     android:textSize="20sp"
                     android:textColor="@color/white"
                     android:layout_gravity="center"/>
@@ -48,14 +48,14 @@
                 android:layout_height="40dp"
                 android:backgroundTint="@color/white"
                 android:padding="8dp"
-                app:cardBackgroundColor="@color/main_blue"
                 app:cardCornerRadius="32dp"
                 android:layout_alignParentEnd="true"
                 app:cardElevation="0dp">
                 <TextView
+                    android:id="@+id/tvPulangPergi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pulang Pergi"
+                    android:text="@string/label_pulang_pergi"
                     android:textSize="20sp"
                     android:textColor="@color/content_grey"
                     android:layout_gravity="center"/>
