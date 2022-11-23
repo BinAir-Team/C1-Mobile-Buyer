@@ -202,14 +202,14 @@
 
 
             <Button
-                android:id="@+id/btnSignin"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/RepasswordInputContainer"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="@color/orange"
-                android:text="Sign In"
+                android:text="Register"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"/>
 
