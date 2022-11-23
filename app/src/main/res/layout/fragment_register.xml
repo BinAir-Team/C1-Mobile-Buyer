@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_blue"
     tools:context=".ui.fragment.RegisterFragment">
 
@@ -13,20 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:drawableRight="@drawable/wpesawat"
-        android:text="Welcome ! ! !"
+        android:text="@string/selamat_datang_login"
         android:textColor="@color/white"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:drawableRightCompat="@drawable/wpesawat" />
 
     <TextView
         android:id="@+id/tvWelcomeDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:text="Fill form bellow to access more features"
-        android:textColor="@color/white"
-        android:layout_below="@id/tvWelcome"/>
+        android:layout_below="@id/tvWelcome"
+        android:layout_marginStart="24dp"
+        android:text="@string/detail_login"
+        android:textColor="@color/white" />
 
     <com.github.captain_miao.optroundcardview.OptRoundCardView
         android:layout_width="match_parent"
@@ -34,187 +34,202 @@
         android:layout_alignParentBottom="true"
         app:optRoundCardBackgroundColor="@color/white"
         app:optRoundCardCornerRadius="32dp"
-        app:optRoundCardRightTopCorner="true"
-        app:optRoundCardLeftTopCorner="true"
         app:optRoundCardLeftBottomCorner="false"
-        app:optRoundCardRightBottomCorner="false">
+        app:optRoundCardLeftTopCorner="true"
+        app:optRoundCardRightBottomCorner="false"
+        app:optRoundCardRightTopCorner="true">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/labelUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="50dp"
-                android:text="Username"
-                android:textStyle="bold"
-                android:textColor="@color/orange"
-                android:layout_alignParentTop="true"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/usernameInputContainer"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/orange"
-                android:layout_below="@id/labelUsername"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange">
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/usernameInput"
-                    android:layout_width="351dp"
-                    android:layout_height="41dp"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/labelNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/nama"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/labelEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:text="Email"
-                android:textStyle="bold"
-                android:textColor="@color/orange"
-                android:layout_below="@id/usernameInputContainer"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailInputContainer"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                android:layout_width="351dp"
-                android:layout_height="42dp"
-                android:layout_below="@id/labelEmail"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="24dp"
-                android:textColorHint="@color/black"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange"
-                app:hintTextColor="@color/orange">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailInput"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameInputContainer"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_below="@id/labelNama"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:textColorHint="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/orange"
+                    app:hintTextColor="@color/orange">
 
-            <TextView
-                android:id="@+id/labelphone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:text="Phone Number"
-                android:textStyle="bold"
-                android:textColor="@color/orange"
-                android:layout_below="@id/emailInputContainer"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/namaInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/PhoneInputContainer"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                android:layout_width="351dp"
-                android:layout_height="42dp"
-                android:layout_below="@id/labelphone"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="24dp"
-                android:textColorHint="@color/black"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange"
-                app:hintTextColor="@color/orange">
+                <TextView
+                    android:id="@+id/labelEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/usernameInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/email"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PhoneInput"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailInputContainer"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_below="@id/labelEmail"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="24dp"
+                    android:textColorHint="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/orange"
+                    app:hintTextColor="@color/orange">
 
-            <TextView
-                android:id="@+id/labelPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Password"
-                android:textStyle="bold"
-                android:textColor="@color/orange"
-                android:layout_below="@id/PhoneInputContainer"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordInputContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/orange"
-                android:layout_below="@id/labelPassword"
-                app:passwordToggleEnabled="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange">
+                <TextView
+                    android:id="@+id/labelNoTelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/emailInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/nomor_telepon"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordInput"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/PhoneInputContainer"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
-                    android:layout_height="47dp"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelNoTelp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="24dp"
+                    android:textColorHint="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/orange"
+                    app:hintTextColor="@color/orange">
 
-            <TextView
-                android:id="@+id/labelRePassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Retype Password"
-                android:textStyle="bold"
-                android:textColor="@color/orange"
-                android:layout_below="@id/passwordInputContainer"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/PhoneInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/RepasswordInputContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/orange"
-                android:layout_below="@id/labelRePassword"
-                app:passwordToggleEnabled="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/RepasswordInput"
+                <TextView
+                    android:id="@+id/labelPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PhoneInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/password"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordInputContainer"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
-                    android:layout_height="47dp"
-                    android:inputType="textPassword"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelPassword"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:textColorHint="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/orange"
+                    app:hintTextColor="@color/orange"
+                    app:passwordToggleEnabled="true">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/RepasswordInputContainer"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="@color/orange"
-                android:text="Register"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"/>
+                <TextView
+                    android:id="@+id/labelRePassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/passwordInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/konfirmasi_password"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/RepasswordInputContainer"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelRePassword"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:textColorHint="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/orange"
+                    app:hintTextColor="@color/orange"
+                    app:passwordToggleEnabled="true">
 
-        </RelativeLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/RepasswordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnDaftar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/RepasswordInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/daftar" />
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnDaftar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/sudah_punya_akun"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </ScrollView>
     </com.github.captain_miao.optroundcardview.OptRoundCardView>
 
 </RelativeLayout>
