@@ -33,4 +33,12 @@
     <string name="buy_ticket">Buy Ticket</string>
     <string name="label_promo_tiket">Promo Tiket</string>
     <string name="ex_promo_title">Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%</string>
+    <string name="simpan">Simpan</string>
+    <string name="_0">0</string>
+    <string name="_1">1</string>
+    <string name="label_dewasa">Dewasa (12 tahun ke atas)</string>
+    <string name="judul_atur_penumpang">Atur Penumpang</string>
+    <string name="label_anak">Anak (2 - 11 tahun)</string>
+    <string name="tambah_penumpang">Tambah Penumpang</string>
+    <string name="kurangi_penumpang">Kurangi Penumpang</string>
 </resources>

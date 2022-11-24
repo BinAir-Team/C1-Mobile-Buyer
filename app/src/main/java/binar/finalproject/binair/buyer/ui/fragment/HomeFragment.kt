@@ -3,6 +3,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 import android.R
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,6 +22,8 @@ import java.util.*
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private val calendar = Calendar.getInstance()
+    private lateinit var sharedPrefPassenger : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +31,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        sharedPrefPassenger = requireActivity().getSharedPreferences("dataPassenger", 0)
         return binding.root
     }
 
@@ -59,7 +63,23 @@ class HomeFragment : Fragment() {
                     showDatePickerDialog("pulang")
                 }
             }
+            etJmlPenumpangInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    setPassenger()
+                }
+            }
         }
+    }
+
+    private fun setPassenger() {
+        openDialogPassenger()
+    }
+
+    private fun openDialogPassenger() {
+        val bottomSheetFragment = PassengerBottomSheetFragment()
+        bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
+        val totalPenumpang = sharedPrefPassenger.getInt("totalPenumpang", 0)
+        binding.etJmlPenumpangInput.setText("$totalPenumpang")
     }
 
     private fun showDatePickerDialog(kategori: String) {
