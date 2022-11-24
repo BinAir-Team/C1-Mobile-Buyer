@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.databinding.FragmentLoginBinding
+import binar.finalproject.binair.buyer.ui.activity.MainActivity
 
 class LoginFragment : Fragment() {
     private lateinit var binding : FragmentLoginBinding
@@ -26,10 +27,18 @@ class LoginFragment : Fragment() {
         setListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).binding.bottomNavContainer.visibility = View.GONE
+    }
+
     private fun setListener() {
         binding.apply {
             tvRegister.setOnClickListener{
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            }
+            btnSignin.setOnClickListener{
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }
         }
     }

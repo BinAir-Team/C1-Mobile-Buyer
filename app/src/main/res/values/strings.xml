@@ -23,11 +23,14 @@
     <string name="label_destinasi">Destinasi</string>
     <string name="ex_kota_tujuan">Surabaya</string>
     <string name="label_tanggal_berangkat">Tanggal Berangkat</string>
-    <string name="ex_tgl_brkt">11/23/2022</string>
+    <string name="ex_tgl_brkt">23/11/2022</string>
     <string name="label_tanggal_pulang">Tanggal Pulang</string>
     <string name="label_penumpang">Penumpang</string>
     <string name="ex_jml_penumpang">1</string>
     <string name="label_kelas">Kelas</string>
     <string name="label_sekali_jalan">Sekali Jalan</string>
     <string name="label_pulang_pergi">Pulang Pergi</string>
+    <string name="buy_ticket">Buy Ticket</string>
+    <string name="label_promo_tiket">Promo Tiket</string>
+    <string name="ex_promo_title">Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%</string>
 </resources>
