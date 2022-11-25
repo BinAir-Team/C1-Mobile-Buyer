@@ -13,6 +13,8 @@
     <string name="detail_login">Isi form di bawah untuk mendapatkan akses</string>
     <string name="selamat_datang_login">Selamat Datang</string>
     <string name="nama">Nama</string>
+    <string name="firstName">firstname</string>
+    <string name="lastName">lastname</string>
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="konfirmasi_password">Konfirmasi Password</string>
     <string name="daftar">Daftar</string>
@@ -28,4 +30,5 @@
     <string name="label_penumpang">Penumpang</string>
     <string name="ex_jml_penumpang">1</string>
     <string name="label_kelas">Kelas</string>
+    <string name="gender">gender</string>
 </resources>
