@@ -3,6 +3,42 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notification_menu">Notification</string>
-    <string name="dont_have_account"><font color="#000000">Dont have an account? </font><font color="#F37C20">Sign Up</font>
+    <string name="belum_punya_akun"><font color="#000000">Belum punya akun? </font><font color="#F37C20">Daftar</font>
     </string>
+    <string name="btn_cari_penerbangan">Cari Penerbangan</string>
+    <string name="lupa_password">Lupa password?</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="detail_login">Isi form di bawah untuk mendapatkan akses</string>
+    <string name="selamat_datang_login">Selamat Datang</string>
+    <string name="nama">Nama</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="konfirmasi_password">Konfirmasi Password</string>
+    <string name="daftar">Daftar</string>
+    <string name="sudah_punya_akun"><font color="#000000">Sudah punya akun? </font><font color="#F37C20">Login</font></string>
+    <string name="cari_penerbangan">Cari Penerbangan</string>
+    <string name="label_dari">Dari</string>
+    <string name="ex_kota_dari">Jakarta</string>
+    <string name="label_destinasi">Destinasi</string>
+    <string name="ex_kota_tujuan">Surabaya</string>
+    <string name="label_tanggal_berangkat">Tanggal Berangkat</string>
+    <string name="ex_tgl_brkt">23/11/2022</string>
+    <string name="label_tanggal_pulang">Tanggal Pulang</string>
+    <string name="label_penumpang">Penumpang</string>
+    <string name="ex_jml_penumpang">1</string>
+    <string name="label_kelas">Kelas</string>
+    <string name="label_sekali_jalan">Sekali Jalan</string>
+    <string name="label_pulang_pergi">Pulang Pergi</string>
+    <string name="buy_ticket">Buy Ticket</string>
+    <string name="label_promo_tiket">Promo Tiket</string>
+    <string name="ex_promo_title">Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%</string>
+    <string name="simpan">Simpan</string>
+    <string name="_0">0</string>
+    <string name="_1">1</string>
+    <string name="label_dewasa">Dewasa (12 tahun ke atas)</string>
+    <string name="judul_atur_penumpang">Atur Penumpang</string>
+    <string name="label_anak">Anak (2 - 11 tahun)</string>
+    <string name="tambah_penumpang">Tambah Penumpang</string>
+    <string name="kurangi_penumpang">Kurangi Penumpang</string>
 </resources>

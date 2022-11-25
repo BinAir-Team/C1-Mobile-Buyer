@@ -14,7 +14,7 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_navigation"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavContainer"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -27,15 +27,15 @@
         app:layout_constraintRight_toRightOf="parent"
         android:visibility="gone">
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomNav"
+            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:backgroundTint="#F3F6F9"
             style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
             app:fabAlignmentMode="center"
-            app:fabCradleRoundedCornerRadius="20dp"
-            app:fabCradleMargin="16dp">
+            app:fabCradleRoundedCornerRadius="10dp">
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -43,16 +43,15 @@
                 app:menu="@menu/bottom_nav_menu"/>
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnTicket"
-            android:src="@drawable/ic_ticket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/main_blue"
-            android:elevation="24dp"
-            app:layout_anchor="@id/bottomNav"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:contentDescription="Buy Ticket" />
-
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btnTicket"-->
+<!--            android:src="@drawable/ic_ticket"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/main_blue"-->
+<!--            android:elevation="24dp"-->
+<!--            app:layout_anchor="@id/bottomNav"-->
+<!--            style="@style/Widget.MaterialComponents.FloatingActionButton"-->
+<!--            android:contentDescription="@string/buy_ticket" />-->
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

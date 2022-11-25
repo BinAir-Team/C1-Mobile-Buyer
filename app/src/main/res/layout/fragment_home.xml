@@ -10,163 +10,315 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_home" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvTripContainer"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="56dp"
-        android:padding="4dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:fillViewport="true"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="150dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="32dp">
-        <RelativeLayout
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvSekaliJalan"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/main_blue"
-                android:padding="8dp"
-                app:cardBackgroundColor="@color/main_blue"
-                app:cardCornerRadius="32dp"
-                android:layout_alignParentStart="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sekali Jalan"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"/>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvPulangPergi"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/white"
-                android:padding="8dp"
-                app:cardBackgroundColor="@color/main_blue"
-                app:cardCornerRadius="32dp"
-                android:layout_alignParentEnd="true"
-                app:cardElevation="0dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pulang Pergi"
-                    android:textSize="20sp"
-                    android:textColor="@color/content_grey"
-                    android:layout_gravity="center"/>
-            </androidx.cardview.widget.CardView>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvTitleContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintTop_toBottomOf="@id/cvTripContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvTripContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="48dp"
+                android:padding="4dp"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvSekaliJalan"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:padding="8dp"
+                        app:cardBackgroundColor="@color/main_blue"
+                        app:cardCornerRadius="32dp">
+
+                        <TextView
+                            android:id="@+id/tvSekaliJalan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/label_sekali_jalan"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvPulangPergi"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:padding="8dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="32dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:id="@+id/tvPulangPergi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/label_pulang_pergi"
+                            android:textColor="@color/content_grey"
+                            android:textSize="20sp" />
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSearchContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvTripContainer">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvSearchFlightTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cari_penerbangan"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fromInputContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvSearchFlightTitle"
+                        android:layout_marginTop="16dp"
+                        android:hint="@string/label_dari"
+                        android:textColorHint="@color/black"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/etFrom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:drawableStart="@drawable/airplane_takeoff"
+                            android:padding="12dp"
+                            android:text="@string/ex_kota_dari" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/destinationInputContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fromInputContainer"
+                        android:layout_marginTop="16dp"
+                        android:hint="@string/label_destinasi"
+                        android:textColorHint="@color/black"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/etDestination"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:drawableStart="@drawable/airplane_landing"
+                            android:padding="12dp"
+                            android:text="@string/ex_kota_tujuan" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tglBerangkatInputContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/destinationInputContainer"
+                        android:layout_marginTop="16dp"
+                        android:hint="@string/label_tanggal_berangkat"
+                        android:textColorHint="@color/black"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTglBerangkatInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_schedule"
+                            android:inputType="none"
+                            android:text="@string/ex_tgl_brkt" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tglPulangInputContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tglBerangkatInputContainer"
+                        android:layout_marginTop="16dp"
+                        android:hint="@string/label_tanggal_pulang"
+                        android:textColorHint="@color/black"
+                        android:visibility="gone"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTglPulangInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_schedule"
+                            android:inputType="date"
+                            android:text="@string/ex_tgl_brkt" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/jmlKelasContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tglPulangInputContainer"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/jmlPenumpangInputContainer"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="1"
+                            android:hint="@string/label_penumpang"
+                            android:textColorHint="@color/black"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="@color/content_grey"
+                            app:hintTextColor="@color/content_grey">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etJmlPenumpangInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:editable="false"
+                                android:text="@string/ex_jml_penumpang" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/kelasInputContainer"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:hint="@string/label_kelas"
+                            android:textColorHint="@color/black"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="@color/content_grey"
+                            app:hintTextColor="@color/content_grey">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/etKelasInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCari"
+                        style="@style/button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/jmlKelasContainer"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/btn_cari_penerbangan" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
             <TextView
-                android:id="@+id/tvSearchFlightTitle"
+                android:id="@+id/titlePromo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cari Penerbangan"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/label_promo_tiket"
+                android:textColor="@color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fromInputContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
-                android:hint="Dari"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/content_grey"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/content_grey"
-                android:layout_below="@id/tvSearchFlightTitle"
-                android:layout_marginTop="16dp">
-                <AutoCompleteTextView
-                    android:id="@+id/etFrom"
-                    android:text="Jakarta"
-                    android:drawableStart="@drawable/airplane_takeoff"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:padding="12dp"
-                    app:layout_constraintTop_toBottomOf="@id/cvTitleContainer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvSearchContainer" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/destinationInputContainer"
+            <TextView
+                android:id="@+id/tvLihatSemuaPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                android:layout_marginEnd="24dp"
+                android:text="Lihat Semua"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvSearchContainer" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPromo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
-                android:hint="Destinasi"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/content_grey"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/content_grey"
-                android:layout_marginTop="16dp"
-                android:layout_below="@id/fromInputContainer">
-                <AutoCompleteTextView
-                    android:id="@+id/etDestination"
-                    android:text="Surabaya"
-                    android:drawableStart="@drawable/airplane_landing"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:padding="12dp"
-                    app:layout_constraintTop_toBottomOf="@id/cvTitleContainer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tanggalInputContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
-                android:hint="Tanggal"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/content_grey"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/content_grey"
-                android:layout_marginTop="16dp"
-                android:layout_below="@id/fromInputContainer">
-                <AutoCompleteTextView
-                    android:id="@+id/etTanggal"
-                    android:text="Surabaya"
-                    android:drawableStart="@drawable/airplane_landing"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:padding="12dp"
-                    app:layout_constraintTop_toBottomOf="@id/cvTitleContainer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-            </com.google.android.material.textfield.TextInputLayout>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="150dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titlePromo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
