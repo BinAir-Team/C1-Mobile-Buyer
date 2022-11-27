@@ -44,10 +44,10 @@
                 android:id="@+id/ivLogo"
                 android:src="@drawable/logo_blue"
                 android:scaleType="fitStart"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:paddingTop="12dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="2dp"
+                android:paddingTop="0dp"/>
         </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
