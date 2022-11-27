@@ -11,16 +11,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
+    private lateinit var flightVM : FlightViewModel
     private val calendar = Calendar.getInstance()
     private lateinit var sharedPrefPassenger : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
@@ -31,6 +36,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         sharedPrefPassenger = requireActivity().getSharedPreferences("dataPassenger", 0)
         return binding.root
     }
@@ -53,22 +59,39 @@ class HomeFragment : Fragment() {
 
     private fun setListener() {
         binding.apply {
-            etTglBerangkatInput.setOnFocusChangeListener { view, b ->
-                if (b) {
-                    showDatePickerDialog("berangkat")
-                }
+            etTglBerangkatInput.setOnClickListener {
+                showDatePickerDialog("berangkat")
             }
-            etTglPulangInput.setOnFocusChangeListener { view, b ->
-                if (b) {
-                    showDatePickerDialog("pulang")
-                }
+            etTglPulangInput.setOnClickListener {
+                showDatePickerDialog("pulang")
             }
-            etJmlPenumpangInput.setOnFocusChangeListener { view, b ->
-                if (b) {
-                    setPassenger()
-                }
+            etJmlPenumpangInput.setOnClickListener {
+                setPassenger()
+            }
+//            etTglBerangkatInput.setOnFocusChangeListener { view, b ->
+//                if (b) {
+//                    showDatePickerDialog("berangkat")
+//                }
+//            }
+//            etTglPulangInput.setOnFocusChangeListener { view, b ->
+//                if (b) {
+//                    showDatePickerDialog("pulang")
+//                }
+//            }
+//            etJmlPenumpangInput.setOnFocusChangeListener { view, b ->
+//                if (b) {
+//                    setPassenger()
+//                }
+//            }
+            btnCari.setOnClickListener {
+                searchTicket()
             }
         }
+    }
+
+    private fun searchTicket() {
+//        flightVM.callGetAllTicket()
+        findNavController().navigate(binar.finalproject.binair.buyer.R.id.action_homeFragment_to_listTicketFragment)
     }
 
     private fun setPassenger() {
