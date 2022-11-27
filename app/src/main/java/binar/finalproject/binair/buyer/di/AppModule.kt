@@ -27,7 +27,7 @@ class AppModule {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://637eeee4cfdbfd9a63b9fda5.mockapi.io/api/v1/")
+            .baseUrl("https://binair-backend-production.up.railway.app/api/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

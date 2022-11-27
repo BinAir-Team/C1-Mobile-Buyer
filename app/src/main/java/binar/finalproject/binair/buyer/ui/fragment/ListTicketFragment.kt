@@ -1,6 +1,7 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class ListTicketFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentListTicketBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
+
         return binding.root
     }
 
@@ -39,6 +41,7 @@ class ListTicketFragment : Fragment() {
         flightVM.callGetAllTicket()
         flightVM.allTicket.observe(viewLifecycleOwner) {
             if (it != null) {
+                Log.d("RESULT", "Result : $it")
                 setDataToRecView(it)
                 showLoading(false)
             }

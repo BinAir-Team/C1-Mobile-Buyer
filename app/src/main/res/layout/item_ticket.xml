@@ -54,7 +54,7 @@
                 android:layout_below="@+id/labelMaskapai"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="8dp"
-                android:text="5.50"
+                android:text="@{ticket.departureTime}"
                 android:textColor="@color/black" />
 
             <TextView
@@ -68,7 +68,7 @@
                 tools:ignore="SmallSp" />
 
             <ImageView
-                android:id="@+id/labelEstimasi"
+                android:id="@+id/containerLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelMaskapai"
@@ -77,7 +77,7 @@
                 android:src="@drawable/garisestimasi" />
 
             <ImageView
-                android:id="@+id/labelLogoEstimasi"
+                android:id="@+id/iconLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelMaskapai"
@@ -93,7 +93,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_above="@id/tvKotaTujuan"
                 android:layout_alignParentEnd="true"
-                android:text="@{ticket.hours}"
+                android:text="@{ticket.arrivalTime}"
                 android:textColor="@color/black" />
 
             <TextView
@@ -111,52 +111,69 @@
                 android:id="@+id/garis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelLogoEstimasi"
+                android:layout_below="@+id/iconLogo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/garispembatas" />
 
-            <ImageView
-                android:id="@+id/imgKelas"
+<!--            <ImageView-->
+<!--                android:id="@+id/imgKelas"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/garis"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                android:src="@drawable/chair" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvClass"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/garis"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:layout_toEndOf="@+id/imgKelas"-->
+<!--                android:text="Ekonomi Class"-->
+<!--                android:textSize="12sp" />-->
+
+            <TextView
+                android:id="@+id/labelHargaDewasa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/garis"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="12dp"
-                android:src="@drawable/chair" />
-
-            <TextView
-                android:id="@+id/tvClass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/garis"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="20dp"
-                android:layout_toEndOf="@+id/imgKelas"
-                android:text="Ekonomi Class"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/labelHarga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/garis"
-                android:layout_marginStart="270dp"
-                android:layout_marginTop="11dp"
-                android:layout_alignParentEnd="false"
-                android:text="Harga"
+                android:layout_marginStart="18dp"
+                android:text="Harga Dewasa"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvHarga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/garis"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="11dp"
-                android:layout_toEndOf="@+id/labelHarga"
+                android:layout_below="@+id/labelHargaDewasa"
+                android:layout_marginStart="18dp"
                 android:text="@{Integer.toString(ticket.adultPrice)}" />
+
+            <TextView
+                android:id="@+id/labelHargaAnak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/garis"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="18dp"
+                android:text="Harga Anak"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvHargaAnak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelHargaAnak"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="18dp"
+                android:text="@{Integer.toString(ticket.childPrice)}" />
 
             <!--        <Button-->
             <!--            android:id="@+id/btnPesan"-->
