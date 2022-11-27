@@ -41,4 +41,6 @@
     <string name="label_anak">Anak (2 - 11 tahun)</string>
     <string name="tambah_penumpang">Tambah Penumpang</string>
     <string name="kurangi_penumpang">Kurangi Penumpang</string>
+    <string name="firstName">Nama Depan</string>
+    <string name="lastName">Nama Belakang</string>
 </resources>
