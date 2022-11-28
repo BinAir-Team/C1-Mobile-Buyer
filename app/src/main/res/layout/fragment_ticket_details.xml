@@ -1,14 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.TicketDetailsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="ticket"
+            type="binar.finalproject.binair.buyer.data.response.TicketItem" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.fragment.TicketDetailsFragment">
 
-</FrameLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_title" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvDeatilTicketContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPadding="16dp"
+            app:cardCornerRadius="12dp"
+            android:layout_margin="16dp"
+            android:layout_below="@id/toolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:src="@drawable/logo_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp" />
+
+                <ImageView
+                    android:id="@+id/ivLine"
+                    android:src="@drawable/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@id/ivLogo" />
+
+                <ImageView
+                    android:id="@+id/containerLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/ivLine"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/garisestimasi" />
+
+                <ImageView
+                    android:id="@+id/iconLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@+id/ivLine"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logoestimasi" />
+
+                <TextView
+                    android:id="@+id/tvJamBerangkat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivLine"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@{ticket.departureTime}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvKotaBerangkat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvJamBerangkat"
+                    android:layout_marginStart="16dp"
+                    android:text="@{ticket.from}"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/tvJamDatang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_below="@id/ivLine"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{ticket.arrivalTime}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvKotaTujuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_below="@+id/tvJamDatang"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{ticket.to}"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/labelTanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_below="@id/tvKotaTujuan"/>
+
+                <TextView
+                    android:id="@+id/tvTanggal"
+                    android:drawableStart="@drawable/ic_schedule_blue"
+                    android:drawablePadding="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelTanggal"
+                    android:layout_marginStart="16dp"
+                    android:text="@{ticket.date}"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/labelBagasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bagasi"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="84dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/tvKotaTujuan"/>
+
+                <TextView
+                    android:id="@+id/tvBagasi"
+                    android:drawableStart="@drawable/ic_bagasi"
+                    android:drawablePadding="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelBagasi"
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="Gratis 20 Kg"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/labelHargaDewasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga Dewasa"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_below="@id/tvTanggal"/>
+
+                <TextView
+                    android:id="@+id/tvHargaDewasa"
+                    android:drawableStart="@drawable/ic_money"
+                    android:drawablePadding="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelHargaDewasa"
+                    android:layout_marginStart="16dp"
+                    android:text="@{`Rp. ` + Integer.toString(ticket.adultPrice)}"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/labelHargaAnak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga Anak"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/tvBagasi"/>
+
+                <TextView
+                    android:id="@+id/tvHargaAnak"
+                    android:drawableStart="@drawable/ic_money"
+                    android:drawablePadding="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="96dp"
+                    android:layout_below="@id/labelHargaAnak"
+                    android:layout_toEndOf="@id/labelHargaDewasa"
+                    android:text="@{`Rp. ` + Integer.toString(ticket.childPrice)}"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:id="@+id/ivLineBottom"
+                    android:src="@drawable/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@id/tvHargaDewasa" />
+
+                <Button
+                    android:id="@+id/btnPesan"
+                    style="@style/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pesan_tiket"
+                    android:layout_below="@id/ivLineBottom" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>

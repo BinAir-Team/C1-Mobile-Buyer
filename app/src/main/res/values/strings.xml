@@ -41,4 +41,14 @@
     <string name="label_anak">Anak (2 - 11 tahun)</string>
     <string name="tambah_penumpang">Tambah Penumpang</string>
     <string name="kurangi_penumpang">Kurangi Penumpang</string>
+    <string name="pesan_tiket">Pesan Tiket</string>
+    <string name="label_detail_penumpang">Detail Penumpang</string>
+    <string name="tipe_penumpang">(Dewasa 1)</string>
+    <string name="titel">Titel</string>
+    <string name="kewarganegaraan">Kewarganegaraan</string>
+    <string name="tipe">Tipe</string>
+    <string name="nomor_identitas">Nomor Identitas</string>
+    <string name="nama_depan">Nama Depan</string>
+    <string name="nama_belakang">Nama Belakang</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
 </resources>

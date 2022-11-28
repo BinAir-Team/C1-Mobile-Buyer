@@ -17,6 +17,15 @@
                             <option name="y" value="8" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_homeFragment_to_listTicketFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -65,6 +74,18 @@
                           <Point>
                             <option name="x" value="-386" />
                             <option name="y" value="338" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="ticketDetailsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="263" />
+                            <option name="y" value="14" />
                           </Point>
                         </option>
                       </LayoutPositions>

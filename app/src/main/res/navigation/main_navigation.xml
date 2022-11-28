@@ -35,5 +35,17 @@
         android:id="@+id/listTicketFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.ListTicketFragment"
         android:label="fragment_list_ticket"
-        tools:layout="@layout/fragment_list_ticket" />
+        tools:layout="@layout/fragment_list_ticket" >
+        <action
+            android:id="@+id/action_listTicketFragment_to_ticketDetailsFragment"
+            app:destination="@id/ticketDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketDetailsFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.TicketDetailsFragment"
+        android:label="TicketDetailsFragment" >
+        <argument
+            android:name="clickedTicket"
+            app:argType="binar.finalproject.binair.buyer.data.response.TicketItem" />
+    </fragment>
 </navigation>
