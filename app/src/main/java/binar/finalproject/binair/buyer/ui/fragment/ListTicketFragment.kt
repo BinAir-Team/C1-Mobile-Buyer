@@ -1,12 +1,12 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentListTicketBinding
@@ -41,7 +41,6 @@ class ListTicketFragment : Fragment() {
         flightVM.callGetAllTicket()
         flightVM.allTicket.observe(viewLifecycleOwner) {
             if (it != null) {
-                Log.d("RESULT", "Result : $it")
                 setDataToRecView(it)
                 showLoading(false)
             }
@@ -53,6 +52,11 @@ class ListTicketFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvListTicket.adapter = adapter
         binding.rvListTicket.layoutManager = layoutManager
+
+        adapter.onClick = {
+            val action = ListTicketFragmentDirections.actionListTicketFragmentToTicketDetailsFragment(it)
+            findNavController().navigate(action)
+        }
     }
 
     private fun showLoading(condition : Boolean) {
