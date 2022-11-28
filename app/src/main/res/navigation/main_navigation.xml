@@ -47,5 +47,13 @@
         <argument
             android:name="clickedTicket"
             app:argType="binar.finalproject.binair.buyer.data.response.TicketItem" />
+        <action
+            android:id="@+id/action_ticketDetailsFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.BookingFragment"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking" />
 </navigation>

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.finalproject.binair.buyer.data.Constant.dataPassenger
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
@@ -37,7 +38,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
-        sharedPrefPassenger = requireActivity().getSharedPreferences("dataPassenger", 0)
+        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
         return binding.root
     }
 

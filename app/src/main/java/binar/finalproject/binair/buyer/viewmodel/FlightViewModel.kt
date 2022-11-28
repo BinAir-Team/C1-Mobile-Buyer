@@ -37,7 +37,7 @@ class FlightViewModel @Inject constructor(private val client : APIService) : Vie
             }
 
             override fun onFailure(call: Call<AllTicketsResponse>, t: Throwable) {
-                Log.e("Error : ", "onFailed: ${t.message}")
+                Log.e("Error : ", "onFailure: ${t.message}")
             }
         })
     }

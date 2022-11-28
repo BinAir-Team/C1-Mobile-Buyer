@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentTicketDetailsBinding
 
@@ -26,6 +28,7 @@ class TicketDetailsFragment : Fragment() {
 
         getDataFromBundle()
         setDataToView()
+        setListener()
     }
 
     private fun getDataFromBundle() {
@@ -37,5 +40,11 @@ class TicketDetailsFragment : Fragment() {
         val formatedDate = oldDate.substring(8, 10) + "/" + oldDate.substring(5, 7) + "/" + oldDate.substring(0, 4)
         clickedTicket.date = formatedDate
         binding.ticket = clickedTicket
+    }
+
+    private fun setListener() {
+        binding.btnPesan.setOnClickListener {
+            findNavController().navigate(R.id.action_ticketDetailsFragment_to_bookingFragment)
+        }
     }
 }

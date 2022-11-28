@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import binar.finalproject.binair.buyer.data.Constant.dataPassenger
 import binar.finalproject.binair.buyer.databinding.BottomSheetPassengerBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -20,7 +21,7 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View{
         binding = BottomSheetPassengerBinding.inflate(inflater, container, false)
-        sharedPrefPassenger = requireActivity().getSharedPreferences("dataPassenger", 0)
+        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
         editor = sharedPrefPassenger.edit()
         return binding.root
     }
@@ -59,7 +60,11 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
         binding.btnSimpan.setOnClickListener {
-            val totalPenumpang = binding.tvJmlDewasa.text.toString().toInt() + binding.tvJmlAnak.text.toString().toInt()
+            val jmlDewasa = binding.tvJmlDewasa.text.toString().toInt()
+            val jmlAnak = binding.tvJmlAnak.text.toString().toInt()
+            val totalPenumpang = jmlDewasa + jmlAnak
+            editor.putInt("jmlDewasa", jmlDewasa)
+            editor.putInt("jmlAnak", jmlAnak)
             editor.putInt("totalPenumpang", totalPenumpang)
             editor.apply()
             Toast.makeText(context, "Total penumpang: $totalPenumpang", Toast.LENGTH_SHORT).show()
