@@ -1,6 +1,7 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.R
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.SharedPreferences
@@ -39,12 +40,14 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
+        editor = sharedPrefPassenger.edit()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showBottomNavigation()
+        clearTotalPassenger()
         setListener()
         setAutoCompleteClass()
         setPromoAdapter()
@@ -95,15 +98,23 @@ class HomeFragment : Fragment() {
         findNavController().navigate(binar.finalproject.binair.buyer.R.id.action_homeFragment_to_listTicketFragment)
     }
 
+    private fun clearTotalPassenger() {
+        editor.remove("jmlAnak")
+        editor.putInt("jmlDewasa",1)
+        editor.putInt("totalPenumpang", 1)
+        editor.apply()
+    }
+
     private fun setPassenger() {
         openDialogPassenger()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun openDialogPassenger() {
         val bottomSheetFragment = PassengerBottomSheetFragment()
         bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
         val totalPenumpang = sharedPrefPassenger.getInt("totalPenumpang", 0)
-        binding.etJmlPenumpangInput.setText("$totalPenumpang")
+        binding.etJmlPenumpangInput.setText("$totalPenumpang Penumpang")
     }
 
     private fun showDatePickerDialog(kategori: String) {
