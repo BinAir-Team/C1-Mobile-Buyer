@@ -26,7 +26,7 @@
     <string name="ex_tgl_brkt">23/11/2022</string>
     <string name="label_tanggal_pulang">Tanggal Pulang</string>
     <string name="label_penumpang">Penumpang</string>
-    <string name="ex_jml_penumpang">1</string>
+    <string name="ex_jml_penumpang">1 Penumpang</string>
     <string name="label_kelas">Kelas</string>
     <string name="label_sekali_jalan">Sekali Jalan</string>
     <string name="label_pulang_pergi">Pulang Pergi</string>
@@ -51,4 +51,5 @@
     <string name="nama_depan">Nama Depan</string>
     <string name="nama_belakang">Nama Belakang</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="nomor_telp">Nomor Telepon</string>
 </resources>

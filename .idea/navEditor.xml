@@ -100,6 +100,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="reviewBookingFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="765" />
+                            <option name="y" value="11" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="ticketDetailsFragment">
                     <value>
                       <LayoutPositions>
@@ -108,6 +120,15 @@
                             <option name="x" value="263" />
                             <option name="y" value="14" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_ticketDetailsFragment_to_bookingFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

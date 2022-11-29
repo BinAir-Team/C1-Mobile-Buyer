@@ -28,6 +28,7 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getOldData()
         setListener()
     }
 
@@ -56,7 +57,6 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
             } else {
                 Toast.makeText(context, "Jumlah maksimal pemesanan untuk 7 orang", Toast.LENGTH_SHORT).show()
             }
-//            binding.tvJmlAnak.text = (binding.tvJmlAnak.text.toString().toInt() + 1).toString()
         }
 
         binding.btnSimpan.setOnClickListener {
@@ -67,12 +67,15 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
             editor.putInt("jmlAnak", jmlAnak)
             editor.putInt("totalPenumpang", totalPenumpang)
             editor.apply()
-            Toast.makeText(context, "Total penumpang: $totalPenumpang", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Total penumpang: $totalPenumpang", Toast.LENGTH_SHORT).show()
             this.dismiss()
         }
     }
 
-    companion object {
-        const val TAG = "PassengerBottomSheetFragment"
+    private fun getOldData(){
+        val jmlDewasa = sharedPrefPassenger.getInt("jmlDewasa", 1)
+        val jmlAnak = sharedPrefPassenger.getInt("jmlAnak", 0)
+        binding.tvJmlDewasa.text = jmlDewasa.toString()
+        binding.tvJmlAnak.text = jmlAnak.toString()
     }
 }

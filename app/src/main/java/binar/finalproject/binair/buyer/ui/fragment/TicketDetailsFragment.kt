@@ -20,6 +20,7 @@ class TicketDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentTicketDetailsBinding.inflate(inflater, container, false)
+        binding.toolbar.tvTitlePage.text = "Detail Penerbangan"
         return binding.root
     }
 

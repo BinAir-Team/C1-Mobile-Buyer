@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/containerDetailPenumpang"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/toolbar"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="12dp"
+    app:contentPadding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/labelDetailPenumpang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Penumpang 1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/labelNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Nama"
+            android:textColor="@color/content_grey"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bambang Kuncoro"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/labelKewarganegaraan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Kewarganegaraan"-->
+<!--            android:textColor="@color/content_grey"-->
+<!--            android:textSize="18sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvKewarganegaraan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Indonesia"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="18sp" />-->
+
+        <TextView
+            android:id="@+id/labelNoIdnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nomor Identitas"
+            android:textColor="@color/content_grey"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvNoIdnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="590123xxxxxxxxx"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
