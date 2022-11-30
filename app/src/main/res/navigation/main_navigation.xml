@@ -72,4 +72,18 @@
             android:name="dataKontak"
             app:argType="binar.finalproject.binair.buyer.data.local.DataKontak" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment><action android:id="@+id/action_global_profileFragment2" app:destination="@id/profileFragment2"/><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
 </navigation>

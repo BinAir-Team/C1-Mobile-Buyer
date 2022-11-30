@@ -1,6 +1,5 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
-import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
@@ -10,7 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -158,11 +156,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun setAutoCompleteClass() {
-        val ticketsClass = arrayOf("Ekonomi","Bisnis","First Class")
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, ticketsClass)
-        val atcClas = binding.etKelasInput
-        atcClas.threshold = 1
-        atcClas.setAdapter(adapter)
+//        val ticketsClass = arrayOf("Ekonomi","Bisnis","First Class")
+//        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, ticketsClass)
+//        val atcClas = binding.etKelasInput
+//        atcClas.threshold = 1
+//        atcClas.setAdapter(adapter)
     }
 
     private fun showBottomNavigation() {
