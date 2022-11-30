@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.finalproject.binair.buyer.data.room.DataWishList
+import binar.finalproject.binair.buyer.data.local.DataWishList
 import binar.finalproject.binair.buyer.databinding.ItemWishlistBinding
 
 class WishListAdapter (private var onClick : WishListAdapter.NotesInterface) : RecyclerView.Adapter<WishListAdapter.ViewHolder>(){

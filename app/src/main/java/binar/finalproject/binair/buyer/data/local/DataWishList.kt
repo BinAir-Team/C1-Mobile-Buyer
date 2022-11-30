@@ -1,4 +1,4 @@
-package binar.finalproject.binair.buyer.data.room
+package binar.finalproject.binair.buyer.data.local
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -85,5 +85,17 @@
         <action
             android:id="@+id/action_profileFragment2_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
-    </fragment><action android:id="@+id/action_global_profileFragment2" app:destination="@id/profileFragment2"/><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
+    </fragment>
+    <action android:id="@+id/action_global_profileFragment2" app:destination="@id/profileFragment2" />
+    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment" />
+    <fragment
+        android:id="@+id/ticketHistoryFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.TicketHistoryFragment"
+        android:label="fragment_ticket_history"
+        tools:layout="@layout/fragment_ticket_history" />
+    <fragment
+        android:id="@+id/wishlistFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" /><action android:id="@+id/action_global_ticketHistoryFragment2" app:destination="@id/ticketHistoryFragment2"/><action android:id="@+id/action_global_wishlistFragment2" app:destination="@id/wishlistFragment2"/>
 </navigation>

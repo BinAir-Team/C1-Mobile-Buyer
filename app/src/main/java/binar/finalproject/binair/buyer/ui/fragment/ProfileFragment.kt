@@ -1,17 +1,19 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.finalproject.binair.buyer.data.room.DataWishList
-import binar.finalproject.binair.buyer.data.room.WishListViewModel
+import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.local.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
+import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
 
 class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
     private var _binding: FragmentProfileBinding? = null
@@ -33,10 +35,22 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
         binding.AddButton.setOnClickListener() {
             addnote()
         }
+        binding.apply {
+            tvName.setOnClickListener {
+                gotoEditProfile()
+            }
+            userprofile.setOnClickListener {
+                gotoEditProfile()
+            }
+        }
         adapter = WishListAdapter(this)
         getAllNote()
-
     }
+
+    private fun gotoEditProfile() {
+        findNavController().navigate(R.id.action_profileFragment2_to_editProfileFragment)
+    }
+
     fun addnote(){
         binding.apply {
             var flightNumber = binding.FlightNumber.text.toString()
