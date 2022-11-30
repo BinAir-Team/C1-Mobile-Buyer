@@ -1,7 +1,8 @@
-package binar.finalproject.binair.buyer.data.room
+package binar.finalproject.binair.buyer.data
 
-import android.provider.ContactsContract.Data
 import androidx.lifecycle.LiveData
+import binar.finalproject.binair.buyer.data.local.DataWishList
+import binar.finalproject.binair.buyer.data.local.WishlistDAO
 
 class WishListRepository (private val data : WishlistDAO){
     fun getAllDataWishList() : LiveData<List<DataWishList>> {

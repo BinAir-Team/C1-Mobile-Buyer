@@ -1,9 +1,12 @@
-package binar.finalproject.binair.buyer.data.room
+package binar.finalproject.binair.buyer.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import binar.finalproject.binair.buyer.data.WishListRepository
+import binar.finalproject.binair.buyer.data.local.DataWishList
+import binar.finalproject.binair.buyer.data.local.WishListDatabase
 import kotlinx.coroutines.launch
 
 class WishListViewModel(application: Application) : AndroidViewModel(application) {

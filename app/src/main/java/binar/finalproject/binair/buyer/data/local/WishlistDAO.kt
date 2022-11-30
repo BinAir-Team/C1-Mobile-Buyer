@@ -1,6 +1,5 @@
-package binar.finalproject.binair.buyer.data.room
+package binar.finalproject.binair.buyer.data.local
 
-import android.provider.ContactsContract.Data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 

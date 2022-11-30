@@ -11,10 +11,8 @@ import androidx.annotation.MenuRes
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.room.DataWishList
-import binar.finalproject.binair.buyer.data.room.WishListViewModel
-import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
-import binar.finalproject.binair.buyer.databinding.FragmentTicketHistoryBinding
+import binar.finalproject.binair.buyer.data.local.DataWishList
+import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
 

@@ -1,7 +1,6 @@
-package binar.finalproject.binair.buyer.data.room
+package binar.finalproject.binair.buyer.data.local
 
 import android.content.Context
-import android.provider.ContactsContract.Data
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
