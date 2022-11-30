@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.paymentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvpayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_below="@id/cvProfile">
+    <RelativeLayout
+        android:id="@+id/labelPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:id="@+id/labelBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="payment"
+            android:drawableLeft="@drawable/ic_back"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"/>
+        
+        <TextView
+            android:id="@+id/labelBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelBack"
+            android:layout_marginLeft="30dp"
+            android:text="book"
+            android:textSize="12dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/main_blue"
+            android:drawableRight="@drawable/gariskecil"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/logonomer"/>
+
+        <TextView
+            android:textSize="12dp"
+            android:id="@+id/labelRiview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelBack"
+            android:layout_toRightOf="@+id/labelBook"
+            android:layout_marginLeft="10dp"
+            android:text="Review"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/main_blue"
+            android:drawableRight="@drawable/gariskecil"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/logonomer2"/>
+
+        <TextView
+            android:textSize="12dp"
+            android:id="@+id/labelPay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelBack"
+            android:layout_toRightOf="@+id/labelRiview"
+            android:layout_marginLeft="10dp"
+            android:text="pay"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/main_blue"
+            android:drawableRight="@drawable/gariskecilabu"
+            android:drawablePadding="7dp"
+            android:drawableLeft="@drawable/logonomer3"/>
+
+        <TextView
+            android:textSize="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelBack"
+            android:layout_toRightOf="@+id/labelPay"
+            android:layout_marginLeft="10dp"
+            android:text="E-Ticket"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/content_grey"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/logonomer4"/>
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDetailKontak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/labelBookingDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Booking Detail"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/labelBooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelBookingDetail"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"
+                android:text="booking ID"
+                android:textColor="@color/content_grey" />
+
+            <TextView
+                android:id="@+id/tvNoBooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelBooking"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="5dp"
+                android:text="877082217" />
+
+            <TextView
+                android:id="@+id/labelFlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNoBooking"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Flight"
+                android:textColor="@color/content_grey" />
+
+            <TextView
+                android:id="@+id/tvFlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelFlight"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="5dp"
+                android:text="Nov 23, 2022" />
+
+            <TextView
+                android:id="@+id/tvEstimasiFlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFlight"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_baseline_fiber_manual_record_24"
+                android:drawablePadding="5dp"
+                android:text="Jakarta (CGK)" />
+
+            <TextView
+                android:id="@+id/tvEstimasiFlighttujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFlight"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/tvEstimasiFlight"
+                android:drawableLeft="@drawable/ic_baseline_arrow_right_alt_24"
+                android:drawablePadding="5dp"
+                android:text="Surabaya (SUB)" />
+
+            <TextView
+                android:id="@+id/labelPassenger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvEstimasiFlighttujuan"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="List of Passenger(s)"
+                android:textColor="@color/content_grey" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelPassenger"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_baseline_fiber_manual_record_24"
+                android:drawablePadding="5dp"
+                android:text="Mr. Akbar " />
+
+            <TextView
+                android:id="@+id/labelAdult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelPassenger"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="30dp"
+                android:text="Adult"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</FrameLayout>
