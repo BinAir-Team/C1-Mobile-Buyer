@@ -35,5 +35,41 @@
         android:id="@+id/listTicketFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.ListTicketFragment"
         android:label="fragment_list_ticket"
-        tools:layout="@layout/fragment_list_ticket" />
+        tools:layout="@layout/fragment_list_ticket" >
+        <action
+            android:id="@+id/action_listTicketFragment_to_ticketDetailsFragment"
+            app:destination="@id/ticketDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketDetailsFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.TicketDetailsFragment"
+        android:label="TicketDetailsFragment" >
+        <argument
+            android:name="clickedTicket"
+            app:argType="binar.finalproject.binair.buyer.data.response.TicketItem" />
+        <action
+            android:id="@+id/action_ticketDetailsFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.BookingFragment"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking" >
+        <action
+            android:id="@+id/action_bookingFragment_to_reviewBookingFragment"
+            app:destination="@id/reviewBookingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewBookingFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.ReviewBookingFragment"
+        android:label="fragment_review_booking"
+        tools:layout="@layout/fragment_review_booking" >
+        <argument
+            android:name="dataPenumpang"
+            app:argType="binar.finalproject.binair.buyer.data.local.DataPenumpang[]" />
+        <argument
+            android:name="dataKontak"
+            app:argType="binar.finalproject.binair.buyer.data.local.DataKontak" />
+    </fragment>
 </navigation>

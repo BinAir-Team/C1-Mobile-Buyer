@@ -1,6 +1,8 @@
 package binar.finalproject.binair.buyer.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class AllTicketsResponse(
 
@@ -11,10 +13,11 @@ data class AllTicketsResponse(
 	val message: String
 )
 
+@Parcelize
 data class TicketItem(
 
 	@field:SerializedName("date")
-	val date: String,
+	var date: String,
 
 	@field:SerializedName("arrival_time")
 	val arrivalTime: String,
@@ -60,4 +63,4 @@ data class TicketItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
-)
+) : Parcelable

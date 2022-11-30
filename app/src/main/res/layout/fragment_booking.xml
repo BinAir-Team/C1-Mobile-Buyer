@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.BookingFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+        <LinearLayout
+            android:id="@+id/allFormContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civProfile"
+                        android:src="@drawable/ic_profile"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+                    <TextView
+                        android:id="@+id/tvLoggedInAs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masuk Sebagai "
+                        android:textSize="18sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_toEndOf="@id/civProfile"/>
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Danial "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_toEndOf="@id/tvLoggedInAs"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvDetailKontak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_below="@id/cvProfile">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+                    <TextView
+                        android:id="@+id/labelDetailKontak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detail Kontak (untuk E-Ticket)"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="22sp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/containerNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Lengkap"
+                        android:textColorHint="@color/black"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@id/labelDetailKontak">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNamaLengkap"
+                            android:drawableStart="@drawable/ic_contact"
+                            android:drawablePadding="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/containerNoTelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomor Telepon"
+                        android:textColorHint="@color/black"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@id/containerNama">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNoTelp"
+                            android:drawableStart="@drawable/ic_phone_book"
+                            android:drawablePadding="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/containerEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:textColorHint="@color/black"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/content_grey"
+                        app:hintTextColor="@color/content_grey"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@id/containerNoTelp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
+                            android:drawableStart="@drawable/ic_email"
+                            android:drawablePadding="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+<!--            <include android:id="@+id/formAdult1" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formAdult2" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formAdult3" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formAdult4" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formAdult5" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formAdult6" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formAdult7" layout="@layout/form_traveler" android:visibility="gone"/>-->
+
+<!--            <include android:id="@+id/formChild1" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formChild2" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formChild3" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formChild4" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formChild5" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formChild6" layout="@layout/form_traveler" android:visibility="gone"/>-->
+<!--            <include android:id="@+id/formChild7" layout="@layout/form_traveler" android:visibility="gone"/>-->
+            <LinearLayout
+                android:id="@+id/formTravelerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnPesan"
+                style="@style/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pesan_tiket"
+                android:layout_margin="12dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
