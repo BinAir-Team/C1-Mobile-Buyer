@@ -224,7 +224,6 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:layout_marginEnd="12dp"
                             android:layout_weight="1"
                             android:hint="@string/label_penumpang"
                             android:textColorHint="@color/black"
@@ -245,29 +244,29 @@
                                 android:text="@string/ex_jml_penumpang" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/kelasInputContainer"
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_weight="1"
-                            android:hint="@string/label_kelas"
-                            android:textColorHint="@color/black"
-                            app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="@color/content_grey"
-                            app:hintTextColor="@color/content_grey">
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/kelasInputContainer"-->
+<!--                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--                            android:layout_width="fill_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="12dp"-->
+<!--                            android:layout_marginTop="16dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:hint="@string/label_kelas"-->
+<!--                            android:textColorHint="@color/black"-->
+<!--                            app:boxBackgroundColor="@color/white"-->
+<!--                            app:boxCornerRadiusBottomEnd="12dp"-->
+<!--                            app:boxCornerRadiusBottomStart="12dp"-->
+<!--                            app:boxCornerRadiusTopEnd="12dp"-->
+<!--                            app:boxCornerRadiusTopStart="12dp"-->
+<!--                            app:boxStrokeColor="@color/content_grey"-->
+<!--                            app:hintTextColor="@color/content_grey">-->
 
-                            <AutoCompleteTextView
-                                android:id="@+id/etKelasInput"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </com.google.android.material.textfield.TextInputLayout>
+<!--                            <AutoCompleteTextView-->
+<!--                                android:id="@+id/etKelasInput"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
                     </LinearLayout>
 
                     <Button
