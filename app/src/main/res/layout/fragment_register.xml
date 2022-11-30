@@ -48,27 +48,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/image_profile"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/profil"
-                    app:civ_border_width="2dp"
-                    app:civ_shadow="true"
-                    />
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/image_profile"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:src="@drawable/profil"-->
+<!--                    app:civ_border_width="2dp"-->
+<!--                    app:civ_shadow="true"-->
+<!--                    />-->
 
                 <TextView
-                    android:layout_below="@+id/image_profile"
                     android:id="@+id/labelfistName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="150dp"
-                    android:text="@string/firstName"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/nama_depan"
                     android:textColor="@color/orange"
                     android:textStyle="bold" />
 
@@ -99,7 +98,7 @@
                     android:layout_below="@id/firstNameInputContainer"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/lastName"
+                    android:text="@string/nama_belakang"
                     android:textColor="@color/orange"
                     android:textStyle="bold" />
 
