@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.local.DataWishList
+import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
 import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
@@ -61,7 +61,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
             if (flightNumber!!.isEmpty()  || timeDepart!!.isEmpty() || destination!!.isEmpty() || progress.toString()!!.isEmpty()){
                 Toast.makeText(context, "Anda belum mengisi note", Toast.LENGTH_SHORT).show()
             }else{
-                viewModel.addNote(DataWishList(0,flightNumber,timeDepart,destination,progress))
+                viewModel.addWishlist(DataWishList(0,flightNumber,timeDepart,destination,progress))
                 Toast.makeText(context, "Note tersimpan", Toast.LENGTH_SHORT).show()
             }
         }
@@ -69,7 +69,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
 
     fun getAllNote(){
         binding.apply {
-            viewModel.getDataNotes().observe(viewLifecycleOwner){
+            viewModel.getDataWishlist().observe(viewLifecycleOwner){
                 adapter.setData(it)
                 if (it.isEmpty()){
                     tvAlertKosong.visibility = View.VISIBLE

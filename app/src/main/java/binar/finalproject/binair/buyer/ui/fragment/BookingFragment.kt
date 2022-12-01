@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataPassenger
-import binar.finalproject.binair.buyer.data.local.DataKontak
-import binar.finalproject.binair.buyer.data.local.DataPenumpang
+import binar.finalproject.binair.buyer.data.model.DataKontak
+import binar.finalproject.binair.buyer.data.model.DataPenumpang
 import binar.finalproject.binair.buyer.databinding.FormTravelerBinding
 import binar.finalproject.binair.buyer.databinding.FragmentBookingBinding
 

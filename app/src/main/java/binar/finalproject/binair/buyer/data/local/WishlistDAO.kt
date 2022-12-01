@@ -2,6 +2,7 @@ package binar.finalproject.binair.buyer.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import binar.finalproject.binair.buyer.data.model.DataWishList
 
 @Dao
 interface WishlistDAO {

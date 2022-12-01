@@ -1,6 +1,7 @@
 package binar.finalproject.binair.buyer.di
 
 import binar.finalproject.binair.buyer.BuildConfig
+import binar.finalproject.binair.buyer.data.UserRepository
 import binar.finalproject.binair.buyer.data.remote.APIService
 import dagger.Module
 import dagger.Provides
@@ -33,4 +34,8 @@ class AppModule {
             .build()
         return retrofit.create(APIService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun userRepo() = UserRepository(getFlightServie())
 }

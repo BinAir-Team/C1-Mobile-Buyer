@@ -11,7 +11,7 @@ import androidx.annotation.MenuRes
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.local.DataWishList
+import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
@@ -57,7 +57,7 @@ class WishlistFragment : Fragment(), WishListAdapter.NotesInterface {
 
     fun getAllNote(){
         binding.apply {
-            viewModel.getDataNotes().observe(viewLifecycleOwner){
+            viewModel.getDataWishlist().observe(viewLifecycleOwner){
                 adapter.setData(it)
                 if (it.isEmpty()){
                     tvAlertKosong.visibility = View.VISIBLE

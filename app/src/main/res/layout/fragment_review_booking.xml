@@ -6,7 +6,7 @@
     <data>
         <variable
             name="dataKontakBind"
-            type="binar.finalproject.binair.buyer.data.local.DataKontak" />
+            type="binar.finalproject.binair.buyer.data.model.DataKontak" />
     </data>
 
     <RelativeLayout

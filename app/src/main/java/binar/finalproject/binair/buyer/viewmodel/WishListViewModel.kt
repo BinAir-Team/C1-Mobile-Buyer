@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import binar.finalproject.binair.buyer.data.WishListRepository
-import binar.finalproject.binair.buyer.data.local.DataWishList
 import binar.finalproject.binair.buyer.data.local.WishListDatabase
+import binar.finalproject.binair.buyer.data.model.DataWishList
 import kotlinx.coroutines.launch
 
 class WishListViewModel(application: Application) : AndroidViewModel(application) {
@@ -16,11 +16,11 @@ class WishListViewModel(application: Application) : AndroidViewModel(application
         val wishlistDao = WishListDatabase.getInstance(application)?.wishlistDAO()
         wishlistRepo = WishListRepository(wishlistDao!!)
     }
-    fun getDataNotes() : LiveData<List<DataWishList>> = wishlistRepo.getAllDataWishList()
+    fun getDataWishlist() : LiveData<List<DataWishList>> = wishlistRepo.getAllDataWishList()
 
-    fun addNote(notes: DataWishList){
+    fun addWishlist(data: DataWishList){
         viewModelScope.launch {
-            wishlistRepo.addWishList(notes)
+            wishlistRepo.addWishList(data)
         }
     }
 }
