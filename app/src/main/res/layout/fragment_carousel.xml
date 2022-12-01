@@ -3,17 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.CarouselFragment"
     android:background="@color/main_blue">
     <RelativeLayout
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_centerHorizontal="true"
+            android:id="@+id/vpHeadline"
+            android:layout_width="280dp"
+            android:layout_height="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="304dp"
-            android:layout_height="500dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/carosel" />
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:layout_marginTop="25dp"
+            android:id="@+id/dotsIndicator"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/vpHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/white"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="12dp"
+            app:dotsSpacing="6dp"
+            app:dotsWidthFactor="3.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vpHeadline"
+            app:selectedDotColor="@color/orange" />
+<!--        <ImageView-->
+<!--            android:layout_width="304dp"-->
+<!--            android:layout_height="500dp"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:src="@drawable/carosel" />-->
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
