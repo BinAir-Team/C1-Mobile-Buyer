@@ -3,20 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.paymentFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvpayment"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:layout_below="@id/cvProfile">
+        android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/labelPayment"
         android:layout_width="match_parent"
@@ -36,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelBack"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:text="book"
             android:textSize="12dp"
             android:layout_marginTop="15dp"
@@ -89,7 +87,6 @@
             android:drawableLeft="@drawable/logonomer4"/>
 
     </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvDetailKontak"
@@ -209,5 +206,165 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCreditCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="374dp">
+
+                <TextView
+                    android:id="@+id/labelCreditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Credit Card"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/labelCC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/logo_visa" />
+
+                <TextView
+                    android:id="@+id/labelCardNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelCC"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Card Number" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputCC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelCardNumber"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:inputType="text"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/orange"/>
+
+                <TextView
+                    android:id="@+id/labelCardHolderName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inputCC"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="14dp"
+                    android:text="Card holder name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputCHN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelCardHolderName"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:inputType="text"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/orange" />
+
+                <TextView
+                    android:id="@+id/labelDigitCVV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inputCHN"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="14dp"
+                    android:text="3 Digit CVV" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputCVV"
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelDigitCVV"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="text"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/orange" />
+
+                <TextView
+                    android:id="@+id/labelDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inputCHN"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_toRightOf="@+id/inputCVV"
+                    android:text="Expiry date" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputEDate"
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelDigitCVV"
+                    android:layout_marginLeft="60dp"
+                    android:layout_toRightOf="@+id/inputCVV"
+                    android:inputType="text"
+                    android:textColorHint="@color/black"
+                    app:hintTextColor="@color/orange"/>
+
+                <TextView
+                    android:id="@+id/labelPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inputEDate"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Total Price"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inputEDate"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="Rp. 830.000"
+                    android:textColor="@color/orange"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="50dp"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp">
+
+            <TextView
+                android:id="@+id/labelPrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="By clicking the button below, you agree to BinAir Terms &amp; Conditions and Privacy Policy"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnDaftar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelPrivacy"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/main_blue"
+                android:text="Pay With Credit Card" />
+
+        </RelativeLayout>
     </LinearLayout>
+
+
+    </ScrollView>
 </FrameLayout>
