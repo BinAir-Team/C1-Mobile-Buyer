@@ -35,6 +35,9 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:outlineSpotShadowColor="@android:color/transparent"
+                app:itemTextColor="@color/bottom_nav_color"
+                app:itemIconTint="@color/bottom_nav_color"
+                app:itemRippleColor="@color/main_blue"
                 app:menu="@menu/bottom_nav_menu"/>
         </com.google.android.material.bottomappbar.BottomAppBar>
 

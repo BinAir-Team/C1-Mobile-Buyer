@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.CarouselFragment"
+    android:background="@color/main_blue">
+    <RelativeLayout
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_centerHorizontal="true"
+            android:id="@+id/vpHeadline"
+            android:layout_width="280dp"
+            android:layout_height="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:layout_marginTop="25dp"
+            android:id="@+id/dotsIndicator"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/vpHeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/white"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="12dp"
+            app:dotsSpacing="6dp"
+            app:dotsWidthFactor="3.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vpHeadline"
+            app:selectedDotColor="@color/orange" />
+<!--        <ImageView-->
+<!--            android:layout_width="304dp"-->
+<!--            android:layout_height="500dp"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:src="@drawable/carosel" />-->
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/containerSwipeUp"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/carousel_bottombg"
+        android:orientation="vertical"/>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/carousel_swipeup"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swipe Up untuk melanjutkan"
+            android:fontFamily="@font/fredoka_semibold"
+            android:textSize="20dp"
+            android:textColor="@color/main_blue"/>
+    </LinearLayout>
+</FrameLayout>

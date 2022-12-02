@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/testing_navigation"
+    app:startDestination="@id/carouselFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/ticketHistoryFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.TicketHistoryFragment"
+        android:label="fragment_ticket_history"
+        tools:layout="@layout/fragment_ticket_history" />
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+    <fragment
+        android:id="@+id/carouselFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.CarouselFragment"
+        android:label="fragment_carousel"
+        tools:layout="@layout/fragment_carousel" />
+</navigation>

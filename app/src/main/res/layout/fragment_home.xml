@@ -24,6 +24,52 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:id="@+id/bannerLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_blue"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+                <TextView
+                    android:id="@+id/labelLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Masuk untuk mendapatkan seluruh akses!"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/labelLogin"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masuk"
+                        style="@style/outlined_button"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"/>
+                    <Button
+                        android:id="@+id/btnRegister"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daftar"
+                        android:textColor="@color/main_blue"
+                        style="@style/button"
+                        android:backgroundTint="@color/white"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvTripContainer"
                 android:layout_width="match_parent"
@@ -33,7 +79,7 @@
                 android:layout_marginEnd="48dp"
                 android:padding="4dp"
                 app:cardCornerRadius="32dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bannerLogin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -130,6 +176,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:drawableStart="@drawable/airplane_takeoff"
+                            android:drawablePadding="8dp"
                             android:padding="12dp"
                             android:text="@string/ex_kota_dari" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -156,6 +203,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:drawableStart="@drawable/airplane_landing"
+                            android:drawablePadding="8dp"
                             android:padding="12dp"
                             android:text="@string/ex_kota_tujuan" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -181,8 +229,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/ic_schedule"
+                            android:drawablePadding="8dp"
                             android:inputType="none"
-                            android:text="@string/ex_tgl_brkt" />
+                            android:text="@string/ex_tgl_brkt"
+                            android:editable="false"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -224,7 +274,6 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:layout_marginEnd="12dp"
                             android:layout_weight="1"
                             android:hint="@string/label_penumpang"
                             android:textColorHint="@color/black"
@@ -240,34 +289,34 @@
                                 android:id="@+id/etJmlPenumpangInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number"
+                                android:inputType="none"
                                 android:editable="false"
                                 android:text="@string/ex_jml_penumpang" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/kelasInputContainer"
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_weight="1"
-                            android:hint="@string/label_kelas"
-                            android:textColorHint="@color/black"
-                            app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="@color/content_grey"
-                            app:hintTextColor="@color/content_grey">
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/kelasInputContainer"-->
+<!--                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--                            android:layout_width="fill_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="12dp"-->
+<!--                            android:layout_marginTop="16dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:hint="@string/label_kelas"-->
+<!--                            android:textColorHint="@color/black"-->
+<!--                            app:boxBackgroundColor="@color/white"-->
+<!--                            app:boxCornerRadiusBottomEnd="12dp"-->
+<!--                            app:boxCornerRadiusBottomStart="12dp"-->
+<!--                            app:boxCornerRadiusTopEnd="12dp"-->
+<!--                            app:boxCornerRadiusTopStart="12dp"-->
+<!--                            app:boxStrokeColor="@color/content_grey"-->
+<!--                            app:hintTextColor="@color/content_grey">-->
 
-                            <AutoCompleteTextView
-                                android:id="@+id/etKelasInput"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </com.google.android.material.textfield.TextInputLayout>
+<!--                            <AutoCompleteTextView-->
+<!--                                android:id="@+id/etKelasInput"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
                     </LinearLayout>
 
                     <Button

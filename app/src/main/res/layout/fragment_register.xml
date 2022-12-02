@@ -48,23 +48,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/image_profile"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:src="@drawable/profil"-->
+<!--                    app:civ_border_width="2dp"-->
+<!--                    app:civ_shadow="true"-->
+<!--                    />-->
+
                 <TextView
-                    android:id="@+id/labelNama"
+                    android:id="@+id/labelfistName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="50dp"
-                    android:text="@string/nama"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/nama_depan"
                     android:textColor="@color/orange"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/usernameInputContainer"
+                    android:id="@+id/firstNameInputContainer"
                     style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/labelNama"
+                    android:layout_below="@id/labelfistName"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:textColorHint="@color/black"
@@ -73,17 +85,81 @@
                     app:hintTextColor="@color/orange">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/namaInput"
+                        android:id="@+id/firstNameInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/labellastName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firstNameInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/nama_belakang"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/lastNameInputContainer"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labellastName"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="24dp"
+                    android:textColorHint="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/orange"
+                    app:hintTextColor="@color/orange">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastNameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/labelJenisKelamin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lastNameInputContainer"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/jenis_kelamin"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/containerRadioJK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_below="@id/labelJenisKelamin"
+                    android:orientation="horizontal">
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/radioLaki"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/laki_laki"
+                        android:layout_marginEnd="16dp" />
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/radioPerempuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perempuan" />
+                </RadioGroup>
+
+                <TextView
                     android:id="@+id/labelEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/usernameInputContainer"
+                    android:layout_below="@id/containerRadioJK"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/email"
@@ -137,7 +213,7 @@
                     app:hintTextColor="@color/orange">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/PhoneInput"
+                        android:id="@+id/phoneInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone" />
@@ -187,7 +263,7 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/RepasswordInputContainer"
+                    android:id="@+id/confirmPassInputContainer"
                     style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -201,7 +277,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/RepasswordInput"
+                        android:id="@+id/confirmPassInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword" />
@@ -211,7 +287,7 @@
                     android:id="@+id/btnDaftar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/RepasswordInputContainer"
+                    android:layout_below="@+id/confirmPassInputContainer"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="24dp"

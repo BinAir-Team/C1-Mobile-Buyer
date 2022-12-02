@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/spalshScreenFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -30,7 +30,11 @@
         android:id="@+id/registerFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listTicketFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.ListTicketFragment"
@@ -67,25 +71,64 @@
         tools:layout="@layout/fragment_review_booking" >
         <argument
             android:name="dataPenumpang"
-            app:argType="binar.finalproject.binair.buyer.data.local.DataPenumpang[]" />
+            app:argType="binar.finalproject.binair.buyer.data.model.DataPenumpang[]" />
         <argument
             android:name="dataKontak"
-            app:argType="binar.finalproject.binair.buyer.data.local.DataKontak" />
-        <action
-            android:id="@+id/action_reviewBookingFragment_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
-        <action
-            android:id="@+id/action_reviewBookingFragment_to_paymentRoundedTripFragment"
-            app:destination="@id/paymentRoundedTripFragment" />
+            app:argType="binar.finalproject.binair.buyer.data.model.DataKontak" />
     </fragment>
     <fragment
-        android:id="@+id/paymentFragment"
-        android:name="binar.finalproject.binair.buyer.ui.fragment.paymentFragment"
-        android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
+        android:id="@+id/editProfileFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
     <fragment
-        android:id="@+id/paymentRoundedTripFragment"
-        android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentRoundedTripFragment"
-        android:label="fragment_payment_rounded_trip"
-        tools:layout="@layout/fragment_payment_rounded_trip" />
+        android:id="@+id/profileFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_profileFragment2" app:destination="@id/profileFragment2" />
+    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment" />
+    <fragment
+        android:id="@+id/ticketHistoryFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.TicketHistoryFragment"
+        android:label="fragment_ticket_history"
+        tools:layout="@layout/fragment_ticket_history" />
+    <fragment
+        android:id="@+id/wishlistFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" /><action android:id="@+id/action_global_ticketHistoryFragment2" app:destination="@id/ticketHistoryFragment2"/><action android:id="@+id/action_global_wishlistFragment2" app:destination="@id/wishlistFragment2"/>
+    <fragment
+        android:id="@+id/spalshScreenFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.SplashScreenFragment"
+        android:label="fragment_spalsh_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_spalshScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_spalshScreenFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_spalshScreenFragment_to_carouselFragment2"
+            app:destination="@id/carouselFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/carouselFragment2"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.CarouselFragment"
+        android:label="fragment_carousel"
+        tools:layout="@layout/fragment_carousel" >
+        <action
+            android:id="@+id/action_carouselFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_carouselFragment2_to_homeFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

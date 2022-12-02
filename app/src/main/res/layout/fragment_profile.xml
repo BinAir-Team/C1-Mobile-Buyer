@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.ProfileFragment"
+    android:background="@color/BBC_DrakerWhite">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:paddingBottom="24dp"
+            android:orientation="vertical"
+            android:background="@drawable/profile_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_marginTop="17.76dp"
+                android:layout_marginHorizontal="23dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="112.65dp"
+                    android:layout_height="29dp"
+                    android:src="@drawable/logo_blue"/>
+                <ImageButton
+                    android:layout_width="24.02dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_notification"
+                    android:background="@color/transparent"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/CTAProfile"
+                android:layout_marginTop="17.76dp"
+                android:layout_marginHorizontal="23dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/userprofile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user_profile"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@id/userprofile">
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Danial Farros Maulana"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="18dp" />
+                    <LinearLayout
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="2dp"
+                        android:paddingHorizontal="9dp"
+                        android:background="@drawable/profile_userlabelbackground"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Member Silver"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="9dp"
+                            android:textColor="@color/white"/>
+                        <ImageView
+                            android:layout_marginLeft="24dp"
+                            android:layout_width="5.52dp"
+                            android:layout_height="7dp"
+                            android:src="@drawable/rightarrow"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="16.42dp"
+                    android:paddingHorizontal="22dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/profile_cardbackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transaction History"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/poppins_medium"/>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="16dp"
+                                android:background="@drawable/profile_cardofcardbackground"
+
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <ImageView
+                                    android:layout_width="17.55dp"
+                                    android:layout_height="13.49dp"
+                                    android:src="@drawable/profile_unpaidpayment" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Unpaid Payment"
+                                    android:textSize="10.79dp" />
+
+                                <ImageView
+                                    android:layout_width="8dp"
+                                    android:layout_height="9dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="4dp"
+                                    android:src="@drawable/profileblackarrow" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="16dp"
+                                android:background="@drawable/profile_cardofcardbackground"
+
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <ImageView
+                                    android:layout_width="17.55dp"
+                                    android:layout_height="13.49dp"
+                                    android:src="@drawable/profile_unpaidpayment" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Waiting Trip"
+                                    android:textSize="10.79dp" />
+
+                                <ImageView
+                                    android:layout_width="8dp"
+                                    android:layout_height="9dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="4dp"
+                                    android:src="@drawable/profileblackarrow" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="16dp"
+                                android:background="@drawable/profile_cardofcardbackground"
+
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <ImageView
+                                    android:layout_width="17.55dp"
+                                    android:layout_height="13.49dp"
+                                    android:src="@drawable/profile_unpaidpayment" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Rate Trip"
+                                    android:textSize="10.79dp" />
+
+                                <ImageView
+                                    android:layout_width="8dp"
+                                    android:layout_height="9dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="4dp"
+                                    android:src="@drawable/profileblackarrow" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="16dp"
+                                android:background="@drawable/profile_cardofcardbackground"
+
+                                android:orientation="horizontal"
+                                android:padding="10dp">
+
+                                <ImageView
+                                    android:layout_width="17.55dp"
+                                    android:layout_height="13.49dp"
+                                    android:src="@drawable/profile_unpaidpayment" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Waiting Trip"
+                                    android:textSize="10.79dp" />
+
+                                <ImageView
+                                    android:layout_width="8dp"
+                                    android:layout_height="9dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginTop="4dp"
+                                    android:src="@drawable/profileblackarrow" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="16.42dp"
+                    android:paddingHorizontal="22dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/profile_cardbackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="add flight"/>
+                    <EditText
+                        android:id="@+id/FlightNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="flight number"/>
+                    <EditText
+                        android:id="@+id/JamTerbang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jam Terbang"/>
+                    <EditText
+                        android:id="@+id/Tujuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="tujuan"/>
+                    <EditText
+                        android:id="@+id/ProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Progress Bar"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="add data"
+                        android:id="@+id/AddButton"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="16.42dp"
+                    android:paddingHorizontal="22dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/profile_cardbackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WishList"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/poppins_medium"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/RvWishlist"/>
+                    <TextView
+                        android:id="@+id/tvAlertKosong"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tidak Ada wishList"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+                <Button
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="16dp"
+                    android:textAlignment="center"
+                    android:paddingVertical="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/MBC_base"
+                    android:background="@drawable/profile_logoutbackground"
+                    android:layout_marginBottom="18dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    
+
+</FrameLayout>

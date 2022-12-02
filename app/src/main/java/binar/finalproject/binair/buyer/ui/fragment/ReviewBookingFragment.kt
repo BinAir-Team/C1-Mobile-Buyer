@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.local.DataKontak
-import binar.finalproject.binair.buyer.data.local.DataPenumpang
+import binar.finalproject.binair.buyer.data.model.DataKontak
+import binar.finalproject.binair.buyer.data.model.DataPenumpang
 import binar.finalproject.binair.buyer.databinding.FragmentReviewBookingBinding
 import binar.finalproject.binair.buyer.databinding.ItemTravelerReviewBinding
 

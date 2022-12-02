@@ -1,4 +1,4 @@
-package binar.finalproject.binair.buyer.data.local
+package binar.finalproject.binair.buyer.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

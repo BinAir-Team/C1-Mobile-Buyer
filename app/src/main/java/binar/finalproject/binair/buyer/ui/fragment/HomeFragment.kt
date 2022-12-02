@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.data.Constant.dataPassenger
-import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
@@ -45,21 +44,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initDate()
-        showBannerLogin()
+
         showBottomNavigation()
         clearTotalPassenger()
         setListener()
         setAutoCompleteClass()
         setPromoAdapter()
         changeTripType()
-    }
-
-    private fun showBannerLogin(){
-        val sharedPref = requireActivity().getSharedPreferences(dataUser, 0)
-        if(sharedPref.getBoolean("isLogin", false)){
-            binding.bannerLogin.visibility = View.GONE
-        }
     }
 
     private fun setPromoAdapter() {
@@ -129,7 +120,6 @@ class HomeFragment : Fragment() {
         val now = Calendar.getInstance().time
         val formatedDate = formatDate(now)
         binding.etTglBerangkatInput.setText(formatedDate)
-        binding.etTglPulangInput.setText(formatedDate)
     }
 
     private fun showDatePickerDialog(kategori: String) {
