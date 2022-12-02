@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         showBottomNavigation()
         clearTotalPassenger()
         setListener()
@@ -70,21 +71,21 @@ class HomeFragment : Fragment() {
             etJmlPenumpangInput.setOnClickListener {
                 setPassenger()
             }
-//            etTglBerangkatInput.setOnFocusChangeListener { view, b ->
-//                if (b) {
-//                    showDatePickerDialog("berangkat")
-//                }
-//            }
-//            etTglPulangInput.setOnFocusChangeListener { view, b ->
-//                if (b) {
-//                    showDatePickerDialog("pulang")
-//                }
-//            }
-//            etJmlPenumpangInput.setOnFocusChangeListener { view, b ->
-//                if (b) {
-//                    setPassenger()
-//                }
-//            }
+            etTglBerangkatInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    showDatePickerDialog("berangkat")
+                }
+            }
+            etTglPulangInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    showDatePickerDialog("pulang")
+                }
+            }
+            etJmlPenumpangInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    setPassenger()
+                }
+            }
             btnCari.setOnClickListener {
                 searchTicket()
             }
@@ -115,24 +116,35 @@ class HomeFragment : Fragment() {
         binding.etJmlPenumpangInput.setText("$totalPenumpang Penumpang")
     }
 
+    private fun initDate(){
+        val now = Calendar.getInstance().time
+        val formatedDate = formatDate(now)
+        binding.etTglBerangkatInput.setText(formatedDate)
+    }
+
     private fun showDatePickerDialog(kategori: String) {
         val datePicker =
             OnDateSetListener { view, year, month, day ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.DAY_OF_MONTH, day)
-                updateLabel(kategori)
+                updateLabel(kategori,calendar.time)
             }
         DatePickerDialog(requireActivity(),datePicker,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    private fun updateLabel(kategori : String) {
-        val myFormat = "dd/MM/yy"
-        val dateFormat = SimpleDateFormat(myFormat, Locale.US)
+    private fun formatDate(date : Date) : String {
+        val myFormat = "EEEE, dd MMM yy"
+        val dateFormat = SimpleDateFormat(myFormat)
+        return dateFormat.format(date)
+    }
+
+    private fun updateLabel(kategori : String, date : Date) {
+        val formatedDate = formatDate(date)
         if(kategori == "berangkat") {
-            binding.etTglBerangkatInput.setText(dateFormat.format(calendar.time))
+            binding.etTglBerangkatInput.setText(formatedDate)
         } else if(kategori == "pulang"){
-            binding.etTglPulangInput.setText(dateFormat.format(calendar.time))
+            binding.etTglPulangInput.setText(formatedDate)
         }
     }
 
