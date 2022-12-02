@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/containerPromo"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="12dp"
+    app:contentPadding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="384dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/labelPromo"
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            android:src="@drawable/asset_promo" />
+
+        <TextView
+            android:id="@+id/rvJudulPromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelPromo"
+            android:text="Enjoy a Fantastic Year-end Travel to Asia!"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvDeskripsiPromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rvJudulPromo"
+            android:layout_marginTop="14dp"
+            android:text="The year-end is fast approaching, quic.."
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/labelgaris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDeskripsiPromo"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/garispembatas" />
+
+        <TextView
+            android:id="@+id/labelPeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelgaris"
+            android:layout_marginTop="17dp"
+            android:text="Travel Period" />
+
+        <TextView
+            android:id="@+id/tvDateberangkat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelPeriod"
+            android:layout_marginTop="5dp"
+            android:drawablePadding="5dp"
+            android:text="1 Dec 2022)" />
+
+        <TextView
+            android:id="@+id/tvDateTujuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelPeriod"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tvDateberangkat"
+            android:drawableLeft="@drawable/ic_baseline_horizontal_rule_24"
+            android:drawablePadding="5dp"
+            android:text="31 Dec 2023" />
+
+        <Button
+            android:id="@+id/btnDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDateberangkat"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/main_blue"
+            android:text="More Details" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
