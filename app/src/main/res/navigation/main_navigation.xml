@@ -71,5 +71,21 @@
         <argument
             android:name="dataKontak"
             app:argType="binar.finalproject.binair.buyer.data.local.DataKontak" />
+        <action
+            android:id="@+id/action_reviewBookingFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_reviewBookingFragment_to_paymentRoundedTripFragment"
+            app:destination="@id/paymentRoundedTripFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.paymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/paymentRoundedTripFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentRoundedTripFragment"
+        android:label="fragment_payment_rounded_trip"
+        tools:layout="@layout/fragment_payment_rounded_trip" />
 </navigation>
