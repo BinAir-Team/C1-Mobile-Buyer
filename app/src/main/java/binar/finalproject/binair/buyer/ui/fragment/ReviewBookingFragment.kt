@@ -1,6 +1,7 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -33,6 +34,7 @@ class ReviewBookingFragment : Fragment() {
         getDataTraveler()
         showDataKontak()
         showDataPenumpang()
+        setListener()
     }
 
     private fun getDataTraveler() {
@@ -65,5 +67,18 @@ class ReviewBookingFragment : Fragment() {
             }
             binding.containerDataTraveler.addView(viewForm)
         }
+    }
+
+    private fun setListener(){
+        binding.btnBayar.setOnClickListener {
+
+
+        }
+    }
+
+    private fun displayReviewAlert(){
+        val alertDialog = AlertDialog.Builder(context)
+        val dialogView = layoutInflater.inflate(R.layout.review_alert_dialog, null)
+        alertDialog.setView(dialogView)
     }
 }

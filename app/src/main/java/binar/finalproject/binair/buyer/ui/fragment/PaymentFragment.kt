@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import binar.finalproject.binair.buyer.R
 
 
-class paymentFragment : Fragment() {
+class PaymentFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
