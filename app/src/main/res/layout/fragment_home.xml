@@ -228,7 +228,8 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/ic_schedule"
                             android:inputType="none"
-                            android:text="@string/ex_tgl_brkt" />
+                            android:text="@string/ex_tgl_brkt"
+                            android:editable="false"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -285,7 +286,7 @@
                                 android:id="@+id/etJmlPenumpangInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number"
+                                android:inputType="none"
                                 android:editable="false"
                                 android:text="@string/ex_jml_penumpang" />
                         </com.google.android.material.textfield.TextInputLayout>

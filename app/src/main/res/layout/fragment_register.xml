@@ -56,8 +56,6 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/profil"
-                    app:civ_border_width="2dp"
-                    app:civ_shadow="true"
                     />
 
                 <TextView
@@ -68,7 +66,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="150dp"
-                    android:text="@string/firstName"
+                    android:text="@string/nama_depan"
                     android:textColor="@color/orange"
                     android:textStyle="bold" />
 
@@ -99,7 +97,7 @@
                     android:layout_below="@id/firstNameInputContainer"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/lastName"
+                    android:text="@string/nama_belakang"
                     android:textColor="@color/orange"
                     android:textStyle="bold" />
 
