@@ -49,6 +49,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="carouselFragment2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-410" />
+                            <option name="y" value="372" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_carouselFragment2_to_loginFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="editProfileFragment">
                     <value>
                       <LayoutPositions>
@@ -108,8 +129,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-396" />
-                            <option name="y" value="14" />
+                            <option name="x" value="-420" />
+                            <option name="y" value="5" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -155,8 +176,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-386" />
-                            <option name="y" value="338" />
+                            <option name="x" value="-426" />
+                            <option name="y" value="-370" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -188,9 +209,28 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-626" />
-                            <option name="y" value="7" />
+                            <option name="x" value="-720" />
+                            <option name="y" value="2" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_spalshScreenFragment_to_carouselFragment2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_spalshScreenFragment_to_homeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_spalshScreenFragment_to_loginFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

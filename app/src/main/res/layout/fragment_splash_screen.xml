@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.SplashScreenFragment"
-    android:background="@color/main_blue">
+    android:background="@color/main_blue"
+    tools:context=".ui.fragment.SplashScreenFragment">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="327dp"
+            android:layout_height="84dp"
+            android:src="@drawable/logo_white"
+            android:layout_marginTop="300dp"
+            android:id="@+id/mainlogo"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easy Way Around The World"
+            android:textSize="20dp"
+            android:fontFamily="@font/fredoka_medium"
+            android:layout_below="@id/mainlogo"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:letterSpacing="0.09"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copyright © 2022 BinAir. All right reserved"
+            android:textSize="9dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"/>
+    </RelativeLayout>
 
-   <ImageView
-       android:id="@+id/logo"
-       android:src="@drawable/logo_white"
-       android:layout_width="250dp"
-       android:layout_height="250dp"
-       android:layout_centerInParent="true"/>
 
 
-</RelativeLayout>
+</FrameLayout>
