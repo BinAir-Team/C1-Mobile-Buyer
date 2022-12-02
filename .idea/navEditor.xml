@@ -60,6 +60,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_carouselFragment2_to_homeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_carouselFragment2_to_loginFragment">
                               <value>
                                 <LayoutPositions />
@@ -150,6 +155,30 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="paymentFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1060" />
+                            <option name="y" value="-196" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="paymentRoundedTripFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1060" />
+                            <option name="y" value="182" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="profileFragment2">
                     <value>
                       <LayoutPositions>
@@ -200,6 +229,15 @@
                             <option name="x" value="765" />
                             <option name="y" value="11" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_reviewBookingFragment_to_bookingFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

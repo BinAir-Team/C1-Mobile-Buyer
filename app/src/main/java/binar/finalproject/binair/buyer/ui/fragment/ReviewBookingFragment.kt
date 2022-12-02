@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.model.DataKontak
 import binar.finalproject.binair.buyer.data.model.DataPenumpang
 import binar.finalproject.binair.buyer.databinding.FragmentReviewBookingBinding
 import binar.finalproject.binair.buyer.databinding.ItemTravelerReviewBinding
+import binar.finalproject.binair.buyer.databinding.ReviewAlertDialogBinding
 
 class ReviewBookingFragment : Fragment() {
     private lateinit var binding : FragmentReviewBookingBinding
@@ -71,14 +73,25 @@ class ReviewBookingFragment : Fragment() {
 
     private fun setListener(){
         binding.btnBayar.setOnClickListener {
-
-
+            displayReviewAlert()
         }
     }
 
     private fun displayReviewAlert(){
-        val alertDialog = AlertDialog.Builder(context)
+        val builder = AlertDialog.Builder(context)
+        val alertDialog = builder.create()
         val dialogView = layoutInflater.inflate(R.layout.review_alert_dialog, null)
+        val dialogBinding = ReviewAlertDialogBinding.bind(dialogView)
         alertDialog.setView(dialogView)
+        alertDialog.create()
+        dialogBinding.btnPayment.setOnClickListener {
+            findNavController().navigate(R.id.action_reviewBookingFragment_to_paymentFragment)
+            alertDialog.dismiss()
+        }
+        dialogBinding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 }
