@@ -15,7 +15,8 @@
             android:src="@drawable/logo_white"
             android:layout_marginTop="300dp"
             android:id="@+id/mainlogo"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            style="@style/PopInComponent"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +27,8 @@
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
             android:letterSpacing="0.09"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            style="@style/PopInComponent"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +38,8 @@
             android:textColor="@color/white"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="26dp"/>
+            android:layout_marginBottom="26dp"
+            style="@style/PopInComponent"/>
     </RelativeLayout>
 
 

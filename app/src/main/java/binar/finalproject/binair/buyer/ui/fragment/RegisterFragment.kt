@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.databinding.FragmentRegisterBinding
+import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,6 +39,11 @@ class RegisterFragment : Fragment() {
 
         validateInput()
         setListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).binding.bottomNavContainer.visibility = View.GONE
     }
 
     private fun setListener() {

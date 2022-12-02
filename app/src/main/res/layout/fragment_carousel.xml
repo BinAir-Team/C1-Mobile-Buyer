@@ -43,10 +43,12 @@
 <!--            android:src="@drawable/carosel" />-->
     </RelativeLayout>
     <LinearLayout
+        android:id="@+id/containerSwipeUp"
         android:layout_width="match_parent"
         android:layout_height="77dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/carousel_bottombg"/>
+        android:background="@drawable/carousel_bottombg"
+        android:orientation="vertical"/>
     <LinearLayout
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
@@ -61,7 +63,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swipe for Login"
+            android:text="Swipe Up untuk melanjutkan"
             android:fontFamily="@font/fredoka_semibold"
             android:textSize="20dp"
             android:textColor="@color/main_blue"/>

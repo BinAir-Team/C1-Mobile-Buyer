@@ -1,8 +1,9 @@
-package binar.finalproject.binair.buyer.data.model
+package binar.finalproject.binair.buyer.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.model.News
 
 class NewsViewModel: ViewModel() {
 

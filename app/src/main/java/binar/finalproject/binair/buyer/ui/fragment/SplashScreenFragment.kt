@@ -25,6 +25,9 @@ class SplashScreenFragment : Fragment() {
     ): View? {
         binding = FragmentSplashScreenBinding.inflate(inflater,container,false)
         sharedPref = requireActivity().getSharedPreferences(initApp, Context.MODE_PRIVATE)
+        editor = sharedPref.edit()
+        val popIn = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.pop_up)
+        binding.mainlogo.startAnimation(popIn)
         return binding.root
     }
 
