@@ -10,4 +10,9 @@
         <item name="android:textColor">@color/white</item>
         <item name="cornerRadius">24dp</item>
     </style>
+    <style name="outlined_button" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">4dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="strokeColor">@color/white</item>
+    </style>
 </resources>
