@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.data.Constant.dataPassenger
+import binar.finalproject.binair.buyer.data.response.CityAirport
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
+import binar.finalproject.binair.buyer.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +46,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initDate()
         showBottomNavigation()
         clearTotalPassenger()
         setListener()
@@ -93,7 +95,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun searchTicket() {
-//        flightVM.callGetAllTicket()
         findNavController().navigate(binar.finalproject.binair.buyer.R.id.action_homeFragment_to_listTicketFragment)
     }
 
@@ -120,6 +121,7 @@ class HomeFragment : Fragment() {
         val now = Calendar.getInstance().time
         val formatedDate = formatDate(now)
         binding.etTglBerangkatInput.setText(formatedDate)
+        binding.etTglPulangInput.setText(formatedDate)
     }
 
     private fun showDatePickerDialog(kategori: String) {
@@ -168,15 +170,45 @@ class HomeFragment : Fragment() {
     }
 
     private fun setAutoCompleteClass() {
-//        val ticketsClass = arrayOf("Ekonomi","Bisnis","First Class")
-//        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, ticketsClass)
-//        val atcClas = binding.etKelasInput
-//        atcClas.threshold = 1
-//        atcClas.setAdapter(adapter)
+        flightVM.callGetCityAirport().observe(viewLifecycleOwner){
+            if(it != null){
+                var city = it
+                val adapter = AutoCompleteAirportAdapter(requireContext(), city as ArrayList<CityAirport?>)
+                binding.apply {
+                    etFrom.threshold = 1
+                    etFrom.setAdapter(adapter)
+                    etDestination.threshold = 1
+                    etDestination.setAdapter(adapter)
+                    etFrom.setOnItemClickListener { adapterView, view, pos, l ->
+                        val data = adapter.getDataAirport(pos)
+                        binding.etFrom.setText("${data.city} - ${data.code}")
+                    }
+                    etDestination.setOnItemClickListener { adapterView, view, pos, l ->
+                        val data = adapter.getDataAirport(pos)
+                        binding.etDestination.setText("${data.city} - ${data.code}")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun onClickAutoCompleteListener(){
+        binding.etFrom.setOnItemClickListener { adapterView, view, pos, id ->
+            val data = adapterView.getItemAtPosition(pos) as CityAirport
+            binding.etFrom.setText("${data.city} - ${data.code}")
+            binding.etFrom.clearFocus()
+            binding.etDestination.requestFocus()
+        }
+
+        binding.etDestination.setOnItemClickListener { adapterView, view, pos, id ->
+            val data = adapterView.getItemAtPosition(pos) as CityAirport
+            binding.etDestination.setText("${data.city} - ${data.code}")
+            binding.etDestination.clearFocus()
+            binding.etTglBerangkatInput.requestFocus()
+        }
     }
 
     private fun showBottomNavigation() {
         (activity as MainActivity).binding.bottomNavContainer.visibility = View.VISIBLE
-//        (activity as MainActivity).binding.bottomNav.selectedItemId = binar.finalproject.binair.buyer.R.id.invisibleMenu
     }
 }

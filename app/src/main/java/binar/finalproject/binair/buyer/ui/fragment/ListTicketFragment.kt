@@ -26,7 +26,6 @@ class ListTicketFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentListTicketBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
-
         return binding.root
     }
 
@@ -38,8 +37,7 @@ class ListTicketFragment : Fragment() {
 
     private fun getListTicket() {
         showLoading(true)
-        flightVM.callGetAllTicket()
-        flightVM.allTicket.observe(viewLifecycleOwner) {
+        flightVM.callGetAllTicket().observe(viewLifecycleOwner) {
             if (it != null) {
                 setDataToRecView(it)
                 showLoading(false)
