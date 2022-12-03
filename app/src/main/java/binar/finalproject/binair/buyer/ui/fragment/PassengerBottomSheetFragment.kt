@@ -1,19 +1,19 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
-import android.content.SharedPreferences
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import binar.finalproject.binair.buyer.data.Constant.dataPassenger
+import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.buyer.databinding.BottomSheetPassengerBinding
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetPassengerBinding
-    private lateinit var sharedPrefPassenger : SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
+    private lateinit var flightVM : FlightViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,8 +21,7 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View{
         binding = BottomSheetPassengerBinding.inflate(inflater, container, false)
-        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
-        editor = sharedPrefPassenger.edit()
+        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         return binding.root
     }
 
@@ -32,6 +31,7 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
         setListener()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setListener() {
         binding.btnMinusDewasa.setOnClickListener {
             if (binding.tvJmlDewasa.text.toString().toInt() > 1) {
@@ -63,19 +63,25 @@ class PassengerBottomSheetFragment : BottomSheetDialogFragment() {
             val jmlDewasa = binding.tvJmlDewasa.text.toString().toInt()
             val jmlAnak = binding.tvJmlAnak.text.toString().toInt()
             val totalPenumpang = jmlDewasa + jmlAnak
-            editor.putInt("jmlDewasa", jmlDewasa)
-            editor.putInt("jmlAnak", jmlAnak)
-            editor.putInt("totalPenumpang", totalPenumpang)
-            editor.apply()
-//            Toast.makeText(context, "Total penumpang: $totalPenumpang", Toast.LENGTH_SHORT).show()
+//            editor.putInt("jmlDewasa", jmlDewasa)
+//            editor.putInt("jmlAnak", jmlAnak)
+//            editor.putInt("totalPenumpang", totalPenumpang)
+//            editor.apply()
+            flightVM.setAdultPassenger(jmlDewasa)
+            flightVM.setChildPassenger(jmlAnak)
+            flightVM.setTotalPassenger(totalPenumpang)
             this.dismiss()
         }
     }
 
     private fun getOldData(){
-        val jmlDewasa = sharedPrefPassenger.getInt("jmlDewasa", 1)
-        val jmlAnak = sharedPrefPassenger.getInt("jmlAnak", 0)
-        binding.tvJmlDewasa.text = jmlDewasa.toString()
-        binding.tvJmlAnak.text = jmlAnak.toString()
+//        val jmlDewasa = sharedPrefPassenger.getInt("jmlDewasa", 1)
+//        val jmlAnak = sharedPrefPassenger.getInt("jmlAnak", 0)
+        flightVM.getAdultPassenger().observe(viewLifecycleOwner) {
+            binding.tvJmlDewasa.text = it.toString()
+        }
+        flightVM.getChildPassenger().observe(viewLifecycleOwner) {
+            binding.tvJmlAnak.text = it.toString()
+        }
     }
 }

@@ -18,9 +18,15 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val allTicket : LiveData<List<TicketItem>?> = _allTicket
     private val _allCityAirport = MutableLiveData<List<CityAirport>?>()
     val allCityAirport : LiveData<List<CityAirport>?> = _allCityAirport
+    private val _adultPassenger = MutableLiveData<Int>()
+    val adultPassenger : LiveData<Int> = _adultPassenger
+    private val _childPassenger = MutableLiveData<Int>()
+    val childPassenger : LiveData<Int> = _childPassenger
+    private val _totalPassenger = MutableLiveData<Int>()
+    val totalPassenger : LiveData<Int> = _totalPassenger
 
     fun callGetAllTicket() : LiveData<List<TicketItem>?> {
-        client.getAllTicket().enqueue(object : retrofit2.Callback<AllTicketsResponse> {
+        client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
             override fun onResponse(
                 call: Call<AllTicketsResponse>,
                 response: Response<AllTicketsResponse>
@@ -69,4 +75,10 @@ class FlightRepository @Inject constructor(var client: APIService) {
         })
         return allCityAirport
     }
+
+    fun setAdultPassenger(adultPassenger : Int) = _adultPassenger.postValue(adultPassenger)
+
+    fun setChildPassenger(childPassenger : Int) = _childPassenger.postValue(childPassenger)
+
+    fun setTotalPassenger(totalPassenger : Int) = _totalPassenger.postValue(totalPassenger)
 }
