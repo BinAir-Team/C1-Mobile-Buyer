@@ -3,6 +3,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,7 +77,8 @@ class RegisterFragment : Fragment() {
 
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return email.matches(emailPattern.toRegex())
+//        return email.matches(emailPattern.toRegex())
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun validateInput() : Boolean{
