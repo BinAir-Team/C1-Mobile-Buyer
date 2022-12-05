@@ -49,19 +49,21 @@
                     android:layout_below="@id/labelLogin"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp">
+
                     <Button
                         android:id="@+id/btnLogin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Masuk"
                         style="@style/outlined_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"/>
+                        android:text="@string/masuk" />
+
                     <Button
                         android:id="@+id/btnRegister"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daftar"
+                        android:text="@string/daftar"
                         android:textColor="@color/main_blue"
                         style="@style/button"
                         android:backgroundTint="@color/white"
