@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+    <TextView
+        android:id="@+id/tvKota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jakarta"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tvKodeAirport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CGK"
+        android:textColor="@color/content_grey"
+        android:textSize="16sp"
+        android:layout_below="@id/tvKota"/>
+    <TextView
+        android:id="@+id/dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" - "
+        android:textColor="@color/content_grey"
+        android:textSize="16sp"
+        android:layout_below="@id/tvKota"
+        android:layout_toEndOf="@id/tvKodeAirport"/>
+    <TextView
+        android:id="@+id/tvAirport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soekarno Hatta"
+        android:textColor="@color/content_grey"
+        android:textSize="16sp"
+        android:layout_below="@id/tvKota"
+        android:layout_toEndOf="@id/dash"/>
+</RelativeLayout>
