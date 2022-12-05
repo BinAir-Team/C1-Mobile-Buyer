@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_ticketDetailsFragment_to_bookingFragment"
             app:destination="@id/bookingFragment" />
+        <action
+            android:id="@+id/action_ticketDetailsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingFragment"
@@ -81,6 +84,15 @@
         <argument
             android:name="dataKontak"
             app:argType="binar.finalproject.binair.buyer.data.model.DataKontak" />
+        <action
+            android:id="@+id/action_reviewBookingFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
+        <action
+            android:id="@+id/action_reviewBookingFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_reviewBookingFragment_to_paymentRoundedTripFragment"
+            app:destination="@id/paymentRoundedTripFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -137,4 +149,14 @@
             app:exitAnim="@anim/slide_down"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/paymentRoundedTripFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentRoundedTripFragment"
+        android:label="fragment_payment_rounded_trip"
+        tools:layout="@layout/fragment_payment_rounded_trip" />
 </navigation>

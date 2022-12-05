@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="330dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:contentPadding="22dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvTitleAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apakah data pemesanan Anda sudab benar?"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvDetailAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anda tidak bisa mengubah data pemesanan setelah proses pembayaran"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/tvTitleAlert" />
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kembali ke Edit"
+            style="@style/button"
+            android:backgroundTint="@color/SB_Grey"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/tvDetailAlert"/>
+        <Button
+            android:id="@+id/btnPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lanjutkan Pembayaran"
+            style="@style/button"
+            android:layout_below="@id/btnBack"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

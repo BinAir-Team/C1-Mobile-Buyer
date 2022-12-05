@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:contentPadding="22dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvTitleAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_untuk_melanjutkan"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvDetailAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/anda_tidak_dapat_melanjutkan_pemesanan_tanpa_login_terlebih_dahulu"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/tvTitleAlert" />
+        <Button
+            android:id="@+id/btnLoginAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            style="@style/button"
+            android:layout_below="@id/tvDetailAlert"/>
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/batal"
+            style="@style/button"
+            android:backgroundTint="@color/SB_Grey"
+            android:layout_below="@id/btnLoginAlert"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -14,3 +14,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+buildOutputCleanup.lock
+executionHistory.lock
+fileHashes.bin
+fileHashes.lock

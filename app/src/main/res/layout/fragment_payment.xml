@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.PaymentFragment"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+
+            <RelativeLayout
+                android:id="@+id/labelPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/labelBook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelBack"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+
+                    android:drawablePadding="8dp"
+                    android:text="@string/book"
+                    android:textColor="@color/main_blue"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/logonomer"
+                    app:drawableEndCompat="@drawable/gariskecil" />
+
+                <TextView
+                    android:id="@+id/labelRiview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelBack"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@+id/labelBook"
+                    android:drawablePadding="8dp"
+                    android:text="@string/review"
+                    android:textColor="@color/main_blue"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/logonomer2"
+                    app:drawableEndCompat="@drawable/gariskecil" />
+
+                <TextView
+                    android:id="@+id/labelPay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelBack"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@+id/labelRiview"
+                    android:drawablePadding="7dp"
+                    android:text="@string/pay"
+                    android:textColor="@color/main_blue"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/logonomer3"
+                    app:drawableRightCompat="@drawable/gariskecilabu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelBack"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@+id/labelPay"
+                    android:drawablePadding="8dp"
+                    android:text="@string/e_ticket"
+                    android:textColor="@color/content_grey"
+                    android:textSize="12sp"
+                    tools:ignore="UnknownIdInLayout"
+                    app:drawableStartCompat="@drawable/logonomer4" />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvDetailKontak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:contentPadding="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/labelBookingDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/detail_pemesanan"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/labelBooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelBookingDetail"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/id_pemesanan"
+                        android:textColor="@color/content_grey" />
+
+                    <TextView
+                        android:id="@+id/tvNoBooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelBooking"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/ex_id_pemesanan" />
+
+                    <TextView
+                        android:id="@+id/labelFlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvNoBooking"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/penerbangan"
+                        android:textColor="@color/content_grey" />
+
+                    <TextView
+                        android:id="@+id/tvFlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelFlight"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/ex_tgl_brkt" />
+
+                    <TextView
+                        android:id="@+id/tvEstimasiFlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvFlight"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_dari"
+                        app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+
+                    <TextView
+                        android:id="@+id/tvEstimasiFlighttujuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvFlight"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/tvEstimasiFlight"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_tujuan"
+                        app:drawableLeftCompat="@drawable/ic_baseline_arrow_right_alt_24" />
+
+                    <TextView
+                        android:id="@+id/labelPassenger"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvEstimasiFlighttujuan"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/jumlah_penumpang"
+                        android:textColor="@color/content_grey" />
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelPassenger"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_nama_pemesan"
+                        app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+
+                    <TextView
+                        android:id="@+id/labelAdult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelPassenger"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:text="@string/dewasa"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCreditCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:contentPadding="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/labelPaymentDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/detail_pembayaran"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spPaymentMethod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_below="@+id/labelPaymentDetail"/>
+
+                    <ImageView
+                        android:id="@+id/ivPaymentProof"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_below="@id/spPaymentMethod"
+                        android:layout_marginTop="12dp"
+                        android:layout_centerHorizontal="true"
+                        android:contentDescription="@string/bukti_pembayaran"/>
+
+                    <TextView
+                        android:id="@+id/labelPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivPaymentProof"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/total_harga"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivPaymentProof"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:text="@string/nominal_harga"
+                        android:textColor="@color/orange"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="125dp">
+
+                <TextView
+                    android:id="@+id/labelPrivacy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/setuju_bayar"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnBayar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelPrivacy"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="24dp"
+                    style="@style/button"
+                    android:text="@string/bayar" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
