@@ -82,4 +82,7 @@
     <string name="ex_kursi">2B</string>
     <string name="unduh_e_tiket">Unduh E-Tiket</string>
     <string name="pesan_tiket_penerbangan_lagi">Pesan tiket penerbangan lagi</string>
+    <string name="login_untuk_melanjutkan">Login untuk melanjutkan</string>
+    <string name="anda_tidak_dapat_melanjutkan_pemesanan_tanpa_login_terlebih_dahulu">Anda tidak dapat melanjutkan pemesanan tanpa login terlebih dahulu</string>
+    <string name="batal">Batal</string>
 </resources>
