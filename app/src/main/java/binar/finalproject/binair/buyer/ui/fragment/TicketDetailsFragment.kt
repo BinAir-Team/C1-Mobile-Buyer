@@ -1,5 +1,8 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,20 +10,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentTicketDetailsBinding
+import binar.finalproject.binair.buyer.databinding.LoginAlertDialogBinding
 
 class TicketDetailsFragment : Fragment() {
     private lateinit var binding : FragmentTicketDetailsBinding
     private lateinit var clickedTicket : TicketItem
+    private lateinit var sharedPrefs : SharedPreferences
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentTicketDetailsBinding.inflate(inflater, container, false)
         binding.toolbar.tvTitlePage.text = "Detail Penerbangan"
+        sharedPrefs = requireActivity().getSharedPreferences(dataUser, 0)
         return binding.root
     }
 
@@ -45,7 +53,29 @@ class TicketDetailsFragment : Fragment() {
 
     private fun setListener() {
         binding.btnPesan.setOnClickListener {
-            findNavController().navigate(R.id.action_ticketDetailsFragment_to_bookingFragment)
+            if(sharedPrefs.getString("token", null) == null) {
+                displayLoginAlert()
+            } else {
+                findNavController().navigate(R.id.action_ticketDetailsFragment_to_bookingFragment)
+            }
         }
+    }
+
+    private fun displayLoginAlert(){
+        val builder = AlertDialog.Builder(context)
+        val alertDialog = builder.create()
+        val dialogView = layoutInflater.inflate(R.layout.login_alert_dialog, null)
+        val dialogBinding = LoginAlertDialogBinding.bind(dialogView)
+        alertDialog.setView(dialogView)
+        alertDialog.create()
+        dialogBinding.btnLoginAlert.setOnClickListener {
+            findNavController().navigate(R.id.action_ticketDetailsFragment_to_loginFragment)
+            alertDialog.dismiss()
+        }
+        dialogBinding.btnCancel.setOnClickListener {
+//            findNavController().popBackStack()
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 }
