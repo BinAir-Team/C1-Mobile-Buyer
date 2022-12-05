@@ -19,9 +19,9 @@
     <string name="sudah_punya_akun"><font color="#000000">Sudah punya akun? </font><font color="#F37C20">Login</font></string>
     <string name="cari_penerbangan">Cari Penerbangan</string>
     <string name="label_dari">Dari</string>
-    <string name="ex_kota_dari">Jakarta (CGK)</string>
+    <string name="ex_kota_dari">Jakarta - CGK</string>
     <string name="label_destinasi">Destinasi</string>
-    <string name="ex_kota_tujuan">Surabaya (SUB)</string>
+    <string name="ex_kota_tujuan">Surabaya - SUB</string>
     <string name="label_tanggal_berangkat">Tanggal Berangkat</string>
     <string name="ex_tgl_brkt">Jumat, 9 Desember 2022</string>
     <string name="label_tanggal_pulang">Tanggal Pulang</string>
