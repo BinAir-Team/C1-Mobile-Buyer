@@ -85,6 +85,7 @@ class ReviewBookingFragment : Fragment() {
         alertDialog.setView(dialogView)
         alertDialog.create()
         dialogBinding.btnPayment.setOnClickListener {
+            bookTicket()
             findNavController().navigate(R.id.action_reviewBookingFragment_to_paymentFragment)
             alertDialog.dismiss()
         }
@@ -93,5 +94,15 @@ class ReviewBookingFragment : Fragment() {
             alertDialog.dismiss()
         }
         alertDialog.show()
+    }
+
+    private fun bookTicket(){
+//        try {
+//            val dataTrav = JsonObject()
+//            for(i in 0 until dataTraveler.size){
+//                val data = dataTraveler[i] as DataPenumpang
+//                dataTrav.add("${i+1}",data.tos)
+//            }
+//        }
     }
 }

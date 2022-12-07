@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentListTicketBinding
 import binar.finalproject.binair.buyer.ui.adapter.ListTicketAdapter
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ListTicketFragment : Fragment() {
     private lateinit var binding: FragmentListTicketBinding
     private lateinit var flightVM : FlightViewModel
+    private lateinit var searchedTicket : SearchItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +33,23 @@ class ListTicketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        getSearchedTicket()
         getListTicket()
+    }
+
+    private fun getSearchedTicket() {
+        searchedTicket = arguments?.getParcelable("searchedTicket")!!
     }
 
     private fun getListTicket() {
         showLoading(true)
-        flightVM.callGetAllTicket().observe(viewLifecycleOwner) {
+//        flightVM.callGetAllTicket().observe(viewLifecycleOwner) {
+//            if (it != null) {
+//                setDataToRecView(it)
+//                showLoading(false)
+//            }
+//        }
+        flightVM.callGetTicketBySearch(searchedTicket.cityFrom,searchedTicket.airportFrom,searchedTicket.cityTo,searchedTicket.airportTo,searchedTicket.dateGo,searchedTicket.type).observe(viewLifecycleOwner){
             if (it != null) {
                 setDataToRecView(it)
                 showLoading(false)

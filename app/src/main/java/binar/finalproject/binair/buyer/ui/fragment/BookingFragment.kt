@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataPassenger
 import binar.finalproject.binair.buyer.data.model.DataKontak
-import binar.finalproject.binair.buyer.data.model.DataPenumpang
+import binar.finalproject.binair.buyer.data.response.DataPassenger
 import binar.finalproject.binair.buyer.databinding.FormTravelerBinding
 import binar.finalproject.binair.buyer.databinding.FragmentBookingBinding
 
@@ -19,7 +19,7 @@ class BookingFragment : Fragment() {
     private lateinit var binding : FragmentBookingBinding
     private lateinit var sharedPrefPassenger : SharedPreferences
     private lateinit var dataKontak : DataKontak
-    private lateinit var arrDataPenumpang : ArrayList<DataPenumpang>
+    private lateinit var arrDataPenumpang : ArrayList<DataPassenger>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +35,19 @@ class BookingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showFormTraveler()
         setListener()
+        showFormTraveler()
+    }
+
+    private fun setListener() {
+        binding.apply {
+            btnPesan.setOnClickListener {
+                getContactData()
+                getTravelerData()
+                val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(arrDataPenumpang.toTypedArray(),dataKontak)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun showFormTraveler(){
@@ -49,6 +60,7 @@ class BookingFragment : Fragment() {
                 setMargin(viewForm)
                 val formDewasaBinding = FormTravelerBinding.bind(viewForm)
                 formDewasaBinding.labelTipeTraveler.text = "(Dewasa ${i + 1})"
+                validateInputForm(formDewasaBinding,"dewasa")
                 binding.formTravelerContainer.addView(viewForm)
             }
         }
@@ -60,8 +72,65 @@ class BookingFragment : Fragment() {
                 formAnakBinding.labelTipeTraveler.text = "(Anak ${i + 1})"
                 formAnakBinding.containerTipeIdnt.visibility = View.GONE
                 formAnakBinding.containerNoIdentitas.visibility = View.GONE
+                validateInputForm(formAnakBinding,"anak")
                 binding.formTravelerContainer.addView(viewForm)
             }
+        }
+    }
+
+    private fun validateInputForm(binding : FormTravelerBinding, kategori : String){
+        binding.apply {
+            etTipe.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etTipe.text.isNullOrEmpty()){
+                        etTitel.error = "Tipe tidak boleh kosong"
+                    }
+                }
+            })
+            etKewarganegaraan.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etKewarganegaraan.text.isNullOrEmpty()){
+                        etKewarganegaraan.error = "Kewarganegaraan tidak boleh kosong"
+                    }
+                }
+            })
+            if(kategori == "dewasa"){
+                etTipe.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                    if (!hasFocus) {
+                        if(etTipe.text.isNullOrEmpty()){
+                            etTipe.error = "Tipe tidak boleh kosong"
+                        }
+                    }
+                })
+                etNoIdnt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                    if (!hasFocus) {
+                        if(etNoIdnt.text.isNullOrEmpty()){
+                            etNoIdnt.error = "No Identitas tidak boleh kosong"
+                        }
+                    }
+                })
+            }
+            etNamaDepanAdlt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etNamaDepanAdlt.text.isNullOrEmpty()){
+                        etNamaDepanAdlt.error = "Nama Depan tidak boleh kosong"
+                    }
+                }
+            })
+            etNamaBelakangAdlt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etNamaBelakangAdlt.text.isNullOrEmpty()){
+                        etNamaBelakangAdlt.error = "Nama Belakang tidak boleh kosong"
+                    }
+                }
+            })
+            etTglLahir.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etTglLahir.text.isNullOrEmpty()){
+                        etTglLahir.error = "Tanggal Lahir tidak boleh kosong"
+                    }
+                }
+            })
         }
     }
 
@@ -71,17 +140,6 @@ class BookingFragment : Fragment() {
             ViewGroup.MarginLayoutParams.WRAP_CONTENT
         ).apply {
             setMargins(24, 16, 24, 16)
-        }
-    }
-
-    private fun setListener() {
-        binding.apply {
-            btnPesan.setOnClickListener {
-                getContactData()
-                getTravelerData()
-                val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(arrDataPenumpang.toTypedArray(),dataKontak)
-                findNavController().navigate(action)
-            }
         }
     }
 
@@ -111,7 +169,7 @@ class BookingFragment : Fragment() {
             }else{
                 type =  "child"
             }
-            val dataPnmp = DataPenumpang(title,name,surname,datebirth,nationality,id_card,no_ktp,type)
+            val dataPnmp = DataPassenger(datebirth,nationality,surname,no_ktp,name,id_card,type,title)
             arrDataPenumpang.add(dataPnmp)
         }
     }

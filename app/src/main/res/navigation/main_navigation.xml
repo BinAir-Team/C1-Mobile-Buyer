@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_listTicketFragment_to_ticketDetailsFragment"
             app:destination="@id/ticketDetailsFragment" />
+        <argument
+            android:name="searchedTicket"
+            app:argType="binar.finalproject.binair.buyer.data.model.SearchItem" />
     </fragment>
     <fragment
         android:id="@+id/ticketDetailsFragment"
@@ -80,7 +83,7 @@
         tools:layout="@layout/fragment_review_booking" >
         <argument
             android:name="dataPenumpang"
-            app:argType="binar.finalproject.binair.buyer.data.model.DataPenumpang[]" />
+            app:argType="binar.finalproject.binair.buyer.data.response.DataPassenger[]" />
         <argument
             android:name="dataKontak"
             app:argType="binar.finalproject.binair.buyer.data.model.DataKontak" />

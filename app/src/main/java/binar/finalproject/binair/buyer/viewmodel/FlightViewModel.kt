@@ -11,11 +11,12 @@ import javax.inject.Inject
 @HiltViewModel
 class FlightViewModel @Inject constructor(private val flightRepo : FlightRepository) : ViewModel() {
     fun callGetCityAirport() : LiveData<List<CityAirport>?> = flightRepo.callGetCityAirport()
-    fun callGetAllTicket() : LiveData<List<TicketItem>?> = flightRepo.callGetAllTicket()
     fun setAdultPassenger(adultPassenger : Int) = flightRepo.setAdultPassenger(adultPassenger)
     fun getAdultPassenger() : LiveData<Int> = flightRepo.adultPassenger
     fun setChildPassenger(childPassenger : Int) = flightRepo.setChildPassenger(childPassenger)
     fun getChildPassenger() : LiveData<Int> = flightRepo.childPassenger
     fun setTotalPassenger(totalPassenger : Int) = flightRepo.setTotalPassenger(totalPassenger)
     fun getTotalPassenger() : LiveData<Int> = flightRepo.totalPassenger
+    fun callGetAllTicket() : LiveData<List<TicketItem>?> = flightRepo.callGetAllTicket()
+    fun callGetTicketBySearch(from: String, airport_from : String, to: String, airport_to : String, date : String, type : String) : LiveData<List<TicketItem>?> = flightRepo.callGetTicketBySearch(from, airport_from, to, airport_to, date, type)
 }

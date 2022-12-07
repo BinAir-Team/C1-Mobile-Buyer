@@ -4,16 +4,20 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
+import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.CityAirport
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
@@ -22,6 +26,8 @@ import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Suppress("UNCHECKED_CAST")
@@ -30,19 +36,22 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var flightVM : FlightViewModel
     private val calendar = Calendar.getInstance()
+    private var tripType : String = "oneway"
+    private lateinit var cityFrom : String
+    private lateinit var airportFrom : String
+    private lateinit var cityTo : String
+    private lateinit var airportTo : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
-//        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
-//        editor = sharedPrefPassenger.edit()
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListener()
@@ -51,10 +60,10 @@ class HomeFragment : Fragment() {
         showBannerLogin()
         changeTripType()
         setAutoCompleteClass()
-        clearTotalPassenger()
         setPromoAdapter()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setListener() {
         binding.apply {
             btnLogin.setOnClickListener {
@@ -121,6 +130,7 @@ class HomeFragment : Fragment() {
                 cvSekaliJalan.setBackgroundColor(Color.parseColor("#FFFFFF"))
                 tvSekaliJalan.setTextColor(Color.parseColor("#7D8C9C"))
                 tglPulangInputContainer.visibility = View.VISIBLE
+                tripType = "roundtrip"
             }
             cvSekaliJalan.setOnClickListener {
                 cvSekaliJalan.setBackgroundColor(Color.parseColor("#13A2D7"))
@@ -128,6 +138,7 @@ class HomeFragment : Fragment() {
                 cvPulangPergi.setBackgroundColor(Color.parseColor("#FFFFFF"))
                 tvPulangPergi.setTextColor(Color.parseColor("#7D8C9C"))
                 tglPulangInputContainer.visibility = View.GONE
+                tripType = "oneway"
             }
         }
     }
@@ -145,10 +156,14 @@ class HomeFragment : Fragment() {
                     etDestination.setAdapter(adapter)
                     etFrom.setOnItemClickListener { adapterView, view, pos, l ->
                         val data = adapter.getDataAirport(pos)
+                        cityFrom = data.city
+                        airportFrom = data.airport
                         binding.etFrom.setText("${data.city} - ${data.code}")
                     }
                     etDestination.setOnItemClickListener { adapterView, view, pos, l ->
                         val data = adapter.getDataAirport(pos)
+                        cityTo = data.city
+                        airportTo = data.airport
                         binding.etDestination.setText("${data.city} - ${data.code}")
                     }
                 }
@@ -174,6 +189,11 @@ class HomeFragment : Fragment() {
         return dateFormat.format(date)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun formatDateAPI(date : String) : String {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("EEEE, dd MMM yy")).toString()
+    }
+
     private fun updateLabel(kategori : String, date : Date) {
         val formatedDate = formatDate(date)
         if(kategori == "berangkat") {
@@ -183,28 +203,30 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun clearTotalPassenger() {
-//        editor.remove("jmlAnak")
-//        editor.putInt("jmlDewasa",1)
-//        editor.putInt("totalPenumpang", 1)
-//        editor.apply()
-    }
-
     @SuppressLint("SetTextI18n")
     private fun openDialogPassenger() {
         val bottomSheetFragment = PassengerBottomSheetFragment()
         bottomSheetFragment.show(requireActivity().supportFragmentManager, bottomSheetFragment.tag)
-//        val totalPenumpang = sharedPrefPassenger.getInt("totalPenumpang", 0)
         flightVM.getTotalPassenger().observe(viewLifecycleOwner){
             if(it != null){
                 binding.etJmlPenumpangInput.setText("$it Penumpang")
             }
         }
-//        binding.etJmlPenumpangInput.setText("$totalPenumpang Penumpang")
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun searchTicket() {
-        findNavController().navigate(R.id.action_homeFragment_to_listTicketFragment)
+        var dateGo = binding.etTglBerangkatInput.text.toString()
+        dateGo = formatDateAPI(dateGo)
+        var dateBack : String? = null
+        if(tripType == "roundtrip") {
+            dateBack = binding.etTglPulangInput.text.toString()
+            dateBack = formatDateAPI(dateBack)
+        }
+        var totalPassenger = binding.etJmlPenumpangInput.text.toString().split(" ")[0].toInt()
+        val data = SearchItem(cityFrom,airportFrom,cityTo,airportTo, dateGo, dateBack,tripType,totalPassenger)
+        val action = HomeFragmentDirections.actionHomeFragmentToListTicketFragment(data)
+        findNavController().navigate(action)
     }
 
     private fun setPromoAdapter() {

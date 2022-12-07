@@ -24,6 +24,8 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val childPassenger : LiveData<Int> = _childPassenger
     private val _totalPassenger = MutableLiveData<Int>()
     val totalPassenger : LiveData<Int> = _totalPassenger
+    private val _ticketBySearch = MutableLiveData<List<TicketItem>?>()
+    val ticketBySearch : LiveData<List<TicketItem>?> = _ticketBySearch
 
     fun callGetAllTicket() : LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -49,6 +51,31 @@ class FlightRepository @Inject constructor(var client: APIService) {
             }
         })
         return allTicket
+    }
+
+    fun callGetTicketBySearch(from: String, airport_from : String, to: String, airport_to : String, date : String, type : String, willFly : Boolean = true): LiveData<List<TicketItem>?> {
+        client.getTicketBySearch(from,airport_from, to, airport_to, date, type, willFly).enqueue(object : Callback<AllTicketsResponse>{
+            override fun onResponse(
+                call: Call<AllTicketsResponse>,
+                response: Response<AllTicketsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _ticketBySearch.postValue(result.data)
+                    }else{
+                        _ticketBySearch.postValue(null)
+                    }
+                }else{
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AllTicketsResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+        return ticketBySearch
     }
 
     fun callGetCityAirport() : LiveData<List<CityAirport>?> {
