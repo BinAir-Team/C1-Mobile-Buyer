@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/containerPromo"
-    android:layout_margin="12dp"
-    app:cardCornerRadius="12dp"
-    app:contentPadding="16dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <data>
+        <variable
+            name="promo"
+            type="binar.finalproject.binair.buyer.data.response.DataPromo"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cvPromo"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="12dp"
+        app:contentPadding="16dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="384dp">
@@ -23,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelPromo"
-            android:text="Enjoy a Fantastic Year-end Travel to Asia!"
+            android:text="@{promo.title}"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -33,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rvJudulPromo"
             android:layout_marginTop="14dp"
-            android:text="The year-end is fast approaching, quic.."
+            android:text="@{promo.desc}"
             android:textSize="16sp" />
 
         <ImageView
@@ -74,7 +83,7 @@
             android:text="31 Dec 2023" />
 
         <Button
-            android:id="@+id/btnDaftar"
+            android:id="@+id/btnDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvDateberangkat"
@@ -85,5 +94,6 @@
             android:text="More Details" />
 
     </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
+</layout>
