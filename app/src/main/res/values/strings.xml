@@ -85,4 +85,9 @@
     <string name="login_untuk_melanjutkan">Login untuk melanjutkan</string>
     <string name="anda_tidak_dapat_melanjutkan_pemesanan_tanpa_login_terlebih_dahulu">Anda tidak dapat melanjutkan pemesanan tanpa login terlebih dahulu</string>
     <string name="batal">Batal</string>
+    <string name="log_out">Log Out</string>
+    <string name="tidak_ada_wishlist">Tidak ada wishlist</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="riwayat_pemesanan">Riwayat Pemesanan</string>
+    <string name="belum_dibayar">Belum Dibayar</string>
 </resources>

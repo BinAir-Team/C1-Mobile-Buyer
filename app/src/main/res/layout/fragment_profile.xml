@@ -3,109 +3,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.ProfileFragment"
-    android:background="@color/BBC_DrakerWhite">
+    android:background="@color/BBC_DrakerWhite"
+    tools:context=".ui.fragment.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
-            android:paddingBottom="24dp"
-            android:orientation="vertical"
-            android:background="@drawable/profile_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/profile_background"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
             <RelativeLayout
-                android:layout_marginTop="17.76dp"
-                android:layout_marginHorizontal="23dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="17.76dp">
+
                 <ImageView
-                    android:layout_alignParentLeft="true"
                     android:layout_width="112.65dp"
                     android:layout_height="29dp"
-                    android:src="@drawable/logo_blue"/>
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/logo_blue" />
+
                 <ImageButton
                     android:layout_width="24.02dp"
                     android:layout_height="28dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_notification"
-                    android:background="@color/transparent"/>
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_notification" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/CTAProfile"
-                android:layout_marginTop="17.76dp"
-                android:layout_marginHorizontal="23dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="17.76dp">
+
                 <ImageView
                     android:id="@+id/userprofile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/user_profile"/>
+                    android:src="@drawable/user_profile" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="25dp"
-                    android:layout_toRightOf="@id/userprofile">
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@id/userprofile"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Danial Farros Maulana"
                         android:fontFamily="@font/poppins_medium"
-                        android:textSize="18dp" />
+                        android:text="Danial Farros Maulana"
+                        android:textSize="18sp" />
+
                     <LinearLayout
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="2dp"
-                        android:paddingHorizontal="9dp"
+                        android:layout_marginTop="4dp"
                         android:background="@drawable/profile_userlabelbackground"
-                        >
+                        android:paddingHorizontal="9dp"
+                        android:paddingVertical="2dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Member Silver"
                             android:fontFamily="@font/poppins_regular"
-                            android:textSize="9dp"
-                            android:textColor="@color/white"/>
+                            android:text="Member Silver"
+                            android:textColor="@color/white"
+                            android:textSize="9sp"
+                            tools:ignore="SmallSp" />
+
                         <ImageView
-                            android:layout_marginLeft="24dp"
                             android:layout_width="5.52dp"
                             android:layout_height="7dp"
-                            android:src="@drawable/rightarrow"
-                            android:layout_marginTop="4dp"/>
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/rightarrow" />
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
 
         </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="9dp">
+                android:layout_margin="9dp"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="16.42dp"
-                    android:paddingHorizontal="22dp"
+                    android:background="@drawable/profile_cardbackground"
                     android:orientation="vertical"
-                    android:background="@drawable/profile_cardbackground">
+                    android:paddingHorizontal="22dp"
+                    android:paddingVertical="16.42dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaction History"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/poppins_medium"/>
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/riwayat_pemesanan"
+                        android:textSize="18sp" />
 
                     <HorizontalScrollView
                         android:layout_width="wrap_content"
@@ -120,7 +133,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="16dp"
+                                android:layout_marginEnd="16dp"
                                 android:background="@drawable/profile_cardofcardbackground"
 
                                 android:orientation="horizontal"
@@ -134,14 +147,15 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="Unpaid Payment"
-                                    android:textSize="10.79dp" />
+                                    android:layout_marginStart="10dp"
+                                    android:text="@string/belum_dibayar"
+                                    android:textSize="10sp"
+                                    tools:ignore="SmallSp" />
 
                                 <ImageView
                                     android:layout_width="8dp"
                                     android:layout_height="9dp"
-                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
                                     android:layout_marginTop="4dp"
                                     android:src="@drawable/profileblackarrow" />
 
@@ -150,7 +164,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="16dp"
+                                android:layout_marginEnd="16dp"
                                 android:background="@drawable/profile_cardofcardbackground"
 
                                 android:orientation="horizontal"
@@ -164,14 +178,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:text="Waiting Trip"
                                     android:textSize="10.79dp" />
 
                                 <ImageView
                                     android:layout_width="8dp"
                                     android:layout_height="9dp"
-                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
                                     android:layout_marginTop="4dp"
                                     android:src="@drawable/profileblackarrow" />
 
@@ -180,7 +194,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="16dp"
+                                android:layout_marginEnd="16dp"
                                 android:background="@drawable/profile_cardofcardbackground"
 
                                 android:orientation="horizontal"
@@ -194,14 +208,15 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:text="Rate Trip"
-                                    android:textSize="10.79dp" />
+                                    android:textSize="10sp"
+                                    tools:ignore="SmallSp" />
 
                                 <ImageView
                                     android:layout_width="8dp"
                                     android:layout_height="9dp"
-                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
                                     android:layout_marginTop="4dp"
                                     android:src="@drawable/profileblackarrow" />
 
@@ -210,7 +225,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="16dp"
+                                android:layout_marginEnd="16dp"
                                 android:background="@drawable/profile_cardofcardbackground"
 
                                 android:orientation="horizontal"
@@ -224,14 +239,15 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginStart="10dp"
                                     android:text="Waiting Trip"
-                                    android:textSize="10.79dp" />
+                                    android:textSize="10sp"
+                                    tools:ignore="SmallSp" />
 
                                 <ImageView
                                     android:layout_width="8dp"
                                     android:layout_height="9dp"
-                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
                                     android:layout_marginTop="4dp"
                                     android:src="@drawable/profileblackarrow" />
 
@@ -240,89 +256,100 @@
                     </HorizontalScrollView>
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="16.42dp"
-                    android:paddingHorizontal="22dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/profile_cardbackground"
                     android:orientation="vertical"
-                    android:background="@drawable/profile_cardbackground">
+                    android:paddingHorizontal="22dp"
+                    android:paddingVertical="16.42dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="add flight"/>
+                        android:text="add flight" />
+
                     <EditText
                         android:id="@+id/FlightNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="flight number"/>
+                        android:hint="flight number" />
+
                     <EditText
                         android:id="@+id/JamTerbang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Jam Terbang"/>
+                        android:hint="Jam Terbang" />
+
                     <EditText
                         android:id="@+id/Tujuan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="tujuan"/>
+                        android:hint="tujuan" />
+
                     <EditText
                         android:id="@+id/ProgressBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Progress Bar"/>
+                        android:hint="Progress Bar" />
+
                     <Button
+                        android:id="@+id/AddButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="add data"
-                        android:id="@+id/AddButton"/>
+                        android:text="add data" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="16.42dp"
-                    android:paddingHorizontal="22dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/profile_cardbackground"
                     android:orientation="vertical"
-                    android:background="@drawable/profile_cardbackground">
+                    android:paddingHorizontal="22dp"
+                    android:paddingVertical="16.42dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="WishList"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/poppins_medium"/>
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/wishlist"
+                        android:textSize="18sp" />
+
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RvWishlist"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/RvWishlist"/>
+                        android:layout_height="wrap_content" />
+
                     <TextView
                         android:id="@+id/tvAlertKosong"
-                        android:textAlignment="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tidak Ada wishList"
+                        android:text="@string/tidak_ada_wishlist"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:visibility="gone" />
 
                 </LinearLayout>
+
                 <Button
-                    android:layout_marginTop="20dp"
+                    android:id="@+id/btnLogout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Log Out"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textSize="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="18dp"
+                    android:text="@string/log_out"
                     android:textAlignment="center"
-                    android:paddingVertical="10dp"
-                    android:textStyle="bold"
                     android:textColor="@color/MBC_base"
-                    android:background="@drawable/profile_logoutbackground"
-                    android:layout_marginBottom="18dp"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    style="@style/button"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-    
+
 
 </FrameLayout>

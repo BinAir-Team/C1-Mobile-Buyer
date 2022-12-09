@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,7 @@ class HomeFragment : Fragment() {
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
 //        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
 //        editor = sharedPrefPassenger.edit()
+        disableBackPressed()
         return binding.root
     }
 
@@ -53,6 +55,11 @@ class HomeFragment : Fragment() {
         setAutoCompleteClass()
         clearTotalPassenger()
         setPromoAdapter()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBannerLogin()
     }
 
     private fun setListener() {
@@ -212,5 +219,13 @@ class HomeFragment : Fragment() {
         val adapter = HomePromoAdapter(dataPromo)
         binding.rvPromo.adapter = adapter
         binding.rvPromo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun disableBackPressed(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+            }
+        })
     }
 }
