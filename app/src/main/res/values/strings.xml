@@ -90,4 +90,6 @@
     <string name="wishlist">Wishlist</string>
     <string name="riwayat_pemesanan">Riwayat Pemesanan</string>
     <string name="belum_dibayar">Belum Dibayar</string>
+    <string name="profil_pengguna">Profil Pengguna</string>
+    <string name="profil">Profil</string>
 </resources>

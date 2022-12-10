@@ -2,8 +2,8 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +20,7 @@ import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +30,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
     private val viewModel : WishListViewModel by viewModels()
     private lateinit var adapter : WishListAdapter
     lateinit var userVM : UserViewModel
+    private lateinit var prefs : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
+        prefs = requireActivity().getSharedPreferences(dataUser, 0)
         return binding.root
     }
 
@@ -72,17 +75,26 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
 
     @SuppressLint("SetTextI18n")
     private fun getDataUser(){
-        val prefs = requireActivity().getSharedPreferences(dataUser, 0)
-        val name = prefs.getString("namaLengkap", "Login untuk melanjutkan")
-        binding.tvName.text = name
+        showLoadingProfile(true)
+        val token = prefs.getString("token", null)
+        if(token != null){
+            userVM.getUser("Bearer $token").observe(viewLifecycleOwner) {
+                if (it != null) {
+                    showLoadingProfile(false)
+                    binding.tvName.text = it.data.firstname + " " + it.data.lastname
+                    Glide.with(requireContext())
+                        .load(it.data.profileImage)
+                        .into(binding.userprofile)
+                }
+            }
+        }else{
+            binding.tvName.text = "Login untuk melanjutkan"
+        }
     }
 
     private fun logout(){
-        val prefs = requireActivity().getSharedPreferences(dataUser, 0)
         var token = prefs.getString("token", null)
-        token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFiY2E3ZmE2LWI0MmUtNDVhNy05ZWE2LWYzMjI0OWNkMTJhOCIsImZpcnN0bmFtZSI6IlJpY2hhcmQiLCJsYXN0bmFtZSI6IkxvaXMiLCJnZW5kZXIiOiJMYWtpLWxha2kiLCJlbWFpbCI6InJpY2hhcmRAZ21haWwuY29tIiwicGhvbmUiOiIwODEyMzQ1Njc4OTEiLCJyb2xlIjoibWVtYmVyIiwicHJvZmlsZV9pbWFnZSI6Imh0dHBzOi8vd3d3LmtpbmRwbmcuY29tL3BpY2MvbS8yMS0yMTQ0MzlfZnJlZS1oaWdoLXF1YWxpdHktcGVyc29uLWljb24tZGVmYXVsdC1wcm9maWxlLXBpY3R1cmUucG5nIiwiaWF0IjoxNjcwNTg4OTgyLCJleHAiOjE2NzA1OTI1ODJ9.CJLO6fh3xEoj0EML8AwkGt6s4EFLjbthPub6Dr1vaik"
-        if(token != ""){
-            Log.d("token", token)
+        if(token != null){
             val alert = AlertDialog.Builder(requireContext())
             alert.apply {
                 setTitle("Logout")
@@ -155,4 +167,13 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
         TODO("Not yet implemented")
     }
 
+    private fun showLoadingProfile(state : Boolean) {
+        if(state){
+            binding.shimmerContainer.visibility = View.VISIBLE
+            binding.shimmerContainer.startShimmerAnimation()
+        }else{
+            binding.shimmerContainer.visibility = View.GONE
+            binding.shimmerContainer.stopShimmerAnimation()
+        }
+    }
 }

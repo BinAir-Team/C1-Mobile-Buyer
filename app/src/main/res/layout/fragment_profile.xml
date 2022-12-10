@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/BBC_DrakerWhite"
     tools:context=".ui.fragment.ProfileFragment">
 
@@ -47,9 +48,8 @@
 
                 <ImageView
                     android:id="@+id/userprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/user_profile" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Danial Farros Maulana"
+                        android:text=""
                         android:textSize="18sp" />
 
                     <LinearLayout
@@ -351,5 +351,32 @@
         </ScrollView>
     </LinearLayout>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/containerShimmerProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:elevation="10dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shimmerImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/content_grey"
+                android:layout_marginStart="24dp"
+                app:cardCornerRadius="50dp"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shimmerName"
+                android:layout_width="250dp"
+                android:layout_height="20dp"
+                android:backgroundTint="@color/content_grey"
+                android:layout_toEndOf="@id/shimmerImage"
+                android:layout_marginStart="24dp"
+                app:cardCornerRadius="8dp"/>
 
+        </RelativeLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </FrameLayout>

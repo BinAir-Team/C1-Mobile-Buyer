@@ -1,195 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.EditProfileFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="428dp"
-            android:layout_height="296dp"
-            android:src="@drawable/editprofile_headerbg"/>
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
+    <data>
+        <variable
+            name="dataUser"
+            type="binar.finalproject.binair.buyer.data.response.DataProfile" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.EditProfileFragment"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="17dp"
-            android:paddingHorizontal="22dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/backButton"
-                    android:layout_width="7dp"
-                    android:layout_height="12.23dp"
-                    android:src="@drawable/left_arrow"/>
-                <TextView
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="14dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Search Result"
-                    android:textColor="@color/MBC_HighlightBase"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@id/backButton"/>
-                <ImageButton
-                    android:layout_width="24.02dp"
-                    android:layout_height="28dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/white_notification"
-                    android:background="@color/transparent"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_marginTop="15dp"
-                android:layout_width="80dp"
-                android:layout_height="80dp">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/user_profile"/>
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_profileadd"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"/>
-            </RelativeLayout>
-            <TextView
+            android:padding="16dp"
+            android:background="@color/MC_Blue">
+
+            <ImageView
                 android:layout_marginTop="5dp"
+                android:id="@+id/backButton"
+                android:layout_width="7dp"
+                android:layout_height="12.23dp"
+                android:src="@drawable/left_arrow" />
+
+            <TextView
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Danial Farros Maulana"
-                android:textSize="18dp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/SB_Base"/>
-            <LinearLayout
-                android:paddingVertical="10dp"
-                android:paddingHorizontal="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/profile_cardbackground"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Profile"
-                    android:textSize="18dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/MBC_FontFill"/>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Name"
-                        android:textStyle="bold"
-                        android:textColor="@color/C5"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textSize="11dp"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Danial Farros Maulana"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="14dp"
-                        android:textColor="@color/C2"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:textStyle="bold"
-                        android:textColor="@color/C5"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textSize="11dp"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="danialfarrosmaulana921@gmail.com"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="14dp"
-                        android:textColor="@color/C2"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Phone Number"
-                        android:textStyle="bold"
-                        android:textColor="@color/C5"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textSize="11dp"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="+6285859600019"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="14dp"
-                        android:textColor="@color/C2"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Address"
-                        android:textStyle="bold"
-                        android:textColor="@color/C5"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textSize="11dp"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Melirang Wetan Rt.01 Rw.01 Bungah Gresik"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="14dp"
-                        android:textColor="@color/C2"
-                        />
-                </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Save Change"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="16dp"
-                        android:paddingHorizontal="33dp"
-                        android:textAlignment="center"
-                        android:paddingVertical="10dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/MBC_base"
-                        android:background="@drawable/editprofile_buttonbackground"/>
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
+                android:text="@string/profil"
+                android:textColor="@color/MBC_HighlightBase"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/backButton" />
+        </RelativeLayout>
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="428dp"
+                    android:layout_height="296dp"
+                    android:src="@drawable/editprofile_headerbg" />
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="17dp"
+                    android:paddingHorizontal="22dp">
+
+                    <RelativeLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+
+                        <ImageView
+                            android:id="@+id/imgProfile"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/user_profile" />
+
+                        <ImageView
+                            android:id="@+id/imgEditProfile"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_profileadd"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/SB_Base" />
+
+                    <LinearLayout
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/profile_cardbackground"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profil_pengguna"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/MBC_FontFill" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nama_depan"
+                                android:textStyle="bold"
+                                android:textColor="@color/C5"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etNamaDepan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@{dataUser.firstname}"
+                                android:textColor="@color/C2"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nama_belakang"
+                                android:textStyle="bold"
+                                android:textColor="@color/C5"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etNamaBelakang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@{dataUser.lastname}"
+                                android:textColor="@color/C2"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/labelJenisKelamin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/jenis_kelamin"
+                            android:textStyle="bold"
+                            android:textColor="@color/C5"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="11sp" />
+
+                        <RadioGroup
+                            android:id="@+id/containerRadioJK"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/radioLaki"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/laki_laki"
+                                android:layout_marginEnd="16dp" />
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/radioPerempuan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/perempuan" />
+                        </RadioGroup>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/email"
+                                android:textStyle="bold"
+                                android:textColor="@color/C5"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{dataUser.email}"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="14sp"
+                                android:textColor="@color/C2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nomor_telepon"
+                                android:textStyle="bold"
+                                android:textColor="@color/C5"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{dataUser.phone}"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="14sp"
+                                android:textColor="@color/C2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/password"
+                                android:textStyle="bold"
+                                android:textColor="@color/C5"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etPass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="14sp"
+                                android:textColor="@color/C2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/konfirmasi_password"
+                                android:textStyle="bold"
+                                android:textColor="@color/C5"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etKonfirmasiPass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="14sp"
+                                android:textColor="@color/C2" />
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/simpan"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="16sp"
+                                android:paddingHorizontal="33dp"
+                                android:textAlignment="center"
+                                android:paddingVertical="10dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/MBC_base"
+                                android:background="@drawable/editprofile_buttonbackground" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+</layout>
