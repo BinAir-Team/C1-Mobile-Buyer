@@ -100,16 +100,6 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
                 setTitle("Logout")
                 setMessage("Apakah anda yakin ingin logout?")
                 setPositiveButton("Ya") { dialog, _ ->
-//                    userVM.logout(token).observe(viewLifecycleOwner) {
-//                        if (it!!.status == "success") {
-//                            Toast.makeText(requireContext(), "Logout Berhasil", Toast.LENGTH_SHORT).show()
-//                            val editor = prefs.edit()
-//                            editor.clear()
-//                            editor.apply()
-//                            getDataUser()
-//                            findNavController().navigate(R.id.action_global_homeFragment)
-//                        }
-//                    }
                     Toast.makeText(requireContext(), "Logout Berhasil", Toast.LENGTH_SHORT).show()
                     val editor = prefs.edit()
                     editor.clear()

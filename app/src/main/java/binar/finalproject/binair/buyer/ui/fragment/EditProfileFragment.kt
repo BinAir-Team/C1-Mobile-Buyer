@@ -29,6 +29,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -42,9 +43,9 @@ class EditProfileFragment : Fragment() {
     private lateinit var image : MultipartBody.Part
     private val galleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+            binding.imgProfile.setImageURI(result)
             val contentResolver = activity?.contentResolver
             val type = contentResolver?.getType(result!!)
-            binding.imgProfile.setImageURI(result)
 
             val tempFile = File.createTempFile("image", "jpg",null)
             val inputStream = contentResolver?.openInputStream(result!!)
@@ -52,7 +53,7 @@ class EditProfileFragment : Fragment() {
                 inputStream?.copyTo(it)
             }
             val reqBody : RequestBody = tempFile.asRequestBody(type!!.toMediaType())
-            image = MultipartBody.Part.createFormData("image", tempFile.name, reqBody)
+            image = MultipartBody.Part.createFormData("profile_image", tempFile.name, reqBody)
         }
     private val REQUEST_CODE_PERMISSION = 100
 
@@ -79,6 +80,9 @@ class EditProfileFragment : Fragment() {
             }
             imgEditProfile.setOnClickListener {
                 checkingPermissions()
+            }
+            btnSimpan.setOnClickListener {
+                updateUser()
             }
         }
     }
@@ -109,6 +113,42 @@ class EditProfileFragment : Fragment() {
         }else{
             Toast.makeText(requireContext(), "Token is null", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun updateUser(){
+        val prefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
+        val token = prefs.getString("token", null)
+        if(token != null) {
+            val firstName = binding.etNamaDepan.text.toString().toRequestBody("text/plain".toMediaType())
+            val lastName = binding.etNamaBelakang.text.toString().toRequestBody("text/plain".toMediaType())
+            val gender = if(binding.radioLaki.isChecked){
+                "Laki-laki".toRequestBody("text/plain".toMediaType())
+            } else {
+                "Perempuan".toRequestBody("text/plain".toMediaType())
+            }
+            val phone = binding.etPhone.text.toString().toRequestBody("text/plain".toMediaType())
+            val plainPass = binding.etPass.text.toString()
+            val rePass = binding.etKonfirmasiPass.text.toString()
+
+            if(isEqualPassRepassword(plainPass,rePass)){
+                val pass = plainPass.toRequestBody("text/plain".toMediaType())
+                userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,pass,image).observe(viewLifecycleOwner) {
+                    if(it != null){
+                        Toast.makeText(requireContext(), "Update Success", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "Update Failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }else{
+                Toast.makeText(requireContext(), "Konfirmasi Password tidak sama", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(requireContext(), "Token is null", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun isEqualPassRepassword(pass: String, repass: String): Boolean {
+        return pass == repass
     }
 
     private fun saveImage(){

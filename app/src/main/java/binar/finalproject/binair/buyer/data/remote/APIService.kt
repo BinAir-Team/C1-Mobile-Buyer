@@ -2,6 +2,8 @@ package binar.finalproject.binair.buyer.data.remote
 
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.response.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -16,8 +18,10 @@ interface APIService {
     @GET("user")
     fun getUser(@Header("Authorization") token : String) : Call<GetUserResponse>
 
-    @DELETE("logout")
-    fun logout(@Header("Authorization") token : String) : Call<LogoutResponse>
+    @PUT("user")
+    @Headers("Content-Type: application/json")
+    @Multipart
+    fun updateUser(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody, @Part("password") pass : RequestBody, @Part profileImage : MultipartBody.Part) : Call<UpdateUserResponse>
 
     @GET("search")
     fun getAllCity() : Call<CityAirportResponse>

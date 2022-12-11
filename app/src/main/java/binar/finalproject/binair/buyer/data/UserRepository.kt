@@ -7,8 +7,10 @@ import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.remote.APIService
 import binar.finalproject.binair.buyer.data.response.GetUserResponse
 import binar.finalproject.binair.buyer.data.response.LoginResponse
-import binar.finalproject.binair.buyer.data.response.LogoutResponse
 import binar.finalproject.binair.buyer.data.response.RegisterUserResponse
+import binar.finalproject.binair.buyer.data.response.UpdateUserResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,8 +23,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
     val loginUser : LiveData<LoginResponse?> = _loginUser
     private val _currentUser = MutableLiveData<GetUserResponse?>()
     val currentUser : LiveData<GetUserResponse?> = _currentUser
-    private val _logoutUser = MutableLiveData<LogoutResponse?>()
-    val logoutUser : LiveData<LogoutResponse?> = _logoutUser
+    private val _updateUser = MutableLiveData<UpdateUserResponse?>()
+    val updateUser : LiveData<UpdateUserResponse?> = _updateUser
 
     fun registerUser(dataUser : DataRegister) : LiveData<RegisterUserResponse?> {
         apiService.registerUser(dataUser).enqueue(object : Callback<RegisterUserResponse>{
@@ -95,26 +97,26 @@ class UserRepository @Inject constructor(var apiService: APIService) {
         return currentUser
     }
 
-    fun logout(token : String) : LiveData<LogoutResponse?> {
-        apiService.logout(token).enqueue(object : Callback<LogoutResponse>{
+    fun updateUser(token : String,firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, password : RequestBody, profileImage : MultipartBody.Part) : LiveData<UpdateUserResponse?> {
+        apiService.updateUser(token,firstName,lastName,gender,phone,password,profileImage).enqueue(object : Callback<UpdateUserResponse>{
             override fun onResponse(
-                call: Call<LogoutResponse>,
-                response: Response<LogoutResponse>
+                call: Call<UpdateUserResponse>,
+                response: Response<UpdateUserResponse>
             ) {
                 if (response.isSuccessful){
                     val dataResponse = response.body()
-                    _logoutUser.postValue(dataResponse)
+                    _updateUser.postValue(dataResponse)
                 }else{
-                    _logoutUser.postValue(null)
+                    _updateUser.postValue(null)
                     Log.e("Error not successful : ", response.message())
                 }
             }
 
-            override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
-                _logoutUser.postValue(null)
+            override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
+                _updateUser.postValue(null)
                 Log.d("Error onFailure : ", t.message!!)
             }
         })
-        return logoutUser
+        return updateUser
     }
 }
