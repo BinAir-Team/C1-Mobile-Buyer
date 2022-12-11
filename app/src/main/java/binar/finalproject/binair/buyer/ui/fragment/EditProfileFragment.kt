@@ -47,7 +47,7 @@ class EditProfileFragment : Fragment() {
             val contentResolver = activity?.contentResolver
             val type = contentResolver?.getType(result!!)
 
-            val tempFile = File.createTempFile("image", "jpg",null)
+            val tempFile = File.createTempFile("image", ".jpg",null)
             val inputStream = contentResolver?.openInputStream(result!!)
             tempFile.outputStream().use {
                 inputStream?.copyTo(it)
@@ -132,7 +132,7 @@ class EditProfileFragment : Fragment() {
 
             if(isEqualPassRepassword(plainPass,rePass)){
                 val pass = plainPass.toRequestBody("text/plain".toMediaType())
-                userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,pass,image).observe(viewLifecycleOwner) {
+                userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,image, pass).observe(viewLifecycleOwner) {
                     if(it != null){
                         Toast.makeText(requireContext(), "Update Success", Toast.LENGTH_SHORT).show()
                     }else{

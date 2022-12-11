@@ -18,10 +18,9 @@ interface APIService {
     @GET("user")
     fun getUser(@Header("Authorization") token : String) : Call<GetUserResponse>
 
-    @PUT("user")
-    @Headers("Content-Type: application/json")
     @Multipart
-    fun updateUser(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody, @Part("password") pass : RequestBody, @Part profileImage : MultipartBody.Part) : Call<UpdateUserResponse>
+    @PUT("user")
+    fun updateUser(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody, @Part profileImage : MultipartBody.Part, @Part("password") pass : RequestBody) : Call<UpdateUserResponse>
 
     @GET("search")
     fun getAllCity() : Call<CityAirportResponse>

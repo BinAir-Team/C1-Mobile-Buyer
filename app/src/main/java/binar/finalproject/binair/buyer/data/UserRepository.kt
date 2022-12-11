@@ -97,8 +97,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
         return currentUser
     }
 
-    fun updateUser(token : String,firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, password : RequestBody, profileImage : MultipartBody.Part) : LiveData<UpdateUserResponse?> {
-        apiService.updateUser(token,firstName,lastName,gender,phone,password,profileImage).enqueue(object : Callback<UpdateUserResponse>{
+    fun updateUser(token : String,firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, profileImage : MultipartBody.Part, password : RequestBody) : LiveData<UpdateUserResponse?> {
+        apiService.updateUser(token,firstName,lastName,gender,phone,profileImage, password).enqueue(object : Callback<UpdateUserResponse>{
             override fun onResponse(
                 call: Call<UpdateUserResponse>,
                 response: Response<UpdateUserResponse>
