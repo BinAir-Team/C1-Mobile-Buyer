@@ -1,25 +1,32 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
-import android.content.SharedPreferences
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataPassenger
 import binar.finalproject.binair.buyer.data.model.DataKontak
-import binar.finalproject.binair.buyer.data.response.DataPassenger
+import binar.finalproject.binair.buyer.data.model.PostBookingBody
+import binar.finalproject.binair.buyer.data.model.Quantity
+import binar.finalproject.binair.buyer.data.model.TravelerItem
 import binar.finalproject.binair.buyer.databinding.FormTravelerBinding
 import binar.finalproject.binair.buyer.databinding.FragmentBookingBinding
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookingFragment : Fragment() {
     private lateinit var binding : FragmentBookingBinding
-    private lateinit var sharedPrefPassenger : SharedPreferences
-    private lateinit var dataKontak : DataKontak
-    private lateinit var arrDataPenumpang : ArrayList<DataPassenger>
+    private lateinit var flightVM : FlightViewModel
+    private var jmlDewasa : Int = 0
+    private var jmlAnak : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,14 +34,19 @@ class BookingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentBookingBinding.inflate(inflater, container, false)
-        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
-        binding.toolbar.tvTitlePage.text = "Book"
+        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
+        binding.toolbar.tvTitlePage.setText("Book")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        flightVM.getAdultPassenger().observe(viewLifecycleOwner){
+            jmlDewasa = it
+        }
+        flightVM.getChildPassenger().observe(viewLifecycleOwner){
+            jmlAnak = it
+        }
         setListener()
         showFormTraveler()
     }
@@ -42,19 +54,15 @@ class BookingFragment : Fragment() {
     private fun setListener() {
         binding.apply {
             btnPesan.setOnClickListener {
-                getContactData()
-                getTravelerData()
-                val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(arrDataPenumpang.toTypedArray(),dataKontak)
-                findNavController().navigate(action)
+                bookTicket()
             }
         }
     }
 
     private fun showFormTraveler(){
-        val jmlDewasa = sharedPrefPassenger.getInt("jmlDewasa", -1)
-        val jmlAnak = sharedPrefPassenger.getInt("jmlAnak", -1)
-
+        jmlDewasa = 1
         if(jmlDewasa > 0) {
+            Toast.makeText(requireContext(), "Dewasa", Toast.LENGTH_SHORT).show()
             for (i in 0 until jmlDewasa) {
                 val viewForm = LayoutInflater.from(context).inflate(R.layout.form_traveler, null)
                 setMargin(viewForm)
@@ -143,15 +151,15 @@ class BookingFragment : Fragment() {
         }
     }
 
-    private fun getContactData() {
+    private fun getContactData() : DataKontak{
         val nama = binding.etNamaLengkap.text.toString()
         val noTelp = binding.etNoTelp.text.toString()
         val email = binding.etEmail.text.toString()
-        dataKontak = DataKontak(nama, noTelp, email)
+        return DataKontak(nama, noTelp, email)
     }
 
-    private fun getTravelerData() {
-        arrDataPenumpang = ArrayList()
+    private fun getTravelerData() : ArrayList<TravelerItem>{
+        val arrDataPenumpang = ArrayList<TravelerItem>()
         binding.formTravelerContainer.children.forEach {
             val formTravelerBinding = FormTravelerBinding.bind(it)
             val title = formTravelerBinding.etTitel.text.toString()
@@ -169,8 +177,33 @@ class BookingFragment : Fragment() {
             }else{
                 type =  "child"
             }
-            val dataPnmp = DataPassenger(datebirth,nationality,surname,no_ktp,name,id_card,type,title)
+            val dataPnmp = TravelerItem(datebirth,nationality,surname,no_ktp,name,id_card,type,title)
             arrDataPenumpang.add(dataPnmp)
+        }
+        return arrDataPenumpang
+    }
+
+    private fun bookTicket(){
+        val dataKontak = getContactData()
+        val dataTrav = getTravelerData()
+//        val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(arrDataPenumpang.toTypedArray(),dataKontak)
+//        findNavController().navigate(action)
+        val userPrefs = requireActivity().getSharedPreferences(dataPassenger, Context.MODE_PRIVATE)
+        val token = userPrefs.getString("token", null)
+        if(token != null){
+            val idTicket = arguments?.getString("idTicket")
+            val qtt = Quantity(adult = jmlDewasa, child = jmlAnak)
+            val body = idTicket?.let { PostBookingBody(it,qtt,dataTrav,"Dana") }
+            if (body != null) {
+                val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(dataKontak,body)
+                findNavController().navigate(action)
+//                flightVM.bookTicket(token, body).observe(viewLifecycleOwner){
+//                    if(it != null){
+//                        Toast.makeText(requireContext(), "Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
+//                        findNavController().navigate(R.id.action_bookingFragment_to_reviewBookingFragment)
+//                    }
+//                }
+            }
         }
     }
 }

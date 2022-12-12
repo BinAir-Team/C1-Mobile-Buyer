@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentListTicketBinding
@@ -53,6 +54,10 @@ class ListTicketFragment : Fragment() {
             if (it != null) {
                 setDataToRecView(it)
                 showLoading(false)
+                binding.tvTicketNotFound.visibility = View.GONE
+            }else{
+                showLoading(false)
+                binding.tvTicketNotFound.visibility = View.VISIBLE
             }
         }
     }
@@ -64,8 +69,11 @@ class ListTicketFragment : Fragment() {
         binding.rvListTicket.layoutManager = layoutManager
 
         adapter.onClick = {
-            val action = ListTicketFragmentDirections.actionListTicketFragmentToTicketDetailsFragment(it)
-            findNavController().navigate(action)
+            flightVM.clearChosenTicket()
+            flightVM.setChosenTicket(it)
+//            val action = ListTicketFragmentDirections.actionListTicketFragmentToTicketDetailsFragment(it)
+//            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_listTicketFragment_to_ticketDetailsFragment)
         }
     }
 

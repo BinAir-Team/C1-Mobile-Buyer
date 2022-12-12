@@ -8,13 +8,22 @@ data class BookingTicketResponse(
 	val msg: String,
 
 	@field:SerializedName("data")
-	val data: List<DataBookingItem>,
+	val data: List<DataItem>,
 
 	@field:SerializedName("status")
 	val status: Int
 )
 
-data class DataBookingItem(
+data class Quantity(
+
+	@field:SerializedName("adult")
+	val adult: Int,
+
+	@field:SerializedName("child")
+	val child: Int
+)
+
+data class DataItem(
 
 	@field:SerializedName("ticketsId")
 	val ticketsId: String,
@@ -29,7 +38,7 @@ data class DataBookingItem(
 	val quantity: Quantity,
 
 	@field:SerializedName("traveler")
-	val traveler: Traveler,
+	val traveler: List<TravelerItem>,
 
 	@field:SerializedName("amounts")
 	val amounts: Int,
@@ -48,4 +57,31 @@ data class DataBookingItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
+)
+
+data class TravelerItem(
+
+	@field:SerializedName("datebirth")
+	val datebirth: String,
+
+	@field:SerializedName("nationality")
+	val nationality: String,
+
+	@field:SerializedName("surname")
+	val surname: String,
+
+	@field:SerializedName("no_ktp")
+	val noKtp: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("id_card")
+	val idCard: String,
+
+	@field:SerializedName("type")
+	val type: String,
+
+	@field:SerializedName("tittle")
+	val tittle: String
 )

@@ -1,4 +1,4 @@
-package binar.finalproject.binair.buyer.data.response
+package binar.finalproject.binair.buyer.data.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -13,14 +13,14 @@ data class PostBookingBody(
 	val quantity: Quantity,
 
 	@field:SerializedName("traveler")
-	val traveler: Traveler,
+	val traveler: List<TravelerItem>,
 
 	@field:SerializedName("payment_method")
 	val paymentMethod: String
-)
+) : java.io.Serializable
 
 @Parcelize
-data class DataPassenger(
+data class TravelerItem(
 
 	@field:SerializedName("datebirth")
 	val datebirth: String,
@@ -55,10 +55,3 @@ data class Quantity(
 	@field:SerializedName("child")
 	val child: Int
 )
-
-data class Traveler(
-
-	@field:SerializedName("1")
-	val passenger1: DataPassenger
-)
-
