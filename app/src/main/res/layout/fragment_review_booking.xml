@@ -206,30 +206,34 @@
                             android:textSize="18sp"
                             android:layout_alignParentEnd="true"
                             android:layout_below="@id/tvTotalHarga"/>
-                        <TextView
-                            android:id="@+id/tvPenumpangAnak"
-                            android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:id="@+id/containerAnak"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Anak"
-                            android:textSize="18sp"
-                            android:layout_below="@id/tvPenumpangDewasa"/>
-                        <TextView
-                            android:id="@+id/tvTotalAnak"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="x2"
-                            android:textSize="18sp"
-                            android:layout_marginStart="4dp"
-                            android:layout_toEndOf="@id/tvPenumpangAnak"
-                            android:layout_below="@id/tvPenumpangDewasa"/>
-                        <TextView
-                            android:id="@+id/tvTotalHargaAnak"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp. 800.000"
-                            android:textSize="18sp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_below="@id/tvTotalHargaDewasa"/>
+                            android:layout_below="@id/tvPenumpangDewasa"
+                            android:visibility="gone">
+                            <TextView
+                                android:id="@+id/tvPenumpangAnak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Anak"
+                                android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/tvTotalAnak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="x2"
+                                android:textSize="18sp"
+                                android:layout_marginStart="4dp"
+                                android:layout_toEndOf="@id/tvPenumpangAnak" />
+                            <TextView
+                                android:id="@+id/tvTotalHargaAnak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp. 800.000"
+                                android:textSize="18sp"
+                                android:layout_alignParentEnd="true" />
+                        </RelativeLayout>
                         <TextView
                             android:id="@+id/tvBagasi"
                             android:layout_width="wrap_content"
@@ -237,17 +241,17 @@
                             android:text="Bagasi"
                             android:textColor="@color/MC_Green"
                             android:textSize="18sp"
-                            android:layout_below="@id/tvPenumpangAnak"/>
+                            android:layout_below="@id/containerAnak"/>
                         <TextView
                             android:id="@+id/tvTotalHargaBagasi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rp. 800.000"
+                            android:text="GRATIS"
                             android:textColor="@color/MC_Green"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:layout_alignParentEnd="true"
-                            android:layout_below="@id/tvTotalHargaAnak"/>
+                            android:layout_below="@id/containerAnak"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <Button

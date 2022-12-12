@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -130,7 +129,6 @@ class LoginFragment : Fragment() {
     private fun observeLoginResult(email: String, pass: String) {
         userVM.loginUser(email,pass).observe(viewLifecycleOwner) {
             if (it != null && it.message != "Email does not exist") {
-                Log.d("loginresult", it.toString())
                 val namaLengkap = it.data.firstname + " " + it.data.lastname
                 editor.putString("token", it.data.accessToken)
                 editor.putString("namaLengkap", namaLengkap)

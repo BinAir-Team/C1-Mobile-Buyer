@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.Constant.dataPassenger
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.model.DataKontak
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.model.Quantity
@@ -41,12 +41,7 @@ class BookingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        flightVM.getAdultPassenger().observe(viewLifecycleOwner){
-            jmlDewasa = it
-        }
-        flightVM.getChildPassenger().observe(viewLifecycleOwner){
-            jmlAnak = it
-        }
+        initJumlah()
         setListener()
         showFormTraveler()
     }
@@ -59,8 +54,18 @@ class BookingFragment : Fragment() {
         }
     }
 
-    private fun showFormTraveler(){
+    private fun initJumlah(){
         jmlDewasa = 1
+        jmlAnak = 0
+        flightVM.getAdultPassenger().observe(viewLifecycleOwner){
+            jmlDewasa = it
+        }
+        flightVM.getChildPassenger().observe(viewLifecycleOwner){
+            jmlAnak = it
+        }
+    }
+
+    private fun showFormTraveler(){
         if(jmlDewasa > 0) {
             Toast.makeText(requireContext(), "Dewasa", Toast.LENGTH_SHORT).show()
             for (i in 0 until jmlDewasa) {
@@ -186,9 +191,7 @@ class BookingFragment : Fragment() {
     private fun bookTicket(){
         val dataKontak = getContactData()
         val dataTrav = getTravelerData()
-//        val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(arrDataPenumpang.toTypedArray(),dataKontak)
-//        findNavController().navigate(action)
-        val userPrefs = requireActivity().getSharedPreferences(dataPassenger, Context.MODE_PRIVATE)
+        val userPrefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
         val token = userPrefs.getString("token", null)
         if(token != null){
             val idTicket = arguments?.getString("idTicket")

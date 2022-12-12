@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
+import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.model.DataKontak
-import binar.finalproject.binair.buyer.data.model.DataPenumpang
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentReviewBookingBinding
@@ -21,6 +21,7 @@ import binar.finalproject.binair.buyer.databinding.ItemTravelerReviewBinding
 import binar.finalproject.binair.buyer.databinding.ReviewAlertDialogBinding
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class ReviewBookingFragment : Fragment() {
@@ -28,6 +29,8 @@ class ReviewBookingFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private lateinit var dataKontak : DataKontak
     private lateinit var dataTraveler : PostBookingBody
+    private var jmlDewasa : Int = 1
+    private var jmlAnak : Int = 0
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -53,6 +56,12 @@ class ReviewBookingFragment : Fragment() {
     private fun getDataTraveler() {
         dataKontak = arguments?.getParcelable("dataKontak")!!
         dataTraveler = arguments?.getSerializable("bookingBody") as PostBookingBody
+        flightVM.getAdultPassenger().observe(viewLifecycleOwner){
+            jmlDewasa = it
+        }
+        flightVM.getChildPassenger().observe(viewLifecycleOwner){
+            jmlAnak = it
+        }
     }
 
     private fun showDataKontak(){
@@ -66,10 +75,10 @@ class ReviewBookingFragment : Fragment() {
         for(data in dataTraveler.traveler){
             val viewForm = LayoutInflater.from(context).inflate(R.layout.item_traveler_review, null)
             val itemBinding = ItemTravelerReviewBinding.bind(viewForm)
-            if((data as DataPenumpang).type == "adult"){
+            if(data.type == "adult"){
                 itemBinding.labelDetailPenumpang.text = "Detail Penumpang (Dewasa $counterDewasa)"
                 itemBinding.tvNama.text = data.name
-                itemBinding.tvNoIdnt.text = data.no_ktp
+                itemBinding.tvNoIdnt.text = data.noKtp
                 counterDewasa++
             } else {
                 itemBinding.labelDetailPenumpang.text = "Detail Penumpang (Anak $counterAnak)"
@@ -82,14 +91,24 @@ class ReviewBookingFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showPrice(){
         var ticket : TicketItem
         flightVM.getChosenTicket().observe(viewLifecycleOwner) {
             if (it != null) {
                 ticket = it
-                val adultPrice = ticket.adultPrice
-                val childPrice = ticket.childPrice
-
+                val totalPriceAdult = ticket.adultPrice * jmlDewasa
+                val totalPriceChild = ticket.childPrice * jmlAnak
+                binding.apply {
+                    tvTotalDewasa.text = "x$jmlDewasa"
+                    tvTotalHargaDewasa.text = formatRupiah(totalPriceAdult)
+                    if (jmlAnak != 0 ){
+                        containerAnak.visibility = View.VISIBLE
+                        tvTotalAnak.text = "x$jmlAnak"
+                        tvTotalHargaAnak.text = formatRupiah(totalPriceChild)
+                    }
+                    tvTotalHarga.text = formatRupiah(totalPriceAdult + totalPriceChild)
+                }
             }
         }
     }
@@ -124,7 +143,7 @@ class ReviewBookingFragment : Fragment() {
         val token = prefs.getString("token", null)
         val body = arguments?.getSerializable("bookingBody") as PostBookingBody
         if (token != null) {
-            flightVM.bookTicket(token, body).observe(viewLifecycleOwner){
+            flightVM.bookTicket("Bearer $token", body).observe(viewLifecycleOwner){
                 if (it != null) {
                     Toast.makeText(requireContext(), "Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_bookingFragment_to_reviewBookingFragment)

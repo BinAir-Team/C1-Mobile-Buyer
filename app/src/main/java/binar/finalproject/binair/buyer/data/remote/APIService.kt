@@ -34,4 +34,8 @@ interface APIService {
 
     @POST("trans")
     fun bookTicket(@Header("Authorization") token : String, @Body dataTrans : PostBookingBody) : Call<BookingTicketResponse>
+
+    @Multipart
+    @PUT("trans/{id}")
+    fun updatePaymet(@Header("Authorization") token : String, @Path("id") idTransaction : RequestBody, @Part paymentImage : MultipartBody.Part) : Call<UpdatePaymentResponse>
 }
