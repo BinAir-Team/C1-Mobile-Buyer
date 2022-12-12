@@ -8,16 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentTicketDetailsBinding
 import binar.finalproject.binair.buyer.databinding.LoginAlertDialogBinding
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TicketDetailsFragment : Fragment() {
     private lateinit var binding : FragmentTicketDetailsBinding
     private lateinit var clickedTicket : TicketItem
+    private lateinit var flightVM : FlightViewModel
     private lateinit var sharedPrefs : SharedPreferences
 
     @SuppressLint("SetTextI18n")
@@ -29,6 +34,7 @@ class TicketDetailsFragment : Fragment() {
         binding = FragmentTicketDetailsBinding.inflate(inflater, container, false)
         binding.toolbar.tvTitlePage.text = "Detail Penerbangan"
         sharedPrefs = requireActivity().getSharedPreferences(dataUser, 0)
+        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         return binding.root
     }
 
@@ -36,12 +42,17 @@ class TicketDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getDataFromBundle()
-        setDataToView()
         setListener()
     }
 
     private fun getDataFromBundle() {
-        clickedTicket = arguments?.getParcelable("clickedTicket")!!
+//        clickedTicket = arguments?.getParcelable("clickedTicket")!!
+        flightVM.getChosenTicket().observe(viewLifecycleOwner){
+            if (it != null) {
+                clickedTicket = it
+                setDataToView()
+            }
+        }
     }
 
     private fun setDataToView() {
@@ -56,7 +67,8 @@ class TicketDetailsFragment : Fragment() {
             if(sharedPrefs.getString("token", null) == null) {
                 displayLoginAlert()
             } else {
-                findNavController().navigate(R.id.action_ticketDetailsFragment_to_bookingFragment)
+                val action = TicketDetailsFragmentDirections.actionTicketDetailsFragmentToBookingFragment(clickedTicket.id)
+                findNavController().navigate(action)
             }
         }
     }

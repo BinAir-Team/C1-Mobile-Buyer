@@ -1,6 +1,7 @@
 package binar.finalproject.binair.buyer.data.remote
 
 import binar.finalproject.binair.buyer.data.model.DataRegister
+import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -27,4 +28,10 @@ interface APIService {
 
     @GET("tickets")
     fun getAllTicket() : Call<AllTicketsResponse>
+
+    @GET("tickets")
+    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String, @Query("willFly") willFly : Boolean) : Call<AllTicketsResponse>
+
+    @POST("trans")
+    fun bookTicket(@Header("Authorization") token : String, @Body dataTrans : PostBookingBody) : Call<BookingTicketResponse>
 }
