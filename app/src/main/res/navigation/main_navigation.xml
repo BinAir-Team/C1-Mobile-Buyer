@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailPromoFragment"
+            app:destination="@id/detailPromoFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -159,4 +162,12 @@
         android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentRoundedTripFragment"
         android:label="fragment_payment_rounded_trip"
         tools:layout="@layout/fragment_payment_rounded_trip" />
+    <fragment
+        android:id="@+id/detailPromoFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.DetailPromoFragment"
+        android:label="DetailPromoFragment" >
+        <argument
+            android:name="detailpromo"
+            app:argType="binar.finalproject.binair.buyer.data.response.DataPromo" />
+    </fragment>
 </navigation>

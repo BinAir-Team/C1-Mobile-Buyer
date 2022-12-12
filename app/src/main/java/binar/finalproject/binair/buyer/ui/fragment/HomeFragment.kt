@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.response.CityAirport
+import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import binar.finalproject.binair.buyer.viewmodel.PromoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,6 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var flightVM : FlightViewModel
     private val calendar = Calendar.getInstance()
+    lateinit var promoVM : PromoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,7 @@ class HomeFragment : Fragment() {
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
 //        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
 //        editor = sharedPrefPassenger.edit()
+        promoVM = ViewModelProvider(this).get(PromoViewModel::class.java)
         return binding.root
     }
 
@@ -208,9 +212,26 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPromoAdapter() {
-        val dataPromo = arrayListOf("Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%", "Victorious Tuesday Bersama OCBC NISP, Dapatkan Diskon 12%", "Penerbangan Jadi Menyenangkan Dengan Kartu Kredit Maybank Promo hingga IDR 200.000", "Kesepakatan yang Adil Setiap Hari!", "Promo 5")
-        val adapter = HomePromoAdapter(dataPromo)
+//        val dataPromo = arrayListOf("Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%", "Victorious Tuesday Bersama OCBC NISP, Dapatkan Diskon 12%", "Penerbangan Jadi Menyenangkan Dengan Kartu Kredit Maybank Promo hingga IDR 200.000", "Kesepakatan yang Adil Setiap Hari!", "Promo 5")
+//        val adapter = HomePromoAdapter(dataPromo)
+//        binding.rvPromo.adapter = adapter
+//        binding.rvPromo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        promoVM.getallticket().observe(viewLifecycleOwner){
+            if (it != null){
+                setDatatoRecycleView(it)
+            }
+        }
+    }
+
+    private fun setDatatoRecycleView(data : List<DataPromo>){
+        val adapter : HomePromoAdapter = HomePromoAdapter(data)
+        val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
         binding.rvPromo.adapter = adapter
-        binding.rvPromo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPromo.layoutManager = layoutManager
+
+        adapter.onClick = {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailPromoFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }

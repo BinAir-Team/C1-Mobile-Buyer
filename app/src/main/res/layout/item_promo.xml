@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="320dp"
-    android:layout_height="190dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="12dp"
-    app:cardCornerRadius="12dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/ivPromo"
-            android:src="@drawable/asset_promo"
-            android:scaleType="centerCrop"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="promo"
+            type="binar.finalproject.binair.buyer.data.response.DataPromo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPromo"
+        android:layout_width="320dp"
+        android:layout_height="190dp"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"/>
-        <TextView
-            android:id="@+id/titlePromo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ex_promo_title"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:layout_margin="6dp"/>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivPromo"
+                android:src="@drawable/asset_promo"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="130dp" />
+
+            <TextView
+                android:id="@+id/titlePromo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='@{promo.title, default =@string/ex_promo_title}'
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_margin="6dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
