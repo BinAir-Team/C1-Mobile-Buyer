@@ -32,6 +32,9 @@ interface APIService {
     @GET("tickets")
     fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String) : Call<AllTicketsResponse>
 
+    @GET("tickets/id/{id}")
+    fun getTicketById(@Path("id") id : String) : Call<GetTicketByIdResponse>
+
     @POST("trans")
     fun bookTicket(@Header("Authorization") token : String, @Body dataTrans : PostBookingBody) : Call<BookingTicketResponse>
 

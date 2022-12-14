@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.buyer.data.FlightRepository
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.CityAirport
+import binar.finalproject.binair.buyer.data.response.GetTicketByIdResponse
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MultipartBody
@@ -27,4 +28,5 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun callGetTicketBySearch(from: String, airport_from : String, to: String, airport_to : String, date : String, type : String) : LiveData<List<TicketItem>?> = flightRepo.callGetTicketBySearch(from, airport_from, to, airport_to, date, type)
     fun bookTicket(token : String, data : PostBookingBody) = flightRepo.bookTicket(token, data)
     fun updatePayment(token : String, id : String, img : MultipartBody.Part, method : RequestBody) = flightRepo.updatePayment(token, id, img, method)
+    fun getTicketById(id : String) : LiveData<GetTicketByIdResponse?> = flightRepo.getTicketById(id)
 }

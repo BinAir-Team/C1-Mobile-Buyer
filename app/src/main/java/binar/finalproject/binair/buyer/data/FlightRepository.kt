@@ -29,9 +29,11 @@ class FlightRepository @Inject constructor(var client: APIService) {
     private val _ticketBySearch = MutableLiveData<List<TicketItem>?>()
     val ticketBySearch: LiveData<List<TicketItem>?> = _ticketBySearch
     private val _bookTicket = MutableLiveData<BookingTicketResponse?>()
-    val bookTicket: MutableLiveData<BookingTicketResponse?> = _bookTicket
+    val bookTicket: LiveData<BookingTicketResponse?> = _bookTicket
     private val _updatePayment = MutableLiveData<UpdatePaymentResponse?>()
-    val updatePayment: MutableLiveData<UpdatePaymentResponse?> = _updatePayment
+    val updatePayment: LiveData<UpdatePaymentResponse?> = _updatePayment
+    private val _ticketById = MutableLiveData<GetTicketByIdResponse?>()
+    val ticketById: LiveData<GetTicketByIdResponse?> = _ticketById
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -177,5 +179,29 @@ class FlightRepository @Inject constructor(var client: APIService) {
             }
         })
         return updatePayment
+    }
+
+    fun getTicketById(id : String): LiveData<GetTicketByIdResponse?> {
+        client.getTicketById(id).enqueue(object : Callback<GetTicketByIdResponse>{
+            override fun onResponse(
+                call: Call<GetTicketByIdResponse>,
+                response: Response<GetTicketByIdResponse>
+            ) {
+                if (response.isSuccessful){
+                    val result = response.body()
+                    if (result != null){
+                        _ticketById.postValue(result)
+                    } else {
+                        _ticketById.postValue(null)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GetTicketByIdResponse>, t: Throwable) {
+                _ticketById.postValue(null)
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+        return ticketById
     }
 }

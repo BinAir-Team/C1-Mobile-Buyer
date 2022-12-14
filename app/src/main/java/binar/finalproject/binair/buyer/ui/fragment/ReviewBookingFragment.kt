@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,6 +14,7 @@ import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.model.DataKontak
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
+import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentReviewBookingBinding
 import binar.finalproject.binair.buyer.databinding.ItemTravelerReviewBinding
@@ -127,8 +127,7 @@ class ReviewBookingFragment : Fragment() {
         alertDialog.setView(dialogView)
         alertDialog.create()
         dialogBinding.btnPayment.setOnClickListener {
-            bookTicket()
-            findNavController().navigate(R.id.action_reviewBookingFragment_to_paymentFragment)
+            val data = bookTicket()
             alertDialog.dismiss()
         }
         dialogBinding.btnBack.setOnClickListener {
@@ -138,17 +137,19 @@ class ReviewBookingFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun bookTicket(){
+    private fun bookTicket() : BookingTicketResponse?{
         val prefs = requireActivity().getSharedPreferences(dataUser, 0)
         val token = prefs.getString("token", null)
         val body = arguments?.getSerializable("bookingBody") as PostBookingBody
+        var result : BookingTicketResponse? = null
         if (token != null) {
             flightVM.bookTicket("Bearer $token", body).observe(viewLifecycleOwner){
                 if (it != null) {
-                    Toast.makeText(requireContext(), "Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_bookingFragment_to_reviewBookingFragment)
+                    result = it
+                    findNavController().navigate(ReviewBookingFragmentDirections.actionReviewBookingFragmentToPaymentFragment(it))
                 }
             }
         }
+        return result
     }
 }

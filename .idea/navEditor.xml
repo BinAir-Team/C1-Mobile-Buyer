@@ -87,6 +87,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="eticketFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="2027" />
+                            <option name="y" value="508" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="homeFragment">
                     <value>
                       <LayoutPositions>

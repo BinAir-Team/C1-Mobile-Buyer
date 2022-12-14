@@ -121,7 +121,7 @@
                         android:textColor="@color/content_grey" />
 
                     <TextView
-                        android:id="@+id/tvNoBooking"
+                        android:id="@+id/tvIdBooking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/labelBooking"
@@ -133,14 +133,14 @@
                         android:id="@+id/labelFlight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvNoBooking"
+                        android:layout_below="@+id/tvIdBooking"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
                         android:text="@string/penerbangan"
                         android:textColor="@color/content_grey" />
 
                     <TextView
-                        android:id="@+id/tvFlight"
+                        android:id="@+id/tvFlightDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/labelFlight"
@@ -149,10 +149,10 @@
                         android:text="@string/ex_tgl_brkt" />
 
                     <TextView
-                        android:id="@+id/tvEstimasiFlight"
+                        android:id="@+id/tvKotaAsal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvFlight"
+                        android:layout_below="@+id/tvFlightDate"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="5dp"
                         android:drawablePadding="5dp"
@@ -160,13 +160,35 @@
                         app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
                     <TextView
-                        android:id="@+id/tvEstimasiFlighttujuan"
+                        android:id="@+id/tvKotaTujuan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvFlight"
+                        android:layout_below="@+id/tvFlightDate"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="5dp"
-                        android:layout_toEndOf="@+id/tvEstimasiFlight"
+                        android:layout_toEndOf="@+id/tvKotaAsal"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_tujuan"
+                        app:drawableLeftCompat="@drawable/ic_baseline_arrow_right_alt_24" />
+
+                    <TextView
+                        android:id="@+id/tvKotaAsalKembali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvKotaAsal"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_dari"
+                        app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+
+                    <TextView
+                        android:id="@+id/tvKotaTujuanKembali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_below="@+id/tvKotaTujuan"
+                        android:layout_toEndOf="@+id/tvKotaAsal"
                         android:drawablePadding="5dp"
                         android:text="@string/ex_kota_tujuan"
                         app:drawableLeftCompat="@drawable/ic_baseline_arrow_right_alt_24" />
@@ -175,9 +197,9 @@
                         android:id="@+id/labelPassenger"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvEstimasiFlighttujuan"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
+                        android:layout_below="@+id/tvKotaAsalKembali"
                         android:text="@string/jumlah_penumpang"
                         android:textColor="@color/content_grey" />
 
@@ -186,11 +208,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/labelPassenger"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="5dp"
                         android:drawablePadding="5dp"
-                        android:text="@string/ex_nama_pemesan"
-                        app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                        android:text="@string/ex_nama_pemesan" />
 
                     <TextView
                         android:id="@+id/labelAdult"
@@ -240,6 +261,7 @@
 
                     <ImageView
                         android:id="@+id/ivPaymentProof"
+                        android:src="@drawable/add_image"
                         android:layout_width="300dp"
                         android:layout_height="300dp"
                         android:layout_below="@id/spPaymentMethod"
@@ -259,6 +281,7 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:id="@+id/tvTotalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivPaymentProof"

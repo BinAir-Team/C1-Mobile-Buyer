@@ -12,7 +12,7 @@ data class BookingTicketResponse(
 
 	@field:SerializedName("status")
 	val status: Int
-)
+) : java.io.Serializable
 
 data class TravelerItem(
 

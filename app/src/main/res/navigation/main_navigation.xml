@@ -158,10 +158,26 @@
         android:id="@+id/paymentFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
+        tools:layout="@layout/fragment_payment" >
+        <argument
+            android:name="dataBooking"
+            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
+        <action
+            android:id="@+id/action_paymentFragment_to_eticketFragment"
+            app:destination="@id/eticketFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentRoundedTripFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentRoundedTripFragment"
         android:label="fragment_payment_rounded_trip"
-        tools:layout="@layout/fragment_payment_rounded_trip" />
+        tools:layout="@layout/fragment_payment_rounded_trip" >
+        <argument
+            android:name="dataBooking"
+            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
+    </fragment>
+    <fragment
+        android:id="@+id/eticketFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.EticketFragment"
+        android:label="fragment_eticket"
+        tools:layout="@layout/fragment_eticket" />
 </navigation>
