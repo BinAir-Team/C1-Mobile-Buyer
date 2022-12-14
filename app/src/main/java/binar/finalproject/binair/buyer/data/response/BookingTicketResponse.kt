@@ -14,13 +14,31 @@ data class BookingTicketResponse(
 	val status: Int
 )
 
-data class Quantity(
+data class TravelerItem(
 
-	@field:SerializedName("adult")
-	val adult: Int,
+	@field:SerializedName("datebirth")
+	val datebirth: String,
 
-	@field:SerializedName("child")
-	val child: Int
+	@field:SerializedName("nationality")
+	val nationality: String,
+
+	@field:SerializedName("surname")
+	val surname: String,
+
+	@field:SerializedName("no_ktp")
+	val noKtp: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("id_card")
+	val idCard: String,
+
+	@field:SerializedName("type")
+	val type: String,
+
+	@field:SerializedName("tittle")
+	val tittle: String
 )
 
 data class DataItem(
@@ -59,29 +77,11 @@ data class DataItem(
 	val updatedAt: String
 )
 
-data class TravelerItem(
+data class Quantity(
 
-	@field:SerializedName("datebirth")
-	val datebirth: String,
+	@field:SerializedName("adult")
+	val adult: Int,
 
-	@field:SerializedName("nationality")
-	val nationality: String,
-
-	@field:SerializedName("surname")
-	val surname: String,
-
-	@field:SerializedName("no_ktp")
-	val noKtp: String,
-
-	@field:SerializedName("name")
-	val name: String,
-
-	@field:SerializedName("id_card")
-	val idCard: String,
-
-	@field:SerializedName("type")
-	val type: String,
-
-	@field:SerializedName("tittle")
-	val tittle: String
+	@field:SerializedName("child")
+	val child: Int
 )

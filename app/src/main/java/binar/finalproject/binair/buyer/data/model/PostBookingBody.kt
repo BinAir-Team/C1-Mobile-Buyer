@@ -14,9 +14,6 @@ data class PostBookingBody(
 
 	@field:SerializedName("traveler")
 	val traveler: List<TravelerItem>,
-
-	@field:SerializedName("payment_method")
-	val paymentMethod: String
 ) : java.io.Serializable
 
 @Parcelize

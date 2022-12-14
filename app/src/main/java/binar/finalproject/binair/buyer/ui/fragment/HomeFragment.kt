@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.Constant.dataUser
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.CityAirport
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
@@ -36,10 +36,10 @@ class HomeFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private val calendar = Calendar.getInstance()
     private var tripType : String = "oneway"
-    private lateinit var cityFrom : String
-    private lateinit var airportFrom : String
-    private lateinit var cityTo : String
-    private lateinit var airportTo : String
+    private var cityFrom : String = "Batam"
+    private var airportFrom : String = "Hang Nadim"
+    private var cityTo : String = "Surabaya"
+    private var airportTo : String = "Juanda"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -113,8 +113,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun showBannerLogin(){
-        val sharedPref = requireActivity().getSharedPreferences(dataUser, 0)
-        if(sharedPref.getString("token", null) == null){
+        val isValidToken = requireActivity().getSharedPreferences(Constant.dataUser, 0).getBoolean("isValidToken", false)
+        val isLogin = requireActivity().getSharedPreferences(Constant.dataUser, 0).getBoolean("isLogin", false)
+        if(!isLogin or !isValidToken){
             binding.bannerLogin.visibility = View.VISIBLE
         }else{
             binding.bannerLogin.visibility = View.GONE
@@ -222,8 +223,8 @@ class HomeFragment : Fragment() {
             dateBack = binding.etTglPulangInput.text.toString()
             dateBack = formatDateAPI(dateBack)
         }
-        var totalPassenger = binding.etJmlPenumpangInput.text.toString().split(" ")[0].toInt()
-        val data = SearchItem(cityFrom,airportFrom,cityTo,airportTo, dateGo, dateBack,tripType,totalPassenger)
+        val totalPassenger = binding.etJmlPenumpangInput.text.toString().split(" ")[0].toInt()
+        val data = SearchItem(cityFrom,airportFrom,cityTo,airportTo, "", dateBack,tripType,totalPassenger)
         val action = HomeFragmentDirections.actionHomeFragmentToListTicketFragment(data)
         findNavController().navigate(action)
     }

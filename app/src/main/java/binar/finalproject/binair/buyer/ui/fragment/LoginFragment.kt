@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -128,15 +129,23 @@ class LoginFragment : Fragment() {
 
     private fun observeLoginResult(email: String, pass: String) {
         userVM.loginUser(email,pass).observe(viewLifecycleOwner) {
-            if (it != null && it.message != "Email does not exist") {
-                val namaLengkap = it.data.firstname + " " + it.data.lastname
-                editor.putString("token", it.data.accessToken)
-                editor.putString("namaLengkap", namaLengkap)
-                editor.putBoolean("isLogin", true)
-                editor.apply()
-                gotoHome()
-            }else{
-                Toast.makeText(context, "Email atau password salah", Toast.LENGTH_SHORT).show()
+            Log.d("LoginFragment", "observeLoginResult: $it")
+            if(it != null){
+                if (it.message == "Email does not exist") {
+                    Toast.makeText(requireContext(), "Silahkan registrasi terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }else if(it.message.contains("Email not verified, check your email!")){
+                    Toast.makeText(requireContext(), "Email belum terverifikasi", Toast.LENGTH_SHORT).show()
+                }else if(it.message.contains("Password is incorrect")){
+                    Toast.makeText(context, "Email atau password salah", Toast.LENGTH_SHORT).show()
+                }else{
+                    val namaLengkap = it.data.firstname + " " + it.data.lastname
+                    editor.putString("token", it.data.accessToken)
+                    editor.putString("namaLengkap", namaLengkap)
+                    editor.putBoolean("isLogin", true)
+                    editor.putBoolean("isValidToken",true)
+                    editor.apply()
+                    gotoHome()
+                }
             }
         }
     }

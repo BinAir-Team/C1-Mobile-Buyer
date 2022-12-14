@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelHargaDewasa"
                     android:layout_marginStart="16dp"
-                    android:text="@{`Rp. ` + Integer.toString(ticket.adultPrice)}"
+                    android:text=""
                     android:textStyle="bold"/>
 
                 <TextView
@@ -185,10 +185,10 @@
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="96dp"
+                    android:layout_marginStart="76dp"
                     android:layout_below="@id/labelHargaAnak"
                     android:layout_toEndOf="@id/labelHargaDewasa"
-                    android:text="@{`Rp. ` + Integer.toString(ticket.childPrice)}"
+                    android:text=""
                     android:textStyle="bold"/>
 
                 <ImageView
@@ -200,13 +200,56 @@
                     android:layout_marginBottom="8dp"
                     android:layout_below="@id/tvHargaDewasa" />
 
+                <TextView
+                    android:id="@+id/labelKeuntungan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/ivLineBottom"
+                    android:text="Keuntungan :"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvRefund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/labelKeuntungan"
+                    android:drawablePadding="8dp"
+                    android:text="Refund Sebagian"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_checklist" />
+
+                <TextView
+                    android:id="@+id/tvReschedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/tvRefund"
+                    android:drawablePadding="8dp"
+                    android:text="Bisa Reschedule"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_checklist" />
+
+                <ImageView
+                    android:id="@+id/ivLineBottom2"
+                    android:src="@drawable/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@id/tvReschedule" />
+
                 <Button
                     android:id="@+id/btnPesan"
                     style="@style/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/pesan_tiket"
-                    android:layout_below="@id/ivLineBottom" />
+                    android:layout_below="@id/ivLineBottom2" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

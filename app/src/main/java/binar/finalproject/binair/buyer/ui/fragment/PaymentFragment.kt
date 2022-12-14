@@ -18,12 +18,20 @@ class PaymentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        binding.toolbar.tvTitlePage.text = "Pembayaran"
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setListener()
         initDataSpinner()
+    }
+
+    private fun setListener(){
+        binding.ivPaymentProof.setOnClickListener {
+
+        }
     }
 
     private fun initDataSpinner() {

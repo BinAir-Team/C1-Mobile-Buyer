@@ -26,10 +26,10 @@ data class TicketItem(
 	val airportTo: String,
 
 	@field:SerializedName("child_price")
-	val childPrice: Int,
+	var childPrice: Int,
 
 	@field:SerializedName("adult_price")
-	val adultPrice: Int,
+    var adultPrice: Int,
 
 	@field:SerializedName("available")
 	val available: Boolean,

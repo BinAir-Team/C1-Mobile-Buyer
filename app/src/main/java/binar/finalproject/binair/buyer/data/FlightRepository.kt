@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.remote.APIService
 import binar.finalproject.binair.buyer.data.response.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +30,8 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val ticketBySearch: LiveData<List<TicketItem>?> = _ticketBySearch
     private val _bookTicket = MutableLiveData<BookingTicketResponse?>()
     val bookTicket: MutableLiveData<BookingTicketResponse?> = _bookTicket
+    private val _updatePayment = MutableLiveData<UpdatePaymentResponse?>()
+    val updatePayment: MutableLiveData<UpdatePaymentResponse?> = _updatePayment
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -64,7 +68,7 @@ class FlightRepository @Inject constructor(var client: APIService) {
         type: String,
         willFly: Boolean = true
     ): LiveData<List<TicketItem>?> {
-        client.getTicketBySearch(from, airport_from, to, airport_to, date, type, willFly)
+        client.getTicketBySearch(from, airport_from, to, airport_to, date, type)
             .enqueue(object : Callback<AllTicketsResponse> {
                 override fun onResponse(
                     call: Call<AllTicketsResponse>,
@@ -127,7 +131,7 @@ class FlightRepository @Inject constructor(var client: APIService) {
 
     fun clearChosenTicket() = _chosenTicket.postValue(null)
 
-    fun bookTicket(token: String, data: PostBookingBody): MutableLiveData<BookingTicketResponse?> {
+    fun bookTicket(token: String, data: PostBookingBody): LiveData<BookingTicketResponse?> {
         client.bookTicket(token, data).enqueue(object : Callback<BookingTicketResponse> {
             override fun onResponse(
                 call: Call<BookingTicketResponse>,
@@ -149,5 +153,29 @@ class FlightRepository @Inject constructor(var client: APIService) {
             }
         })
         return bookTicket
+    }
+
+    fun updatePayment(token : String, idTransaksi : String, img : MultipartBody.Part, paymentMethod : RequestBody): LiveData<UpdatePaymentResponse?> {
+        client.updatePayment(token, idTransaksi, img, paymentMethod).enqueue(object : Callback<UpdatePaymentResponse>{
+            override fun onResponse(
+                call: Call<UpdatePaymentResponse>,
+                response: Response<UpdatePaymentResponse>
+            ) {
+                if (response.isSuccessful){
+                    val result = response.body()
+                    if (result != null){
+                        _updatePayment.postValue(result)
+                    } else {
+                        _updatePayment.postValue(null)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UpdatePaymentResponse>, t: Throwable) {
+                _updatePayment.postValue(null)
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+        return updatePayment
     }
 }

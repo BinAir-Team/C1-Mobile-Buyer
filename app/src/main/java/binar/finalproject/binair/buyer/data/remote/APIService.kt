@@ -30,12 +30,12 @@ interface APIService {
     fun getAllTicket() : Call<AllTicketsResponse>
 
     @GET("tickets")
-    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String, @Query("willFly") willFly : Boolean) : Call<AllTicketsResponse>
+    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String) : Call<AllTicketsResponse>
 
     @POST("trans")
     fun bookTicket(@Header("Authorization") token : String, @Body dataTrans : PostBookingBody) : Call<BookingTicketResponse>
 
     @Multipart
     @PUT("trans/{id}")
-    fun updatePaymet(@Header("Authorization") token : String, @Path("id") idTransaction : RequestBody, @Part paymentImage : MultipartBody.Part) : Call<UpdatePaymentResponse>
+    fun updatePayment(@Header("Authorization") token : String, @Path("id") idTransaction : String, @Part paymentImage : MultipartBody.Part, @Part("payment_method") paymentMethod : RequestBody) : Call<UpdatePaymentResponse>
 }

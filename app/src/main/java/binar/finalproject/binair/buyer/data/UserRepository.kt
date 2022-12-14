@@ -59,15 +59,15 @@ class UserRepository @Inject constructor(var apiService: APIService) {
                 if (response.isSuccessful){
                     val dataResponse = response.body()
                     _loginUser.postValue(dataResponse)
-//                    Log.d("LogLogin", dataResponse.toString())
                 }else{
-                    _loginUser.postValue(null)
+                    _loginUser.postValue(response.body())
+                    Log.d("Error not successful : ", response.body().toString())
                     Log.e("Error not successful : ", response.message())
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                _loginUser.postValue(null)
+//                _loginUser.postValue(null)
                 Log.d("Error onFailure : ", t.message!!)
             }
         })

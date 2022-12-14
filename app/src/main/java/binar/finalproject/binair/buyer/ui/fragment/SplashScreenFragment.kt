@@ -9,10 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.Constant.initApp
 import binar.finalproject.binair.buyer.databinding.FragmentSplashScreenBinding
+import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 
 class SplashScreenFragment : Fragment() {
     private lateinit var binding : FragmentSplashScreenBinding
@@ -33,7 +36,7 @@ class SplashScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val checkToken = checkToken()
         Handler(Looper.myLooper()!!).postDelayed({
             if(sharedPref.getBoolean("firstRun",true)) {
                 editor.putBoolean("firstRun", false)
@@ -45,5 +48,22 @@ class SplashScreenFragment : Fragment() {
         },2500)
     }
 
-
+    private fun checkToken(){
+        val prefs = requireActivity().getSharedPreferences(dataUser, 0)
+        val edit = prefs.edit()
+        val token = prefs.getString("token", null)
+        val userVM = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+        if(token != null){
+            userVM.getUser("Bearer $token").observe(viewLifecycleOwner) {
+                if(it == null){
+                    edit.putBoolean("isValidToken",false)
+                    edit.putString("token", null)
+                }
+            }
+        }else{
+            edit.putBoolean("isValidToken",false)
+            edit.putString("token", null)
+        }
+        edit.apply()
+    }
 }

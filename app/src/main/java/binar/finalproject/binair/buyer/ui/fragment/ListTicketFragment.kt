@@ -1,9 +1,11 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,6 +19,7 @@ import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class ListTicketFragment : Fragment() {
     private lateinit var binding: FragmentListTicketBinding
     private lateinit var flightVM : FlightViewModel
@@ -63,7 +66,7 @@ class ListTicketFragment : Fragment() {
     }
 
     private fun setDataToRecView(data: List<TicketItem>) {
-        val adapter : ListTicketAdapter = ListTicketAdapter(data)
+        val adapter = ListTicketAdapter(data)
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvListTicket.adapter = adapter
         binding.rvListTicket.layoutManager = layoutManager
@@ -71,8 +74,6 @@ class ListTicketFragment : Fragment() {
         adapter.onClick = {
             flightVM.clearChosenTicket()
             flightVM.setChosenTicket(it)
-//            val action = ListTicketFragmentDirections.actionListTicketFragmentToTicketDetailsFragment(it)
-//            findNavController().navigate(action)
             findNavController().navigate(R.id.action_listTicketFragment_to_ticketDetailsFragment)
         }
     }

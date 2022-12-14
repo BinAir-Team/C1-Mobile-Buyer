@@ -88,7 +88,9 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
                 }
             }
         }else{
+            showLoadingProfile(false)
             binding.tvName.text = "Login untuk melanjutkan"
+            binding.userprofile.setImageResource(R.drawable.ic_profile)
         }
     }
 

@@ -15,44 +15,36 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        app:contentPadding="12dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="6dp">
-
-            <ImageView
-                android:id="@+id/labelMaskapai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/logo_pesawat" />
-
-            <TextView
-                android:id="@+id/tvKodeMaskapai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="25dp"
-                android:layout_toEndOf="@+id/labelMaskapai"
-                android:text="PK 625" />
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvTanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
                 android:text="@{ticket.date}" />
+
+            <ImageButton
+                android:id="@+id/btnWishlist"
+                android:src="@drawable/ic_wishlist_outline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_alignParentEnd="true"
+                android:background="?android:attr/selectableItemBackground"/>
 
             <TextView
                 android:id="@+id/tvJamBerangkat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelMaskapai"
+                android:layout_below="@+id/tvTanggal"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="8dp"
                 android:text="@{ticket.departureTime}"
@@ -72,7 +64,7 @@
                 android:id="@+id/containerLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelMaskapai"
+                android:layout_below="@+id/tvTanggal"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/garisestimasi" />
@@ -81,7 +73,7 @@
                 android:id="@+id/iconLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelMaskapai"
+                android:layout_below="@+id/tvTanggal"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="18dp"
                 android:src="@drawable/logoestimasi" />
@@ -149,12 +141,13 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tvHarga"
+                android:id="@+id/tvHargaDewasa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelHargaDewasa"
                 android:layout_marginStart="18dp"
-                android:text="@{Integer.toString(ticket.adultPrice)}" />
+                android:text=""
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/labelHargaAnak"
@@ -174,7 +167,8 @@
                 android:layout_below="@+id/labelHargaAnak"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="18dp"
-                android:text="@{Integer.toString(ticket.childPrice)}" />
+                android:text=""
+                android:textStyle="bold"/>
 
             <!--        <Button-->
             <!--            android:id="@+id/btnPesan"-->

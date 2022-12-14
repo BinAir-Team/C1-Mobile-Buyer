@@ -1,10 +1,12 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
@@ -19,7 +21,11 @@ import binar.finalproject.binair.buyer.data.model.TravelerItem
 import binar.finalproject.binair.buyer.databinding.FormTravelerBinding
 import binar.finalproject.binair.buyer.databinding.FragmentBookingBinding
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import binar.finalproject.binair.buyer.viewmodel.UserViewModel
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class BookingFragment : Fragment() {
@@ -43,6 +49,7 @@ class BookingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initJumlah()
         setListener()
+        setAccount()
         showFormTraveler()
     }
 
@@ -55,13 +62,20 @@ class BookingFragment : Fragment() {
     }
 
     private fun initJumlah(){
-        jmlDewasa = 1
-        jmlAnak = 0
-        flightVM.getAdultPassenger().observe(viewLifecycleOwner){
-            jmlDewasa = it
-        }
-        flightVM.getChildPassenger().observe(viewLifecycleOwner){
-            jmlAnak = it
+        jmlDewasa = flightVM.getAdultPassenger().value!!
+        jmlAnak = if (flightVM.getChildPassenger().value == null) 0 else flightVM.getChildPassenger().value!!
+    }
+
+    private fun setAccount(){
+        val userVM = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+        val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
+        if(token != null){
+            userVM.getUser("Bearer $token").observe(viewLifecycleOwner){
+                if (it != null) {
+                    binding.tvUserName.text = it.data.firstname + " " + it.data.lastname
+                    Glide.with(requireContext()).load(it.data.profileImage).into(binding.civProfile)
+                }
+            }
         }
     }
 
@@ -73,6 +87,10 @@ class BookingFragment : Fragment() {
                 setMargin(viewForm)
                 val formDewasaBinding = FormTravelerBinding.bind(viewForm)
                 formDewasaBinding.labelTipeTraveler.text = "(Dewasa ${i + 1})"
+                formDewasaBinding.etTglLahir.setOnClickListener{
+                    setDatePicker(formDewasaBinding)
+                }
+                setTitelTipe(formDewasaBinding)
                 validateInputForm(formDewasaBinding,"dewasa")
                 binding.formTravelerContainer.addView(viewForm)
             }
@@ -82,13 +100,48 @@ class BookingFragment : Fragment() {
                 val viewForm = LayoutInflater.from(context).inflate(R.layout.form_traveler, null)
                 setMargin(viewForm)
                 val formAnakBinding = FormTravelerBinding.bind(viewForm)
-                formAnakBinding.labelTipeTraveler.text = "(Anak ${i + 1})"
-                formAnakBinding.containerTipeIdnt.visibility = View.GONE
-                formAnakBinding.containerNoIdentitas.visibility = View.GONE
+                formAnakBinding.apply {
+                    labelTipeTraveler.text = "(Anak ${i + 1})"
+                    containerTitel.visibility = View.GONE
+                    containerTipeIdnt.visibility = View.GONE
+                    containerNoIdentitas.visibility = View.GONE
+                    etTglLahir.setOnClickListener {
+                        setDatePicker(formAnakBinding)
+                    }
+                }
                 validateInputForm(formAnakBinding,"anak")
                 binding.formTravelerContainer.addView(viewForm)
             }
         }
+    }
+
+    private fun setTitelTipe(binding: FormTravelerBinding){
+        val adapterTitel = ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.spinner_titel))
+        binding.etTitel.setText("Titel",false)
+        binding.etTitel.setAdapter(adapterTitel)
+
+        val adapterTipe = ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.spinner_tipe))
+        binding.etTipe.setText("Tipe Identitas",false)
+        binding.etTipe.setAdapter(adapterTipe)
+    }
+
+    private fun setDatePicker(binding: FormTravelerBinding){
+        val calendar = Calendar.getInstance()
+        val datePicker =
+            DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, day)
+                updateField(calendar.time,binding)
+            }
+        DatePickerDialog(requireActivity(),datePicker,calendar.get(Calendar.YEAR),calendar.get(
+            Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    private fun updateField(date : Date, binding: FormTravelerBinding){
+        val myFormat = "dd MMM yy"
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        binding.etTglLahir.setText(sdf.format(date))
     }
 
     private fun validateInputForm(binding : FormTravelerBinding, kategori : String){
@@ -196,7 +249,7 @@ class BookingFragment : Fragment() {
         if(token != null){
             val idTicket = arguments?.getString("idTicket")
             val qtt = Quantity(adult = jmlDewasa, child = jmlAnak)
-            val body = idTicket?.let { PostBookingBody(it,qtt,dataTrav,"Dana") }
+            val body = idTicket?.let { PostBookingBody(it,qtt,dataTrav) }
             if (body != null) {
                 val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(dataKontak,body)
                 findNavController().navigate(action)
