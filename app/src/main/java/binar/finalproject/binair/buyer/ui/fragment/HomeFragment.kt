@@ -3,6 +3,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -23,6 +24,7 @@ import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -113,12 +115,30 @@ class HomeFragment : Fragment() {
     }
 
     private fun showBannerLogin(){
-        val isValidToken = requireActivity().getSharedPreferences(Constant.dataUser, 0).getBoolean("isValidToken", false)
-        val isLogin = requireActivity().getSharedPreferences(Constant.dataUser, 0).getBoolean("isLogin", false)
-        if(!isLogin or !isValidToken){
-            binding.bannerLogin.visibility = View.VISIBLE
+//        val token = requireActivity().getSharedPreferences(Constant.dataUser, 0).getString("token", null)
+//        val isLogin = requireActivity().getSharedPreferences(Constant.dataUser, 0).getBoolean("isLogin", false)
+//        Log.d("BANNER", "token: $token isLogin: $isLogin")
+//        if(!isLogin or (token == null)){
+//            binding.bannerLogin.visibility = View.VISIBLE
+//        }else{
+//            binding.bannerLogin.visibility = View.GONE
+//        }
+
+        val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
+        val userVM = ViewModelProvider(this).get(UserViewModel::class.java)
+        val token = prefs.getString("token", null)
+        if(token != null){
+            userVM.getUser("Bearer $token").observe(viewLifecycleOwner) {
+                if (it != null) {
+                    binding.bannerLogin.visibility = View.GONE
+                }else{
+                    binding.bannerLogin.visibility = View.VISIBLE
+                    prefs.edit().putString("token", null).apply()
+                }
+            }
         }else{
-            binding.bannerLogin.visibility = View.GONE
+            binding.bannerLogin.visibility = View.VISIBLE
+            prefs.edit().putString("token", null).apply()
         }
     }
 
@@ -224,7 +244,7 @@ class HomeFragment : Fragment() {
             dateBack = formatDateAPI(dateBack)
         }
         val totalPassenger = binding.etJmlPenumpangInput.text.toString().split(" ")[0].toInt()
-        val data = SearchItem(cityFrom,airportFrom,cityTo,airportTo, "", dateBack,tripType,totalPassenger)
+        val data = SearchItem(cityFrom,airportFrom,cityTo,airportTo, dateGo, dateBack,tripType,totalPassenger)
         val action = HomeFragmentDirections.actionHomeFragmentToListTicketFragment(data)
         findNavController().navigate(action)
     }
@@ -235,4 +255,5 @@ class HomeFragment : Fragment() {
         binding.rvPromo.adapter = adapter
         binding.rvPromo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
+
 }

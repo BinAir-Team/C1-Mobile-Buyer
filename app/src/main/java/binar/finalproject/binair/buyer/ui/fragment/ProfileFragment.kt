@@ -35,7 +35,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -85,6 +85,10 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
                     Glide.with(requireContext())
                         .load(it.data.profileImage)
                         .into(binding.userprofile)
+                }else{
+                    showLoadingProfile(false)
+                    binding.tvName.text = "Login untuk melanjutkan"
+                    binding.userprofile.setImageResource(R.drawable.ic_profile)
                 }
             }
         }else{
@@ -95,7 +99,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
     }
 
     private fun logout(){
-        var token = prefs.getString("token", null)
+        val token = prefs.getString("token", null)
         if(token != null){
             val alert = AlertDialog.Builder(requireContext())
             alert.apply {
@@ -127,7 +131,7 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
             val destination = binding.Tujuan.text.toString()
             val progress = binding.ProgressBar.text.toString()
 
-            if (flightNumber!!.isEmpty()  || timeDepart!!.isEmpty() || destination!!.isEmpty() || progress.toString()!!.isEmpty()){
+            if (flightNumber.isEmpty()  || timeDepart.isEmpty() || destination.isEmpty() || progress.isEmpty()){
                 Toast.makeText(context, "Anda belum mengisi note", Toast.LENGTH_SHORT).show()
             }else{
                 viewModel.addWishlist(DataWishList(0,flightNumber,timeDepart,destination,progress))
