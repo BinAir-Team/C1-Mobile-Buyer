@@ -18,5 +18,6 @@ class UserViewModel @Inject constructor(private var userRepo : UserRepository) :
     fun registerUser(dataUser : DataRegister) : LiveData<RegisterUserResponse?> = userRepo.registerUser(dataUser)
     fun loginUser(email : String, password : String) : LiveData<LoginResponse?> = userRepo.loginUser(email, password)
     fun getUser(token : String) : LiveData<GetUserResponse?> = userRepo.getUser(token)
+    fun obsUser() : LiveData<GetUserResponse?> = userRepo.currentUser
     fun updateUser(token : String, firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, profileImage : MultipartBody.Part, password : RequestBody): LiveData<UpdateUserResponse?> = userRepo.updateUser(token, firstName,lastName,gender, phone, profileImage,password)
 }

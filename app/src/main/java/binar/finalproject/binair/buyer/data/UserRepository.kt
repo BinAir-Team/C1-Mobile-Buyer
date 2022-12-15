@@ -56,8 +56,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
             ) {
+                val dataResponse = response.body()
                 if (response.isSuccessful){
-                    val dataResponse = response.body()
                     _loginUser.postValue(dataResponse)
                 }else{
                     _loginUser.postValue(response.body())
