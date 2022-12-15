@@ -92,6 +92,17 @@
     <string name="belum_dibayar">Belum Dibayar</string>
     <string name="profil_pengguna">Profil Pengguna</string>
     <string name="profil">Profil</string>
+    <string name="silahkan_login">Silahkan login terlebih dahulu untuk menggunakan fitur ini</string>
+    <string name="filter">Filter :</string>
+    <string name="kode_pemesanan">Kode Pemesanan :</string>
+    <string name="time">Time</string>
+    <string name="harga_dewasa">Harga Dewasa</string>
+    <string name="harga_anak">Harga Anak</string>
+    <string name="gratis_20_kg">Gratis 20 Kg</string>
+    <string name="refund_sebagian">Refund Sebagian</string>
+    <string name="bisa_reschedule">Bisa Reschedule</string>
+    <string name="bagasi">Bagasi</string>
+    <string name="keuntungan">Keuntungan :</string>
     <string-array name="spinner_titel">
         <item>Tuan</item>
         <item>Nyonya</item>

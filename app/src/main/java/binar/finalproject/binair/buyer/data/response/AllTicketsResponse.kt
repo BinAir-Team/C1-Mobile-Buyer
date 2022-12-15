@@ -10,14 +10,14 @@ data class AllTicketsResponse(
 	val data: List<TicketItem>,
 
 	@field:SerializedName("message")
-	val message: String
+	val message: String,
+
+	@field:SerializedName("status")
+	val status: String
 )
 
 @Parcelize
 data class TicketItem(
-
-	@field:SerializedName("date")
-	var date: String,
 
 	@field:SerializedName("arrival_time")
 	val arrivalTime: String,
@@ -26,10 +26,10 @@ data class TicketItem(
 	val airportTo: String,
 
 	@field:SerializedName("child_price")
-	var childPrice: Int,
+	val childPrice: Int,
 
 	@field:SerializedName("adult_price")
-    var adultPrice: Int,
+	val adultPrice: Int,
 
 	@field:SerializedName("available")
 	val available: Boolean,
@@ -37,11 +37,17 @@ data class TicketItem(
 	@field:SerializedName("curr_stock")
 	val currStock: Int,
 
+	@field:SerializedName("date_end")
+	val dateEnd: String,
+
 	@field:SerializedName("type")
 	val type: String,
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,
+
+	@field:SerializedName("date_start")
+	var dateStart: String,
 
 	@field:SerializedName("airport_from")
 	val airportFrom: String,

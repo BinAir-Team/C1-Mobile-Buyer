@@ -39,7 +39,7 @@ data class TravelerItem(
 
 	@field:SerializedName("tittle")
 	val tittle: String
-)
+) : java.io.Serializable
 
 data class DataItem(
 
@@ -75,7 +75,7 @@ data class DataItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
-)
+) : java.io.Serializable
 
 data class Quantity(
 
@@ -84,4 +84,4 @@ data class Quantity(
 
 	@field:SerializedName("child")
 	val child: Int
-)
+) : java.io.Serializable

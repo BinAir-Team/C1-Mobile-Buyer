@@ -16,7 +16,8 @@
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp"
         app:cardElevation="4dp"
-        app:contentPadding="12dp">
+        app:contentPadding="12dp"
+        tools:ignore="contentDescription">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,9 +27,9 @@
                 android:id="@+id/tvTanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="30dp"
-                android:text="@{ticket.date}" />
+                android:text="@{ticket.dateStart}" />
 
             <ImageButton
                 android:id="@+id/btnWishlist"
@@ -137,7 +138,7 @@
                 android:layout_below="@id/garis"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="18dp"
-                android:text="Harga Dewasa"
+                android:text="@string/harga_dewasa"
                 android:textSize="12sp" />
 
             <TextView
@@ -157,7 +158,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="18dp"
-                android:text="Harga Anak"
+                android:text="@string/harga_anak"
                 android:textSize="12sp" />
 
             <TextView

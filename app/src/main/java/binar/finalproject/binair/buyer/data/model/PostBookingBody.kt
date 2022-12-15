@@ -1,8 +1,6 @@
 package binar.finalproject.binair.buyer.data.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
 data class PostBookingBody(
 
@@ -16,7 +14,6 @@ data class PostBookingBody(
 	val traveler: List<TravelerItem>,
 ) : java.io.Serializable
 
-@Parcelize
 data class TravelerItem(
 
 	@field:SerializedName("datebirth")
@@ -42,7 +39,7 @@ data class TravelerItem(
 
 	@field:SerializedName("tittle")
 	val tittle: String
-) : Parcelable
+) : java.io.Serializable
 
 data class Quantity(
 
@@ -51,4 +48,4 @@ data class Quantity(
 
 	@field:SerializedName("child")
 	val child: Int
-)
+) : java.io.Serializable

@@ -16,9 +16,6 @@ data class GetTicketByIdResponse(
 
 data class DataTicketId(
 
-	@field:SerializedName("date")
-	val date: String,
-
 	@field:SerializedName("arrival_time")
 	val arrivalTime: String,
 
@@ -37,11 +34,17 @@ data class DataTicketId(
 	@field:SerializedName("curr_stock")
 	val currStock: Int,
 
+	@field:SerializedName("date_end")
+	val dateEnd: Any,
+
 	@field:SerializedName("type")
 	val type: String,
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,
+
+	@field:SerializedName("date_start")
+	val dateStart: String,
 
 	@field:SerializedName("airport_from")
 	val airportFrom: String,

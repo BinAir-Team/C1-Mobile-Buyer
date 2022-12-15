@@ -34,6 +34,8 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val updatePayment: LiveData<UpdatePaymentResponse?> = _updatePayment
     private val _ticketById = MutableLiveData<GetTicketByIdResponse?>()
     val ticketById: LiveData<GetTicketByIdResponse?> = _ticketById
+    private val _userTrans = MutableLiveData<List<TransItem>?>()
+    val userTrans: LiveData<List<TransItem>?> = _userTrans
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -203,5 +205,31 @@ class FlightRepository @Inject constructor(var client: APIService) {
             }
         })
         return ticketById
+    }
+
+    fun getUserTrans(token : String) : LiveData<List<TransItem>?> {
+        client.getUserTrans(token).enqueue(object : Callback<GetUserTransResponse>{
+            override fun onResponse(
+                call: Call<GetUserTransResponse>,
+                response: Response<GetUserTransResponse>
+            ) {
+                if(response.isSuccessful){
+                    val dataResp = response.body()
+                    if(dataResp != null){
+                        _userTrans.postValue(dataResp.data as List<TransItem>?)
+                    }else{
+                        _userTrans.postValue(null)
+                        Log.e("Error : ", "onFailed: ${response.message()}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GetUserTransResponse>, t: Throwable) {
+                _userTrans.postValue(null)
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+
+        })
+        return userTrans
     }
 }

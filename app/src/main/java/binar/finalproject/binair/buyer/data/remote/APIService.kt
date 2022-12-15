@@ -41,4 +41,7 @@ interface APIService {
     @Multipart
     @PUT("trans/{id}")
     fun updatePayment(@Header("Authorization") token : String, @Path("id") idTransaction : String, @Part paymentImage : MultipartBody.Part, @Part("payment_method") paymentMethod : RequestBody) : Call<UpdatePaymentResponse>
+
+    @GET("trans/user")
+    fun getUserTrans(@Header("Authorization") token : String) : Call<GetUserTransResponse>
 }

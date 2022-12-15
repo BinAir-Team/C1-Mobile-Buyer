@@ -32,7 +32,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         sharedPrefs = requireActivity().getSharedPreferences(dataUser, 0)
@@ -131,7 +131,7 @@ class LoginFragment : Fragment() {
         userVM.loginUser(email,pass).observe(viewLifecycleOwner) {
             Log.d("LoginFragment", "observeLoginResult: $it")
             if(it != null){
-                if (it.message == "Email does not exist") {
+                if (it.status == "error") {
                     Toast.makeText(requireContext(), "Silahkan registrasi terlebih dahulu", Toast.LENGTH_SHORT).show()
                 }else if(it.message.contains("Email not verified, check your email!")){
                     Toast.makeText(requireContext(), "Email belum terverifikasi", Toast.LENGTH_SHORT).show()
@@ -151,7 +151,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun gotoHome(){
-        findNavController().navigateSafe(R.id.action_loginFragment_to_homeFragment)
+        findNavController().popBackStack()
+//        findNavController().navigateSafe(R.id.action_loginFragment_to_homeFragment)
     }
 
     fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {

@@ -1,6 +1,7 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -23,7 +24,6 @@ import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
-import binar.finalproject.binair.buyer.data.response.GetTicketByIdResponse
 import binar.finalproject.binair.buyer.databinding.FragmentPaymentBinding
 import binar.finalproject.binair.buyer.ui.adapter.PaymentMethodAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
@@ -54,10 +54,11 @@ class PaymentFragment : Fragment() {
                 inputStream?.copyTo(it)
             }
             val reqBody : RequestBody = tempFile.asRequestBody(type!!.toMediaType())
-            image = MultipartBody.Part.createFormData("payment_proof", tempFile.name, reqBody)
+            image = MultipartBody.Part.createFormData("bukti_bayar", tempFile.name, reqBody)
         }
     private val REQUEST_CODE_PERMISSION = 100
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,23 +92,23 @@ class PaymentFragment : Fragment() {
     private fun getSetData(){
         val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
         val dataBook = args.data[0]
-        var ticket : GetTicketByIdResponse? = null
-        flightVM.getTicketById(dataBook.ticketsId).observe(viewLifecycleOwner){
-            ticket = it
-        }
         binding.apply {
-            if(ticket != null){
-                tvFlightDate.text = formatDate(ticket!!.data!!.date)
+            flightVM.getTicketById(dataBook.ticketsId).observe(viewLifecycleOwner){
+                if (it != null) {
+                    tvFlightDate.text = formatDate(it.data.dateStart)
+                    tvKotaAsal.text = it.data.from
+                    tvKotaTujuan.text = it.data.to
+                }
             }
             tvIdBooking.text = dataBook.id
-            tvKotaAsal.text = ticket?.data?.from ?: ""
-            tvKotaTujuan.text = ticket?.data?.to ?: ""
             var passenger = ""
             var passengerType = ""
             for (i in dataBook.traveler){
                 passenger += "${i.name}\n"
                 passengerType += "${i.type}\n"
             }
+            tvName.text = passenger
+            tvType.text = passengerType
             tvTotalPrice.text = formatRupiah(dataBook.amounts)
         }
     }
@@ -121,16 +122,6 @@ class PaymentFragment : Fragment() {
         }catch (e : Exception){
             return date
         }
-    }
-
-    private fun ticketType() : String{
-        var ticketType = ""
-        flightVM.getChosenTicket().observe(viewLifecycleOwner){
-            if (it != null) {
-                ticketType = it.type
-            }
-        }
-        return ticketType
     }
 
     private fun initDataSpinner() {
@@ -203,10 +194,12 @@ class PaymentFragment : Fragment() {
             if (it != null) {
                 if(it.status == 200){
                     Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_paymentFragment_to_eticketFragment)
-                }else{
-                    Toast.makeText(requireContext(), "Pembayaran gagal", Toast.LENGTH_SHORT).show()
+                    val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
+                    val act = PaymentFragmentDirections.actionPaymentFragmentToEticketFragment(args)
+                    findNavController().navigate(act)
                 }
+            }else{
+                Toast.makeText(requireContext(), "Pembayaran gagal", Toast.LENGTH_SHORT).show()
             }
         }
     }

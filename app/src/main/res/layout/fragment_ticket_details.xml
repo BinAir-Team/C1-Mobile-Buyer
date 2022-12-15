@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.TicketDetailsFragment">
+        tools:context=".ui.fragment.TicketDetailsFragment"
+        tools:ignore="contentDescription">
 
         <include
             android:id="@+id/toolbar"
@@ -111,27 +112,27 @@
                     android:id="@+id/labelTanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="@string/tanggal"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
                     android:layout_below="@id/tvKotaTujuan"/>
 
                 <TextView
                     android:id="@+id/tvTanggal"
-                    android:drawableStart="@drawable/ic_schedule_blue"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelTanggal"
                     android:layout_marginStart="16dp"
-                    android:text="@{ticket.date}"
-                    android:textStyle="bold"/>
+                    android:text="@{ticket.dateStart}"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_schedule_blue" />
 
                 <TextView
                     android:id="@+id/labelBagasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bagasi"
+                    android:text="@string/bagasi"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="84dp"
                     android:layout_alignParentEnd="true"
@@ -139,41 +140,41 @@
 
                 <TextView
                     android:id="@+id/tvBagasi"
-                    android:drawableStart="@drawable/ic_bagasi"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelBagasi"
                     android:layout_marginEnd="20dp"
                     android:layout_alignParentEnd="true"
-                    android:text="Gratis 20 Kg"
-                    android:textStyle="bold"/>
+                    android:text="@string/gratis_20_kg"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_bagasi" />
 
                 <TextView
                     android:id="@+id/labelHargaDewasa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harga Dewasa"
+                    android:text="@string/harga_dewasa"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
                     android:layout_below="@id/tvTanggal"/>
 
                 <TextView
                     android:id="@+id/tvHargaDewasa"
-                    android:drawableStart="@drawable/ic_money"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelHargaDewasa"
                     android:layout_marginStart="16dp"
                     android:text=""
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_money" />
 
                 <TextView
                     android:id="@+id/labelHargaAnak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harga Anak"
+                    android:text="@string/harga_anak"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="48dp"
                     android:layout_alignParentEnd="true"
@@ -181,7 +182,6 @@
 
                 <TextView
                     android:id="@+id/tvHargaAnak"
-                    android:drawableStart="@drawable/ic_money"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,7 +189,8 @@
                     android:layout_below="@id/labelHargaAnak"
                     android:layout_toEndOf="@id/labelHargaDewasa"
                     android:text=""
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_money" />
 
                 <ImageView
                     android:id="@+id/ivLineBottom"
@@ -207,7 +208,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/ivLineBottom"
-                    android:text="Keuntungan :"
+                    android:text="@string/keuntungan"
                     android:textSize="12sp" />
 
                 <TextView
@@ -218,7 +219,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/labelKeuntungan"
                     android:drawablePadding="8dp"
-                    android:text="Refund Sebagian"
+                    android:text="@string/refund_sebagian"
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/ic_checklist" />
 
@@ -230,7 +231,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/tvRefund"
                     android:drawablePadding="8dp"
-                    android:text="Bisa Reschedule"
+                    android:text="@string/bisa_reschedule"
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/ic_checklist" />
 

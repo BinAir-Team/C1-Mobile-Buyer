@@ -120,7 +120,14 @@
         android:id="@+id/ticketHistoryFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.TicketHistoryFragment"
         android:label="fragment_ticket_history"
-        tools:layout="@layout/fragment_ticket_history" />
+        tools:layout="@layout/fragment_ticket_history" >
+        <action
+            android:id="@+id/action_ticketHistoryFragment2_to_eticketFragment"
+            app:destination="@id/eticketFragment" />
+        <action
+            android:id="@+id/action_ticketHistoryFragment2_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wishlistFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.WishlistFragment"
@@ -179,5 +186,9 @@
         android:id="@+id/eticketFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.EticketFragment"
         android:label="fragment_eticket"
-        tools:layout="@layout/fragment_eticket" />
+        tools:layout="@layout/fragment_eticket" >
+        <argument
+            android:name="dataBooking"
+            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
+    </fragment>
 </navigation>
