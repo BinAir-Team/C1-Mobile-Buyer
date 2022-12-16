@@ -18,6 +18,11 @@
                       <LayoutPositions />
                     </value>
                   </entry>
+                  <entry key="action_global_promoFragment">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
                   <entry key="action_global_ticketHistoryFragment2">
                     <value>
                       <LayoutPositions />
@@ -56,6 +61,7 @@
                           <Point>
                             <option name="x" value="256" />
                             <option name="y" value="759" />
+                            <option name="y" value="1113" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -75,12 +81,24 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="editProfileFragment">
+                  <entry key="detailPromoFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="744" />
+                            <option name="y" value="978" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="editProfileFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="988" />
                             <option name="y" value="12" />
                           </Point>
                         </option>
@@ -106,10 +124,16 @@
                           <Point>
                             <option name="x" value="500" />
                             <option name="y" value="559" />
+                            <option name="y" value="568" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_homeFragment_to_detailPromoFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_homeFragment_to_listTicketFragment">
                               <value>
                                 <LayoutPositions />
@@ -206,7 +230,7 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="500" />
+                            <option name="x" value="744" />
                             <option name="y" value="12" />
                           </Point>
                         </option>
@@ -218,6 +242,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="promoFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="500" />
+                            <option name="y" value="12" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

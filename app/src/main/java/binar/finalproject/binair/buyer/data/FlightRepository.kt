@@ -36,6 +36,8 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val ticketById: LiveData<GetTicketByIdResponse?> = _ticketById
     private val _userTrans = MutableLiveData<List<TransItem>?>()
     val userTrans: LiveData<List<TransItem>?> = _userTrans
+    private val _allPromo = MutableLiveData<List<DataPromo>?>()
+    val allPromo : LiveData<List<DataPromo>?> = _allPromo
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -134,6 +136,33 @@ class FlightRepository @Inject constructor(var client: APIService) {
     fun setChosenTicket(chosenTicket: TicketItem) = _chosenTicket.postValue(chosenTicket)
 
     fun clearChosenTicket() = _chosenTicket.postValue(null)
+
+    fun callGetAllPromo(): LiveData<List<DataPromo>?>{
+        client.getAllPromo().enqueue(object : Callback<AllPromoResponse>{
+            override fun onResponse(
+                call: Call<AllPromoResponse>,
+                response: Response<AllPromoResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _allPromo.postValue(result.data)
+                        Log.d("RESULT", "Result : $result")
+                    }else{
+                        _allPromo.postValue(null)
+                    }
+                }else{
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AllPromoResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+
+        })
+        return allPromo
+    }
 
     fun bookTicket(token: String, data: PostBookingBody): LiveData<BookingTicketResponse?> {
         client.bookTicket(token, data).enqueue(object : Callback<BookingTicketResponse> {

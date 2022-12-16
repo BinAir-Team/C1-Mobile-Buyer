@@ -44,4 +44,7 @@ interface APIService {
 
     @GET("trans/user")
     fun getUserTrans(@Header("Authorization") token : String) : Call<GetUserTransResponse>
+
+    @GET("promos")
+    fun getAllPromo() : Call<AllPromoResponse>
 }

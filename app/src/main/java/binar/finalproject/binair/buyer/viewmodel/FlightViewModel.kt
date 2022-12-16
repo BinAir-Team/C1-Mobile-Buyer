@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.buyer.data.FlightRepository
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
-import binar.finalproject.binair.buyer.data.response.CityAirport
-import binar.finalproject.binair.buyer.data.response.GetTicketByIdResponse
-import binar.finalproject.binair.buyer.data.response.TicketItem
+import binar.finalproject.binair.buyer.data.response.*
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -29,6 +28,6 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun bookTicket(token : String, data : PostBookingBody) = flightRepo.bookTicket(token, data)
     fun updatePayment(token : String, id : String, img : MultipartBody.Part, method : RequestBody) = flightRepo.updatePayment(token, id, img, method)
     fun getTicketById(id : String) : LiveData<GetTicketByIdResponse?> = flightRepo.getTicketById(id)
-    fun getUserTrans(token : String) = flightRepo.getUserTrans(token)
-//    fun getUserTrans() : LiveData<List<TransItem>?> = flightRepo.userTrans
+    fun getUserTrans(token : String) : LiveData<List<TransItem>?> = flightRepo.getUserTrans(token)
+    fun getAllPromo() : LiveData<List<DataPromo>?> = flightRepo.callGetAllPromo()
 }

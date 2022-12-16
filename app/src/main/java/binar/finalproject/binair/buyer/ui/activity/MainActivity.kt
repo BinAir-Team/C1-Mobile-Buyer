@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
                     Navigation.findNavController(this,R.id.fragmentContainer).navigate(R.id.action_global_homeFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
+                R.id.navPromo -> {
+                    Navigation.findNavController(this,R.id.fragmentContainer).navigate(R.id.action_global_promoFragment)
+                    return@setOnNavigationItemSelectedListener true
+                }
                 R.id.navHistory -> {
                     Navigation.findNavController(this,R.id.fragmentContainer).navigate(R.id.action_global_ticketHistoryFragment2)
                     return@setOnNavigationItemSelectedListener true

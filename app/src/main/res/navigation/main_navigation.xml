@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailPromoFragment"
+            app:destination="@id/detailPromoFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -192,4 +195,23 @@
             android:name="dataBooking"
             app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
     </fragment>
+
+    <fragment
+        android:id="@+id/detailPromoFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.DetailPromoFragment"
+        android:label="DetailPromoFragment" >
+        <argument
+            android:name="detailpromo"
+            app:argType="binar.finalproject.binair.buyer.data.response.DataPromo" />
+    </fragment>
+    <fragment
+        android:id="@+id/promoFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.PromoFragment"
+        android:label="fragment_promo"
+        tools:layout="@layout/fragment_promo" >
+        <action
+            android:id="@+id/action_promoFragment_to_detailPromoFragment"
+            app:destination="@id/detailPromoFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_promoFragment" app:destination="@id/promoFragment" />
 </navigation>

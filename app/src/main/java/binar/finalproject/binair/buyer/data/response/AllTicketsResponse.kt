@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class AllTicketsResponse(
 
 	@field:SerializedName("data")
-	val data: List<TicketItem>,
+	val `data`: List<TicketItem>,
 
 	@field:SerializedName("message")
 	val message: String,
