@@ -14,45 +14,6 @@ data class GetUserTransResponse(
 	val status: Int
 )
 
-data class Ticket(
-
-	@field:SerializedName("date_start")
-	val dateStart: String,
-
-	@field:SerializedName("arrival_time")
-	val arrivalTime: String,
-
-	@field:SerializedName("airport_to")
-	val airportTo: String,
-
-	@field:SerializedName("child_price")
-	val childPrice: Int,
-
-	@field:SerializedName("adult_price")
-	val adultPrice: Int,
-
-	@field:SerializedName("airport_from")
-	val airportFrom: String,
-
-	@field:SerializedName("from")
-	val from: String,
-
-	@field:SerializedName("date_end")
-	val dateEnd: String,
-
-	@field:SerializedName("id")
-	val id: String,
-
-	@field:SerializedName("to")
-	val to: String,
-
-	@field:SerializedName("type")
-	val type: String,
-
-	@field:SerializedName("departure_time")
-	val departureTime: String
-)
-
 data class TransItem(
 
 	@field:SerializedName("ticketsId")
@@ -93,6 +54,45 @@ data class TransItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
+)
+
+data class Ticket(
+
+	@field:SerializedName("date_start")
+	val dateStart: String,
+
+	@field:SerializedName("arrival_time")
+	val arrivalTime: String,
+
+	@field:SerializedName("airport_to")
+	val airportTo: String,
+
+	@field:SerializedName("child_price")
+	val childPrice: Int,
+
+	@field:SerializedName("adult_price")
+	val adultPrice: Int,
+
+	@field:SerializedName("airport_from")
+	val airportFrom: String,
+
+	@field:SerializedName("from")
+	val from: String,
+
+	@field:SerializedName("date_end")
+	val dateEnd: String,
+
+	@field:SerializedName("id")
+	val id: String,
+
+	@field:SerializedName("to")
+	val to: String,
+
+	@field:SerializedName("type")
+	val type: String,
+
+	@field:SerializedName("departure_time")
+	val departureTime: String
 )
 
 data class User(
