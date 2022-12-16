@@ -39,8 +39,8 @@ class HomeFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private val calendar = Calendar.getInstance()
     private var tripType : String = "oneway"
-    private var cityFrom : String = "Batam"
-    private var airportFrom : String = "Hang Nadim"
+    private var cityFrom : String = "Jakarta"
+    private var airportFrom : String = "Soekarno Hatta"
     private var cityTo : String = "Surabaya"
     private var airportTo : String = "Juanda"
 
