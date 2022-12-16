@@ -21,7 +21,6 @@ import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
-import binar.finalproject.binair.buyer.viewmodel.PromoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,7 +31,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var flightVM : FlightViewModel
     private val calendar = Calendar.getInstance()
-    lateinit var promoVM : PromoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +41,6 @@ class HomeFragment : Fragment() {
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
 //        sharedPrefPassenger = requireActivity().getSharedPreferences(dataPassenger, 0)
 //        editor = sharedPrefPassenger.edit()
-        promoVM = ViewModelProvider(this).get(PromoViewModel::class.java)
         return binding.root
     }
 
@@ -93,6 +90,9 @@ class HomeFragment : Fragment() {
             }
             btnCari.setOnClickListener {
                 searchTicket()
+            }
+            tvLihatSemuaPromo.setOnClickListener {
+                findNavController().navigate(R.id.action_global_promoFragment)
             }
         }
     }
@@ -216,7 +216,7 @@ class HomeFragment : Fragment() {
 //        val adapter = HomePromoAdapter(dataPromo)
 //        binding.rvPromo.adapter = adapter
 //        binding.rvPromo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        promoVM.getallticket().observe(viewLifecycleOwner){
+        flightVM.getAllPromo().observe(viewLifecycleOwner){
             if (it != null){
                 setDatatoRecycleView(it)
             }
@@ -224,7 +224,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setDatatoRecycleView(data : List<DataPromo>){
-        val adapter : HomePromoAdapter = HomePromoAdapter(data)
+        val adapter = HomePromoAdapter(data)
         val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
         binding.rvPromo.adapter = adapter
         binding.rvPromo.layoutManager = layoutManager

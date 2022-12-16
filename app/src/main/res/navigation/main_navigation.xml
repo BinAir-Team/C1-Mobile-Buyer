@@ -170,4 +170,14 @@
             android:name="detailpromo"
             app:argType="binar.finalproject.binair.buyer.data.response.DataPromo" />
     </fragment>
+    <fragment
+        android:id="@+id/promoFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.PromoFragment"
+        android:label="fragment_promo"
+        tools:layout="@layout/fragment_promo" >
+        <action
+            android:id="@+id/action_promoFragment_to_detailPromoFragment"
+            app:destination="@id/detailPromoFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_promoFragment" app:destination="@id/promoFragment" />
 </navigation>

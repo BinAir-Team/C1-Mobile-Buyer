@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.buyer.data.FlightRepository
 import binar.finalproject.binair.buyer.data.response.CityAirport
+import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,4 +19,5 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun getChildPassenger() : LiveData<Int> = flightRepo.childPassenger
     fun setTotalPassenger(totalPassenger : Int) = flightRepo.setTotalPassenger(totalPassenger)
     fun getTotalPassenger() : LiveData<Int> = flightRepo.totalPassenger
+    fun getAllPromo() : LiveData<List<DataPromo>?> = flightRepo.callGetAllPromo()
 }

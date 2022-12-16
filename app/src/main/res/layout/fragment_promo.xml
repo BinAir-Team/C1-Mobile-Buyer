@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.PromoFragment">
+
+    <LinearLayout
+        android:layout_marginHorizontal="23dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="17.76dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/user_profile"
+                android:id="@+id/userprofile"/>
+            <ImageView
+                android:layout_toRightOf="@id/userprofile"
+                android:layout_width="112.65dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/logo_blue"/>
+            <ImageButton
+                android:layout_width="24.02dp"
+                android:layout_height="28dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_notification"
+                android:background="@color/transparent"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="3dp"
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter :"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="10dp"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:paddingVertical="3dp"
+                android:paddingHorizontal="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/history_filterbackground">
+                <TextView
+                    android:layout_toRightOf="@id/filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="10dp"
+                    android:id="@+id/timefilter"
+                    android:textColor="@color/SB_Base"/>
+                <ImageView
+                    android:layout_width="3dp"
+                    android:layout_height="4.7dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/tickethistory_dropdownarrow"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewPromo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</FrameLayout>

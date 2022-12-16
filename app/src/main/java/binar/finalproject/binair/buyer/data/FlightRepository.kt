@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.buyer.data.remote.APIService
-import binar.finalproject.binair.buyer.data.response.AllTicketsResponse
-import binar.finalproject.binair.buyer.data.response.CityAirport
-import binar.finalproject.binair.buyer.data.response.CityAirportResponse
-import binar.finalproject.binair.buyer.data.response.TicketItem
+import binar.finalproject.binair.buyer.data.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +21,8 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val childPassenger : LiveData<Int> = _childPassenger
     private val _totalPassenger = MutableLiveData<Int>()
     val totalPassenger : LiveData<Int> = _totalPassenger
+    private val _allPromo = MutableLiveData<List<DataPromo>?>()
+    val allPromo : LiveData<List<DataPromo>?> = _allPromo
 
     fun callGetAllTicket() : LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -81,4 +80,31 @@ class FlightRepository @Inject constructor(var client: APIService) {
     fun setChildPassenger(childPassenger : Int) = _childPassenger.postValue(childPassenger)
 
     fun setTotalPassenger(totalPassenger : Int) = _totalPassenger.postValue(totalPassenger)
+
+    fun callGetAllPromo(): LiveData<List<DataPromo>?>{
+        client.getAllPromo().enqueue(object : Callback<AllPromoResponse>{
+            override fun onResponse(
+                call: Call<AllPromoResponse>,
+                response: Response<AllPromoResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _allPromo.postValue(result.data)
+                        Log.d("RESULT", "Result : $result")
+                    }else{
+                        _allPromo.postValue(null)
+                    }
+                }else{
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AllPromoResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+
+        })
+        return allPromo
+    }
 }
