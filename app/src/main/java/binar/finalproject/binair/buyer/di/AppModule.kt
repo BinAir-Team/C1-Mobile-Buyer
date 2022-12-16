@@ -1,6 +1,6 @@
 package binar.finalproject.binair.buyer.di
 
-import binar.finalproject.binair.buyer.BuildConfig
+import androidx.databinding.ktx.BuildConfig
 import binar.finalproject.binair.buyer.data.UserRepository
 import binar.finalproject.binair.buyer.data.remote.APIService
 import dagger.Module

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DetailPromoFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDeatilPromoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="16dp"
+        android:background="@color/content_grey">
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="197dp"
+            android:src="@drawable/asset_promo"
+            android:id="@+id/ImagePromo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ImagePromo"
+            android:text="Enjoy a fantastic Year-end Travel to Asia!"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/rvJudulPromo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rvJudulPromo"
+            android:text="The Year-end is fast approaching, quickly book your flight now!"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/content_grey"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/detailtanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cvDeatilPromoContainer"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="159dp"
+            android:layout_below="@+id/cvDeatilPromoContainer">
+
+            <TextView
+                android:id="@+id/tvBooking"
+                android:layout_width="355dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/ic_baseline_phone_android_24"
+                android:drawablePadding="10dp"
+                android:text="Booking can be made through Airpaz website or mobile app" />
+
+            <TextView
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBooking"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:drawableLeft="@drawable/ic_schedule"
+                android:drawablePadding="10dp"
+                android:text="Promo Period 1 December 2022 - 31 Desember 2022" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/detaildiskon"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        android:layout_below="@+id/detailtanggal"
+        android:layout_marginTop="10dp"
+        android:background="@color/content_grey">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvdiskon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp"
+                android:text="DISCOUNT RP 80.000" />
+
+            <TextView
+                android:id="@+id/mintransaksi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvdiskon"
+                android:layout_centerHorizontal="true"
+                android:text="Minimum Transaction Rp 1.500.000" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/kodetransaksi"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mintransaksi"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:contentPadding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/labelcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/voucher_promo_code"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelcode"
+                        android:layout_centerHorizontal="true"
+                        android:text="1230415136" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

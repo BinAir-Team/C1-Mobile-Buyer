@@ -60,12 +60,29 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_carouselFragment2_to_homeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_carouselFragment2_to_loginFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="detailPromoFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-205" />
+                            <option name="y" value="755" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -167,6 +184,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="promoFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-446" />
+                            <option name="y" value="752" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

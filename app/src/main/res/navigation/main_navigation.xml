@@ -131,4 +131,18 @@
             app:exitAnim="@anim/slide_down"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/promoFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.PromoFragment"
+        android:label="fragment_promo"
+        tools:layout="@layout/fragment_promo" >
+        <action
+            android:id="@+id/action_promoFragment_to_detailPromoFragment"
+            app:destination="@id/detailPromoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPromoFragment"
+        android:name="binar.finalproject.binair.buyer.DetailPromoFragment"
+        android:label="fragment_detail_promo"
+        tools:layout="@layout/fragment_detail_promo" />
 </navigation>

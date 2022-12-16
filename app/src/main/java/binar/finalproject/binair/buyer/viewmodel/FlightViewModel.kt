@@ -5,8 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.buyer.data.remote.APIService
-import binar.finalproject.binair.buyer.data.response.AllTicketsResponse
-import binar.finalproject.binair.buyer.data.response.TicketItem
+import binar.finalproject.binair.buyer.data.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Response
@@ -42,3 +41,38 @@ class FlightViewModel @Inject constructor(private val client : APIService) : Vie
         })
     }
 }
+
+class PromoViewModel @Inject constructor(private val client : APIService) : ViewModel() {
+    private val _allPromo = MutableLiveData<List<DataPromo>?>()
+    val allPromo: LiveData<List<DataPromo>?> = _allPromo
+
+    fun callgetPromo(){
+        client.getPromo().enqueue(object : retrofit2.Callback<AllPromoResponse> {
+            override fun onResponse(
+                call: Call<AllPromoResponse>,
+                response: Response<AllPromoResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _allPromo.postValue(result.data)
+                        Log.d("Result", "result: $result")
+                    } else {
+                        _allPromo.postValue(null)
+                    }
+                } else {
+                    Log.e("error", "onResponse: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AllPromoResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+
+    }
+}
+
+
+
+

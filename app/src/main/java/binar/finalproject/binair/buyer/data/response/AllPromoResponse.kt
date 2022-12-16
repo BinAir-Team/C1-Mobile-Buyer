@@ -1,7 +1,19 @@
 package binar.finalproject.binair.buyer.data.response
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+
+data class AllPromoResponse(
+    @field:SerializedName("data")
+    val data: List<DataPromo>,
+    @field:SerializedName("message")
+    val message: String,
+    @field:SerializedName("status")
+    val status: String
+)
+@Parcelize
 
 data class DataPromo(
     @SerializedName("createdAt")
@@ -22,4 +34,5 @@ data class DataPromo(
     val title: String,
     @SerializedName("updatedAt")
     val updatedAt: String
-)
+) : Parcelable {
+}

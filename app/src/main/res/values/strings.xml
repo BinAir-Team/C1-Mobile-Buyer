@@ -55,4 +55,5 @@
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="laki_laki">Laki-laki</string>
     <string name="perempuan">Perempuan</string>
+    <string name="voucher_promo_code">Voucher/promo Code</string>
 </resources>
