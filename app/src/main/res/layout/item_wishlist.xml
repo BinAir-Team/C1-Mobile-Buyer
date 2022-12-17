@@ -36,18 +36,18 @@
                     android:id="@+id/FlightNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text='@{dataWishlist.flightNumber, default="PK 788"}'
-                    android:layout_toRightOf="@id/logoMaskapai"
+                    android:text='IN123'
+                    android:layout_toEndOf="@id/logoMaskapai"
                     android:layout_marginTop="4dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     tools:ignore="ExtraText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.timeDepart, default="10 hr 40min"}'
+                    android:text='@{dataWishlist.departureTime, default="10 hr 40min"}'
                     android:id="@+id/FlightHour"
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/poppins_medium"
@@ -64,14 +64,14 @@
                     android:id="@+id/Tujuan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.destination, default="Shanghai Disneyland ticket"}'
+                    android:text='@{dataWishlist.to, default="Shanghai Disneyland ticket"}'
                     android:fontFamily="@font/inter_medium"
                     android:layout_marginRight="34dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.progress, default=75}'
+                    android:text='@{Integer.toString(dataWishlist.adultPrice)}'
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/inter_light"
                     android:textSize="10dp"

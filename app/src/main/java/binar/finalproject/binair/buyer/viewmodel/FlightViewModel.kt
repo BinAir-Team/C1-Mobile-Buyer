@@ -3,6 +3,7 @@ package binar.finalproject.binair.buyer.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.buyer.data.FlightRepository
+import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.*
 
@@ -30,4 +31,8 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun getTicketById(id : String) : LiveData<GetTicketByIdResponse?> = flightRepo.getTicketById(id)
     fun getUserTrans(token : String) : LiveData<List<TransItem>?> = flightRepo.getUserTrans(token)
     fun getAllPromo() : LiveData<List<DataPromo>?> = flightRepo.callGetAllPromo()
+    fun isWishlisted(id: String) : Boolean = flightRepo.isWishlisted(id)
+    fun getAllWishlist() : LiveData<List<DataWishList>?> = flightRepo.getAllDataWishlist()
+    fun insertWishList(wishlist: DataWishList) = flightRepo.insertWishlist(wishlist)
+    fun deleteWishList(wishlist: DataWishList) = flightRepo.deleteWishlist(wishlist)
 }

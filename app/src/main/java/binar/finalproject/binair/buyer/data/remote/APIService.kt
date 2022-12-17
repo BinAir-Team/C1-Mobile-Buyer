@@ -30,7 +30,7 @@ interface APIService {
     fun getAllTicket() : Call<AllTicketsResponse>
 
     @GET("tickets")
-    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String) : Call<AllTicketsResponse>
+    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date_start") date : String, @Query("type") type : String, @Query("willFly") willFly : Boolean) : Call<AllTicketsResponse>
 
     @GET("tickets/id/{id}")
     fun getTicketById(@Path("id") id : String) : Call<GetTicketByIdResponse>

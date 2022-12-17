@@ -24,6 +24,7 @@ import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
+import binar.finalproject.binair.buyer.data.response.TransItem
 import binar.finalproject.binair.buyer.databinding.FragmentPaymentBinding
 import binar.finalproject.binair.buyer.ui.adapter.PaymentMethodAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
@@ -90,27 +91,62 @@ class PaymentFragment : Fragment() {
     }
 
     private fun getSetData(){
-        val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
-        val dataBook = args.data[0]
-        binding.apply {
-            flightVM.getTicketById(dataBook.ticketsId).observe(viewLifecycleOwner){
-                if (it != null) {
-                    tvFlightDate.text = formatDate(it.data.dateStart)
-                    tvKotaAsal.text = it.data.from
-                    tvKotaTujuan.text = it.data.to
+        try {
+            val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
+
+            val dataBook = args.data[0]
+            binding.apply {
+                flightVM.getTicketById(dataBook.ticketsId).observe(viewLifecycleOwner){
+                    if (it != null) {
+                        tvFlightDate.text = formatDate(it.data.dateStart)
+                        tvKotaAsal.text = it.data.from
+                        tvKotaTujuan.text = it.data.to
+                        if(it.data.type == "oneway"){
+                            tvKotaAsalKembali.visibility = View.GONE
+                            tvKotaTujuanKembali.visibility = View.GONE
+                        }
+                    }
                 }
+                tvIdBooking.text = dataBook.id
+                var passenger = ""
+                var passengerType = ""
+                for (i in dataBook.traveler){
+                    passenger += "${i.name}\n"
+                    passengerType += "${i.type}\n"
+                }
+                tvName.text = passenger
+                tvType.text = passengerType
+                tvTotalPrice.text = formatRupiah(dataBook.amounts)
             }
-            tvIdBooking.text = dataBook.id
-            var passenger = ""
-            var passengerType = ""
-            for (i in dataBook.traveler){
-                passenger += "${i.name}\n"
-                passengerType += "${i.type}\n"
+        }catch (e : Exception){
+            e.printStackTrace()
+            val dataTrans = arguments?.getSerializable("itemTrans") as TransItem
+            binding.apply {
+                flightVM.getTicketById(dataTrans.ticketsId).observe(viewLifecycleOwner){
+                    if (it != null) {
+                        tvFlightDate.text = formatDate(it.data.dateStart)
+                        tvKotaAsal.text = it.data.from
+                        tvKotaTujuan.text = it.data.to
+                        if(it.data.type == "oneway"){
+                            tvKotaAsalKembali.visibility = View.GONE
+                            tvKotaTujuanKembali.visibility = View.GONE
+                        }
+                    }
+                }
+                tvIdBooking.text = dataTrans.id
+                var passenger = ""
+                var passengerType = ""
+                for (i in dataTrans.traveler){
+                    var formatedType = if(i.type == "adult") "Dewasa" else{"Anak"}
+                    passenger += "${i.name}\n"
+                    passengerType += "${formatedType}\n"
+                }
+                tvName.text = passenger
+                tvType.text = passengerType
+                tvTotalPrice.text = formatRupiah(dataTrans.amounts)
             }
-            tvName.text = passenger
-            tvType.text = passengerType
-            tvTotalPrice.text = formatRupiah(dataBook.amounts)
         }
+
     }
 
     fun formatDate(date : String) : String {
@@ -195,6 +231,15 @@ class PaymentFragment : Fragment() {
                 if(it.status == 200){
                     Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
                     val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
+                    for(trav in args.data[0].traveler){
+                        if (trav.noKtp == null){
+                            trav.noKtp = ""
+                            trav.idCard = ""
+                        }
+                        if(trav.tittle == null){
+                            trav.tittle = ""
+                        }
+                    }
                     val act = PaymentFragmentDirections.actionPaymentFragmentToEticketFragment(args)
                     findNavController().navigate(act)
                 }

@@ -3,9 +3,14 @@ package binar.finalproject.binair.buyer.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import binar.finalproject.binair.buyer.data.local.WishlistDAO
+import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.remote.APIService
 import binar.finalproject.binair.buyer.data.response.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -13,7 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class FlightRepository @Inject constructor(var client: APIService) {
+class FlightRepository @Inject constructor(var client: APIService, val wishlistDAO: WishlistDAO) {
     private val _allTicket = MutableLiveData<List<TicketItem>?>()
     val allTicket: LiveData<List<TicketItem>?> = _allTicket
     private val _allCityAirport = MutableLiveData<List<CityAirport>?>()
@@ -38,6 +43,8 @@ class FlightRepository @Inject constructor(var client: APIService) {
     val userTrans: LiveData<List<TransItem>?> = _userTrans
     private val _allPromo = MutableLiveData<List<DataPromo>?>()
     val allPromo : LiveData<List<DataPromo>?> = _allPromo
+    private val _allWishlist = MutableLiveData<List<DataWishList>?>()
+    val allWishlist : LiveData<List<DataWishList>?> = _allWishlist
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -74,7 +81,7 @@ class FlightRepository @Inject constructor(var client: APIService) {
         type: String,
         willFly: Boolean = true
     ): LiveData<List<TicketItem>?> {
-        client.getTicketBySearch(from, airport_from, to, airport_to, date, type)
+        client.getTicketBySearch(from, airport_from, to, airport_to, date, type,willFly)
             .enqueue(object : Callback<AllTicketsResponse> {
                 override fun onResponse(
                     call: Call<AllTicketsResponse>,
@@ -260,5 +267,34 @@ class FlightRepository @Inject constructor(var client: APIService) {
 
         })
         return userTrans
+    }
+
+    fun getAllDataWishlist() : LiveData<List<DataWishList>?> {
+        GlobalScope.launch {
+            _allWishlist.postValue(wishlistDAO.getWishList())
+        }
+        return allWishlist
+    }
+
+    fun isWishlisted(id : String) : Boolean {
+        var result = false
+        GlobalScope.launch {
+            result = wishlistDAO.isWishlisted(id)
+        }
+        return result
+    }
+
+    fun insertWishlist(wishlist: DataWishList){
+        GlobalScope.async {
+            wishlistDAO.insertWishList(wishlist)
+        }
+    }
+
+    fun editWishlist(wishlist: DataWishList) = wishlistDAO.updateWishList(wishlist)
+
+    fun deleteWishlist(wishlist: DataWishList){
+        GlobalScope.async {
+            wishlistDAO.deleteWishList(wishlist)
+        }
     }
 }

@@ -14,7 +14,6 @@ import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.model.DataKontak
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
-import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentReviewBookingBinding
 import binar.finalproject.binair.buyer.databinding.ItemTravelerReviewBinding
@@ -127,7 +126,7 @@ class ReviewBookingFragment : Fragment() {
         alertDialog.setView(dialogView)
         alertDialog.create()
         dialogBinding.btnPayment.setOnClickListener {
-            val data = bookTicket()
+            bookTicket()
             alertDialog.dismiss()
         }
         dialogBinding.btnBack.setOnClickListener {
@@ -137,19 +136,26 @@ class ReviewBookingFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun bookTicket() : BookingTicketResponse?{
+    private fun bookTicket(){
         val prefs = requireActivity().getSharedPreferences(dataUser, 0)
         val token = prefs.getString("token", null)
         val body = arguments?.getSerializable("bookingBody") as PostBookingBody
-        var result : BookingTicketResponse? = null
         if (token != null) {
             flightVM.bookTicket("Bearer $token", body).observe(viewLifecycleOwner){
                 if (it != null) {
-                    result = it
-                    findNavController().navigate(ReviewBookingFragmentDirections.actionReviewBookingFragmentToPaymentFragment(it))
+                    for(trav in it.data[0].traveler){
+                        if (trav.noKtp == null){
+                            trav.noKtp = ""
+                            trav.idCard = ""
+                        }
+                        if(trav.tittle == null){
+                            trav.tittle = ""
+                        }
+                    }
+                    val act = ReviewBookingFragmentDirections.actionReviewBookingFragmentToPaymentFragment(it)
+                    findNavController().navigate(act)
                 }
             }
         }
-        return result
     }
 }

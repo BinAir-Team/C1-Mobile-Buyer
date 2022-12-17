@@ -119,15 +119,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun showBannerLogin(){
-//        val token = requireActivity().getSharedPreferences(Constant.dataUser, 0).getString("token", null)
-//        val isLogin = requireActivity().getSharedPreferences(Constant.dataUser, 0).getBoolean("isLogin", false)
-//        Log.d("BANNER", "token: $token isLogin: $isLogin")
-//        if(!isLogin or (token == null)){
-//            binding.bannerLogin.visibility = View.VISIBLE
-//        }else{
-//            binding.bannerLogin.visibility = View.GONE
-//        }
-
         val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
         val userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         val token = prefs.getString("token", null)

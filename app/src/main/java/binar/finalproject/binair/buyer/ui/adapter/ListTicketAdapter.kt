@@ -17,7 +17,11 @@ class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerVie
     var onClickWishlist : ((TicketItem) -> Unit)? = null
     class ViewHolder(private val binding : ItemTicketBinding, private var onClick : (((TicketItem) -> Unit)?), private var onClickWishlist : (((TicketItem) -> Unit)?)): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TicketItem) {
-            item.dateStart = formatDate(item.dateStart)
+            try{
+                item.dateStart = formatDate(item.dateStart)
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
             binding.ticket = item
             binding.tvHargaDewasa.text = formatRupiah(item.adultPrice)
             binding.tvHargaAnak.text = formatRupiah(item.childPrice)

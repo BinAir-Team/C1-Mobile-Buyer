@@ -12,6 +12,7 @@ import androidx.annotation.MenuRes
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
@@ -71,7 +72,22 @@ class TicketHistoryFragment : Fragment() {
         binding.recViewHistory.adapter = adapter
         binding.recViewHistory.layoutManager = layoutManager
         adapter.onClick = {
-
+            for(trav in it.traveler){
+                if (trav.noKtp == null){
+                    trav.noKtp = ""
+                    trav.idCard = ""
+                }
+            }
+            if(it.ticket.dateEnd == null){
+                it.ticket.dateEnd = ""
+            }
+            if(it.status.contains("PENDING PAYMENT")){
+                val act = TicketHistoryFragmentDirections.actionTicketHistoryFragment2ToPaymentFragment(it)
+                findNavController().navigate(act)
+            }else{
+                val act = TicketHistoryFragmentDirections.actionTicketHistoryFragment2ToEticketFragment(it)
+                findNavController().navigate(act)
+            }
         }
     }
 

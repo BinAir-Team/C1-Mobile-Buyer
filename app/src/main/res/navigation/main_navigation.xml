@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/homeFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_listTicketFragment"
             app:destination="@id/listTicketFragment" />
@@ -39,7 +39,7 @@
         android:id="@+id/registerFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -48,7 +48,7 @@
         android:id="@+id/listTicketFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.ListTicketFragment"
         android:label="fragment_list_ticket"
-        tools:layout="@layout/fragment_list_ticket" >
+        tools:layout="@layout/fragment_list_ticket">
         <action
             android:id="@+id/action_listTicketFragment_to_ticketDetailsFragment"
             app:destination="@id/ticketDetailsFragment" />
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/ticketDetailsFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.TicketDetailsFragment"
-        android:label="TicketDetailsFragment" >
+        android:label="TicketDetailsFragment">
         <argument
             android:name="clickedTicket"
             app:argType="binar.finalproject.binair.buyer.data.response.TicketItem" />
@@ -74,7 +74,7 @@
         android:id="@+id/bookingFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.BookingFragment"
         android:label="fragment_booking"
-        tools:layout="@layout/fragment_booking" >
+        tools:layout="@layout/fragment_booking">
         <action
             android:id="@+id/action_bookingFragment_to_reviewBookingFragment"
             app:destination="@id/reviewBookingFragment" />
@@ -86,7 +86,7 @@
         android:id="@+id/reviewBookingFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.ReviewBookingFragment"
         android:label="fragment_review_booking"
-        tools:layout="@layout/fragment_review_booking" >
+        tools:layout="@layout/fragment_review_booking">
         <argument
             android:name="dataKontak"
             app:argType="binar.finalproject.binair.buyer.data.model.DataKontak" />
@@ -95,10 +95,12 @@
             app:destination="@id/bookingFragment" />
         <action
             android:id="@+id/action_reviewBookingFragment_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
-        <action
-            android:id="@+id/action_reviewBookingFragment_to_paymentRoundedTripFragment"
-            app:destination="@id/paymentRoundedTripFragment" />
+            app:destination="@id/paymentFragment">
+            <argument
+                android:name="dataBooking"
+                app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse"
+                app:nullable="true" />
+        </action>
         <argument
             android:name="bookingBody"
             app:argType="binar.finalproject.binair.buyer.data.model.PostBookingBody" />
@@ -112,35 +114,53 @@
         android:id="@+id/profileFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment2_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
-    <action android:id="@+id/action_global_profileFragment2" app:destination="@id/profileFragment2" />
-    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment" />
+    <action
+        android:id="@+id/action_global_profileFragment2"
+        app:destination="@id/profileFragment2" />
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment" />
     <fragment
         android:id="@+id/ticketHistoryFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.TicketHistoryFragment"
         android:label="fragment_ticket_history"
-        tools:layout="@layout/fragment_ticket_history" >
+        tools:layout="@layout/fragment_ticket_history">
         <action
             android:id="@+id/action_ticketHistoryFragment2_to_eticketFragment"
-            app:destination="@id/eticketFragment" />
+            app:destination="@id/eticketFragment">
+            <argument
+                android:name="itemTrans"
+                app:argType="binar.finalproject.binair.buyer.data.response.TransItem" />
+        </action>
         <action
             android:id="@+id/action_ticketHistoryFragment2_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
+            app:destination="@id/paymentFragment">
+            <argument
+                android:name="itemTrans"
+                app:argType="binar.finalproject.binair.buyer.data.response.TransItem" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/wishlistFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.WishlistFragment"
         android:label="fragment_wishlist"
-        tools:layout="@layout/fragment_wishlist" /><action android:id="@+id/action_global_ticketHistoryFragment2" app:destination="@id/ticketHistoryFragment2"/><action android:id="@+id/action_global_wishlistFragment2" app:destination="@id/wishlistFragment2"/>
+        tools:layout="@layout/fragment_wishlist" />
+    <action
+        android:id="@+id/action_global_ticketHistoryFragment2"
+        app:destination="@id/ticketHistoryFragment2" />
+    <action
+        android:id="@+id/action_global_wishlistFragment2"
+        app:destination="@id/wishlistFragment2" />
     <fragment
         android:id="@+id/spalshScreenFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.SplashScreenFragment"
         android:label="fragment_spalsh_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_spalshScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -155,7 +175,7 @@
         android:id="@+id/carouselFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.CarouselFragment"
         android:label="fragment_carousel"
-        tools:layout="@layout/fragment_carousel" >
+        tools:layout="@layout/fragment_carousel">
         <action
             android:id="@+id/action_carouselFragment2_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -168,38 +188,35 @@
         android:id="@+id/paymentFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" >
-        <argument
-            android:name="dataBooking"
-            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse"
-            app:nullable="true" />
+        tools:layout="@layout/fragment_payment">
+<!--        <argument-->
+<!--            android:name="dataBooking"-->
+<!--            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse"-->
+<!--            app:nullable="true"-->
+<!--            android:defaultValue="@null" />-->
         <action
             android:id="@+id/action_paymentFragment_to_eticketFragment"
-            app:destination="@id/eticketFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/paymentRoundedTripFragment"
-        android:name="binar.finalproject.binair.buyer.ui.fragment.PaymentRoundedTripFragment"
-        android:label="fragment_payment_rounded_trip"
-        tools:layout="@layout/fragment_payment_rounded_trip" >
-        <argument
-            android:name="dataBooking"
-            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
+            app:destination="@id/eticketFragment">
+            <argument
+                android:name="dataBooking"
+                app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
+        </action>
+<!--        <argument-->
+<!--            android:name="itemTrans"-->
+<!--            app:argType="binar.finalproject.binair.buyer.data.response.TransItem"-->
+<!--            app:nullable="true"-->
+<!--            android:defaultValue="@null" />-->
     </fragment>
     <fragment
         android:id="@+id/eticketFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.EticketFragment"
         android:label="fragment_eticket"
-        tools:layout="@layout/fragment_eticket" >
-        <argument
-            android:name="dataBooking"
-            app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
-    </fragment>
+        tools:layout="@layout/fragment_eticket"/>
 
     <fragment
         android:id="@+id/detailPromoFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.DetailPromoFragment"
-        android:label="DetailPromoFragment" >
+        android:label="DetailPromoFragment">
         <argument
             android:name="detailpromo"
             app:argType="binar.finalproject.binair.buyer.data.response.DataPromo" />
@@ -208,10 +225,12 @@
         android:id="@+id/promoFragment"
         android:name="binar.finalproject.binair.buyer.ui.fragment.PromoFragment"
         android:label="fragment_promo"
-        tools:layout="@layout/fragment_promo" >
+        tools:layout="@layout/fragment_promo">
         <action
             android:id="@+id/action_promoFragment_to_detailPromoFragment"
             app:destination="@id/detailPromoFragment" />
     </fragment>
-    <action android:id="@+id/action_global_promoFragment" app:destination="@id/promoFragment" />
+    <action
+        android:id="@+id/action_global_promoFragment"
+        app:destination="@id/promoFragment" />
 </navigation>

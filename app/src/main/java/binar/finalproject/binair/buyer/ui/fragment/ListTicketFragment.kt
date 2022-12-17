@@ -2,6 +2,8 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentListTicketBinding
 import binar.finalproject.binair.buyer.ui.adapter.ListTicketAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import com.github.ybq.android.spinkit.style.ThreeBounce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,23 +50,21 @@ class ListTicketFragment : Fragment() {
     }
 
     private fun getListTicket() {
+        var res : List<TicketItem>? = null
         showLoading(true)
-//        flightVM.callGetAllTicket().observe(viewLifecycleOwner) {
-//            if (it != null) {
-//                setDataToRecView(it)
-//                showLoading(false)
-//            }
-//        }
         flightVM.callGetTicketBySearch(searchedTicket.cityFrom,searchedTicket.airportFrom,searchedTicket.cityTo,searchedTicket.airportTo,searchedTicket.dateGo,searchedTicket.type).observe(viewLifecycleOwner){
             if (it != null) {
+                res = it
                 setDataToRecView(it)
                 showLoading(false)
-                binding.tvTicketNotFound.visibility = View.GONE
-            }else{
-                showLoading(false)
-                binding.tvTicketNotFound.visibility = View.VISIBLE
             }
         }
+        Handler(Looper.myLooper()!!).postDelayed({
+            if(res == null) {
+                binding.tvTicketNotFound.visibility = View.VISIBLE
+                showLoading(false)
+            }
+        },2500)
     }
 
     private fun setDataToRecView(data: List<TicketItem>) {
@@ -76,11 +78,36 @@ class ListTicketFragment : Fragment() {
             flightVM.setChosenTicket(it)
             findNavController().navigate(R.id.action_listTicketFragment_to_ticketDetailsFragment)
         }
+
+        adapter.onClickWishlist = {
+            val dataWishlist = DataWishList(
+                0,
+                it.dateStart,
+                it.arrivalTime,
+                it.airportTo,
+                it.childPrice,
+                it.adultPrice,
+                it.airportFrom,
+                it.from,
+                it.dateEnd,
+                it.id,
+                it.to,
+                it.type,
+                it.departureTime
+            )
+            if(flightVM.isWishlisted(dataWishlist.id)) {
+                flightVM.deleteWishList(dataWishlist)
+            }else{
+                flightVM.insertWishList(dataWishlist)
+
+            }
+        }
     }
 
     private fun showLoading(condition : Boolean) {
         if (condition) {
             binding.progressBar.visibility = View.VISIBLE
+            binding.progressBar.setIndeterminateDrawable(ThreeBounce())
         } else {
             binding.progressBar.visibility = View.GONE
         }

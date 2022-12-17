@@ -1,16 +1,18 @@
 package binar.finalproject.binair.buyer.data.local
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import binar.finalproject.binair.buyer.data.model.DataWishList
 
 @Dao
 interface WishlistDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertWishList(wishlist: DataWishList)
+    @Query("SELECT * FROM datawishlist ORDER BY id DESC")
+    fun getWishList() : List<DataWishList>
 
-    @Query(" SELECT * FROM datawishlist ORDER BY id DESC")
-    fun getWishList() : LiveData<List<DataWishList>>
+    @Query("SELECT EXISTS(SELECT * FROM datawishlist WHERE id = :id)")
+    fun isWishlisted(id: String) : Boolean
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertWishList(wishlist: DataWishList)
 
     @Delete
     fun deleteWishList(note: DataWishList) : Int

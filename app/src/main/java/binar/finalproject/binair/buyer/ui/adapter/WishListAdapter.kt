@@ -8,34 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.ItemWishlistBinding
 
-class WishListAdapter (private var onClick : WishListAdapter.NotesInterface) : RecyclerView.Adapter<WishListAdapter.ViewHolder>(){
+class WishListAdapter () : RecyclerView.Adapter<WishListAdapter.ViewHolder>(){
 
-    private var diffCallback = object : DiffUtil.ItemCallback<DataWishList>(){
-
-        override fun areItemsTheSame(oldItem: DataWishList, newItem: DataWishList): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: DataWishList, newItem: DataWishList): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
-        }
-
-    }
     inner class ViewHolder (private val binding: ItemWishlistBinding)
         : RecyclerView.ViewHolder(binding.root){
-        fun bind(notes: DataWishList){
+        fun bind(data: DataWishList){
             binding.apply {
-                dataWishlist = notes
+                dataWishlist = data
             }
         }
     }
 
-    private val differ = AsyncListDiffer(this, diffCallback)
-
-    interface NotesInterface {
-        fun editNote(notes: DataWishList)
-        fun deleteNote(notes: DataWishList)
-    }
+//    interface NotesInterface {
+//        fun editNote(notes: DataWishList)
+//        fun deleteNote(notes: DataWishList)
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemWishlistBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -51,4 +38,18 @@ class WishListAdapter (private var onClick : WishListAdapter.NotesInterface) : R
     fun setData(data : List<DataWishList>){
         differ.submitList(data)
     }
+
+    private var diffCallback = object : DiffUtil.ItemCallback<DataWishList>(){
+
+        override fun areItemsTheSame(oldItem: DataWishList, newItem: DataWishList): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: DataWishList, newItem: DataWishList): Boolean {
+            return oldItem.hashCode() == newItem.hashCode()
+        }
+
+    }
+
+    private val differ = AsyncListDiffer(this, diffCallback)
 }

@@ -8,6 +8,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
+import binar.finalproject.binair.buyer.data.response.TransItem
 import binar.finalproject.binair.buyer.databinding.FragmentEticketBinding
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import com.google.zxing.BarcodeFormat
@@ -38,17 +39,33 @@ class EticketFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun showData(){
-        val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
-        flightVM.getTicketById(args.data[0].ticketsId).observe(viewLifecycleOwner){
-            if(it != null){
-                val alphabets = ('A'..'Z')
-                binding.ticket = it.data
-                binding.tvFlightNum.text = "IN${Random.nextInt(100, 999)}"
-                binding.tvKursi.text = Random.nextInt(20).toString() + alphabets.random()
-                binding.tvGate.text = Random.nextInt(20).toString()
+        try {
+            val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
+            flightVM.getTicketById(args.data[0].ticketsId).observe(viewLifecycleOwner){
+                if(it != null){
+                    val alphabets = ('A'..'Z')
+                    binding.ticket = it.data
+                    binding.tvFlightNum.text = "IN${Random.nextInt(100, 999)}"
+                    binding.tvKursi.text = Random.nextInt(1,20).toString() + alphabets.random()
+                    binding.tvGate.text = Random.nextInt(1,20).toString()
+                }
             }
+            createQR(args.data[0].id)
+        }catch (e : Exception){
+            e.printStackTrace()
+            val argsTrans = arguments?.getSerializable("itemTrans") as TransItem
+            flightVM.getTicketById(argsTrans.ticketsId).observe(viewLifecycleOwner){
+                if(it != null){
+                    val alphabets = ('A'..'Z')
+                    binding.ticket = it.data
+                    binding.tvFlightNum.text = "IN${Random.nextInt(100, 999)}"
+                    binding.tvKursi.text = Random.nextInt(1,20).toString() + alphabets.random()
+                    binding.tvGate.text = Random.nextInt(1,20).toString()
+                }
+            }
+            createQR(argsTrans.id)
         }
-        createQR(args.data[0].id)
+
     }
 
     private fun createQR(idTrans : String){

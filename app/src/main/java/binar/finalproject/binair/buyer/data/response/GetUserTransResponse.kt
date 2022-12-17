@@ -54,7 +54,7 @@ data class TransItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
-)
+) : java.io.Serializable
 
 data class Ticket(
 
@@ -62,10 +62,10 @@ data class Ticket(
 	val dateStart: String,
 
 	@field:SerializedName("arrival_time")
-	val arrivalTime: String,
+	var arrivalTime: String? = null,
 
 	@field:SerializedName("airport_to")
-	val airportTo: String,
+	var airportTo: String? = null,
 
 	@field:SerializedName("child_price")
 	val childPrice: Int,
@@ -80,7 +80,7 @@ data class Ticket(
 	val from: String,
 
 	@field:SerializedName("date_end")
-	val dateEnd: String,
+	var dateEnd: String? = null,
 
 	@field:SerializedName("id")
 	val id: String,
@@ -93,7 +93,7 @@ data class Ticket(
 
 	@field:SerializedName("departure_time")
 	val departureTime: String
-)
+): java.io.Serializable
 
 data class User(
 
@@ -114,4 +114,4 @@ data class User(
 
 	@field:SerializedName("lastname")
 	val lastname: String
-)
+): java.io.Serializable

@@ -26,19 +26,19 @@ data class TravelerItem(
 	val surname: String,
 
 	@field:SerializedName("no_ktp")
-	val noKtp: String,
+	var noKtp: String? = null,
+
+	@field:SerializedName("id_card")
+	var idCard: String? = null,
 
 	@field:SerializedName("name")
 	val name: String,
-
-	@field:SerializedName("id_card")
-	val idCard: String,
 
 	@field:SerializedName("type")
 	val type: String,
 
 	@field:SerializedName("tittle")
-	val tittle: String
+	var tittle: String? = null
 ) : java.io.Serializable
 
 data class DataItem(

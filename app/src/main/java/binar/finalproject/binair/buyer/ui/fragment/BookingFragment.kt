@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -81,7 +80,6 @@ class BookingFragment : Fragment() {
 
     private fun showFormTraveler(){
         if(jmlDewasa > 0) {
-            Toast.makeText(requireContext(), "Dewasa", Toast.LENGTH_SHORT).show()
             for (i in 0 until jmlDewasa) {
                 val viewForm = LayoutInflater.from(context).inflate(R.layout.form_traveler, null)
                 setMargin(viewForm)

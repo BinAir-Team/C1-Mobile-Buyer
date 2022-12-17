@@ -28,10 +28,14 @@ class TicketHistoryAdapter(private val listTicket : List<TransItem>) : RecyclerV
                 }
                 tvDate.text = formatDate(item.ticket.dateStart)
                 tvKodePemesanan.text = item.id.split("-").get(0)
-                tvArrivalTime.text = item.ticket.arrivalTime
-                tvArrivalCity.text = item.ticket.from
                 tvDepartureTime.text = item.ticket.departureTime
-                tvDepartureCity.text = item.ticket.to
+                tvDepartureCity.text = item.ticket.from
+                tvArrivalTime.text = item.ticket.arrivalTime
+                tvArrivalCity.text = item.ticket.to
+
+                cvHistory.setOnClickListener {
+                    onClick?.invoke(item)
+                }
             }
         }
 

@@ -83,7 +83,7 @@
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/silahkan_login"
+                android:text="Tidak ada wishlist"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:visibility="gone"

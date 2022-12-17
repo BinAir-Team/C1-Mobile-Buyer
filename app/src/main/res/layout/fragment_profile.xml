@@ -269,57 +269,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="add flight" />
-
-                    <EditText
-                        android:id="@+id/FlightNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="flight number" />
-
-                    <EditText
-                        android:id="@+id/JamTerbang"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Jam Terbang" />
-
-                    <EditText
-                        android:id="@+id/Tujuan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="tujuan" />
-
-                    <EditText
-                        android:id="@+id/ProgressBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Progress Bar" />
-
-                    <Button
-                        android:id="@+id/AddButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="add data" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/profile_cardbackground"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="22dp"
-                    android:paddingVertical="16.42dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/wishlist"
                         android:textSize="18sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/RvWishlist"
+                        android:id="@+id/rvWishlist"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
