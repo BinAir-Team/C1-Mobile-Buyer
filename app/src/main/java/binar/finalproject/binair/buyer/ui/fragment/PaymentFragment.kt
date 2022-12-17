@@ -23,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.formatRupiah
+import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
 import binar.finalproject.binair.buyer.data.response.TransItem
 import binar.finalproject.binair.buyer.databinding.FragmentPaymentBinding
@@ -229,7 +230,8 @@ class PaymentFragment : Fragment() {
         flightVM.updatePayment("Bearer $token",id,image!!,method).observe(viewLifecycleOwner){
             if (it != null) {
                 if(it.status == 200){
-                    Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
+                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
                     val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
                     for(trav in args.data[0].traveler){
                         if (trav.noKtp == null){

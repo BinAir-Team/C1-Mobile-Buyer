@@ -2,6 +2,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
@@ -118,12 +120,15 @@ class ProfileFragment : Fragment() {
     }
 
     fun getWishlist(){
-        flightVM.getAllWishlist().observe(viewLifecycleOwner) {
-            if(it != null){
-                val adapter = WishListAdapter()
-                adapter.setData(it)
-                binding.rvWishlist.adapter = adapter
-                binding.rvWishlist.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        if (idUser != null) {
+            flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner) {
+                if(it != null){
+                    val adapter = WishListAdapter()
+                    adapter.setData(it)
+                    binding.rvWishlist.adapter = adapter
+                    binding.rvWishlist.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                }
             }
         }
     }

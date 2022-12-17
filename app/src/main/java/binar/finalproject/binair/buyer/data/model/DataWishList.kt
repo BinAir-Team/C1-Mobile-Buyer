@@ -18,5 +18,6 @@ data class DataWishList(
     val id: String,
     val to: String,
     val type: String,
-    val departureTime: String
+    val departureTime: String,
+    val user : String
 ): java.io.Serializable

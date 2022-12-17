@@ -140,6 +140,7 @@ class LoginFragment : Fragment() {
                 }else{
                     val namaLengkap = it.data.firstname + " " + it.data.lastname
                     editor.putString("token", it.data.accessToken)
+                    editor.putString("idUser",it.data.id)
                     editor.putString("namaLengkap", namaLengkap)
                     editor.putBoolean("isLogin", true)
                     editor.putBoolean("isValidToken",true)

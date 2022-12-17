@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerView.Adapter<ListTicketAdapter.ViewHolder>() {
     var onClick: ((TicketItem) -> Unit)? = null
     var onClickWishlist : ((TicketItem) -> Unit)? = null
-    class ViewHolder(private val binding : ItemTicketBinding, private var onClick : (((TicketItem) -> Unit)?), private var onClickWishlist : (((TicketItem) -> Unit)?)): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding : ItemTicketBinding, private var onClick : (((TicketItem) -> Unit)?), private var onClickWishlist : (((TicketItem) -> Unit)?)): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TicketItem) {
             try{
                 item.dateStart = formatDate(item.dateStart)

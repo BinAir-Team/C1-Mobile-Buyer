@@ -245,10 +245,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPromoAdapter() {
-//        val dataPromo = arrayListOf("Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%", "Victorious Tuesday Bersama OCBC NISP, Dapatkan Diskon 12%", "Penerbangan Jadi Menyenangkan Dengan Kartu Kredit Maybank Promo hingga IDR 200.000", "Kesepakatan yang Adil Setiap Hari!", "Promo 5")
-//        val adapter = HomePromoAdapter(dataPromo)
-//        binding.rvPromo.adapter = adapter
-//        binding.rvPromo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         flightVM.getAllPromo().observe(viewLifecycleOwner){
             if (it != null){
                 setDatatoRecycleView(it)

@@ -269,17 +269,17 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
         return userTrans
     }
 
-    fun getAllDataWishlist() : LiveData<List<DataWishList>?> {
+    fun getAllDataWishlist(user : String) : LiveData<List<DataWishList>?> {
         GlobalScope.launch {
-            _allWishlist.postValue(wishlistDAO.getWishList())
+            _allWishlist.postValue(wishlistDAO.getWishList(user))
         }
         return allWishlist
     }
 
-    fun isWishlisted(id : String) : Boolean {
+    fun isWishlisted(id : String, user : String) : Boolean {
         var result = false
         GlobalScope.launch {
-            result = wishlistDAO.isWishlisted(id)
+            result = wishlistDAO.isWishlisted(id,user)
         }
         return result
     }

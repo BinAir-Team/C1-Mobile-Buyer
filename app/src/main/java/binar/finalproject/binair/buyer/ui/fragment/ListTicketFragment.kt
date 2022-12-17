@@ -1,5 +1,6 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -7,12 +8,14 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.TicketItem
@@ -80,26 +83,31 @@ class ListTicketFragment : Fragment() {
         }
 
         adapter.onClickWishlist = {
-            val dataWishlist = DataWishList(
-                0,
-                it.dateStart,
-                it.arrivalTime,
-                it.airportTo,
-                it.childPrice,
-                it.adultPrice,
-                it.airportFrom,
-                it.from,
-                it.dateEnd,
-                it.id,
-                it.to,
-                it.type,
-                it.departureTime
-            )
-            if(flightVM.isWishlisted(dataWishlist.id)) {
-                flightVM.deleteWishList(dataWishlist)
+            val idUser = requireActivity().getSharedPreferences(Constant.dataUser,Context.MODE_PRIVATE).getString("idUser",null)
+            if(idUser != null){
+                val dataWishlist = DataWishList(
+                    0,
+                    it.dateStart,
+                    it.arrivalTime,
+                    it.airportTo,
+                    it.childPrice,
+                    it.adultPrice,
+                    it.airportFrom,
+                    it.from,
+                    it.dateEnd,
+                    it.id,
+                    it.to,
+                    it.type,
+                    it.departureTime,
+                    idUser
+                )
+                if(flightVM.isWishlisted(dataWishlist.id,idUser)) {
+                    flightVM.deleteWishList(dataWishlist)
+                }else{
+                    flightVM.insertWishList(dataWishlist,idUser)
+                }
             }else{
-                flightVM.insertWishList(dataWishlist)
-
+                Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
     }

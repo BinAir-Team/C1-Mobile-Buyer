@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -149,13 +148,6 @@ class EditProfileFragment : Fragment() {
 
     private fun isEqualPassRepassword(pass: String, repass: String): Boolean {
         return pass == repass
-    }
-
-    private fun saveImage(){
-        val resolver = requireActivity().applicationContext.contentResolver
-        val picture = BitmapFactory.decodeStream(
-            resolver.openInputStream(Uri.parse(image_uri.toString())))
-//        saveImageProfile(requireContext(), picture)
     }
 
     private fun checkingPermissions() {

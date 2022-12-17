@@ -1,5 +1,6 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
@@ -55,9 +57,12 @@ class WishlistFragment : Fragment() {
     }
 
     private fun getAllNote(){
-        flightVM.getAllWishlist().observe(viewLifecycleOwner){
-            if (it != null) {
-                setDataToRecView(it)
+        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        if (idUser != null) {
+            flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner){
+                if (it != null) {
+                    setDataToRecView(it)
+                }
             }
         }
     }
