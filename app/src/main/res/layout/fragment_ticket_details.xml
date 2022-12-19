@@ -23,7 +23,6 @@
             android:id="@+id/cvDeatilTicketContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentPadding="16dp"
             app:cardCornerRadius="12dp"
             android:layout_margin="16dp"
             android:layout_below="@id/toolbar">
@@ -31,21 +30,54 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <ImageView
-                    android:id="@+id/ivLogo"
-                    android:src="@drawable/logo_blue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp" />
+                    android:layout_width="23dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_bookmark_blue"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingVertical="0dp"
+                    android:layout_marginHorizontal="23dp"
+                    android:id="@+id/cardHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivLogo"
+                        android:layout_width="84dp"
+                        android:layout_height="56dp"
+                        android:src="@drawable/logo_pesawat" />
+                    <TextView
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Flight Number :"/>
+                    <TextView
+                        android:fontFamily="@font/inter_bold"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" PK 625"/>
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ivLine"
                     android:src="@drawable/line"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_below="@id/ivLogo" />
+                    android:layout_below="@id/cardHeader" />
 
                 <ImageView
                     android:id="@+id/containerLogo"
@@ -60,9 +92,9 @@
                     android:id="@+id/iconLogo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:layout_below="@+id/ivLine"
                     android:layout_centerInParent="true"
+                    android:layout_marginTop="4dp"
                     android:src="@drawable/logoestimasi" />
 
                 <TextView
@@ -72,7 +104,7 @@
                     android:layout_below="@+id/ivLine"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
-                    android:text="@{ticket.departureTime}"
+                    android:text='@{ticket.departureTime, default ="05.00"}'
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -82,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvJamBerangkat"
                     android:layout_marginStart="16dp"
-                    android:text="@{ticket.from}"
+                    android:text='@{ticket.from,default = "CKG"}'
                     android:textSize="10sp"
                     tools:ignore="SmallSp" />
 
@@ -93,9 +125,29 @@
                     android:layout_marginEnd="16dp"
                     android:layout_below="@id/ivLine"
                     android:layout_alignParentEnd="true"
-                    android:text="@{ticket.arrivalTime}"
+                    android:text='@{ticket.arrivalTime, default = "06.00"}'
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:id="@+id/tvJenisKelas"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@id/tvTanggal"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/ic_chair"
+                        android:drawablePadding="10dp"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/inter_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_economy_class"
+                        android:layout_below="@id/labelTanggal"
+                        android:textStyle="bold"/>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvKotaTujuan"
@@ -104,10 +156,21 @@
                     android:layout_marginEnd="16dp"
                     android:layout_below="@+id/tvJamDatang"
                     android:layout_alignParentEnd="true"
-                    android:text="@{ticket.to}"
+                    android:text='@{ticket.to, default = "SUB"}'
+                    android:fontFamily="@font/inter_medium"
                     android:textSize="10sp"
                     tools:ignore="SmallSp" />
 
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/tvType"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{ticket.type,  default = "Sekali Jalan"}'
+                    android:fontFamily="@font/inter_light"
+                    android:textSize="10dp"
+                    android:layout_below="@id/iconLogo"/>
                 <TextView
                     android:id="@+id/labelTanggal"
                     android:layout_width="wrap_content"
@@ -115,7 +178,7 @@
                     android:text="@string/tanggal"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
-                    android:layout_below="@id/tvKotaTujuan"/>
+                    android:layout_below="@id/tvType"/>
 
                 <TextView
                     android:id="@+id/tvTanggal"
@@ -136,7 +199,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="84dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@id/tvKotaTujuan"/>
+                    android:layout_below="@id/tvType"/>
 
                 <TextView
                     android:id="@+id/tvBagasi"
@@ -157,7 +220,7 @@
                     android:text="@string/harga_dewasa"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
-                    android:layout_below="@id/tvTanggal"/>
+                    android:layout_below="@id/tvJenisKelas"/>
 
                 <TextView
                     android:id="@+id/tvHargaDewasa"
@@ -177,8 +240,7 @@
                     android:text="@string/harga_anak"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="48dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@id/tvBagasi"/>
+                    android:layout_below="@id/tvJenisKelas"/>
 
                 <TextView
                     android:id="@+id/tvHargaAnak"
