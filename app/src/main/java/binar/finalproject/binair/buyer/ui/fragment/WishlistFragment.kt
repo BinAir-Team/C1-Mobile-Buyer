@@ -10,6 +10,7 @@ import android.widget.PopupMenu
 import androidx.annotation.MenuRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
@@ -17,6 +18,7 @@ import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import com.github.ybq.android.spinkit.style.ThreeBounce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,11 +70,20 @@ class WishlistFragment : Fragment() {
     }
 
     private fun setDataToRecView(data: List<DataWishList>) {
+        val adapter = WishListAdapter()
         binding.apply {
-            val adapter = WishListAdapter()
             adapter.setData(data)
             RvWishlist.adapter = adapter
             RvWishlist.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
+
+        adapter.onClick = {
+            val action = WishlistFragmentDirections.actionWishlistFragment2ToWishListDetailFragment(it)
+            findNavController().navigate(action)
+        }
+
+
     }
+
+
 }

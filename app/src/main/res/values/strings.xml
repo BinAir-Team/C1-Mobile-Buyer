@@ -119,4 +119,7 @@
     <string name="batas_promo">Batas Promo</string>
     <string name="lihat_lebih_lanjut">Lihat lebih lanjut</string>
     <string name="label_economy_class">Kelas Ekonomi</string>
+    <string name="label_tujuan">tujuan</string>
+    <string name="labelJam">Jam</string>
+    <string name="lanjutkan_pemesanan">Lanjutkan Pemesanan</string>
 </resources>

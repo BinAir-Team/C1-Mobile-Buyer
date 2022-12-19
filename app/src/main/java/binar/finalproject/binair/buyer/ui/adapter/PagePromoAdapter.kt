@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 class PagePromoAdapter(private val listPromo : List<DataPromo>) : RecyclerView.Adapter<PagePromoAdapter.ViewHolder>(){
 
     var onClick: ((DataPromo) -> Unit)? = null
-    class ViewHolder(private val binding : ItemPromoPageBinding, private var onClick : (((DataPromo) -> Unit)?) ): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding : ItemPromoPageBinding,
+                     private var onClick : (((DataPromo) -> Unit)?) ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DataPromo){
             binding.promo = item
             binding.cvPromo.setOnClickListener {

@@ -45,6 +45,7 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
     val allPromo : LiveData<List<DataPromo>?> = _allPromo
     private val _allWishlist = MutableLiveData<List<DataWishList>?>()
     val allWishlist : LiveData<List<DataWishList>?> = _allWishlist
+    var isWishlistresult = false
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -277,11 +278,18 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
     }
 
     fun isWishlisted(id : String, user : String) : Boolean {
-        var result = false
+
+
         GlobalScope.launch {
-            result = wishlistDAO.isWishlisted(id,user)
+            isWishlistresult = wishlistDAO.isWishlisted(id,user)
+            updateparameter(isWishlistresult)
         }
-        return result
+
+        return isWishlistresult
+    }
+
+    fun updateparameter(inputresult : Boolean){
+        isWishlistresult = inputresult
     }
 
     fun insertWishlist(wishlist: DataWishList){
@@ -292,9 +300,9 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
 
     fun editWishlist(wishlist: DataWishList) = wishlistDAO.updateWishList(wishlist)
 
-    fun deleteWishlist(wishlist: DataWishList){
+    fun deleteWishlist(id: String){
         GlobalScope.async {
-            wishlistDAO.deleteWishList(wishlist)
+            wishlistDAO.deleteWishList(id)
         }
     }
 }

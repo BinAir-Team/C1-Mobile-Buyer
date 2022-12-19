@@ -55,7 +55,8 @@ class ListTicketFragment : Fragment() {
     private fun getListTicket() {
         var res : List<TicketItem>? = null
         showLoading(true)
-        flightVM.callGetTicketBySearch(searchedTicket.cityFrom,searchedTicket.airportFrom,searchedTicket.cityTo,searchedTicket.airportTo,searchedTicket.dateGo,searchedTicket.type).observe(viewLifecycleOwner){
+//        flightVM.callGetTicketBySearch(searchedTicket.cityFrom,searchedTicket.airportFrom,searchedTicket.cityTo,searchedTicket.airportTo,searchedTicket.dateGo,searchedTicket.type).observe(viewLifecycleOwner){
+        flightVM.callGetTicketBySearch("","","","","","",).observe(viewLifecycleOwner){
             if (it != null) {
                 res = it
                 setDataToRecView(it)
@@ -82,34 +83,6 @@ class ListTicketFragment : Fragment() {
             findNavController().navigate(R.id.action_listTicketFragment_to_ticketDetailsFragment)
         }
 
-        adapter.onClickWishlist = {
-            val idUser = requireActivity().getSharedPreferences(Constant.dataUser,Context.MODE_PRIVATE).getString("idUser",null)
-            if(idUser != null){
-                val dataWishlist = DataWishList(
-                    0,
-                    it.dateStart,
-                    it.arrivalTime,
-                    it.airportTo,
-                    it.childPrice,
-                    it.adultPrice,
-                    it.airportFrom,
-                    it.from,
-                    it.dateEnd,
-                    it.id,
-                    it.to,
-                    it.type,
-                    it.departureTime,
-                    idUser
-                )
-                if(flightVM.isWishlisted(dataWishlist.id,idUser)) {
-                    flightVM.deleteWishList(dataWishlist)
-                }else{
-                    flightVM.insertWishList(dataWishlist,idUser)
-                }
-            }else{
-                Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     private fun showLoading(condition : Boolean) {

@@ -1,8 +1,12 @@
 package binar.finalproject.binair.buyer.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity
 data class DataWishList(
     @PrimaryKey(autoGenerate = true)
@@ -20,4 +24,9 @@ data class DataWishList(
     val type: String,
     val departureTime: String,
     val user : String
-): java.io.Serializable
+):Parcelable
+
+@Parcelize
+data class TrueFalseWishlist(
+    val isWishlist : Boolean
+) : Parcelable

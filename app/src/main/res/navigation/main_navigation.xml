@@ -149,7 +149,11 @@
         android:id="@+id/wishlistFragment2"
         android:name="binar.finalproject.binair.buyer.ui.fragment.WishlistFragment"
         android:label="fragment_wishlist"
-        tools:layout="@layout/fragment_wishlist" />
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishlistFragment2_to_wishListDetailFragment"
+            app:destination="@id/wishListDetailFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_ticketHistoryFragment2"
         app:destination="@id/ticketHistoryFragment2" />
@@ -233,4 +237,14 @@
     <action
         android:id="@+id/action_global_promoFragment"
         app:destination="@id/promoFragment" />
+    <fragment
+        android:id="@+id/wishListDetailFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.WishListDetailFragment"
+        android:label="WishListDetailFragment" >
+        <argument android:name="clickedWishlist"
+            app:argType="binar.finalproject.binair.buyer.data.model.DataWishList" />
+        <action
+            android:id="@+id/action_wishListDetailFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment2" />
+    </fragment>
 </navigation>

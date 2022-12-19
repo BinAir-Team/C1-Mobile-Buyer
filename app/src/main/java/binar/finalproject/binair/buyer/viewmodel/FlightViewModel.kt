@@ -31,8 +31,10 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun getTicketById(id : String) : LiveData<GetTicketByIdResponse?> = flightRepo.getTicketById(id)
     fun getUserTrans(token : String) : LiveData<List<TransItem>?> = flightRepo.getUserTrans(token)
     fun getAllPromo() : LiveData<List<DataPromo>?> = flightRepo.callGetAllPromo()
-    fun isWishlisted(id: String, user : String) : Boolean = flightRepo.isWishlisted(id,user)
+
+    // WishList
+    fun isWishlisted(id: String, user : String) : Boolean = flightRepo.isWishlisted(id, user)
     fun getAllWishlist(user : String) : LiveData<List<DataWishList>?> = flightRepo.getAllDataWishlist(user)
     fun insertWishList(wishlist: DataWishList, user : String) = flightRepo.insertWishlist(wishlist)
-    fun deleteWishList(wishlist: DataWishList) = flightRepo.deleteWishlist(wishlist)
+    fun deleteWishList(id: String) = flightRepo.deleteWishlist(id)
 }
