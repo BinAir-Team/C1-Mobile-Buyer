@@ -7,13 +7,28 @@ import kotlinx.parcelize.Parcelize
 data class AllTicketsResponse(
 
 	@field:SerializedName("data")
-	val `data`: List<TicketItem>,
+	val dataTicketPage: DataTicketPage? = null,
 
 	@field:SerializedName("message")
-	val message: String,
+	val message: String? = null,
 
 	@field:SerializedName("status")
-	val status: String
+	val status: String? = null
+)
+
+data class DataTicketPage(
+
+	@field:SerializedName("totalItems")
+	val totalItems: Int? = null,
+
+	@field:SerializedName("tickets")
+	val tickets: List<TicketItem>? = null,
+
+	@field:SerializedName("totalPages")
+	val totalPages: Int? = null,
+
+	@field:SerializedName("currentPage")
+	val currentPage: Int? = null
 )
 
 @Parcelize

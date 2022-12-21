@@ -55,7 +55,7 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
                 if (response.isSuccessful) {
                     val result = response.body()
                     if (result != null) {
-                        _allTicket.postValue(result.data)
+                        _allTicket.postValue(result.dataTicketPage?.tickets)
                         Log.d("RESULT", "Result : $result")
                     } else {
                         _allTicket.postValue(null)
@@ -90,7 +90,7 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
                     if (response.isSuccessful) {
                         val result = response.body()
                         if (result != null) {
-                            _ticketBySearch.postValue(result.data)
+                            _ticketBySearch.postValue(result.dataTicketPage?.tickets)
                         } else {
                             _ticketBySearch.postValue(null)
                         }

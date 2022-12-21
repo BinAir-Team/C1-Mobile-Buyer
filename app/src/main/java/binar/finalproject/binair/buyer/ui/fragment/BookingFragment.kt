@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,6 +33,7 @@ class BookingFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private var jmlDewasa : Int = 0
     private var jmlAnak : Int = 0
+    private var allFormValid : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -143,11 +145,13 @@ class BookingFragment : Fragment() {
     }
 
     private fun validateInputForm(binding : FormTravelerBinding, kategori : String){
+//        var isValid = true
         binding.apply {
             etTipe.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
                     if(etTipe.text.isNullOrEmpty()){
                         etTitel.error = "Tipe tidak boleh kosong"
+                        allFormValid = false
                     }
                 }
             })
@@ -155,6 +159,7 @@ class BookingFragment : Fragment() {
                 if (!hasFocus) {
                     if(etKewarganegaraan.text.isNullOrEmpty()){
                         etKewarganegaraan.error = "Kewarganegaraan tidak boleh kosong"
+                        allFormValid = false
                     }
                 }
             })
@@ -163,6 +168,7 @@ class BookingFragment : Fragment() {
                     if (!hasFocus) {
                         if(etTipe.text.isNullOrEmpty()){
                             etTipe.error = "Tipe tidak boleh kosong"
+                            allFormValid = false
                         }
                     }
                 })
@@ -170,6 +176,7 @@ class BookingFragment : Fragment() {
                     if (!hasFocus) {
                         if(etNoIdnt.text.isNullOrEmpty()){
                             etNoIdnt.error = "No Identitas tidak boleh kosong"
+                            allFormValid = false
                         }
                     }
                 })
@@ -178,6 +185,7 @@ class BookingFragment : Fragment() {
                 if (!hasFocus) {
                     if(etNamaDepanAdlt.text.isNullOrEmpty()){
                         etNamaDepanAdlt.error = "Nama Depan tidak boleh kosong"
+                        allFormValid = false
                     }
                 }
             })
@@ -185,6 +193,7 @@ class BookingFragment : Fragment() {
                 if (!hasFocus) {
                     if(etNamaBelakangAdlt.text.isNullOrEmpty()){
                         etNamaBelakangAdlt.error = "Nama Belakang tidak boleh kosong"
+                        allFormValid = false
                     }
                 }
             })
@@ -192,10 +201,12 @@ class BookingFragment : Fragment() {
                 if (!hasFocus) {
                     if(etTglLahir.text.isNullOrEmpty()){
                         etTglLahir.error = "Tanggal Lahir tidak boleh kosong"
+                        allFormValid = false
                     }
                 }
             })
         }
+//        return allFormValid
     }
 
     private fun setMargin(v : View){
@@ -248,15 +259,13 @@ class BookingFragment : Fragment() {
             val idTicket = arguments?.getString("idTicket")
             val qtt = Quantity(adult = jmlDewasa, child = jmlAnak)
             val body = idTicket?.let { PostBookingBody(it,qtt,dataTrav) }
-            if (body != null) {
-                val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(dataKontak,body)
-                findNavController().navigate(action)
-//                flightVM.bookTicket(token, body).observe(viewLifecycleOwner){
-//                    if(it != null){
-//                        Toast.makeText(requireContext(), "Pemesanan Berhasil", Toast.LENGTH_SHORT).show()
-//                        findNavController().navigate(R.id.action_bookingFragment_to_reviewBookingFragment)
-//                    }
-//                }
+            if(allFormValid){
+                if (body != null) {
+                    val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(dataKontak,body)
+                    findNavController().navigate(action)
+                }
+            }else{
+                Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
             }
         }
     }

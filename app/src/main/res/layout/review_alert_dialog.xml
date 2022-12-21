@@ -13,7 +13,7 @@
             android:id="@+id/tvTitleAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apakah data pemesanan Anda sudab benar?"
+            android:text="Apakah data pemesanan Anda sudah benar?"
             android:textSize="24sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>

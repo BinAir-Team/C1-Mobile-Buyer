@@ -19,4 +19,19 @@
         <item name="android:textColor">@color/white</item>
         <item name="strokeColor">@color/white</item>
     </style>
+
+    <style name="bottom_nav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="backgroundTint">@null</item>
+        <item name="elevation">@dimen/m3_sys_elevation_level2</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface</item>
+        <item name="itemTextAppearanceInactive">?attr/textAppearanceTitleSmall</item>
+        <item name="itemTextAppearanceActive">?attr/textAppearanceTitleSmall</item>
+        <item name="itemRippleColor">@color/MC_Yellow</item>
+        <item name="itemIconTint">@color/m3_navigation_bar_item_with_indicator_icon_tint</item>
+        <item name="itemTextColor">@color/m3_navigation_bar_item_with_indicator_label_tint</item>
+        <item name="itemPaddingTop">@dimen/m3_bottom_nav_item_padding_top</item>
+        <item name="itemPaddingBottom">@dimen/m3_bottom_nav_item_padding_bottom</item>
+        <item name="android:minHeight">70dp</item>
+    </style>
 </resources>

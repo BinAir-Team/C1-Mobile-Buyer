@@ -200,13 +200,13 @@ class HomeFragment : Fragment() {
     @SuppressLint("SimpleDateFormat")
     private fun formatDate(date : Date) : String {
         val myFormat = "EEEE, dd MMM yy"
-        val dateFormat = SimpleDateFormat(myFormat)
+        val dateFormat = SimpleDateFormat(myFormat, Locale("id", "ID"))
         return dateFormat.format(date)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun formatDateAPI(date : String) : String {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("EEEE, dd MMM yy")).toString()
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("EEEE, dd MMM yy",Locale("id", "ID"))).toString()
     }
 
     private fun updateLabel(kategori : String, date : Date) {

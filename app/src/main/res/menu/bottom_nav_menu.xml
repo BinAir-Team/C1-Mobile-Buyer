@@ -4,7 +4,7 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/navBuyTicket"
-            android:title="Buy Ticket"
+            android:title="Tiket"
             android:icon="@drawable/ic_ticket"
             app:showAsAction="always"/>
         <item android:id="@+id/navPromo"
@@ -12,7 +12,7 @@
             android:icon="@drawable/ic_schedule_grey"
             app:showAsAction="always"/>
         <item android:id="@+id/navHistory"
-            android:title="My Booking"
+            android:title="Riwayat Pemesanan"
             android:icon="@drawable/ic_history_grey"
             app:showAsAction="always"/>
         <item android:id="@+id/navWishlist"
@@ -20,7 +20,7 @@
             android:icon="@drawable/ic_wishlist_grey"
             app:showAsAction="always"/>
         <item android:id="@+id/navProfile"
-            android:title="Profile"
+            android:title="Profil"
             android:icon="@drawable/ic_profile"
             app:showAsAction="always"/>
     </group>

@@ -3,14 +3,11 @@ package binar.finalproject.binair.buyer.ui.fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +27,6 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment() {
@@ -129,7 +124,7 @@ class EditProfileFragment : Fragment() {
             val plainPass = binding.etPass.text.toString()
             val rePass = binding.etKonfirmasiPass.text.toString()
 
-            if(isEqualPassRepassword(plainPass,rePass)){
+            if(isEqualPassRepassword(plainPass,rePass) && validateInput()){
                 val pass = plainPass.toRequestBody("text/plain".toMediaType())
                 userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,image, pass).observe(viewLifecycleOwner) {
                     if(it != null){
@@ -205,27 +200,34 @@ class EditProfileFragment : Fragment() {
         galleryResult.launch("image/*")
     }
 
-    private fun saveImageProfile(applicationContext: Context, bitmap: Bitmap): Uri {
-        val name = "img-profile.png"
-        val outputDir = File(applicationContext.filesDir, "profiles")
-        if (!outputDir.exists()) {
-            outputDir.mkdirs() // should succeed
-        }
-        val outputFile = File(outputDir, name)
-        var out: FileOutputStream? = null
-        try {
-            out = FileOutputStream(outputFile)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /* ignored for PNG */, out)
-        } finally {
-            out?.let {
-                try {
-                    it.close()
-                } catch (ignore: IOException) {
-                }
-
+    private fun validateInput(): Boolean {
+        var isValid = true
+        binding.apply {
+            if (etNamaDepan.text.toString().isEmpty()) {
+                etNamaDepan.error = "Nama Depan tidak boleh kosong"
+                isValid = false
+            }
+            if (etNamaBelakang.text.toString().isEmpty()) {
+                etNamaBelakang.error = "Nama Belakang tidak boleh kosong"
+                isValid = false
+            }
+            if (etEmail.text.toString().isEmpty()) {
+                etEmail.error = "Email tidak boleh kosong"
+                isValid = false
+            }
+            if (etPhone.text.toString().isEmpty()) {
+                etPhone.error = "Phone tidak boleh kosong"
+                isValid = false
+            }
+            if (etPass.text.toString().isEmpty()) {
+                etPass.error = "Password tidak boleh kosong"
+                isValid = false
+            }
+            if (etKonfirmasiPass.text.toString().isEmpty()) {
+                etKonfirmasiPass.error = "Konfirmasi Password tidak boleh kosong"
+                isValid = false
             }
         }
-        Log.d("URI_IMG", Uri.fromFile(outputFile).toString())
-        return Uri.fromFile(outputFile)
+        return isValid
     }
 }
