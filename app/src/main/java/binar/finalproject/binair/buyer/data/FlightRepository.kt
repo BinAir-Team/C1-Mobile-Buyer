@@ -45,6 +45,11 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
     val allPromo : LiveData<List<DataPromo>?> = _allPromo
     private val _allWishlist = MutableLiveData<List<DataWishList>?>()
     val allWishlist : LiveData<List<DataWishList>?> = _allWishlist
+    var isWishlistresult = false
+    private val _allNotif = MutableLiveData<List<DataNotif>?>()
+    val allNotif: LiveData<List<DataNotif>?> = _allNotif
+    private val _updateNotification = MutableLiveData<UpdateNotificationResponse?>()
+    val updateNotification: LiveData<UpdateNotificationResponse?> = _updateNotification
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -277,11 +282,18 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
     }
 
     fun isWishlisted(id : String, user : String) : Boolean {
-        var result = false
+
+
         GlobalScope.launch {
-            result = wishlistDAO.isWishlisted(id,user)
+            isWishlistresult = wishlistDAO.isWishlisted(id,user)
+            updateparameter(isWishlistresult)
         }
-        return result
+
+        return isWishlistresult
+    }
+
+    fun updateparameter(inputresult : Boolean){
+        isWishlistresult = inputresult
     }
 
     fun insertWishlist(wishlist: DataWishList){
@@ -292,9 +304,57 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
 
     fun editWishlist(wishlist: DataWishList) = wishlistDAO.updateWishList(wishlist)
 
-    fun deleteWishlist(wishlist: DataWishList){
+    fun deleteWishlist(id: String){
         GlobalScope.async {
-            wishlistDAO.deleteWishList(wishlist)
+            wishlistDAO.deleteWishList(id)
         }
+    }
+
+    fun getAllNotif(token : String): LiveData<List<DataNotif>?>{
+        client.getAllNotif(token).enqueue(object : Callback<GetAllNotif>{
+            override fun onResponse(call: Call<GetAllNotif>, response: Response<GetAllNotif>) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _allNotif.postValue(result.data)
+                        Log.d("RESULT", "Result : $result")
+                    } else {
+                        _allNotif.postValue(null)
+                    }
+                } else {
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<GetAllNotif>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+        return allNotif
+    }
+
+    fun updateNotification(token: String, id: String?) : LiveData<UpdateNotificationResponse?> {
+        client.updateNotif(token, id).enqueue(object : Callback<UpdateNotificationResponse>{
+            override fun onResponse(
+                call: Call<UpdateNotificationResponse>,
+                response: Response<UpdateNotificationResponse>
+            ) {
+                if (response.isSuccessful){
+                    val result = response.body()
+                    if (result != null){
+                        _updateNotification.postValue(result)
+                    } else {
+                        _updateNotification.postValue(null)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateNotificationResponse>, t: Throwable) {
+                _updateNotification.postValue(null)
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+
+        })
+        return updateNotification
     }
 }

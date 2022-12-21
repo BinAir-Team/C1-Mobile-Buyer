@@ -1,8 +1,11 @@
 package binar.finalproject.binair.buyer.data.remote
 
+import androidx.annotation.RawRes
+import androidx.room.RawQuery
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.*
+import kotlinx.parcelize.RawValue
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -30,7 +33,7 @@ interface APIService {
     fun getAllTicket() : Call<AllTicketsResponse>
 
     @GET("tickets")
-    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date_start") date : String, @Query("type") type : String, @Query("willFly") willFly : Boolean) : Call<AllTicketsResponse>
+    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String, @Query("willFly") willFly : Boolean) : Call<AllTicketsResponse>
 
     @GET("tickets/id/{id}")
     fun getTicketById(@Path("id") id : String) : Call<GetTicketByIdResponse>
@@ -47,4 +50,11 @@ interface APIService {
 
     @GET("promos")
     fun getAllPromo() : Call<AllPromoResponse>
+
+    @GET("notify")
+    fun getAllNotif(@Header("Authorization") token : String) : Call<GetAllNotif>
+
+    @PUT("notify")
+    @FormUrlEncoded
+    fun updateNotif(@Header("Authorization") token : String, @Field("id") id: String?) : Call<UpdateNotificationResponse>
 }

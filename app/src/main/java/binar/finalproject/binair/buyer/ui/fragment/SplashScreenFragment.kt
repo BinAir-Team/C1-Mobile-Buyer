@@ -48,6 +48,6 @@ class SplashScreenFragment : Fragment() {
             }else{
                 findNavController().navigate(R.id.action_spalshScreenFragment_to_homeFragment)
             }
-        },2500)
+        },500)
     }
 }

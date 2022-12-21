@@ -10,23 +10,25 @@ import binar.finalproject.binair.buyer.databinding.ItemWishlistBinding
 
 class WishListAdapter () : RecyclerView.Adapter<WishListAdapter.ViewHolder>(){
 
-    inner class ViewHolder (private val binding: ItemWishlistBinding)
+    var onClick: ((DataWishList) -> Unit)? = null
+    inner class ViewHolder (
+        private val binding: ItemWishlistBinding,
+        private var onClick : (((DataWishList) -> Unit)?))
         : RecyclerView.ViewHolder(binding.root){
         fun bind(data: DataWishList){
             binding.apply {
                 dataWishlist = data
             }
+            binding.cvWishlist.setOnClickListener {
+                onClick?.invoke(data)
+            }
         }
     }
 
-//    interface NotesInterface {
-//        fun editNote(notes: DataWishList)
-//        fun deleteNote(notes: DataWishList)
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemWishlistBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, onClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -63,13 +64,27 @@ class HomeFragment : Fragment() {
         changeTripType()
         setAutoCompleteClass()
         setPromoAdapter()
+        setupnotification()
     }
+    fun setupnotification(){
+        val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
+        val token = prefs.getString("token", null)
+        if (token == null){
+            binding.toolbar.menuNotif.visibility = View.GONE
+
+        }
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setListener() {
+        binding.toolbar.menuNotif.setOnClickListener(){
+            val action = HomeFragmentDirections.actionGlobalNotificationFragment("home")
+            findNavController().navigate(action)
+        }
         binding.apply {
             btnLogin.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+                findNavController().navigate(R.id.action_global_notificationFragment)
             }
             btnRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_registerFragment)
@@ -134,6 +149,9 @@ class HomeFragment : Fragment() {
         }else{
             binding.bannerLogin.visibility = View.VISIBLE
             prefs.edit().putString("token", null).apply()
+        }
+        binding.btnLogin.setOnClickListener() {
+            findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
     }
 

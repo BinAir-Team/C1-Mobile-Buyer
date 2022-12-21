@@ -6,7 +6,7 @@
     <data>
         <variable
             name="ticket"
-            type="binar.finalproject.binair.buyer.data.response.TicketItem" />
+            type="binar.finalproject.binair.buyer.data.model.DataWishList" />
     </data>
 
     <RelativeLayout
@@ -15,9 +15,30 @@
         tools:context=".ui.fragment.TicketDetailsFragment"
         tools:ignore="contentDescription">
 
-        <include
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
-            layout="@layout/toolbar_title" />
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="@color/white"
+            android:elevation="16dp">
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:src="@drawable/ic_back"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvTitlePage"
+                android:scaleType="fitStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:layout_marginStart="24dp"
+                android:text="WishList Detail"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvDeatilTicketContainer"
@@ -30,23 +51,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <ImageView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/btnRemoveWishlist"
                     android:layout_width="23dp"
                     android:layout_height="25dp"
                     android:src="@drawable/ic_bookmark_blue"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="20dp"
-                    />
-                <ImageView
-                    android:visibility="gone"
-                    android:id="@+id/btnWishlist"
-                    android:layout_width="23dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_bookmark_blue_plain"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="16dp"
@@ -300,6 +311,8 @@
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/ic_checklist" />
 
+
+
                 <TextView
                     android:id="@+id/tvReschedule"
                     android:layout_width="wrap_content"
@@ -322,11 +335,12 @@
                     android:layout_below="@id/tvReschedule" />
 
                 <Button
+                    android:layout_marginHorizontal="20dp"
                     android:id="@+id/btnPesan"
                     style="@style/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pesan_tiket"
+                    android:text="@string/lanjutkan_pemesanan"
                     android:layout_below="@id/ivLineBottom2" />
             </RelativeLayout>
 
