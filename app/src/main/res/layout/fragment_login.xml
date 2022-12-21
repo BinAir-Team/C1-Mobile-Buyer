@@ -125,6 +125,18 @@
                 android:text="@string/lupa_password"
                 android:textColor="@color/black" />
 
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btnLoginGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginBottom="50dp"/>
+
             <TextView
                 android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"

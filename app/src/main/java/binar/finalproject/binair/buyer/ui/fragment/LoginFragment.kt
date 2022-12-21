@@ -1,5 +1,7 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.content.Intent
+import android.content.IntentSender
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
@@ -20,6 +22,12 @@ import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.databinding.FragmentLoginBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.CommonStatusCodes
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +36,11 @@ class LoginFragment : Fragment() {
     lateinit var userVM : UserViewModel
     private lateinit var sharedPrefs : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
+    private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
+    private var showOneTapUI = true
+    private lateinit var oneTapClient : SignInClient
+    private lateinit var signInRequest : BeginSignInRequest
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +58,8 @@ class LoginFragment : Fragment() {
 
         setListener()
         validateInput()
+        auth = FirebaseAuth.getInstance()
+        initGoogleAuth()
     }
 
     override fun onResume() {
@@ -59,6 +74,9 @@ class LoginFragment : Fragment() {
             }
             btnSignin.setOnClickListener {
                 signInUser()
+            }
+            btnLoginGoogle.setOnClickListener {
+                loginUsingGoogle()
             }
         }
     }
@@ -146,6 +164,97 @@ class LoginFragment : Fragment() {
                     editor.putBoolean("isValidToken",true)
                     editor.apply()
                     gotoHome()
+                }
+            }
+        }
+    }
+
+    private fun initGoogleAuth(){
+        oneTapClient = Identity.getSignInClient(requireContext())
+        signInRequest = BeginSignInRequest.builder()
+            .setPasswordRequestOptions(
+                BeginSignInRequest.PasswordRequestOptions.builder()
+                .setSupported(true)
+                .build())
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    // Your server's client ID, not your Android client ID.
+                    .setServerClientId(getString(R.string.client_id))
+                    // Only show accounts previously used to sign in.
+                    .setFilterByAuthorizedAccounts(false)
+                    .build())
+            // Automatically sign in when exactly one credential is retrieved.
+            .setAutoSelectEnabled(true)
+            .build()
+    }
+
+    private fun loginUsingGoogle() {
+        oneTapClient.beginSignIn(signInRequest)
+            .addOnSuccessListener(requireActivity()) { result ->
+                try {
+                    startIntentSenderForResult(
+                        result.pendingIntent.intentSender, REQ_ONE_TAP,
+                        null, 0, 0, 0, null)
+                } catch (e: IntentSender.SendIntentException) {
+                    Log.e("LOGIN GOOGLE", "Couldn't start One Tap UI: ${e.localizedMessage}")
+                }
+            }
+            .addOnFailureListener(requireActivity()) { e ->
+                // No saved credentials found. Launch the One Tap sign-up flow, or
+                // do nothing and continue presenting the signed-out UI.
+                Log.d("LOGIN GOOGLE", e.localizedMessage)
+            }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val TAG = "LOGIN GOOGLE"
+        when (requestCode) {
+            REQ_ONE_TAP -> {
+                try {
+                    val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                    val idToken = credential.googleIdToken
+                    val username = credential.displayName
+                    val email = credential.id
+                    val img = credential.profilePictureUri
+                    when {
+                        idToken != null -> {
+                            with(editor) {
+                                putString("token", idToken)
+                                putString("namaLengkap", username)
+                                putString("email", email)
+                                putString("img", img.toString())
+                                putBoolean("isLogin", true)
+                                apply()
+                            }
+                            gotoHome()
+                        }
+                        else -> {
+                            Log.d(TAG, "No ID token or password!")
+                        }
+                    }
+
+                } catch (e: ApiException) {
+                    // ...
+                    when (e.statusCode) {
+                        CommonStatusCodes.CANCELED -> {
+                            Log.d(TAG, "One-tap dialog was closed.")
+                            // Don't re-prompt the user.
+                            showOneTapUI = false
+                        }
+                        CommonStatusCodes.NETWORK_ERROR -> {
+                            Log.d(TAG, "One-tap encountered a network error.")
+                            // Try again or just ignore.
+                        }
+                        else -> {
+                            Log.d(
+                                TAG, "Couldn't get credential from result." +
+                                        " (${e.localizedMessage})"
+                            )
+                        }
+                    }
                 }
             }
         }
