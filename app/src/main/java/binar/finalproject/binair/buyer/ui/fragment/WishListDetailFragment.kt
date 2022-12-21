@@ -2,6 +2,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,16 +16,16 @@ import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.FragmentDetailPromoBinding
 import binar.finalproject.binair.buyer.databinding.FragmentWishListDetailBinding
+import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import com.github.ybq.android.spinkit.style.ThreeBounce
-
+@SuppressLint("SetTextI18n")
 class WishListDetailFragment : Fragment() {
     private lateinit var binding : FragmentWishListDetailBinding
     private lateinit var clickedWishlist : DataWishList
     private lateinit var flightVM : FlightViewModel
     private lateinit var sharedpref : SharedPreferences
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +48,8 @@ class WishListDetailFragment : Fragment() {
     }
 
     private fun setListener(){
+//        binding.toolbar.visibility = View.GONE
+
         binding.btnRemoveWishlist.setOnClickListener(){
             flightVM.deleteWishList(clickedWishlist.id)
             findNavController().navigate(R.id.action_wishListDetailFragment_to_wishlistFragment)

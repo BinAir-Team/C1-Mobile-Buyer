@@ -247,4 +247,15 @@
             android:id="@+id/action_wishListDetailFragment_to_wishlistFragment"
             app:destination="@id/wishlistFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <argument android:name="pop"
+            app:argType="string" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_notificationFragment"
+        app:destination="@id/notificationFragment" />
 </navigation>

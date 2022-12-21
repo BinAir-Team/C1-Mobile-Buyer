@@ -37,4 +37,8 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun getAllWishlist(user : String) : LiveData<List<DataWishList>?> = flightRepo.getAllDataWishlist(user)
     fun insertWishList(wishlist: DataWishList, user : String) = flightRepo.insertWishlist(wishlist)
     fun deleteWishList(id: String) = flightRepo.deleteWishlist(id)
+
+    //Notification
+    fun GetAllNotification(token : String) : LiveData<List<DataNotif>?> = flightRepo.getAllNotif(token)
+    fun UpdateNotification(token : String, id: String?) = flightRepo.updateNotification(token,id)
 }
