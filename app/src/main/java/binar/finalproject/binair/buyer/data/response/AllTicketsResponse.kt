@@ -53,7 +53,7 @@ data class TicketItem(
 	val currStock: Int,
 
 	@field:SerializedName("date_end")
-	val dateEnd: String,
+    var dateEnd: String,
 
 	@field:SerializedName("type")
 	val type: String,

@@ -1,6 +1,5 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -8,15 +7,12 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.Constant
-import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentListTicketBinding
@@ -68,7 +64,7 @@ class ListTicketFragment : Fragment() {
                 binding.tvTicketNotFound.visibility = View.VISIBLE
                 showLoading(false)
             }
-        },2500)
+        },5000)
     }
 
     private fun setDataToRecView(data: List<TicketItem>) {

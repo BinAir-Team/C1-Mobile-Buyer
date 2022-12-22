@@ -2,12 +2,14 @@ package binar.finalproject.binair.buyer.ui.adapter
 
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.ItemTicketBinding
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -19,17 +21,26 @@ class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerVie
         fun bind(item: TicketItem) {
             try{
                 item.dateStart = formatDate(item.dateStart)
+                item.dateEnd = formatDate(item.dateEnd)
             }catch (e : Exception){
                 e.printStackTrace()
             }
+            val dpTime = SimpleDateFormat("HH:mm").parse(item.departureTime)
+            val arTime = SimpleDateFormat("HH:mm").parse(item.arrivalTime)
+            val difference = arTime.time - dpTime.time
+            val days = (difference / (1000 * 60 * 60 * 24)).toInt()
+            val hours = ((difference - 1000 * 60 * 60 * 24 * days) / (1000 * 60 * 60))
+            val min = (difference - 1000 * 60 * 60 * 24 * days - 1000 * 60 * 60 * hours) / (1000 * 60)
             binding.ticket = item
+            binding.tvHours.text = "${hours}j ${min}menit"
             binding.tvHargaDewasa.text = formatRupiah(item.adultPrice)
             binding.tvHargaAnak.text = formatRupiah(item.childPrice)
+            if(item.type == "oneway" || item.type == "Sekali Jalan") {
+                binding.labelTglPulang.visibility = View.GONE
+                binding.tvTglPulang.visibility = View.GONE
+            }
             binding.cvTicket.setOnClickListener {
                 onClick?.invoke(item)
-            }
-            binding.btnWishlist.setOnClickListener {
-                onClickWishlist?.invoke(item)
             }
         }
 

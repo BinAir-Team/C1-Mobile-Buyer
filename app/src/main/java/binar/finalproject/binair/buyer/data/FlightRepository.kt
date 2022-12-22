@@ -257,7 +257,7 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
                 if(response.isSuccessful){
                     val dataResp = response.body()
                     if(dataResp != null){
-                        _userTrans.postValue(dataResp.data as List<TransItem>?)
+                        _userTrans.postValue(dataResp.data.transactions)
                     }else{
                         _userTrans.postValue(null)
                         Log.e("Error : ", "onFailed: ${response.message()}")

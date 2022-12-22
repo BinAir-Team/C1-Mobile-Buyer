@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 data class GetUserTransResponse(
 
 	@field:SerializedName("msg")
-	val msg: String,
+	val msg: String? = null,
 
 	@field:SerializedName("data")
-	val data: List<TransItem>,
+	val data: DataTrans,
 
 	@field:SerializedName("status")
-	val status: Int
+	val status: Int? = null
 )
 
 data class TransItem(
@@ -115,3 +115,18 @@ data class User(
 	@field:SerializedName("lastname")
 	val lastname: String
 ): java.io.Serializable
+
+data class DataTrans(
+
+	@field:SerializedName("totalItems")
+	val totalItems: Int? = null,
+
+	@field:SerializedName("totalPages")
+	val totalPages: Int? = null,
+
+	@field:SerializedName("transactions")
+	val transactions: List<TransItem>? = null,
+
+	@field:SerializedName("currentPage")
+	val currentPage: Int? = null
+)

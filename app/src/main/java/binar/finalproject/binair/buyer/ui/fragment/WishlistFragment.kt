@@ -18,7 +18,6 @@ import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
-import com.github.ybq.android.spinkit.style.ThreeBounce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +40,7 @@ class WishlistFragment : Fragment() {
             showMenu(v, R.menu.filter_popupmenu)
         }
 
-        getAllNote()
+        getAllWishlist()
     }
     private fun showMenu(v: View, @MenuRes menuRes: Int) {
         val popup = PopupMenu(context, v)
@@ -58,7 +57,7 @@ class WishlistFragment : Fragment() {
         popup.show()
     }
 
-    private fun getAllNote(){
+    private fun getAllWishlist(){
         val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
         if (idUser != null) {
             flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner){

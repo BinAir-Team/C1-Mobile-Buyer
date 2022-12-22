@@ -173,7 +173,7 @@ class TicketDetailsFragment : Fragment() {
         if (clickedTicket != null && idUser != null) {
             val condition : Boolean
             condition = flightVM.isWishlisted(clickedTicket.id,idUser)
-            Toast.makeText(context,condition.toString(),Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context,condition.toString(),Toast.LENGTH_SHORT).show()
             showbookmark(condition)
         }
     }

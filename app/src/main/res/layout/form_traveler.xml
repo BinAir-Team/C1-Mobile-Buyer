@@ -131,11 +131,12 @@
                 app:hintTextColor="@color/content_grey"
                 android:layout_marginTop="8dp"
                 android:layout_weight="0.7">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNoIdnt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout

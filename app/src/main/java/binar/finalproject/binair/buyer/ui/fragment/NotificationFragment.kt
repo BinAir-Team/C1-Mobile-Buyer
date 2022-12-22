@@ -4,26 +4,19 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
-import binar.finalproject.binair.buyer.data.makeNotification
-import binar.finalproject.binair.buyer.data.model.SearchItem
-import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
 import binar.finalproject.binair.buyer.data.response.DataNotif
-import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentNotificationBinding
-import binar.finalproject.binair.buyer.ui.adapter.ListTicketAdapter
 import binar.finalproject.binair.buyer.ui.adapter.NotificationAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,6 +35,7 @@ class NotificationFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentNotificationBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
+        binding.toolbar.tvTitlePage.text = "Notifikasi"
         return binding.root
     }
 

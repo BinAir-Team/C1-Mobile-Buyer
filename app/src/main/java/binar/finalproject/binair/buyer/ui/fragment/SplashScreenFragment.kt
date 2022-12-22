@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.initApp
 import binar.finalproject.binair.buyer.databinding.FragmentSplashScreenBinding
+import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 
 @SuppressLint("CustomSplashScreen")
@@ -35,6 +36,11 @@ class SplashScreenFragment : Fragment() {
         val popIn = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.pop_up)
         binding.mainlogo.startAnimation(popIn)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).binding.bottomNavContainer.visibility = View.GONE
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

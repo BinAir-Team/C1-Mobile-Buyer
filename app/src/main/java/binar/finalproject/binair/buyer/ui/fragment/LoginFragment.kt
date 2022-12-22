@@ -219,6 +219,7 @@ class LoginFragment : Fragment() {
                     val username = credential.displayName
                     val email = credential.id
                     val img = credential.profilePictureUri
+                    Log.d("RESULT_GOOGLE", "onActivityResult: $idToken $username $email $img")
                     when {
                         idToken != null -> {
                             with(editor) {

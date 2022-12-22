@@ -33,7 +33,7 @@ class BookingFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private var jmlDewasa : Int = 0
     private var jmlAnak : Int = 0
-    private var allFormValid : Boolean = false
+    private var allFormValid : Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -144,17 +144,42 @@ class BookingFragment : Fragment() {
         binding.etTglLahir.setText(sdf.format(date))
     }
 
-    private fun validateInputForm(binding : FormTravelerBinding, kategori : String){
-//        var isValid = true
+    private fun validateInputForm(bindForm : FormTravelerBinding, kategori : String){
         binding.apply {
-            etTipe.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            etNamaLengkap.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
-                    if(etTipe.text.isNullOrEmpty()){
-                        etTitel.error = "Tipe tidak boleh kosong"
+                    if(etNamaLengkap.text.isNullOrEmpty()){
+                        etNamaLengkap.error = "Nama tidak boleh kosong"
                         allFormValid = false
                     }
                 }
             })
+            etNoTelp.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etNoTelp.text.isNullOrEmpty()){
+                        etNoTelp.error = "Nomor Telepon tidak boleh kosong"
+                        allFormValid = false
+                    }
+                }
+            })
+            etEmail.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if(etEmail.text.isNullOrEmpty()){
+                        etEmail.error = "Email tidak boleh kosong"
+                        allFormValid = false
+                    }
+                }
+            })
+        }
+        bindForm.apply {
+//            etTitel.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+//                if (!hasFocus) {
+//                    if(etTitel.text.isNullOrEmpty()){
+//                        etTitel.error = "Titel tidak boleh kosong"
+//                        allFormValid = false
+//                    }
+//                }
+//            })
             etKewarganegaraan.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
                     if(etKewarganegaraan.text.isNullOrEmpty()){
@@ -172,14 +197,14 @@ class BookingFragment : Fragment() {
                         }
                     }
                 })
-                etNoIdnt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
-                    if (!hasFocus) {
-                        if(etNoIdnt.text.isNullOrEmpty()){
-                            etNoIdnt.error = "No Identitas tidak boleh kosong"
-                            allFormValid = false
-                        }
-                    }
-                })
+//                etNoIdnt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+//                    if (!hasFocus) {
+//                        if(etNoIdnt.text.isNullOrEmpty()){
+//                            etNoIdnt.error = "No Identitas tidak boleh kosong"
+//                            allFormValid = false
+//                        }
+//                    }
+//                })
             }
             etNamaDepanAdlt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
