@@ -106,7 +106,18 @@ class ReviewBookingFragment : Fragment() {
                         tvTotalAnak.text = "x$jmlAnak"
                         tvTotalHargaAnak.text = formatRupiah(totalPriceChild)
                     }
-                    tvTotalHarga.text = formatRupiah(totalPriceAdult + totalPriceChild)
+
+                    if(it.type.equals("oneway")){
+                        tvTotalHarga.text = formatRupiah(totalPriceAdult + totalPriceChild)
+                    }else{
+                        containerDewasaPulang.visibility = View.VISIBLE
+                        containerAnakPulang.visibility = View.VISIBLE
+                        tvTotalDewasaPulang.text = "x$jmlDewasa"
+                        tvTotalAnakPulang.text = "x$jmlAnak"
+                        tvTotalHargaDewasaPulang.text = formatRupiah(totalPriceAdult)
+                        tvTotalHargaAnakPulang.text = formatRupiah(totalPriceChild)
+                        tvTotalHarga.text = formatRupiah((totalPriceAdult + totalPriceChild)*2)
+                    }
                 }
             }
         }
