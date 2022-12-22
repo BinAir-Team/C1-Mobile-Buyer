@@ -26,6 +26,7 @@ import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
 import binar.finalproject.binair.buyer.data.response.TransItem
+import binar.finalproject.binair.buyer.data.response.TravelerItem
 import binar.finalproject.binair.buyer.databinding.FragmentPaymentBinding
 import binar.finalproject.binair.buyer.ui.adapter.PaymentMethodAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
@@ -94,63 +95,44 @@ class PaymentFragment : Fragment() {
     private fun getSetData(){
         try {
             val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
-
             val dataBook = args.data[0]
-            binding.apply {
-                flightVM.getTicketById(dataBook.ticketsId).observe(viewLifecycleOwner){
-                    if (it != null) {
-                        tvFlightDate.text = formatDate(it.data.dateStart)
-                        tvKotaAsal.text = it.data.from
-                        tvKotaTujuan.text = it.data.to
-                        if(it.data.type == "oneway"){
-                            tvKotaAsalKembali.visibility = View.GONE
-                            tvKotaTujuanKembali.visibility = View.GONE
-                        }
-                    }
-                }
-                tvIdBooking.text = dataBook.id
-                var passenger = ""
-                var passengerType = ""
-                for (i in dataBook.traveler){
-                    passenger += "${i.name}\n"
-                    passengerType += "${i.type}\n"
-                }
-                tvName.text = passenger
-                tvType.text = passengerType
-                tvTotalPrice.text = formatRupiah(dataBook.amounts)
-            }
+            setDataToView(dataBook.ticketsId,dataBook.id,dataBook.traveler,dataBook.amounts)
         }catch (e : Exception){
             e.printStackTrace()
             val dataTrans = arguments?.getSerializable("itemTrans") as TransItem
-            binding.apply {
-                flightVM.getTicketById(dataTrans.ticketsId).observe(viewLifecycleOwner){
-                    if (it != null) {
-                        tvFlightDate.text = formatDate(it.data.dateStart)
-                        tvKotaAsal.text = it.data.from
-                        tvKotaTujuan.text = it.data.to
-                        if(it.data.type == "oneway"){
-                            tvKotaAsalKembali.visibility = View.GONE
-                            tvKotaTujuanKembali.visibility = View.GONE
-                        }
-                    }
-                }
-                tvIdBooking.text = dataTrans.id
-                var passenger = ""
-                var passengerType = ""
-                for (i in dataTrans.traveler){
-                    var formatedType = if(i.type == "adult") "Dewasa" else{"Anak"}
-                    passenger += "${i.name}\n"
-                    passengerType += "${formatedType}\n"
-                }
-                tvName.text = passenger
-                tvType.text = passengerType
-                tvTotalPrice.text = formatRupiah(dataTrans.amounts)
-            }
+            setDataToView(dataTrans.ticketsId,dataTrans.id,dataTrans.traveler,dataTrans.amounts)
         }
-
     }
 
-    fun formatDate(date : String) : String {
+    private fun setDataToView(idTicket : String, idBooking : String, dataTrav : List<TravelerItem>, amount : Int){
+        binding.apply {
+            flightVM.getTicketById(idTicket).observe(viewLifecycleOwner) {
+                if (it != null) {
+                    tvFlightDateGo.text = formatDate(it.data.dateStart)
+                    tvKotaAsal.text = it.data.from
+                    tvKotaTujuan.text = it.data.to
+                    if (it.data.type == "oneway") {
+                        tvFlightDateBack.visibility = View.GONE
+                        tvKotaAsalKembali.visibility = View.GONE
+                        tvKotaTujuanKembali.visibility = View.GONE
+                    }
+                }
+            }
+            tvIdBooking.text = idBooking
+            var passenger = ""
+            var passengerType = ""
+            for (i in dataTrav) {
+                val formatedType = if (i.type.equals("adult")) "Dewasa" else "Anak"
+                passenger += "${i.name}\n"
+                passengerType += "${formatedType}\n"
+            }
+            tvName.text = passenger
+            tvType.text = passengerType
+            tvTotalPrice.text = formatRupiah(amount)
+        }
+    }
+
+    private fun formatDate(date : String) : String {
         try {
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val localDate = LocalDate.parse(date, formatter)

@@ -3,8 +3,10 @@ package binar.finalproject.binair.buyer.ui.fragment
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
@@ -14,9 +16,12 @@ import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class EticketFragment : Fragment() {
     private lateinit var binding : FragmentEticketBinding
     private lateinit var flightVM : FlightViewModel
@@ -41,31 +46,34 @@ class EticketFragment : Fragment() {
     private fun showData(){
         try {
             val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
-            flightVM.getTicketById(args.data[0].ticketsId).observe(viewLifecycleOwner){
-                if(it != null){
-                    val alphabets = ('A'..'Z')
-                    binding.ticket = it.data
-                    binding.tvFlightNum.text = "IN${Random.nextInt(100, 999)}"
-                    binding.tvKursi.text = Random.nextInt(1,20).toString() + alphabets.random()
-                    binding.tvGate.text = Random.nextInt(1,20).toString()
-                }
-            }
+            setData(args.data[0].ticketsId)
             createQR(args.data[0].id)
         }catch (e : Exception){
             e.printStackTrace()
             val argsTrans = arguments?.getSerializable("itemTrans") as TransItem
-            flightVM.getTicketById(argsTrans.ticketsId).observe(viewLifecycleOwner){
-                if(it != null){
-                    val alphabets = ('A'..'Z')
-                    binding.ticket = it.data
-                    binding.tvFlightNum.text = "IN${Random.nextInt(100, 999)}"
-                    binding.tvKursi.text = Random.nextInt(1,20).toString() + alphabets.random()
-                    binding.tvGate.text = Random.nextInt(1,20).toString()
-                }
-            }
+            setData(argsTrans.ticketsId)
             createQR(argsTrans.id)
         }
 
+    }
+
+    private fun setData(idTicket : String){
+        flightVM.getTicketById(idTicket).observe(viewLifecycleOwner){
+            if(it != null){
+                val alphabets = ('A'..'Z')
+                binding.ticket = it.data
+                binding.tvTanggal.text = formatDate(it.data.dateStart)
+                if(it.data.dateEnd != null){
+                    binding.tvTglPulang.text = formatDate(it.data.dateEnd?:"")
+                }else{
+                    binding.labelTglPulang.visibility = View.GONE
+                    binding.tvTglPulang.visibility = View.GONE
+                }
+                binding.tvFlightNum.text = "IN${Random.nextInt(100, 999)}"
+                binding.tvKursi.text = Random.nextInt(1,20).toString() + alphabets.random()
+                binding.tvGate.text = Random.nextInt(1,20).toString()
+            }
+        }
     }
 
     private fun createQR(idTrans : String){
@@ -81,5 +89,16 @@ class EticketFragment : Fragment() {
             }
         }
         binding.ivQr.setImageBitmap(bitmp)
+    }
+
+    private fun formatDate(date : String) : String {
+        try {
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val localDate = LocalDate.parse(date, formatter)
+            val formatter2 = DateTimeFormatter.ofPattern("dd MMM yyyy")
+            return localDate.format(formatter2)
+        }catch (e : Exception){
+            return date
+        }
     }
 }

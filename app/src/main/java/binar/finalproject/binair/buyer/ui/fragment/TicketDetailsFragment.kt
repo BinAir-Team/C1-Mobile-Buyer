@@ -66,6 +66,13 @@ class TicketDetailsFragment : Fragment() {
 
 
     private fun setDataToView() {
+        if(clickedTicket.dateEnd == null){
+            clickedTicket.dateEnd = ""
+            binding.apply {
+                labelTglPulang.visibility = View.GONE
+                tvTglPulang.visibility = View.GONE
+            }
+        }
         binding.ticket = clickedTicket
         binding.tvHargaDewasa.text = formatRupiah(clickedTicket.adultPrice)
         binding.tvHargaAnak.text = formatRupiah(clickedTicket.childPrice)

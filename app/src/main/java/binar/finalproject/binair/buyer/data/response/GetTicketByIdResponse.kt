@@ -35,7 +35,7 @@ data class DataTicketId(
 	val currStock: Int,
 
 	@field:SerializedName("date_end")
-	val dateEnd: Any,
+	var dateEnd: String? = null,
 
 	@field:SerializedName("type")
 	val type: String,

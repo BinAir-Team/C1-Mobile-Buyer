@@ -171,10 +171,10 @@
                             tools:ignore="SmallSp" />
 
                         <TextView
-                            android:id="@+id/labelTanggal"
+                            android:id="@+id/labelTglBrkt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/tanggal"
+                            android:text="@string/label_tanggal_berangkat"
                             android:layout_marginTop="4dp"
                             android:layout_marginStart="16dp"
                             android:layout_below="@id/tvKotaTujuan" />
@@ -184,33 +184,33 @@
                             android:drawablePadding="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/labelTanggal"
+                            android:layout_below="@id/labelTglBrkt"
                             android:layout_marginStart="16dp"
                             android:text="@{ticket.dateStart}"
                             android:textStyle="bold"
                             app:drawableStartCompat="@drawable/ic_schedule_blue" />
 
                         <TextView
-                            android:id="@+id/labelWaktu"
+                            android:id="@+id/labelTglPulang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/waktu"
+                            android:text="@string/label_tanggal_pulang"
                             android:layout_marginTop="4dp"
-                            android:layout_marginEnd="84dp"
+                            android:layout_marginEnd="16dp"
                             android:layout_alignParentEnd="true"
                             android:layout_below="@id/tvKotaTujuan" />
 
                         <TextView
-                            android:id="@+id/tvBagasi"
+                            android:id="@+id/tvTglPulang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/labelWaktu"
+                            android:layout_below="@id/labelTglPulang"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="20dp"
+                            android:layout_marginEnd="16dp"
                             android:drawablePadding="4dp"
-                            android:text="@{ticket.departureTime}"
+                            android:text=""
                             android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_time" />
+                            app:drawableStartCompat="@drawable/ic_schedule_blue" />
 
                         <ImageView
                             android:id="@+id/ivLineBottom"
@@ -219,7 +219,7 @@
                             android:layout_height="2dp"
                             android:layout_marginTop="12dp"
                             android:layout_marginBottom="12dp"
-                            android:layout_below="@id/tvBagasi" />
+                            android:layout_below="@id/tvTglPulang" />
 
                         <GridLayout
                             android:id="@+id/gridContainer"

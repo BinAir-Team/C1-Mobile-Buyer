@@ -29,7 +29,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="12dp">
                 <ImageView
                     android:visibility="gone"
                     android:id="@+id/btnRemoveWishlist"
@@ -42,10 +43,10 @@
                     android:layout_marginRight="20dp"
                     />
                 <ImageView
-                    android:visibility="gone"
                     android:id="@+id/btnWishlist"
                     android:layout_width="23dp"
                     android:layout_height="25dp"
+                    android:visibility="gone"
                     android:src="@drawable/ic_bookmark_blue_plain"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
@@ -158,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_economy_class"
-                        android:layout_below="@id/labelTanggal"
+                        android:layout_below="@id/labelTglBrkt"
                         android:textStyle="bold"/>
                 </LinearLayout>
 
@@ -185,10 +186,11 @@
                     android:textSize="10dp"
                     android:layout_below="@id/iconLogo"/>
                 <TextView
-                    android:id="@+id/labelTanggal"
+                    android:id="@+id/labelTglBrkt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tanggal"
+                    android:text="@string/label_tanggal_berangkat"
+                    android:textStyle="bold"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
                     android:layout_below="@id/tvType"/>
@@ -198,33 +200,35 @@
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/labelTanggal"
+                    android:layout_below="@id/labelTglBrkt"
                     android:layout_marginStart="16dp"
-                    android:text="@{ticket.dateStart}"
+                    android:text="@{ticket.dateStart, default = `21 Des 2022`}"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/ic_schedule_blue" />
 
                 <TextView
-                    android:id="@+id/labelBagasi"
+                    android:id="@+id/labelTglPulang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bagasi"
+                    android:text="@string/label_tanggal_pulang"
+                    android:textStyle="bold"
                     android:layout_marginTop="4dp"
-                    android:layout_marginEnd="84dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_alignParentEnd="true"
                     android:layout_below="@id/tvType"/>
 
                 <TextView
-                    android:id="@+id/tvBagasi"
+                    android:id="@+id/tvTglPulang"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/labelBagasi"
-                    android:layout_marginEnd="20dp"
+                    android:layout_below="@id/labelTglPulang"
+                    android:layout_marginEnd="16dp"
                     android:layout_alignParentEnd="true"
-                    android:text="@string/gratis_20_kg"
+                    android:text="20 Des 2022"
                     android:textStyle="bold"
-                    app:drawableStartCompat="@drawable/ic_bagasi" />
+                    android:textAlignment="textEnd"
+                    app:drawableEndCompat="@drawable/ic_schedule_blue" />
 
                 <TextView
                     android:id="@+id/labelHargaDewasa"
@@ -242,19 +246,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelHargaDewasa"
                     android:layout_marginStart="16dp"
-                    android:text='@{Integer.toString(ticket.adultPrice),default = "0 Rebu"}'
+                    android:text=''
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/ic_money" />
 
                 <TextView
-                    android:layout_toRightOf="@id/labelHargaDewasa"
-                    android:layout_marginStart="76dp"
                     android:id="@+id/labelHargaAnak"
+                    android:layout_marginStart="76dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/harga_anak"
                     android:layout_marginTop="4dp"
-                    android:layout_marginEnd="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_below="@id/tvJenisKelas"/>
 
                 <TextView
@@ -262,11 +266,11 @@
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="76dp"
-                    android:layout_below="@id/labelHargaAnak"
-                    android:layout_toEndOf="@id/labelHargaDewasa"
-                    android:text='@{Integer.toString(ticket.childPrice),default = "0 Rebu"}'
+                    android:text=''
                     android:textStyle="bold"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/labelHargaAnak"
                     app:drawableStartCompat="@drawable/ic_money" />
 
                 <ImageView
@@ -289,12 +293,24 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tvRefund"
+                    android:id="@+id/tvBagasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/labelKeuntungan"
+                    android:drawablePadding="8dp"
+                    android:text="@string/gratis_bagasi_20_kg"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_checklist" />
+
+                <TextView
+                    android:id="@+id/tvRefund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/tvBagasi"
                     android:drawablePadding="8dp"
                     android:text="@string/refund_sebagian"
                     android:textSize="12sp"
@@ -327,7 +343,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/pesan_tiket"
-                    android:layout_below="@id/ivLineBottom2" />
+                    android:layout_below="@id/ivLineBottom2"
+                    android:layout_margin="16dp"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
