@@ -83,12 +83,14 @@ class ProfileFragment : Fragment() {
                 }else{
                     showLoadingProfile(false)
                     binding.tvName.text = "Login untuk melanjutkan"
+                    binding.btnLogout.visibility = View.GONE
                     binding.userprofile.setImageResource(R.drawable.ic_profile)
                 }
             }
         }else{
             showLoadingProfile(false)
             binding.tvName.text = "Login untuk melanjutkan"
+            binding.btnLogout.visibility = View.GONE
             binding.userprofile.setImageResource(R.drawable.ic_profile)
         }
     }

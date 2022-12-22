@@ -121,21 +121,15 @@ class EditProfileFragment : Fragment() {
                 "Perempuan".toRequestBody("text/plain".toMediaType())
             }
             val phone = binding.etPhone.text.toString().toRequestBody("text/plain".toMediaType())
-            val plainPass = binding.etPass.text.toString()
-            val rePass = binding.etKonfirmasiPass.text.toString()
 
-            if(isEqualPassRepassword(plainPass,rePass) && validateInput()){
-                val pass = plainPass.toRequestBody("text/plain".toMediaType())
-                userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,image, pass).observe(viewLifecycleOwner) {
-                    if(it != null){
-                        Toast.makeText(requireContext(), "Update Success", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(requireContext(), "Update Failed", Toast.LENGTH_SHORT).show()
-                    }
+            userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,image).observe(viewLifecycleOwner) {
+                if(it != null){
+                    Toast.makeText(requireContext(), "Update Success", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(requireContext(), "Update Failed", Toast.LENGTH_SHORT).show()
                 }
-            }else{
-                Toast.makeText(requireContext(), "Konfirmasi Password tidak sama", Toast.LENGTH_SHORT).show()
             }
+
         }else{
             Toast.makeText(requireContext(), "Token is null", Toast.LENGTH_SHORT).show()
         }
@@ -217,14 +211,6 @@ class EditProfileFragment : Fragment() {
             }
             if (etPhone.text.toString().isEmpty()) {
                 etPhone.error = "Phone tidak boleh kosong"
-                isValid = false
-            }
-            if (etPass.text.toString().isEmpty()) {
-                etPass.error = "Password tidak boleh kosong"
-                isValid = false
-            }
-            if (etKonfirmasiPass.text.toString().isEmpty()) {
-                etKonfirmasiPass.error = "Konfirmasi Password tidak boleh kosong"
                 isValid = false
             }
         }

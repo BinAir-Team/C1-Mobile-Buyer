@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.remote.APIService
-import binar.finalproject.binair.buyer.data.response.GetUserResponse
-import binar.finalproject.binair.buyer.data.response.LoginResponse
-import binar.finalproject.binair.buyer.data.response.RegisterUserResponse
-import binar.finalproject.binair.buyer.data.response.UpdateUserResponse
+import binar.finalproject.binair.buyer.data.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -97,8 +94,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
         return currentUser
     }
 
-    fun updateUser(token : String,firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, profileImage : MultipartBody.Part, password : RequestBody) : LiveData<UpdateUserResponse?> {
-        apiService.updateUser(token,firstName,lastName,gender,phone,profileImage, password).enqueue(object : Callback<UpdateUserResponse>{
+    fun updateUser(token : String,firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, profileImage : MultipartBody.Part) : LiveData<UpdateUserResponse?> {
+        apiService.updateUser(token,firstName,lastName,gender,phone,profileImage).enqueue(object : Callback<UpdateUserResponse>{
             override fun onResponse(
                 call: Call<UpdateUserResponse>,
                 response: Response<UpdateUserResponse>
@@ -118,5 +115,52 @@ class UserRepository @Inject constructor(var apiService: APIService) {
             }
         })
         return updateUser
+    }
+
+    fun updateUserWithoutImage(token : String,firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody) : LiveData<UpdateUserResponse?>{
+        apiService.updateUserWithoutImage(token, firstName, lastName, gender, phone).enqueue(object : Callback<UpdateUserResponse>{
+            override fun onResponse(
+                call: Call<UpdateUserResponse>,
+                response: Response<UpdateUserResponse>
+            ) {
+                if (response.isSuccessful){
+                    val dataResponse = response.body()
+                    _updateUser.postValue(dataResponse)
+                }else{
+                    _updateUser.postValue(null)
+                    Log.e("Error not successful : ", response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
+                _updateUser.postValue(null)
+                Log.d("Error onFailure : ", t.message!!)
+            }
+        })
+        return updateUser
+    }
+
+    fun updatePassword(token : String, oldPass : String, newPass : String, confirmPass : String) : LiveData<UpdateUserPasswordResponse?> {
+        val updatePass = MutableLiveData<UpdateUserPasswordResponse?>()
+        apiService.updatePassword(token,oldPass,newPass,confirmPass).enqueue(object : Callback<UpdateUserPasswordResponse>{
+            override fun onResponse(
+                call: Call<UpdateUserPasswordResponse>,
+                response: Response<UpdateUserPasswordResponse>
+            ) {
+                if (response.isSuccessful){
+                    val dataResponse = response.body()
+                    updatePass.postValue(dataResponse)
+                }else{
+                    updatePass.postValue(null)
+                    Log.e("Error not successful : ", response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateUserPasswordResponse>, t: Throwable) {
+                updatePass.postValue(null)
+                Log.d("Error onFailure : ", t.message!!)
+            }
+        })
+        return updatePass
     }
 }

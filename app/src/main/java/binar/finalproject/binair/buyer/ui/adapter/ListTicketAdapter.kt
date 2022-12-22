@@ -21,7 +21,7 @@ class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerVie
         fun bind(item: TicketItem) {
             try{
                 item.dateStart = formatDate(item.dateStart)
-                item.dateEnd = formatDate(item.dateEnd)
+                item.dateEnd = item.dateEnd?.let { formatDate(it) }
             }catch (e : Exception){
                 e.printStackTrace()
             }

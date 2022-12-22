@@ -1,11 +1,8 @@
 package binar.finalproject.binair.buyer.data.remote
 
-import androidx.annotation.RawRes
-import androidx.room.RawQuery
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.*
-import kotlinx.parcelize.RawValue
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -24,7 +21,14 @@ interface APIService {
 
     @Multipart
     @PUT("user")
-    fun updateUser(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody, @Part profileImage : MultipartBody.Part, @Part("password") pass : RequestBody) : Call<UpdateUserResponse>
+    fun updateUser(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody, @Part profileImage : MultipartBody.Part) : Call<UpdateUserResponse>
+
+    @PUT("user")
+    fun updateUserWithoutImage(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody) : Call<UpdateUserResponse>
+
+    @PUT("user/password")
+    @FormUrlEncoded
+    fun updatePassword(@Header("Authorization") token : String, @Field("oldPassword") oldPass : String, @Field("newPassword") newPass : String, @Field("confirmPassword") confirmPass : String) : Call<UpdateUserPasswordResponse>
 
     @GET("search")
     fun getAllCity() : Call<CityAirportResponse>
