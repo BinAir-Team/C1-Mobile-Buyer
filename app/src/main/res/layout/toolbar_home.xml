@@ -3,29 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="?attr/actionBarSize">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/home_toolbar_menu"
-            android:backgroundTint="@color/white"
-            android:elevation="16dp">
-            <ImageView
-                android:id="@+id/ivLogo"
-                android:src="@drawable/logo_blue"
-                android:scaleType="fitStart"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:paddingTop="12dp" />
-        </com.google.android.material.appbar.MaterialToolbar>
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:src="@drawable/logo_blue"
+            android:scaleType="fitStart"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:padding="12dp" />
+        <ImageButton
+            android:id="@+id/menuNotif"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notification"
+            android:backgroundTint="@color/transparent"/>
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214017739948",
+    "project_id": "binairbuyer",
+    "storage_bucket": "binairbuyer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214017739948:android:ffcd3791a95a476a676309",
+        "android_client_info": {
+          "package_name": "binar.finalproject.binair.buyer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214017739948-b18qptodbi5i0sth8fgukauks2raoi61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKa0ZBtexJ82EQDCbyWlY9VaAlvrVu3a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214017739948-b18qptodbi5i0sth8fgukauks2raoi61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

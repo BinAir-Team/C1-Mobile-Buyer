@@ -20,15 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="gone">
+        android:visibility="visible">
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:backgroundTint="#F3F6F9"
-            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-            app:fabAlignmentMode="center"
-            app:fabCradleRoundedCornerRadius="10dp">
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored">
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNav"
                 android:layout_width="match_parent"
@@ -37,19 +35,10 @@
                 android:outlineSpotShadowColor="@android:color/transparent"
                 app:itemTextColor="@color/bottom_nav_color"
                 app:itemIconTint="@color/bottom_nav_color"
-                app:itemRippleColor="@color/main_blue"
-                app:menu="@menu/bottom_nav_menu"/>
+                app:itemRippleColor="@android:color/transparent"
+                app:menu="@menu/bottom_nav_menu"
+                style="@style/bottom_nav"/>
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/btnTicket"-->
-<!--            android:src="@drawable/ic_ticket"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:backgroundTint="@color/main_blue"-->
-<!--            android:elevation="24dp"-->
-<!--            app:layout_anchor="@id/bottomNav"-->
-<!--            style="@style/Widget.MaterialComponents.FloatingActionButton"-->
-<!--            android:contentDescription="@string/buy_ticket" />-->
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

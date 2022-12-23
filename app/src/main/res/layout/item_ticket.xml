@@ -15,46 +15,68 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        app:contentPadding="12dp"
+        tools:ignore="contentDescription">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="6dp">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/labelMaskapai"
+            <TextView
+                android:id="@+id/labelTglBerangkat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/logo_pesawat" />
-
+                android:text="Berangkat"
+                android:textSize="12sp"/>
             <TextView
-                android:id="@+id/tvKodeMaskapai"
+                android:id="@+id/tvTglBerangkat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="25dp"
-                android:layout_toEndOf="@+id/labelMaskapai"
-                android:text="PK 625" />
+                android:layout_marginStart="18dp"
+                android:text="@{ticket.dateStart, default=`31 Des 22`}"
+                android:textSize="11sp"
+                android:layout_below="@id/labelTglBerangkat"/>
 
             <TextView
-                android:id="@+id/tvTanggal"
+                android:id="@+id/labelTglPulang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{ticket.date}" />
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:text="Pulang"
+                android:textSize="12sp"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/tvTglPulang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:text="@{ticket.dateEnd, default=`31 Des 22`}"
+                android:textSize="11sp"
+                android:layout_below="@id/labelTglBerangkat"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/tvHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/iconLogo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="-15dp"
+                android:text="1j 20menit"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvJamBerangkat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelMaskapai"
+                android:layout_below="@+id/tvTglBerangkat"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@{ticket.departureTime}"
                 android:textColor="@color/black" />
 
@@ -64,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvJamBerangkat"
                 android:layout_marginStart="30dp"
+                android:layout_marginBottom="16dp"
                 android:text="@{ticket.from}"
                 android:textSize="8sp"
                 tools:ignore="SmallSp" />
@@ -72,25 +95,22 @@
                 android:id="@+id/containerLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelMaskapai"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="30dp"
                 android:src="@drawable/garisestimasi" />
 
             <ImageView
                 android:id="@+id/iconLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/labelMaskapai"
+                android:layout_below="@+id/tvTglBerangkat"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="18dp"
                 android:src="@drawable/logoestimasi" />
 
             <TextView
                 android:id="@+id/tvJamDatang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_above="@id/tvKotaTujuan"
                 android:layout_alignParentEnd="true"
@@ -102,6 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:layout_below="@+id/tvJamBerangkat"
                 android:layout_alignParentEnd="true"
                 android:text="@{ticket.to}"
@@ -117,44 +138,24 @@
                 android:layout_marginTop="10dp"
                 android:src="@drawable/garispembatas" />
 
-<!--            <ImageView-->
-<!--                android:id="@+id/imgKelas"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/garis"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:src="@drawable/chair" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvClass"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/garis"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:layout_marginBottom="20dp"-->
-<!--                android:layout_toEndOf="@+id/imgKelas"-->
-<!--                android:text="Ekonomi Class"-->
-<!--                android:textSize="12sp" />-->
-
             <TextView
                 android:id="@+id/labelHargaDewasa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/garis"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginStart="18dp"
-                android:text="Harga Dewasa"
+                android:text="@string/harga_dewasa"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tvHarga"
+                android:id="@+id/tvHargaDewasa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelHargaDewasa"
                 android:layout_marginStart="18dp"
-                android:text="@{Integer.toString(ticket.adultPrice)}" />
+                android:text=""
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/labelHargaAnak"
@@ -162,9 +163,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/garis"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="18dp"
-                android:text="Harga Anak"
+                android:text="@string/harga_anak"
                 android:textSize="12sp" />
 
             <TextView
@@ -174,7 +175,8 @@
                 android:layout_below="@+id/labelHargaAnak"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="18dp"
-                android:text="@{Integer.toString(ticket.childPrice)}" />
+                android:text=""
+                android:textStyle="bold"/>
 
             <!--        <Button-->
             <!--            android:id="@+id/btnPesan"-->

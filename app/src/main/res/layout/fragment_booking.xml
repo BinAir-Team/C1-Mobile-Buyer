@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:text="Masuk Sebagai "
                         android:textSize="18sp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:layout_toEndOf="@id/civProfile"/>
                     <TextView
                         android:id="@+id/tvUserName"
@@ -49,7 +49,9 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:layout_toEndOf="@id/tvLoggedInAs"/>
+                        android:layout_marginStart="16dp"
+                        android:layout_below="@id/tvLoggedInAs"
+                        android:layout_toEndOf="@id/civProfile"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -74,7 +76,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/containerNama"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:hint="Nama Lengkap"
                         android:textColorHint="@color/black"
                         app:boxBackgroundColor="@color/white"
@@ -86,18 +88,19 @@
                         app:hintTextColor="@color/content_grey"
                         android:layout_marginTop="8dp"
                         android:layout_below="@id/labelDetailKontak">
+
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etNamaLengkap"
-                            android:drawableStart="@drawable/ic_contact"
-                            android:drawablePadding="8dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"/>
+                            android:drawableStart="@drawable/ic_contact"
+                            android:drawablePadding="4dp"
+                            android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/containerNoTelp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:hint="Nomor Telepon"
                         android:textColorHint="@color/black"
                         app:boxBackgroundColor="@color/white"
@@ -112,7 +115,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etNoTelp"
                             android:drawableStart="@drawable/ic_phone_book"
-                            android:drawablePadding="8dp"
+                            android:drawablePadding="4dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="phone"/>
@@ -120,7 +123,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/containerEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:hint="Email"
                         android:textColorHint="@color/black"
                         app:boxBackgroundColor="@color/white"
@@ -135,7 +138,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etEmail"
                             android:drawableStart="@drawable/ic_email"
-                            android:drawablePadding="8dp"
+                            android:drawablePadding="4dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"/>
@@ -143,21 +146,6 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-<!--            <include android:id="@+id/formAdult1" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formAdult2" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formAdult3" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formAdult4" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formAdult5" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formAdult6" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formAdult7" layout="@layout/form_traveler" android:visibility="gone"/>-->
-
-<!--            <include android:id="@+id/formChild1" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formChild2" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formChild3" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formChild4" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formChild5" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formChild6" layout="@layout/form_traveler" android:visibility="gone"/>-->
-<!--            <include android:id="@+id/formChild7" layout="@layout/form_traveler" android:visibility="gone"/>-->
             <LinearLayout
                 android:id="@+id/formTravelerContainer"
                 android:layout_width="match_parent"

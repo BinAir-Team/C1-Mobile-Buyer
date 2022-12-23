@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -9,7 +10,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="10dp"
+        android:id="@+id/cvWishlist"
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -36,18 +38,18 @@
                     android:id="@+id/FlightNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text='@{dataWishlist.flightNumber, default="PK 788"}'
-                    android:layout_toRightOf="@id/logoMaskapai"
+                    android:text='IN123'
+                    android:layout_toEndOf="@id/logoMaskapai"
                     android:layout_marginTop="4dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     tools:ignore="ExtraText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.timeDepart, default="10 hr 40min"}'
+                    android:text='@{dataWishlist.departureTime, default="10 hr 40min"}'
                     android:id="@+id/FlightHour"
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/poppins_medium"
@@ -56,29 +58,111 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_dari"/>
+                    <TextView
+                        android:id="@+id/Asal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{dataWishlist.from, default="Shanghai"}'
+                        android:fontFamily="@font/inter_medium" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:gravity="right"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_tujuan"/>
+                    <TextView
+                        android:id="@+id/Tujuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{dataWishlist.to, default="Jember"}'
+                        android:fontFamily="@font/inter_medium" />
+                </LinearLayout>
+                <!--                <TextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text='@{Integer.toString(dataWishlist.adultPrice)}'-->
+                <!--                    android:layout_alignParentEnd="true"-->
+                <!--                    android:fontFamily="@font/inter_light"-->
+                <!--                    android:textSize="10dp"-->
+                <!--                    android:textColor="@color/main_blue"-->
+                <!--                    android:layout_marginTop="4dp" />-->
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="@drawable/line"/>
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/Tujuan"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.destination, default="Shanghai Disneyland ticket"}'
-                    android:fontFamily="@font/inter_medium"
-                    android:layout_marginRight="34dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/labelTanggal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_tanggal_berangkat"
+                        android:layout_marginTop="4dp"
+                        android:layout_below="@id/tvJenisKelas"/>
+                    <TextView
+                        android:id="@+id/tvHargaDewasa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/labelHargaDewasa"
+                        android:text='@{dataWishlist.dateStart,default = "0 jan"}' />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.progress, default=75}'
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/inter_light"
-                    android:textSize="10dp"
-                    android:textColor="@color/main_blue"
-                    android:layout_marginTop="4dp" />
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/labelJam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/labelJam"
+                        android:layout_marginTop="4dp"
+                        android:layout_below="@id/tvJenisKelas"/>
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tvHargaAnak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/labelHargaAnak"
+                        android:layout_toEndOf="@id/labelHargaDewasa"
+                        android:text='@{dataWishlist.departureTime,default = "08:20"}'
+                        android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/ic_money" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

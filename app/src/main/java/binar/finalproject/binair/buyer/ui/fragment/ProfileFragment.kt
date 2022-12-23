@@ -2,6 +2,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,62 +10,75 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.Constant.dataUser
-import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
-import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
+class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : WishListViewModel by viewModels()
-    private lateinit var adapter : WishListAdapter
-    lateinit var userVM : UserViewModel
+    private lateinit var userVM : UserViewModel
+    private lateinit var flightVM : FlightViewModel
     private lateinit var prefs : SharedPreferences
+    private var token : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
+        flightVM = ViewModelProvider(this).get(FlightViewModel::class.java)
         prefs = requireActivity().getSharedPreferences(dataUser, 0)
+        token = prefs.getString("token", null)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = WishListAdapter(this)
         setListener()
         getDataUser()
-        getAllNote()
+        getWishlist()
     }
 
     private fun setListener(){
-        binding.AddButton.setOnClickListener() {
-            addnote()
-        }
         binding.apply {
             tvName.setOnClickListener {
-                gotoEditProfile()
+                if(token != null){
+                    gotoEditProfile()
+                }else{
+                    Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }
             }
             userprofile.setOnClickListener {
                 gotoEditProfile()
             }
             btnLogout.setOnClickListener {
                 logout()
+            }
+            toolbar.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.change_pass -> {
+                        if(token != null){
+                            gotoChangePassword()
+                        }else{
+                            Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                        }
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }
@@ -73,10 +87,13 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
         findNavController().navigate(R.id.action_profileFragment2_to_editProfileFragment)
     }
 
+    private fun gotoChangePassword() {
+        findNavController().navigate(R.id.action_profileFragment2_to_changePasswordFragment)
+    }
+
     @SuppressLint("SetTextI18n")
     private fun getDataUser(){
         showLoadingProfile(true)
-        val token = prefs.getString("token", null)
         if(token != null){
             userVM.getUser("Bearer $token").observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -85,15 +102,22 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
                     Glide.with(requireContext())
                         .load(it.data.profileImage)
                         .into(binding.userprofile)
+                }else{
+                    showLoadingProfile(false)
+                    binding.tvName.text = "Login untuk melanjutkan"
+                    binding.btnLogout.visibility = View.GONE
+                    binding.userprofile.setImageResource(R.drawable.ic_profile)
                 }
             }
         }else{
+            showLoadingProfile(false)
             binding.tvName.text = "Login untuk melanjutkan"
+            binding.btnLogout.visibility = View.GONE
+            binding.userprofile.setImageResource(R.drawable.ic_profile)
         }
     }
 
     private fun logout(){
-        var token = prefs.getString("token", null)
         if(token != null){
             val alert = AlertDialog.Builder(requireContext())
             alert.apply {
@@ -118,43 +142,18 @@ class ProfileFragment : Fragment(), WishListAdapter.NotesInterface {
         }
     }
 
-    fun addnote(){
-        binding.apply {
-            val flightNumber = binding.FlightNumber.text.toString()
-            val timeDepart = binding.JamTerbang.text.toString()
-            val destination = binding.Tujuan.text.toString()
-            val progress = binding.ProgressBar.text.toString()
-
-            if (flightNumber!!.isEmpty()  || timeDepart!!.isEmpty() || destination!!.isEmpty() || progress.toString()!!.isEmpty()){
-                Toast.makeText(context, "Anda belum mengisi note", Toast.LENGTH_SHORT).show()
-            }else{
-                viewModel.addWishlist(DataWishList(0,flightNumber,timeDepart,destination,progress))
-                Toast.makeText(context, "Note tersimpan", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    fun getAllNote(){
-        binding.apply {
-            viewModel.getDataWishlist().observe(viewLifecycleOwner){
-                adapter.setData(it)
-                if (it.isEmpty()){
-                    tvAlertKosong.visibility = View.VISIBLE
+    fun getWishlist(){
+        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        if (idUser != null) {
+            flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner) {
+                if(it != null){
+                    val adapter = WishListAdapter()
+                    adapter.setData(it)
+                    binding.rvWishlist.adapter = adapter
+                    binding.rvWishlist.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
                 }
-                else
-                    tvAlertKosong.visibility = View.GONE
             }
-            RvWishlist.adapter = adapter
-            RvWishlist.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
-    }
-
-    override fun editNote(notes: DataWishList) {
-        TODO("Not yet implemented")
-    }
-
-    override fun deleteNote(notes: DataWishList) {
-        TODO("Not yet implemented")
     }
 
     private fun showLoadingProfile(state : Boolean) {

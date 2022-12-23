@@ -1,33 +1,37 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.annotation.MenuRes
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.model.DataWishList
-import binar.finalproject.binair.buyer.viewmodel.WishListViewModel
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
 import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class WishlistFragment : Fragment(), WishListAdapter.NotesInterface {
-    private var _binding: FragmentWishlistBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel : WishListViewModel by viewModels()
-    private lateinit var adapter : WishListAdapter
+@AndroidEntryPoint
+class WishlistFragment : Fragment() {
+    private lateinit var binding: FragmentWishlistBinding
+    private lateinit var flightVM : FlightViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentWishlistBinding.inflate(inflater, container, false)
+        binding = FragmentWishlistBinding.inflate(inflater, container, false)
+        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         return binding.root
     }
 
@@ -36,9 +40,7 @@ class WishlistFragment : Fragment(), WishListAdapter.NotesInterface {
             showMenu(v, R.menu.filter_popupmenu)
         }
 
-        adapter = WishListAdapter(this)
-        getAllNote()
-
+        getAllWishlist()
     }
     private fun showMenu(v: View, @MenuRes menuRes: Int) {
         val popup = PopupMenu(context, v)
@@ -55,26 +57,32 @@ class WishlistFragment : Fragment(), WishListAdapter.NotesInterface {
         popup.show()
     }
 
-    fun getAllNote(){
-        binding.apply {
-            viewModel.getDataWishlist().observe(viewLifecycleOwner){
-                adapter.setData(it)
-                if (it.isEmpty()){
-                    tvAlertKosong.visibility = View.VISIBLE
+    private fun getAllWishlist(){
+        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        if (idUser != null) {
+            flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner){
+                if (it != null) {
+                    setDataToRecView(it)
                 }
-                else
-                    tvAlertKosong.visibility = View.GONE
             }
-            RvWishlist.adapter = adapter
-            RvWishlist.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
 
-    override fun editNote(notes: DataWishList) {
-        TODO("Not yet implemented")
+    private fun setDataToRecView(data: List<DataWishList>) {
+        val adapter = WishListAdapter()
+        binding.apply {
+            adapter.setData(data)
+            RvWishlist.adapter = adapter
+            RvWishlist.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
+
+        adapter.onClick = {
+            val action = WishlistFragmentDirections.actionWishlistFragment2ToWishListDetailFragment(it)
+            findNavController().navigate(action)
+        }
+
+
     }
 
-    override fun deleteNote(notes: DataWishList) {
-        TODO("Not yet implemented")
-    }
+
 }

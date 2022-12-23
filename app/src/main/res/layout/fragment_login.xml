@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_blue"
-    tools:context=".ui.fragment.LoginFragment">
+    tools:context="ui.fragment.NotificationFragment">
 
     <TextView
         android:id="@+id/tvWelcomeBack"
@@ -23,10 +23,10 @@
         android:id="@+id/tvWelcomeBackDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvWelcomeBack"
         android:layout_marginStart="24dp"
         android:text="@string/detail_login"
-        android:textColor="@color/white"
-        android:layout_below="@id/tvWelcomeBack"/>
+        android:textColor="@color/white" />
 
     <com.github.captain_miao.optroundcardview.OptRoundCardView
         android:layout_width="match_parent"
@@ -34,73 +34,85 @@
         android:layout_alignParentBottom="true"
         app:optRoundCardBackgroundColor="@color/white"
         app:optRoundCardCornerRadius="32dp"
-        app:optRoundCardRightTopCorner="true"
-        app:optRoundCardLeftTopCorner="true"
         app:optRoundCardLeftBottomCorner="false"
-        app:optRoundCardRightBottomCorner="false">
+        app:optRoundCardLeftTopCorner="true"
+        app:optRoundCardRightBottomCorner="false"
+        app:optRoundCardRightTopCorner="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/pbLogin"
+                android:layout_width="360dp"
+                android:layout_height="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
             <TextView
                 android:id="@+id/labelEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="50dp"
                 android:text="@string/email"
-                android:textStyle="bold"
                 android:textColor="@color/orange"
-                android:layout_alignParentTop="true"/>
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailInputContainer"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/orange"
                 android:layout_below="@id/labelEmail"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                android:textColorHint="@color/black"
                 app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange">
+                app:boxStrokeColor="@color/orange"
+                app:hintTextColor="@color/orange">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/labelPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/emailInputContainer"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/password"
-                android:textStyle="bold"
                 android:textColor="@color/orange"
-                android:layout_below="@id/emailInputContainer"/>
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordInputContainer"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
-                app:hintTextColor="@color/orange"
                 android:layout_below="@id/labelPassword"
-                app:passwordToggleEnabled="true"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                android:textColorHint="@color/black"
                 app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/orange">
+                app:boxStrokeColor="@color/orange"
+                app:hintTextColor="@color/orange"
+                app:passwordToggleEnabled="true">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -109,11 +121,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/passwordInputContainer"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="@color/orange"
-                android:text="@string/login"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"/>
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/orange"
+                android:text="@string/login" />
 
             <TextView
                 android:id="@+id/tvLupaPassword"
@@ -125,15 +137,26 @@
                 android:text="@string/lupa_password"
                 android:textColor="@color/black" />
 
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btnLoginGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_below="@id/tvLupaPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/white"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/belum_punya_akun"
-                android:textSize="18sp"
-                android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="12dp"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="12dp"
+                android:text="@string/belum_punya_akun"
+                android:textSize="18sp" />
         </RelativeLayout>
     </com.github.captain_miao.optroundcardview.OptRoundCardView>
 

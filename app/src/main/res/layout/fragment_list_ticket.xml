@@ -18,11 +18,20 @@
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/progressBar"
-        style="@style/SpinKitView.Large.FoldingCube"
+        style="@style/SpinKitView.Large.ThreeBounce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         app:SpinKit_Color="@color/main_blue"
         android:visibility="gone"
         />
+
+    <TextView
+        android:id="@+id/tvTicketNotFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tiket tidak ditemukan"
+        android:textSize="16sp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 </RelativeLayout>

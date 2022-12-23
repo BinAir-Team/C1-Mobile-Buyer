@@ -7,17 +7,32 @@ import kotlinx.parcelize.Parcelize
 data class AllTicketsResponse(
 
 	@field:SerializedName("data")
-	val data: List<TicketItem>,
+	val dataTicketPage: DataTicketPage? = null,
 
 	@field:SerializedName("message")
-	val message: String
+	val message: String? = null,
+
+	@field:SerializedName("status")
+	val status: String? = null
+)
+
+data class DataTicketPage(
+
+	@field:SerializedName("totalItems")
+	val totalItems: Int? = null,
+
+	@field:SerializedName("tickets")
+	val tickets: List<TicketItem>? = null,
+
+	@field:SerializedName("totalPages")
+	val totalPages: Int? = null,
+
+	@field:SerializedName("currentPage")
+	val currentPage: Int? = null
 )
 
 @Parcelize
 data class TicketItem(
-
-	@field:SerializedName("date")
-	var date: String,
 
 	@field:SerializedName("arrival_time")
 	val arrivalTime: String,
@@ -37,11 +52,17 @@ data class TicketItem(
 	@field:SerializedName("curr_stock")
 	val currStock: Int,
 
+	@field:SerializedName("date_end")
+    var dateEnd: String? = null,
+
 	@field:SerializedName("type")
 	val type: String,
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,
+
+	@field:SerializedName("date_start")
+	var dateStart: String,
 
 	@field:SerializedName("airport_from")
 	val airportFrom: String,

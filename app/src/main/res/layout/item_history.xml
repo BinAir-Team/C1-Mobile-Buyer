@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvHistory"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    app:contentPadding="4dp"
+    android:layout_margin="8dp"
+    tools:ignore="contentDescription">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         android:paddingVertical="16dp"
-        android:paddingHorizontal="23dp"
-        android:background="@drawable/history_cardshadow">
+        android:paddingHorizontal="23dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_marginTop="3dp"
-                android:id="@+id/logoMaskapai"
-                android:layout_width="48dp"
-                android:layout_height="32dp"
-                android:src="@drawable/logo_maskapai"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoMaskapai"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="32dp"-->
+<!--                android:src="@drawable/logo_maskapai"/>-->
             <TextView
+                android:id="@+id/tvDate"
                 android:fontFamily="@font/inter_medium"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textColor="#191919"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11 Jun 2023"
-                android:layout_marginLeft="8dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/logoMaskapai"/>
+                android:layout_centerVertical="true" />
             <TextView
+                android:id="@+id/tvStatusPayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTintMode="multiply"
-                android:background="@drawable/history_redfilterbackground"
-                android:text="Re Found"
+                android:background="@color/MC_SoftRed"
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="16dp"
                 android:fontFamily="@font/inter_medium"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
@@ -53,16 +55,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kode Pemesanan : "
+                android:text="@string/kode_pemesanan"
                 android:fontFamily="@font/inter_medium"
-                android:textSize="14dp"/>
+                android:textSize="14sp"/>
             <TextView
+                android:id="@+id/tvKodePemesanan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N585EAG"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"
-                android:textSize="14dp"/>
+                android:textSize="14sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="12dp"
@@ -70,23 +72,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="91.5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/tvDepartureTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10:48"
                     android:fontFamily="@font/poppins_semibold"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textColor="@color/C2"/>
                 <TextView
+                    android:id="@+id/tvDepartureCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CKG (Jakarta)"
                     android:fontFamily="@font/inter_medium"
-                    android:textSize="10dp"
-                    android:textColor="@color/C6"/>
+                    android:textSize="10sp"
+                    android:textColor="@color/C6"
+                    tools:ignore="SmallSp" />
             </LinearLayout>
             <ImageView
                 android:layout_gravity="center_vertical"
@@ -95,26 +98,27 @@
                 android:layout_height="36dp"
                 android:src="@drawable/item_flightsymb"/>
             <LinearLayout
-                android:layout_width="91.5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_gravity="right"
+                    android:id="@+id/tvArrivalTime"
+                    android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12:11"
                     android:fontFamily="@font/poppins_semibold"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textColor="@color/C2"/>
                 <TextView
-                    android:layout_gravity="right"
+                    android:id="@+id/tvArrivalCity"
+                    android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SUB (Surabaya)"
                     android:fontFamily="@font/inter_medium"
-                    android:textSize="10dp"
-                    android:textColor="@color/C6"/>
+                    android:textSize="10sp"
+                    android:textColor="@color/C6"
+                    tools:ignore="SmallSp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

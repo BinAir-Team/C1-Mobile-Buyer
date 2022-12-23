@@ -19,9 +19,9 @@
     <string name="sudah_punya_akun"><font color="#000000">Sudah punya akun? </font><font color="#F37C20">Login</font></string>
     <string name="cari_penerbangan">Cari Penerbangan</string>
     <string name="label_dari">Dari</string>
-    <string name="ex_kota_dari">Jakarta (CGK)</string>
+    <string name="ex_kota_dari">Jakarta - CGK</string>
     <string name="label_destinasi">Destinasi</string>
-    <string name="ex_kota_tujuan">Surabaya (SUB)</string>
+    <string name="ex_kota_tujuan">Surabaya - SUB</string>
     <string name="label_tanggal_berangkat">Tanggal Berangkat</string>
     <string name="ex_tgl_brkt">Jumat, 9 Desember 2022</string>
     <string name="label_tanggal_pulang">Tanggal Pulang</string>
@@ -92,4 +92,41 @@
     <string name="belum_dibayar">Belum Dibayar</string>
     <string name="profil_pengguna">Profil Pengguna</string>
     <string name="profil">Profil</string>
+    <string name="silahkan_login">Silahkan login terlebih dahulu untuk menggunakan fitur ini</string>
+    <string name="filter">Filter :</string>
+    <string name="kode_pemesanan">Kode Pemesanan :</string>
+    <string name="time">Time</string>
+    <string name="harga_dewasa">Harga Dewasa</string>
+    <string name="harga_anak">Harga Anak</string>
+    <string name="gratis_20_kg">Gratis 20 Kg</string>
+    <string name="refund_sebagian">Refund Sebagian</string>
+    <string name="bisa_reschedule">Bisa Reschedule</string>
+    <string name="bagasi">Bagasi</string>
+    <string name="keuntungan">Keuntungan :</string>
+    <string-array name="spinner_titel">
+        <item>Tuan</item>
+        <item>Nyonya</item>
+        <item>Nona</item>
+    </string-array>
+    <string-array name="spinner_tipe">
+        <item>KTP</item>
+        <item>SIM</item>
+    </string-array>
+    <string name="promo_detail">Detail Promo</string>
+    <string name="promo_title">Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%</string>
+    <string name="SdanK">Syarat dan ketentuan :</string>
+    <string name="syarat_dan_ketentuan">1. Periode Promo 1 Juli - 31 Desember 2022\n2. Periode Menginap: Kapan pun\n3. Promo ini berlaku setiap hari Selasa selama periode promo.\n4. Penggunaan kupon berbasis first-come, first serve selama kuota masih tersedia.\n5. Dapatkan diskon sebesar 12% hingga Rp.100.000 menggunakan kode promo WEEKLYHO dengan minimal pembelian Rp. 1.200.000 dan berlaku untuk semua hotel.\n6. Promo ini hanya berlaku untuk pembayaran dengan menggunakan metode pembayaran semua Kartu Kredit OCBC NISP.\n7. Promo hanya bisa dipakai dengan menggunakan mata uang IDR/Indonesian Rupiah.\n8. Promo hanya bisa dipakai sekali per akun dan per minggu selama periode promo.\n9. Promo berlaku untuk pemesanan melalui aplikasi Airpaz.\n10. Aplikasi dapat di download dengan klik link ini https://airpaz.link/android (Android) dan https://airpaz.link/ios (iOS).\n11. Promo tidak dapat dipindahtangankan dan tidak dapat digunakan bersamaan dengan promosi atau diskon, termasuk kupon serta penawaran keanggotaan lainnya.\n12. Promo ini tidak dapat ditransfer atau ditukar dengan uang tunai, batas kredit atau diskon/ produk/ layanan lainnya.\n13. Pemegang kartu yang memenuhi syarat dan menggunakan promo ini terikat oleh syarat dan ketentuan Airpaz dan OCBC NISP.\n14. Airpaz dan OCBC NISP berhak untuk mengakhiri, mengubah atau menambah syarat dan ketentuan ini dari waktu ke waktu dengan pemberitahuan minimal lima (5) hari kalender sebelumnya kepada pengguna akun OCBC NISP sebelum syarat dan ketentuan baru diberlakukan.\n15. Airpaz dan OCBC NISP berhak untuk membatalkan promo ini apabila transaksi tidak memenuhi Syarat dan Ketentuan yang berlaku.\n16. Promo bersifat Non-refundable dan tidak dapat diuangkan.</string>
+    <string name="batas_promo">Batas Promo</string>
+    <string name="lihat_lebih_lanjut">Lihat lebih lanjut</string>
+    <string name="voucher_promo_code" />
+    <string name="client_id">214017739948-b18qptodbi5i0sth8fgukauks2raoi61.apps.googleusercontent.com</string>
+    <string name="label_economy_class">Kelas Ekonomi</string>
+    <string name="label_tujuan">tujuan</string>
+    <string name="labelJam">Jam</string>
+    <string name="lanjutkan_pemesanan">Lanjutkan Pemesanan</string>
+    <string name="gratis_bagasi_20_kg">Gratis bagasi 20 Kg</string>
+    <string name="ubah_password">Ubah Password</string>
+    <string name="password_lama">Password Lama</string>
+    <string name="password_baru">Password Baru</string>
+    <string name="konfirmasi_password_baru">Konfirmasi Password Baru</string>
 </resources>

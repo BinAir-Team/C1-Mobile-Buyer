@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.DetailBookingFragment"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvDetailKontak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:contentPadding="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/labelBookingDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/detail_pemesanan"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/labelBooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelBookingDetail"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/id_pemesanan"
+                        android:textColor="@color/content_grey" />
+
+                    <TextView
+                        android:id="@+id/tvIdBooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelBooking"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/ex_id_pemesanan" />
+
+                    <TextView
+                        android:id="@+id/labelFlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvIdBooking"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/penerbangan"
+                        android:textColor="@color/content_grey" />
+
+                    <TextView
+                        android:id="@+id/tvFlightDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelFlight"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/ex_tgl_brkt" />
+
+                    <TextView
+                        android:id="@+id/tvKotaAsal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvFlightDate"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_dari"
+                        app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+
+                    <TextView
+                        android:id="@+id/tvKotaTujuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvFlightDate"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/tvKotaAsal"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_tujuan"
+                        app:drawableLeftCompat="@drawable/ic_baseline_arrow_right_alt_24" />
+
+                    <TextView
+                        android:id="@+id/tvKotaAsalKembali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvKotaAsal"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_dari"
+                        app:drawableLeftCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+
+                    <TextView
+                        android:id="@+id/tvKotaTujuanKembali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_below="@+id/tvKotaTujuan"
+                        android:layout_toEndOf="@+id/tvKotaAsal"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_kota_tujuan"
+                        app:drawableLeftCompat="@drawable/ic_baseline_arrow_right_alt_24" />
+
+                    <TextView
+                        android:id="@+id/labelPassenger"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/tvKotaAsalKembali"
+                        android:text="@string/jumlah_penumpang"
+                        android:textColor="@color/content_grey" />
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelPassenger"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/ex_nama_pemesan" />
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/labelPassenger"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:text="@string/dewasa"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCreditCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:contentPadding="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/labelPaymentDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/detail_pembayaran"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spPaymentMethod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_below="@+id/labelPaymentDetail"/>
+
+                    <ImageView
+                        android:id="@+id/ivPaymentProof"
+                        android:src="@drawable/add_image"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_below="@id/spPaymentMethod"
+                        android:layout_marginTop="12dp"
+                        android:layout_centerHorizontal="true"
+                        android:contentDescription="@string/bukti_pembayaran"/>
+
+                    <TextView
+                        android:id="@+id/labelPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivPaymentProof"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/total_harga"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivPaymentProof"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:text="@string/nominal_harga"
+                        android:textColor="@color/orange"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="125dp">
+
+                <TextView
+                    android:id="@+id/labelPrivacy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/setuju_bayar"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnBayar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelPrivacy"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="24dp"
+                    style="@style/button"
+                    android:text="@string/bayar" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
