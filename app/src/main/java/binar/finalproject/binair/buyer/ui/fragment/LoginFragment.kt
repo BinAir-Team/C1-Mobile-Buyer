@@ -32,14 +32,14 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-    private lateinit var binding : FragmentLoginBinding
-    lateinit var userVM : UserViewModel
-    private lateinit var sharedPrefs : SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
+    private lateinit var binding: FragmentLoginBinding
+    lateinit var userVM: UserViewModel
+    private lateinit var sharedPrefs: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
     private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     private var showOneTapUI = true
-    private lateinit var oneTapClient : SignInClient
-    private lateinit var signInRequest : BeginSignInRequest
+    private lateinit var oneTapClient: SignInClient
+    private lateinit var signInRequest: BeginSignInRequest
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
@@ -69,7 +69,7 @@ class LoginFragment : Fragment() {
 
     private fun setListener() {
         binding.apply {
-            tvRegister.setOnClickListener{
+            tvRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
             btnSignin.setOnClickListener {
@@ -94,13 +94,13 @@ class LoginFragment : Fragment() {
         return binding.passwordInput.text.toString().isEmpty()
     }
 
-    private fun validateInput() : Boolean {
+    private fun validateInput(): Boolean {
         var isValid = true
         binding.apply {
             emailInput.setOnFocusChangeListener(object : View.OnFocusChangeListener {
                 override fun onFocusChange(v: View?, hasFocus: Boolean) {
                     if (!hasFocus) {
-                        if(emailIsEmpty()){
+                        if (emailIsEmpty()) {
                             emailInput.error = "Email tidak boleh kosong"
                             isValid = false
                         }
@@ -108,7 +108,12 @@ class LoginFragment : Fragment() {
                 }
             })
             emailInput.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
@@ -117,7 +122,7 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun afterTextChanged(s: Editable?) {
-                    if(!isValidEmail(s.toString())){
+                    if (!isValidEmail(s.toString())) {
                         isValid = false
                         emailInput.error = "Email tidak valid"
                     }
@@ -126,7 +131,7 @@ class LoginFragment : Fragment() {
             passwordInput.setOnFocusChangeListener(object : View.OnFocusChangeListener {
                 override fun onFocusChange(v: View?, hasFocus: Boolean) {
                     if (!hasFocus) {
-                        if(passwordIsEmpty()){
+                        if (passwordIsEmpty()) {
                             passwordInput.error = "Password tidak boleh kosong"
                             isValid = false
                         }
@@ -140,42 +145,57 @@ class LoginFragment : Fragment() {
     private fun signInUser() {
         val email = binding.emailInput.text.toString()
         val pass = binding.passwordInput.text.toString()
-        if(validateInput()){
-            observeLoginResult(email,pass)
+        if (validateInput()) {
+            observeLoginResult(email, pass)
         }
     }
 
     private fun observeLoginResult(email: String, pass: String) {
-        userVM.loginUser(email,pass).observe(viewLifecycleOwner) {
-            Log.d("LoginFragment", "observeLoginResult: $it")
-            if(it != null){
-                if (it.status == "error") {
-                    Toast.makeText(requireContext(), "Silahkan registrasi terlebih dahulu", Toast.LENGTH_SHORT).show()
-                }else if(it.message.contains("Email not verified, check your email!")){
-                    Toast.makeText(requireContext(), "Email belum terverifikasi", Toast.LENGTH_SHORT).show()
-                }else if(it.message.contains("Password is incorrect")){
-                    Toast.makeText(context, "Email atau password salah", Toast.LENGTH_SHORT).show()
-                }else{
-                    val namaLengkap = it.data.firstname + " " + it.data.lastname
-                    editor.putString("token", it.data.accessToken)
-                    editor.putString("idUser",it.data.id)
-                    editor.putString("namaLengkap", namaLengkap)
-                    editor.putBoolean("isLogin", true)
-                    editor.putBoolean("isValidToken",true)
-                    editor.apply()
-                    gotoHome()
+        showLoading(true)
+        userVM.loginUser(email, pass).observe(viewLifecycleOwner) { it ->
+            if (it != null) {
+                showLoading(false)
+                val namaLengkap = it.data.firstname + " " + it.data.lastname
+                editor.putString("token", it.data.accessToken)
+                editor.putString("idUser", it.data.id)
+                editor.putString("namaLengkap", namaLengkap)
+                editor.putBoolean("isLogin", true)
+                editor.putBoolean("isValidToken", true)
+                editor.apply()
+                gotoHome()
+            } else {
+                userVM.getLoginErrorMessage().observe(viewLifecycleOwner) {
+                    showLoading(false)
+                    val errMessage = it
+                    if (errMessage.contains("Email does not exist")) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Silahkan registrasi terlebih dahulu",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else if (errMessage.contains("Email not verified, check your email!")) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Email belum terverifikasi",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else if (errMessage.contains("Password is incorrect")) {
+                        Toast.makeText(context, "Email atau password salah", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
             }
         }
     }
 
-    private fun initGoogleAuth(){
+    private fun initGoogleAuth() {
         oneTapClient = Identity.getSignInClient(requireContext())
         signInRequest = BeginSignInRequest.builder()
             .setPasswordRequestOptions(
                 BeginSignInRequest.PasswordRequestOptions.builder()
-                .setSupported(true)
-                .build())
+                    .setSupported(true)
+                    .build()
+            )
             .setGoogleIdTokenRequestOptions(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
@@ -183,7 +203,8 @@ class LoginFragment : Fragment() {
                     .setServerClientId(getString(R.string.client_id))
                     // Only show accounts previously used to sign in.
                     .setFilterByAuthorizedAccounts(false)
-                    .build())
+                    .build()
+            )
             // Automatically sign in when exactly one credential is retrieved.
             .setAutoSelectEnabled(true)
             .build()
@@ -195,7 +216,8 @@ class LoginFragment : Fragment() {
                 try {
                     startIntentSenderForResult(
                         result.pendingIntent.intentSender, REQ_ONE_TAP,
-                        null, 0, 0, 0, null)
+                        null, 0, 0, 0, null
+                    )
                 } catch (e: IntentSender.SendIntentException) {
                     Log.e("LOGIN GOOGLE", "Couldn't start One Tap UI: ${e.localizedMessage}")
                 }
@@ -261,9 +283,8 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun gotoHome(){
-        findNavController().popBackStack()
-//        findNavController().navigateSafe(R.id.action_loginFragment_to_homeFragment)
+    private fun gotoHome() {
+        findNavController().navigateSafe(R.id.action_loginFragment_to_homeFragment)
     }
 
     fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {
@@ -276,9 +297,18 @@ class LoginFragment : Fragment() {
             if (destinationId != 0) {
                 currentNode?.findNode(destinationId)?.let { navigate(resId, args) }
             }
-        }}
+        }
+    }
 
     fun Int?.orEmpty(default: Int = 0): Int {
         return this ?: default
+    }
+
+    private fun showLoading(status: Boolean) {
+        if (status) {
+            binding.pbLogin.visibility = View.VISIBLE
+        } else {
+            binding.pbLogin.visibility = View.GONE
+        }
     }
 }

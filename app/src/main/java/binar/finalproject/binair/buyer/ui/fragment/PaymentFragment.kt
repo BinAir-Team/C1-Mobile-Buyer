@@ -115,6 +115,10 @@ class PaymentFragment : Fragment() {
                         tvFlightDateBack.visibility = View.GONE
                         tvKotaAsalKembali.visibility = View.GONE
                         tvKotaTujuanKembali.visibility = View.GONE
+                    }else{
+                        tvFlightDateBack.text = it.data.dateEnd?.let { it1 -> formatDate(it1) }
+                        tvKotaAsalKembali.text = it.data.to
+                        tvKotaTujuanKembali.text = it.data.from
                     }
                 }
             }
@@ -136,7 +140,7 @@ class PaymentFragment : Fragment() {
         try {
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val localDate = LocalDate.parse(date, formatter)
-            val formatter2 = DateTimeFormatter.ofPattern("EE, dd MMM yyyy")
+            val formatter2 = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy", Locale("id","ID"))
             return localDate.format(formatter2)
         }catch (e : Exception){
             return date

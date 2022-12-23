@@ -14,8 +14,8 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(private var userRepo : UserRepository) : ViewModel() {
     fun registerUser(dataUser : DataRegister) : LiveData<RegisterUserResponse?> = userRepo.registerUser(dataUser)
     fun loginUser(email : String, password : String) : LiveData<LoginResponse?> = userRepo.loginUser(email, password)
+    fun getLoginErrorMessage() : LiveData<String> = userRepo.loginErrorMessage
     fun getUser(token : String) : LiveData<GetUserResponse?> = userRepo.getUser(token)
-    fun obsUser() : LiveData<GetUserResponse?> = userRepo.currentUser
     fun updateUser(token : String, firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, profileImage : MultipartBody.Part): LiveData<UpdateUserResponse?> = userRepo.updateUser(token, firstName,lastName,gender, phone, profileImage)
     fun updateUserWithoutImage(token : String, firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody) : LiveData<UpdateUserResponse?> = userRepo.updateUserWithoutImage(token, firstName, lastName, gender, phone)
     fun updatePassword(token : String, oldPassword : String, newPassword : String, confirmPass : String) : LiveData<UpdateUserPasswordResponse?> = userRepo.updatePassword(token, oldPassword, newPassword, confirmPass)

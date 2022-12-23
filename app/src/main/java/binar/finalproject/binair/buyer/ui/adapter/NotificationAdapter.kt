@@ -6,11 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import binar.finalproject.binair.buyer.data.response.Data
 import binar.finalproject.binair.buyer.data.response.DataNotif
-import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.ItemNotificationBinding
-import binar.finalproject.binair.buyer.databinding.ItemTicketBinding
 
 @RequiresApi(Build.VERSION_CODES.O)
 class NotificationAdapter(private val listNotif : List<DataNotif>) :
@@ -20,6 +17,9 @@ class NotificationAdapter(private val listNotif : List<DataNotif>) :
     class  ViewHolder(val binding : ItemNotificationBinding, private var onupdate : (((DataNotif) -> Unit)?)) : RecyclerView.ViewHolder(binding.root){
         fun bind(item : DataNotif){
             binding.itemnotif = item
+            val pattern = Regex("""\d{1,2}\ \w+\ \d{4}""")
+            val res = item.message?.let { pattern.find(it, 0) }
+            binding.notifDate.text = res?.value
             if(item.isRead == true){
                 binding.lvNotif.setBackgroundColor(Color.parseColor("#EBEEF1"))
                 binding.belumdibaca.visibility = View.GONE

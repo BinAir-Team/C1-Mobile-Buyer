@@ -30,6 +30,7 @@ class ProfileFragment : Fragment() {
     private lateinit var userVM : UserViewModel
     private lateinit var flightVM : FlightViewModel
     private lateinit var prefs : SharedPreferences
+    private var token : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,7 @@ class ProfileFragment : Fragment() {
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         flightVM = ViewModelProvider(this).get(FlightViewModel::class.java)
         prefs = requireActivity().getSharedPreferences(dataUser, 0)
+        token = prefs.getString("token", null)
         return binding.root
     }
 
@@ -53,13 +55,30 @@ class ProfileFragment : Fragment() {
     private fun setListener(){
         binding.apply {
             tvName.setOnClickListener {
-                gotoEditProfile()
+                if(token != null){
+                    gotoEditProfile()
+                }else{
+                    Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }
             }
             userprofile.setOnClickListener {
                 gotoEditProfile()
             }
             btnLogout.setOnClickListener {
                 logout()
+            }
+            toolbar.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.change_pass -> {
+                        if(token != null){
+                            gotoChangePassword()
+                        }else{
+                            Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                        }
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }
@@ -68,10 +87,13 @@ class ProfileFragment : Fragment() {
         findNavController().navigate(R.id.action_profileFragment2_to_editProfileFragment)
     }
 
+    private fun gotoChangePassword() {
+        findNavController().navigate(R.id.action_profileFragment2_to_changePasswordFragment)
+    }
+
     @SuppressLint("SetTextI18n")
     private fun getDataUser(){
         showLoadingProfile(true)
-        val token = prefs.getString("token", null)
         if(token != null){
             userVM.getUser("Bearer $token").observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -96,7 +118,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout(){
-        val token = prefs.getString("token", null)
         if(token != null){
             val alert = AlertDialog.Builder(requireContext())
             alert.apply {

@@ -125,4 +125,8 @@
     <string name="labelJam">Jam</string>
     <string name="lanjutkan_pemesanan">Lanjutkan Pemesanan</string>
     <string name="gratis_bagasi_20_kg">Gratis bagasi 20 Kg</string>
+    <string name="ubah_password">Ubah Password</string>
+    <string name="password_lama">Password Lama</string>
+    <string name="password_baru">Password Baru</string>
+    <string name="konfirmasi_password_baru">Konfirmasi Password Baru</string>
 </resources>

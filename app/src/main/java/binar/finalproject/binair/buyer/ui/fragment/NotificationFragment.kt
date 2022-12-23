@@ -86,12 +86,9 @@ class NotificationFragment : Fragment() {
                     if(it.status == 200){
                     }
                 }else{
-
                     Toast.makeText(requireContext(), "Pembayaran gagal $", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
-
     }
 }

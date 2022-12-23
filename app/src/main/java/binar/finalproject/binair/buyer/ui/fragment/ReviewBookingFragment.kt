@@ -110,6 +110,7 @@ class ReviewBookingFragment : Fragment() {
                     if(it.type.equals("oneway")){
                         tvTotalHarga.text = formatRupiah(totalPriceAdult + totalPriceChild)
                     }else{
+                        labelPulang.visibility = View.VISIBLE
                         containerDewasaPulang.visibility = View.VISIBLE
                         containerAnakPulang.visibility = View.VISIBLE
                         tvTotalDewasaPulang.text = "x$jmlDewasa"

@@ -179,24 +179,24 @@ class BookingFragment : Fragment() {
 //                        allFormValid = false
 //                    }
 //                }
+////            })
+//            etKewarganegaraan.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+//                if (!hasFocus) {
+//                    if(etKewarganegaraan.text.isNullOrEmpty()){
+//                        etKewarganegaraan.error = "Kewarganegaraan tidak boleh kosong"
+//                        allFormValid = false
+//                    }
+//                }
 //            })
-            etKewarganegaraan.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
-                if (!hasFocus) {
-                    if(etKewarganegaraan.text.isNullOrEmpty()){
-                        etKewarganegaraan.error = "Kewarganegaraan tidak boleh kosong"
-                        allFormValid = false
-                    }
-                }
-            })
-            if(kategori == "dewasa"){
-                etTipe.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
-                    if (!hasFocus) {
-                        if(etTipe.text.isNullOrEmpty()){
-                            etTipe.error = "Tipe tidak boleh kosong"
-                            allFormValid = false
-                        }
-                    }
-                })
+//            if(kategori == "dewasa"){
+//                etTipe.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+//                    if (!hasFocus) {
+//                        if(etTipe.text.isNullOrEmpty()){
+//                            etTipe.error = "Tipe tidak boleh kosong"
+//                            allFormValid = false
+//                        }
+//                    }
+//                })
 //                etNoIdnt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
 //                    if (!hasFocus) {
 //                        if(etNoIdnt.text.isNullOrEmpty()){
@@ -205,7 +205,7 @@ class BookingFragment : Fragment() {
 //                        }
 //                    }
 //                })
-            }
+//            }
             etNamaDepanAdlt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
                     if(etNamaDepanAdlt.text.isNullOrEmpty()){
@@ -286,7 +286,7 @@ class BookingFragment : Fragment() {
             val body = idTicket?.let { PostBookingBody(it,qtt,dataTrav) }
             if(allFormValid){
                 if (body != null) {
-                    val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(dataKontak,body)
+                    val action = BookingFragmentDirections.actionBookingFragmentToReviewBookingFragment(dataKontak, body)
                     findNavController().navigate(action)
                 }
             }else{

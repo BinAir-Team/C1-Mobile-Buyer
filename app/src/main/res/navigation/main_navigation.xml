@@ -75,12 +75,12 @@
         android:name="binar.finalproject.binair.buyer.ui.fragment.BookingFragment"
         android:label="fragment_booking"
         tools:layout="@layout/fragment_booking">
-        <action
-            android:id="@+id/action_bookingFragment_to_reviewBookingFragment"
-            app:destination="@id/reviewBookingFragment" />
         <argument
             android:name="idTicket"
             app:argType="string" />
+        <action
+            android:id="@+id/action_bookingFragment_to_reviewBookingFragment"
+            app:destination="@id/reviewBookingFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviewBookingFragment"
@@ -118,6 +118,9 @@
         <action
             android:id="@+id/action_profileFragment2_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_profileFragment2"
@@ -258,4 +261,9 @@
     <action
         android:id="@+id/action_global_notificationFragment"
         app:destination="@id/notificationFragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="binar.finalproject.binair.buyer.ui.fragment.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
 </navigation>

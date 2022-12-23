@@ -255,7 +255,5 @@
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>
-
-
     </LinearLayout>
 </layout>

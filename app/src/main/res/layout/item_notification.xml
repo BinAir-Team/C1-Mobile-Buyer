@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sukses Login pada December 19th 2022, 4:14:25 am"
+                    android:text="@{itemnotif.message}"
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="15dp"
                     android:lineHeight="25dp" />
@@ -51,11 +51,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/notifDate"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18 Des 22, 10:11" />
+                        android:text="" />
 
                     <LinearLayout
                         android:gravity="center"
@@ -75,7 +76,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="tandai sudah dibaca"
+                            android:text="Tandai sudah dibaca"
                             android:fontFamily="@font/poppins_regular"
                             android:textSize="10dp" />
                         "
@@ -100,7 +101,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/MC_Green"
-                            android:text="sudah dibaca"
+                            android:text="Sudah dibaca"
                             android:fontFamily="@font/poppins_regular"
                             android:textSize="10dp" />
 
