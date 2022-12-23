@@ -20,27 +20,6 @@
             android:orientation="vertical"
             android:paddingBottom="24dp">
 
-            <!--            <RelativeLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginHorizontal="23dp"-->
-            <!--                android:layout_marginTop="17.76dp">-->
-
-            <!--                <ImageView-->
-            <!--                    android:layout_width="112.65dp"-->
-            <!--                    android:layout_height="29dp"-->
-            <!--                    android:layout_alignParentStart="true"-->
-            <!--                    android:src="@drawable/logo_blue" />-->
-
-            <!--                <ImageButton-->
-            <!--                    android:id="@+id/btnSetting"-->
-            <!--                    android:layout_width="24.02dp"-->
-            <!--                    android:layout_height="28dp"-->
-            <!--                    android:layout_alignParentEnd="true"-->
-            <!--                    android:background="@color/transparent"-->
-            <!--                    android:src="@drawable/ic_setting"/>-->
-            <!--            </RelativeLayout>-->
-
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,21 +36,11 @@
                     android:elevation="12dp"
                     app:menu="@menu/change_pass">
                     <ImageView
-                        android:id="@+id/ivLogo"
+                        android:layout_width="112.65dp"
+                        android:layout_height="29dp"
                         android:src="@drawable/logo_blue"
-                        android:scaleType="fitStart"
-                        android:layout_width="150dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="24dp"
-                        android:padding="12dp" />
-<!--                    <ImageButton-->
-<!--                        android:id="@+id/btnSetting"-->
-<!--                        android:layout_alignParentRight="true"-->
-<!--                        android:layout_gravity="end"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/ic_setting"-->
-<!--                        android:backgroundTint="@color/transparent"/>-->
+                        android:layout_marginTop="17.76dp"
+                        android:layout_marginStart="23dp"/>
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.AppBarLayout>
 

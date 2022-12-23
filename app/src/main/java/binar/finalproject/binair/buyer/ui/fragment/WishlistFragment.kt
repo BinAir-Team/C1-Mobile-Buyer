@@ -2,6 +2,7 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -12,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentWishlistBinding
@@ -36,12 +36,9 @@ class WishlistFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.timefilter.setOnClickListener() { v: View ->
-            showMenu(v, R.menu.filter_popupmenu)
-        }
-
         getAllWishlist()
     }
+    
     private fun showMenu(v: View, @MenuRes menuRes: Int) {
         val popup = PopupMenu(context, v)
         popup.menuInflater.inflate(menuRes, popup.menu)
@@ -58,13 +55,20 @@ class WishlistFragment : Fragment() {
     }
 
     private fun getAllWishlist(){
-        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
+        val idUser = prefs.getString("idUser",null)
+        Log.e("iduser", idUser.toString())
         if (idUser != null) {
             flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner){
                 if (it != null) {
                     setDataToRecView(it)
+                }else{
+                    binding.tvAlertKosong.visibility = View.VISIBLE
                 }
             }
+        }else{
+            binding.tvAlertKosong.text = "Silahkan login terlebih dahulu untuk menggunakan fitur ini"
+            binding.tvAlertKosong.visibility = View.VISIBLE
         }
     }
 
@@ -80,8 +84,6 @@ class WishlistFragment : Fragment() {
             val action = WishlistFragmentDirections.actionWishlistFragment2ToWishListDetailFragment(it)
             findNavController().navigate(action)
         }
-
-
     }
 
 

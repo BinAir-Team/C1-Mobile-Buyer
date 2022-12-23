@@ -33,8 +33,7 @@ class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     lateinit var userVM : UserViewModel
     private lateinit var oldPassword : String
-    private var image_uri : Uri? = null
-    private lateinit var image : MultipartBody.Part
+    private var image : MultipartBody.Part? = null
     private val galleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
             binding.imgProfile.setImageURI(result)
@@ -122,16 +121,26 @@ class EditProfileFragment : Fragment() {
             }
             val phone = binding.etPhone.text.toString().toRequestBody("text/plain".toMediaType())
 
-            userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,image).observe(viewLifecycleOwner) {
-                if(it != null){
-                    Toast.makeText(requireContext(), "Update Success", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(requireContext(), "Update Failed", Toast.LENGTH_SHORT).show()
+            if(image != null){
+                userVM.updateUser("Bearer $token",firstName,lastName,gender,phone,image!!).observe(viewLifecycleOwner) {
+                    if(it != null){
+                        Toast.makeText(requireContext(), "Update Berhasil", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "Update Gagal", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }else{
+                userVM.updateUserWithoutImage("Bearer $token",firstName,lastName,gender,phone).observe(viewLifecycleOwner) {
+                    if(it != null){
+                        Toast.makeText(requireContext(), "Update Berhasil", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "Update Gagal", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 
         }else{
-            Toast.makeText(requireContext(), "Token is null", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -10,18 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.initApp
 import binar.finalproject.binair.buyer.databinding.FragmentSplashScreenBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
-import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
     private lateinit var binding : FragmentSplashScreenBinding
-    private lateinit var userVM : UserViewModel
     private lateinit var sharedPref : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
 
@@ -32,7 +29,6 @@ class SplashScreenFragment : Fragment() {
         binding = FragmentSplashScreenBinding.inflate(inflater,container,false)
         sharedPref = requireActivity().getSharedPreferences(initApp, Context.MODE_PRIVATE)
         editor = sharedPref.edit()
-        userVM = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         val popIn = android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.pop_up)
         binding.mainlogo.startAnimation(popIn)
         return binding.root

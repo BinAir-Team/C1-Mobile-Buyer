@@ -12,82 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
+            android:id="@+id/containerLogo"
             android:layout_marginTop="17.76dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/user_profile"
-                android:id="@+id/userprofile"/>
-            <ImageView
-                android:layout_toEndOf="@id/userprofile"
                 android:layout_width="112.65dp"
                 android:layout_height="29dp"
-                android:layout_marginStart="16dp"
                 android:src="@drawable/logo_blue"/>
-            <ImageButton
-                android:layout_width="24.02dp"
-                android:layout_height="28dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_notification"
-                android:background="@color/transparent"/>
         </RelativeLayout>
-        <LinearLayout
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="3dp"
-                android:id="@+id/filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filter"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="10sp"/>
-
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:paddingVertical="3dp"
-                android:paddingHorizontal="10dp"
-                android:layout_marginStart="30dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/history_filterbackground">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/time"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="10sp"
-                    android:id="@+id/timefilter"
-                    android:textColor="@color/SB_Base"/>
-                <ImageView
-                    android:layout_width="3dp"
-                    android:layout_height="4.7dp"
-                    android:layout_marginStart="15dp"
-                    android:src="@drawable/tickethistory_dropdownarrow"/>
-            </LinearLayout>
-
-        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/RvWishlist"/>
             <TextView
                 android:id="@+id/tvAlertKosong"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tidak ada wishlist"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:visibility="gone"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/silahkan_login"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:visibility="gone"/>
         </RelativeLayout>
     </LinearLayout>
 

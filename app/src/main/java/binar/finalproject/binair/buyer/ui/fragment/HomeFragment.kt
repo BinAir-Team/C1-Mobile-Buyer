@@ -69,15 +69,14 @@ class HomeFragment : Fragment() {
         setPromoAdapter()
         setupnotification()
     }
+
     fun setupnotification(){
         val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
         val token = prefs.getString("token", null)
         if (token == null){
             binding.toolbar.menuNotif.visibility = View.GONE
-
         }
     }
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setListener() {

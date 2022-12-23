@@ -67,7 +67,7 @@ class ChangePasswordFragment : Fragment() {
         val token = prefs.getString("token", null)
         if(validateInput() && isEqualPassConfPass(newPass, confirmPass)){
             if (token != null) {
-                userVM.updatePassword(token,oldPass, newPass, confirmPass).observe(viewLifecycleOwner) {
+                userVM.updatePassword("Bearer $token",oldPass, newPass, confirmPass).observe(viewLifecycleOwner) {
                     if (it != null) {
                         Toast.makeText(requireContext(), "Update password berhasil", Toast.LENGTH_SHORT).show()
                         val edit = prefs.edit()

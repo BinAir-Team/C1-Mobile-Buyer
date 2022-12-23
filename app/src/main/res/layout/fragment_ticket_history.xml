@@ -21,59 +21,13 @@
                 android:layout_width="112.65dp"
                 android:layout_height="29dp"
                 android:src="@drawable/logo_blue"/>
-            <ImageButton
-                android:layout_width="24.02dp"
-                android:layout_height="28dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_notification"
-                android:background="@color/transparent"/>
         </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/containerFilter"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/containerLogo">
-            <TextView
-                android:id="@+id/filter"
-                android:layout_marginTop="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filter"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="10sp" />
-
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:paddingVertical="3dp"
-                android:paddingHorizontal="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/history_filterbackground">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/waktu"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="10sp"
-                    android:id="@+id/timefilter"
-                    android:textColor="@color/SB_Base"/>
-                <ImageView
-                    android:layout_width="3dp"
-                    android:layout_height="4.7dp"
-                    android:layout_marginStart="15dp"
-                    android:src="@drawable/tickethistory_dropdownarrow"/>
-            </LinearLayout>
-
-        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViewHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/containerFilter"
+            android:layout_below="@id/containerLogo"
             tools:listitem="@layout/item_history"/>
 
         <TextView

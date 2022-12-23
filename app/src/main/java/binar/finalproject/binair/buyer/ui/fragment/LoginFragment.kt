@@ -238,6 +238,7 @@ class LoginFragment : Fragment() {
                 try {
                     val credential = oneTapClient.getSignInCredentialFromIntent(data)
                     val idToken = credential.googleIdToken
+                    val secret = credential
                     val username = credential.displayName
                     val email = credential.id
                     val img = credential.profilePictureUri

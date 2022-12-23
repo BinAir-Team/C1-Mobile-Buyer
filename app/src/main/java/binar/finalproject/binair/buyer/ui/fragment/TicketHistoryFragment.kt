@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.response.TransItem
 import binar.finalproject.binair.buyer.databinding.FragmentTicketHistoryBinding
@@ -36,15 +35,7 @@ class TicketHistoryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setListener()
         getTrans()
-    }
-
-    private fun setListener(){
-        binding.timefilter.setOnClickListener(){
-                v: View ->
-            showMenu(v, R.menu.filter_popupmenu)
-        }
     }
 
     private fun getTrans(){

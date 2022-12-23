@@ -23,6 +23,7 @@ interface APIService {
     @PUT("user")
     fun updateUser(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody, @Part profileImage : MultipartBody.Part) : Call<UpdateUserResponse>
 
+    @Multipart
     @PUT("user")
     fun updateUserWithoutImage(@Header("Authorization") token : String, @Part("firstname") firstName : RequestBody, @Part("lastname") lastName : RequestBody, @Part("gender") gender : RequestBody, @Part("phone") phone : RequestBody) : Call<UpdateUserResponse>
 

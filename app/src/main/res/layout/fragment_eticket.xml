@@ -185,7 +185,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/labelTglBrkt"
                             android:layout_marginStart="16dp"
-                            android:text="@{ticket.dateStart}"
+                            android:text=""
                             android:textStyle="bold"
                             app:drawableStartCompat="@drawable/ic_schedule_blue" />
 

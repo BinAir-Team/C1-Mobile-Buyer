@@ -62,7 +62,11 @@ class ProfileFragment : Fragment() {
                 }
             }
             userprofile.setOnClickListener {
-                gotoEditProfile()
+                if(token != null){
+                    gotoEditProfile()
+                }else{
+                    Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }
             }
             btnLogout.setOnClickListener {
                 logout()
