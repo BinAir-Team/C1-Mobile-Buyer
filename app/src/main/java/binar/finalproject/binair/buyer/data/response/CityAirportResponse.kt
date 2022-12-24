@@ -14,14 +14,4 @@ data class CityAirportResponse(
 	val status: Int
 )
 
-data class CityAirport(
 
-	@field:SerializedName("code")
-	val code: String,
-
-	@field:SerializedName("city")
-	val city: String,
-
-	@field:SerializedName("airport")
-	val airport: String
-)

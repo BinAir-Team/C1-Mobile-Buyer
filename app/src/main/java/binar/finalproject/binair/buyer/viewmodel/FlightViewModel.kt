@@ -39,4 +39,6 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     //Notification
     fun GetAllNotification(token : String) : LiveData<List<DataNotif>?> = flightRepo.getAllNotif(token)
     fun UpdateNotification(token : String, id: String?) = flightRepo.updateNotification(token,id)
+    fun insertAirport(listAirport : List<CityAirport>) = flightRepo.insertAllAirport(listAirport)
+    fun getAirportLocal() : LiveData<List<CityAirport>?> = flightRepo.getAllAirport()
 }

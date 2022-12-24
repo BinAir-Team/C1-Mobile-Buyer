@@ -206,7 +206,12 @@
             app:destination="@id/eticketFragment">
             <argument
                 android:name="dataBooking"
-                app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse" />
+                app:argType="binar.finalproject.binair.buyer.data.response.BookingTicketResponse"
+                app:nullable="true" />
+            <argument
+                android:name="itemTrans"
+                app:argType="binar.finalproject.binair.buyer.data.response.TransItem"
+                app:nullable="true" />
         </action>
 <!--        <argument-->
 <!--            android:name="itemTrans"-->

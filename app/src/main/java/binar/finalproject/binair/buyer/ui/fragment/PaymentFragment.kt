@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
 import binar.finalproject.binair.buyer.data.response.TransItem
 import binar.finalproject.binair.buyer.data.response.TravelerItem
 import binar.finalproject.binair.buyer.databinding.FragmentPaymentBinding
+import binar.finalproject.binair.buyer.socketio.SocketHandler
 import binar.finalproject.binair.buyer.ui.adapter.PaymentMethodAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import okhttp3.MediaType.Companion.toMediaType
@@ -74,9 +76,23 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initSocketIO()
         setListener()
         getSetData()
         initDataSpinner()
+    }
+
+    private fun initSocketIO(){
+        SocketHandler.setSocket()
+        val mSocket = SocketHandler.getSocket()
+        mSocket.connect()
+
+        mSocket.on("notify-update"){
+            Log.e("SocketHandler", it[0].toString())
+            if(it[0] != null){
+                makeNotification("Binair",it[0].toString(), requireContext())
+            }
+        }
     }
 
     private fun setListener(){
@@ -133,6 +149,50 @@ class PaymentFragment : Fragment() {
             tvName.text = passenger
             tvType.text = passengerType
             tvTotalPrice.text = formatRupiah(amount)
+        }
+    }
+
+    private fun updatePaymentStatus(){
+        val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
+        val id = binding.tvIdBooking.text.toString()
+        val method = binding.spPaymentMethod.selectedItem.toString().toRequestBody("text/plain".toMediaType())
+
+        flightVM.updatePayment("Bearer $token",id,image!!,method).observe(viewLifecycleOwner){
+            if (it != null) {
+                if(it.status == 200){
+//                    Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
+                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
+                    val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
+                    for(trav in args.data[0].traveler){
+                        if (trav.noKtp == null){
+                            trav.noKtp = ""
+                            trav.idCard = ""
+                        }
+                        if(trav.tittle == null){
+                            trav.tittle = ""
+                        }
+                    }
+                    try {
+                        val act = PaymentFragmentDirections.actionPaymentFragmentToEticketFragment(args,null)
+                        findNavController().navigate(act)
+                    }catch (e : Exception){
+                        val argsTrans = arguments?.getSerializable("itemTrans") as TransItem
+                        for(trav in argsTrans.traveler){
+                            if (trav.noKtp == null){
+                                trav.noKtp = ""
+                                trav.idCard = ""
+                            }
+                            if(trav.tittle == null){
+                                trav.tittle = ""
+                            }
+                        }
+                        val act = PaymentFragmentDirections.actionPaymentFragmentToEticketFragment(null,argsTrans)
+                        findNavController().navigate(act)
+                    }
+                }
+            }else{
+                Toast.makeText(requireContext(), "Pembayaran gagal", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -208,32 +268,4 @@ class PaymentFragment : Fragment() {
         galleryResult.launch("image/*")
     }
 
-    private fun updatePaymentStatus(){
-        val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
-        val id = binding.tvIdBooking.text.toString()
-        val method = binding.spPaymentMethod.selectedItem.toString().toRequestBody("text/plain".toMediaType())
-
-        flightVM.updatePayment("Bearer $token",id,image!!,method).observe(viewLifecycleOwner){
-            if (it != null) {
-                if(it.status == 200){
-//                    Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
-                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
-                    val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
-                    for(trav in args.data[0].traveler){
-                        if (trav.noKtp == null){
-                            trav.noKtp = ""
-                            trav.idCard = ""
-                        }
-                        if(trav.tittle == null){
-                            trav.tittle = ""
-                        }
-                    }
-                    val act = PaymentFragmentDirections.actionPaymentFragmentToEticketFragment(args)
-                    findNavController().navigate(act)
-                }
-            }else{
-                Toast.makeText(requireContext(), "Pembayaran gagal", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }

@@ -12,12 +12,14 @@ import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.formatRupiah
+import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.model.DataKontak
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentReviewBookingBinding
 import binar.finalproject.binair.buyer.databinding.ItemTravelerReviewBinding
 import binar.finalproject.binair.buyer.databinding.ReviewAlertDialogBinding
+import binar.finalproject.binair.buyer.socketio.SocketHandler
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -44,12 +46,24 @@ class ReviewBookingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initSocketIO()
         getDataTraveler()
         showDataKontak()
         showDataPenumpang()
         showPrice()
         setListener()
+    }
+
+    private fun initSocketIO(){
+        SocketHandler.setSocket()
+        val mSocket = SocketHandler.getSocket()
+        mSocket.connect()
+
+        mSocket.on("notify-update"){
+            if(it[0] != null){
+                makeNotification("Binair",it[0].toString(), requireContext())
+            }
+        }
     }
 
     private fun getDataTraveler() {

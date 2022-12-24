@@ -282,8 +282,6 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
     }
 
     fun isWishlisted(id : String, user : String) : Boolean {
-
-
         GlobalScope.launch {
             isWishlistresult = wishlistDAO.isWishlisted(id,user)
             updateparameter(isWishlistresult)
@@ -356,5 +354,19 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
 
         })
         return updateNotification
+    }
+
+    fun insertAllAirport(airport: List<CityAirport>){
+        GlobalScope.async {
+            wishlistDAO.insertCityAirport(airport)
+        }
+    }
+
+    fun getAllAirport() : LiveData<List<CityAirport>?> {
+        val allAirport = MutableLiveData<List<CityAirport>>()
+        GlobalScope.launch {
+            allAirport.postValue(wishlistDAO.getCityAirport())
+        }
+        return allAirport
     }
 }

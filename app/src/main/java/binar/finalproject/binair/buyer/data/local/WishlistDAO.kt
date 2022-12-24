@@ -2,6 +2,7 @@ package binar.finalproject.binair.buyer.data.local
 
 import androidx.room.*
 import binar.finalproject.binair.buyer.data.model.DataWishList
+import binar.finalproject.binair.buyer.data.response.CityAirport
 
 @Dao
 interface WishlistDAO {
@@ -19,4 +20,10 @@ interface WishlistDAO {
 
     @Update
     fun updateWishList(note: DataWishList)
+
+    @Query("SELECT * FROM CityAirport")
+    fun getCityAirport() : List<CityAirport>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCityAirport(listAirport : List<CityAirport>)
 }

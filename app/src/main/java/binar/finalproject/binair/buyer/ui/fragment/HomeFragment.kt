@@ -20,10 +20,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
+import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.CityAirport
 import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
+import binar.finalproject.binair.buyer.socketio.SocketHandler
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
@@ -36,8 +38,9 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-@Suppress("UNCHECKED_CAST")
 @AndroidEntryPoint
+@Suppress("UNCHECKED_CAST")
+@RequiresApi(Build.VERSION_CODES.M)
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var flightVM : FlightViewModel
@@ -62,6 +65,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListener()
         initData()
+        initSocketIO()
         showBottomNavigation()
         showBannerLogin()
         changeTripType()
@@ -131,6 +135,18 @@ class HomeFragment : Fragment() {
         binding.etTglPulangInput.setText(formatedDate)
     }
 
+    private fun initSocketIO(){
+        SocketHandler.setSocket()
+        val mSocket = SocketHandler.getSocket()
+        mSocket.connect()
+
+        mSocket.on("notify-update"){
+            if(it[0] != null){
+                makeNotification("Binair",it[0].toString(), requireContext())
+            }
+        }
+    }
+
     private fun showBottomNavigation() {
         (activity as MainActivity).binding.bottomNavContainer.visibility = View.VISIBLE
     }
@@ -185,30 +201,62 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setAutoCompleteClass() {
-        flightVM.callGetCityAirport().observe(viewLifecycleOwner){
-            if(it != null){
-                val city = it
-                val adapter = AutoCompleteAirportAdapter(requireContext(), city as ArrayList<CityAirport?>)
-                binding.apply {
-                    etFrom.threshold = 1
-                    etFrom.setAdapter(adapter)
-                    etDestination.threshold = 1
-                    etDestination.setAdapter(adapter)
-                    etFrom.setOnItemClickListener { adapterView, view, pos, l ->
-                        val data = adapter.getDataAirport(pos)
-                        cityFrom = data.city
-                        airportFrom = data.airport
-                        binding.etFrom.setText("${data.city} - ${data.code}")
-                    }
-                    etDestination.setOnItemClickListener { adapterView, view, pos, l ->
-                        val data = adapter.getDataAirport(pos)
-                        cityTo = data.city
-                        airportTo = data.airport
-                        binding.etDestination.setText("${data.city} - ${data.code}")
+        Log.d("isOnline","isOnline : ${isOnline(requireContext())}")
+        if(isOnline(requireContext())){
+            flightVM.callGetCityAirport().observe(viewLifecycleOwner){
+                if(it != null){
+                    setDataAirport(it)
+
+                    if(!airportInserted()){
+                        insertAirportLocal(it)
                     }
                 }
             }
+        }else{
+            flightVM.getAirportLocal().observe(viewLifecycleOwner){
+                if(it != null){
+                    Log.d("Response",it.toString())
+                    setDataAirport(it)
+                }
+            }
         }
+    }
+
+    private fun setDataAirport(airportParam : List<CityAirport>?){
+        val city = airportParam
+        val adapter = AutoCompleteAirportAdapter(requireContext(), city as ArrayList<CityAirport?>)
+        binding.apply {
+            etFrom.threshold = 1
+            etFrom.setAdapter(adapter)
+            etDestination.threshold = 1
+            etDestination.setAdapter(adapter)
+            etFrom.setOnItemClickListener { adapterView, view, pos, l ->
+                val data = adapter.getDataAirport(pos)
+                cityFrom = data.city
+                airportFrom = data.airport
+                binding.etFrom.setText("${data.city} - ${data.code}")
+            }
+            etDestination.setOnItemClickListener { adapterView, view, pos, l ->
+                val data = adapter.getDataAirport(pos)
+                cityTo = data.city
+                airportTo = data.airport
+                binding.etDestination.setText("${data.city} - ${data.code}")
+            }
+        }
+    }
+
+    private fun airportInserted() : Boolean{
+        var res : List<CityAirport>? = null
+        flightVM.getAirportLocal().observe(viewLifecycleOwner){
+            if (it != null){
+                res = it
+            }
+        }
+        return res != null
+    }
+
+    private fun insertAirportLocal(listAirport : List<CityAirport>){
+        flightVM.insertAirport(listAirport)
     }
 
     private fun showDatePickerDialog(kategori: String) {
