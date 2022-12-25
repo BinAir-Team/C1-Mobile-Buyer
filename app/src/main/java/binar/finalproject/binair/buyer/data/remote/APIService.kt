@@ -16,6 +16,10 @@ interface APIService {
     @FormUrlEncoded
     fun loginUser(@Field("email") email : String, @Field("password") password : String) : Call<LoginResponse>
 
+    @POST("googleLogin")
+    @FormUrlEncoded
+    fun loginGoogle(@Field("token") token : String) : Call<LoginGoogleResponse>
+
     @GET("user")
     fun getUser(@Header("Authorization") token : String) : Call<GetUserResponse>
 

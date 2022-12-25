@@ -155,14 +155,7 @@ class LoginFragment : Fragment() {
         userVM.loginUser(email, pass).observe(viewLifecycleOwner) { it ->
             if (it != null) {
                 showLoading(false)
-                val namaLengkap = it.data.firstname + " " + it.data.lastname
-                editor.putString("token", it.data.accessToken)
-                editor.putString("idUser", it.data.id)
-                editor.putString("namaLengkap", namaLengkap)
-                editor.putBoolean("isLogin", true)
-                editor.putBoolean("isValidToken", true)
-                editor.apply()
-                gotoHome()
+                saveUserToSharedPref(it.data.id,it.data.firstname,it.data.lastname,it.data.accessToken)
             } else {
                 userVM.getLoginErrorMessage().observe(viewLifecycleOwner) {
                     showLoading(false)
@@ -211,9 +204,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginUsingGoogle() {
+        showLoading(true)
         oneTapClient.beginSignIn(signInRequest)
             .addOnSuccessListener(requireActivity()) { result ->
                 try {
+                    showLoading(false)
                     startIntentSenderForResult(
                         result.pendingIntent.intentSender, REQ_ONE_TAP,
                         null, 0, 0, 0, null
@@ -238,22 +233,22 @@ class LoginFragment : Fragment() {
                 try {
                     val credential = oneTapClient.getSignInCredentialFromIntent(data)
                     val idToken = credential.googleIdToken
-                    val secret = credential
-                    val username = credential.displayName
-                    val email = credential.id
-                    val img = credential.profilePictureUri
-                    Log.d("RESULT_GOOGLE", "onActivityResult: $idToken $username $email $img")
+//                    val username = credential.displayName
+//                    val email = credential.id
+//                    val img = credential.profilePictureUri
+//                    Log.d("RESULT_GOOGLE", "onActivityResult: $idToken $username $email $img")
                     when {
                         idToken != null -> {
-                            with(editor) {
-                                putString("token", idToken)
-                                putString("namaLengkap", username)
-                                putString("email", email)
-                                putString("img", img.toString())
-                                putBoolean("isLogin", true)
-                                apply()
-                            }
-                            gotoHome()
+//                            with(editor) {
+//                                putString("token", idToken)
+//                                putString("namaLengkap", username)
+//                                putString("email", email)
+//                                putString("img", img.toString())
+//                                putBoolean("isLogin", true)
+//                                apply()
+//                            }
+//                            gotoHome()
+                            loginGoogleAPI(idToken)
                         }
                         else -> {
                             Log.d(TAG, "No ID token or password!")
@@ -282,6 +277,41 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun loginGoogleAPI(tokenGoogle : String){
+        showLoading(true)
+        userVM.loginGoogle(tokenGoogle).observe(viewLifecycleOwner){
+            if (it != null){
+                showLoading(false)
+                saveUserToSharedPref(it.data.id,it.data.firstname,it.data.lastname,it.data.accessToken)
+            }else{
+                userVM.getLoginErrorMessage().observe(viewLifecycleOwner){
+                    showLoading(false)
+                    val errMessage = it
+                    if (errMessage.contains("Email does not exist")){
+                        Toast.makeText(requireContext(),"Silahkan registrasi terlebih dahulu",Toast.LENGTH_SHORT).show()
+                    }else if (errMessage.contains("Email not verified, check your email!")){
+                        Toast.makeText(requireContext(),"Email belum terverifikasi",Toast.LENGTH_SHORT).show()
+                    }else if (errMessage.contains("Password is incorrect")){
+                        Toast.makeText(context,"Email atau password salah",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun saveUserToSharedPref(idUser : String, firstName : String, lastName : String, token : String){
+        with(editor) {
+            val namaLengkap = firstName + " " + lastName
+            putString("token", token)
+            putString("idUser", idUser)
+            putString("namaLengkap", namaLengkap)
+            putBoolean("isLogin", true)
+            putBoolean("isValidToken", true)
+            apply()
+        }
+        gotoHome()
     }
 
     private fun gotoHome() {

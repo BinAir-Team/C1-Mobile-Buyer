@@ -18,7 +18,6 @@ import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.databinding.FragmentListTicketBinding
 import binar.finalproject.binair.buyer.ui.adapter.ListTicketAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
-import com.github.ybq.android.spinkit.style.ThreeBounce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,7 +83,7 @@ class ListTicketFragment : Fragment() {
     private fun showLoading(condition : Boolean) {
         if (condition) {
             binding.progressBar.visibility = View.VISIBLE
-            binding.progressBar.setIndeterminateDrawable(ThreeBounce())
+//            binding.progressBar.setIndeterminateDrawable(ThreeBounce())
         } else {
             binding.progressBar.visibility = View.GONE
         }

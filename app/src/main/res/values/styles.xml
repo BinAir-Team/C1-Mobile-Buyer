@@ -34,4 +34,7 @@
         <item name="itemPaddingBottom">@dimen/m3_bottom_nav_item_padding_bottom</item>
         <item name="android:minHeight">70dp</item>
     </style>
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/MC_Orange</item>
+    </style>
 </resources>

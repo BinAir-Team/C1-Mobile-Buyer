@@ -74,6 +74,32 @@ class UserRepository @Inject constructor(var apiService: APIService) {
         return loginUser
     }
 
+    fun loginGoogle(token: String) : LiveData<LoginGoogleResponse?> {
+        val _loginGoogle = MutableLiveData<LoginGoogleResponse?>()
+        val loginGoogle: LiveData<LoginGoogleResponse?> = _loginGoogle
+        apiService.loginGoogle(token).enqueue(object : Callback<LoginGoogleResponse>{
+            override fun onResponse(
+                call: Call<LoginGoogleResponse>,
+                response: Response<LoginGoogleResponse>
+            ) {
+                val dataResponse = response.body()
+                if (response.isSuccessful && dataResponse != null) {
+                    _loginGoogle.postValue(dataResponse)
+                } else if(response.code() == 400 || response.code() == 401) {
+                    _loginGoogle.postValue(null)
+                    val gson = GsonBuilder().create()
+                    val errorResponse = gson.fromJson(response.errorBody()?.string(), LoginErrorResponse::class.java)
+                    loginErrorMessage.postValue(errorResponse.message)
+                }
+            }
+
+            override fun onFailure(call: Call<LoginGoogleResponse>, t: Throwable) {
+                Log.d("Error onFailure : ", t.message!!)
+            }
+        })
+        return loginGoogle
+    }
+
     fun getUser(token: String): LiveData<GetUserResponse?> {
         apiService.getUser(token).enqueue(object : Callback<GetUserResponse> {
             override fun onResponse(

@@ -7,6 +7,16 @@
     android:background="@color/main_blue"
     tools:context="ui.fragment.NotificationFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/pbLogin"
+        app:lottie_rawRes="@raw/login_loading"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/tvWelcomeBack"
         android:layout_width="349dp"
@@ -42,15 +52,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ProgressBar
-                android:id="@+id/pbLogin"
-                android:layout_width="360dp"
-                android:layout_height="5dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:visibility="gone"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
             <TextView
                 android:id="@+id/labelEmail"

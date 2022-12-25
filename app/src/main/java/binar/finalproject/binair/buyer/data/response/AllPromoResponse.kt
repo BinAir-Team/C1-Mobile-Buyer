@@ -1,6 +1,8 @@
 package binar.finalproject.binair.buyer.data.response
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -16,6 +18,7 @@ data class AllPromoResponse(
 	val status: String
 )
 
+@Entity
 @Parcelize
 data class DataPromo(
 
@@ -37,6 +40,7 @@ data class DataPromo(
 	@field:SerializedName("promo_code")
 	val promoCode: String,
 
+	@PrimaryKey
 	@field:SerializedName("id")
 	val id: String,
 

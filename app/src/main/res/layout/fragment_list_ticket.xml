@@ -16,15 +16,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar" />
 
-    <com.github.ybq.android.spinkit.SpinKitView
+<!--    <com.github.ybq.android.spinkit.SpinKitView-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="@style/SpinKitView.Large.ThreeBounce"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        app:SpinKit_Color="@color/main_blue"-->
+<!--        android:visibility="gone"-->
+<!--        />-->
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
-        style="@style/SpinKitView.Large.ThreeBounce"
+        app:lottie_rawRes="@raw/ticket_loading"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:SpinKit_Color="@color/main_blue"
-        android:visibility="gone"
-        />
+        android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/tvTicketNotFound"
