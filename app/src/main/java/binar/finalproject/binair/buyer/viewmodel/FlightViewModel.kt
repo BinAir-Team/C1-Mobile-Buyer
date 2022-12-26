@@ -1,12 +1,14 @@
 package binar.finalproject.binair.buyer.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.finalproject.binair.buyer.repository.FlightRepository
+import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.model.Carousel
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.*
-
+import binar.finalproject.binair.buyer.repository.FlightRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -14,6 +16,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FlightViewModel @Inject constructor(private val flightRepo : FlightRepository) : ViewModel() {
+    var carouselList = arrayListOf(
+        Carousel(id = 1,imgUrl = R.drawable.carousel1 ),
+        Carousel(id = 2,imgUrl = R.drawable.carousel2 ),
+        Carousel(id = 3,imgUrl = R.drawable.carousel3 ),
+        Carousel(id = 4,imgUrl = R.drawable.carousel4 ),
+    )
+
+    var carouselListLiveData: MutableLiveData<List<Carousel>> = MutableLiveData()
+    fun getDataCarousel(){
+        val carousels = carouselList
+        carouselListLiveData.value = carousels
+    }
     fun callGetCityAirport() : LiveData<List<CityAirport>?> = flightRepo.callGetCityAirport()
     fun setAdultPassenger(adultPassenger : Int) = flightRepo.setAdultPassenger(adultPassenger)
     fun getAdultPassenger() : LiveData<Int> = flightRepo.adultPassenger

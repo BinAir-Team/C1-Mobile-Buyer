@@ -3,7 +3,7 @@ package binar.finalproject.binair.buyer.data.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class News(val id: Int,  val imgUrl: Int):
+data class Carousel(val id: Int,  val imgUrl: Int):
     Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -20,12 +20,12 @@ data class News(val id: Int,  val imgUrl: Int):
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<News> {
-        override fun createFromParcel(parcel: Parcel): News {
-            return News(parcel)
+    companion object CREATOR : Parcelable.Creator<Carousel> {
+        override fun createFromParcel(parcel: Parcel): Carousel {
+            return Carousel(parcel)
         }
 
-        override fun newArray(size: Int): Array<News?> {
+        override fun newArray(size: Int): Array<Carousel?> {
             return arrayOfNulls(size)
         }
     }

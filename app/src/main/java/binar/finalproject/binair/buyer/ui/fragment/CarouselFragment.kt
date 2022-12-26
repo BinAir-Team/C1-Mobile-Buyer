@@ -13,16 +13,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.model.News
+import binar.finalproject.binair.buyer.data.model.Carousel
 import binar.finalproject.binair.buyer.databinding.FragmentCarouselBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.HeadlineViewPager
-import binar.finalproject.binair.buyer.viewmodel.NewsViewModel
+import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 
 
 class CarouselFragment : Fragment() {
     private lateinit var binding : FragmentCarouselBinding
-    private lateinit var newsVM : NewsViewModel
+    private lateinit var flightVM : FlightViewModel
     private lateinit var viewPagerAdapter: HeadlineViewPager
 
     override fun onCreateView(
@@ -35,10 +35,10 @@ class CarouselFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        newsVM = ViewModelProvider(this)[NewsViewModel::class.java]
-        newsVM.getHeadlinesData()
-        newsVM.headlineListLiveData.observe(viewLifecycleOwner, Observer {
-            viewPagerAdapter.setHeadlineNewsData(it as ArrayList<News>)
+        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
+        flightVM.getDataCarousel()
+        flightVM.carouselListLiveData.observe(viewLifecycleOwner, Observer {
+            viewPagerAdapter.setHeadlineNewsData(it as ArrayList<Carousel>)
         })
         carouselset()
         setSwipeUpListener()
