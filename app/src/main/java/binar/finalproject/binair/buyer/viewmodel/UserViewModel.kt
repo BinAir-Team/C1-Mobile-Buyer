@@ -2,7 +2,7 @@ package binar.finalproject.binair.buyer.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import binar.finalproject.binair.buyer.data.UserRepository
+import binar.finalproject.binair.buyer.repository.UserRepository
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel

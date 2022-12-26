@@ -14,8 +14,6 @@ class NewsViewModel: ViewModel() {
         News(id = 4,imgUrl = R.drawable.carousel4 ),
     )
 
-    var newsListLiveData: MutableLiveData<List<News>> = MutableLiveData()
-
     var headlineListLiveData: MutableLiveData<List<News>> = MutableLiveData()
     fun getHeadlinesData(){
         val headlines = headlineNewsList

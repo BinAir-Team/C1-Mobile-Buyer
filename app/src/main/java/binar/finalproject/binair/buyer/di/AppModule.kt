@@ -3,7 +3,7 @@ package binar.finalproject.binair.buyer.di
 import android.content.Context
 import androidx.room.Room
 import binar.finalproject.binair.buyer.BuildConfig
-import binar.finalproject.binair.buyer.data.UserRepository
+import binar.finalproject.binair.buyer.repository.UserRepository
 import binar.finalproject.binair.buyer.data.local.WishListDatabase
 import binar.finalproject.binair.buyer.data.local.WishlistDAO
 import binar.finalproject.binair.buyer.data.remote.APIService

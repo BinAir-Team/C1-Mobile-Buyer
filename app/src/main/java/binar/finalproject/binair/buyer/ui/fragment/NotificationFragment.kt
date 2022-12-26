@@ -11,12 +11,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
+import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.response.DataNotif
 import binar.finalproject.binair.buyer.databinding.FragmentNotificationBinding
+import binar.finalproject.binair.buyer.socketio.SocketHandler
 import binar.finalproject.binair.buyer.ui.adapter.NotificationAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,21 +42,36 @@ class NotificationFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        initSocketIO()
         getNotification()
         setListener()
     }
 
     private fun setListener() {
         pop = arguments?.getString("pop", null)!!
-        binding.toolbar.btnBack.setOnClickListener() {
-            if (pop == "home"){
-                findNavController().navigate(R.id.action_global_homeFragment)
-            }
-            else
-                findNavController().navigate(R.id.action_global_homeFragment)
-        }
+//        binding.toolbar.btnBack.setOnClickListener() {
+//            if (pop == "home"){
+//                findNavController().navigate(R.id.action_global_homeFragment)
+//            }
+//            else
+//                findNavController().navigate(R.id.action_global_homeFragment)
+//        }
     }
 
+    private fun initSocketIO(){
+        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser", null)
+        SocketHandler.setSocket()
+        if(idUser != null){
+            val mSocket = SocketHandler.getSocket()
+            mSocket.connect()
+            mSocket.emit("create",idUser)
+            mSocket.on("notify-update"){
+                if(it[0] != null){
+                    makeNotification("Binair",it[0].toString(), requireContext())
+                }
+            }
+        }
+    }
 
     private fun getNotification() {
         var res : List<DataNotif>? = null
@@ -65,7 +80,7 @@ class NotificationFragment : Fragment() {
             flightVM.GetAllNotification("Bearer $token").observe(viewLifecycleOwner){
                 if (it != null) {
                     res = it
-                    setDataToRecView(it)
+                    setDataToRecView(it.reversed())
 //                    showLoading(false)
                 }
             }

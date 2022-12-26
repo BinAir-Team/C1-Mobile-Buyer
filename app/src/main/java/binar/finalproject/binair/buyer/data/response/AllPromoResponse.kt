@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class AllPromoResponse(
 
 	@field:SerializedName("data")
-	val data: List<DataPromo>,
+	val data: DataPagePromo,
 
 	@field:SerializedName("message")
 	val message: String,
@@ -18,8 +18,8 @@ data class AllPromoResponse(
 	val status: String
 )
 
-@Entity
 @Parcelize
+@Entity
 data class DataPromo(
 
 	@field:SerializedName("createdAt")
@@ -53,3 +53,18 @@ data class DataPromo(
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
 ) : Parcelable
+
+data class DataPagePromo(
+
+	@field:SerializedName("totalItems")
+	val totalItems: Int,
+
+	@field:SerializedName("totalPages")
+	val totalPages: Int,
+
+	@field:SerializedName("currentPage")
+	val currentPage: Int,
+
+	@field:SerializedName("promos")
+	val promos: List<DataPromo>
+)

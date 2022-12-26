@@ -5,7 +5,6 @@ import io.socket.client.IO
 import io.socket.client.Socket
 
 object SocketHandler {
-    //    val uri = URLEncoder.encode("https://binair-backend-production.up.railway.app/", "UTF-8")
     val uri = "https://binair-backend-production.up.railway.app/"
     lateinit var mSocket: Socket
 

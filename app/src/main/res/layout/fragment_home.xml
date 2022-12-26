@@ -183,6 +183,18 @@
                             android:text="@string/ex_kota_dari" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <ImageButton
+                        android:id="@+id/btnSwitch"
+                        android:src="@drawable/ic_switch"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginTop="-15dp"
+                        android:layout_below="@id/fromInputContainer"
+                        android:layout_alignParentEnd="true"
+                        android:elevation="12dp" />
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/destinationInputContainer"
                         android:layout_width="match_parent"

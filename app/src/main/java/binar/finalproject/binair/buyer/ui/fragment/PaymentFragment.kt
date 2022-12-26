@@ -160,19 +160,18 @@ class PaymentFragment : Fragment() {
         flightVM.updatePayment("Bearer $token",id,image!!,method).observe(viewLifecycleOwner){
             if (it != null) {
                 if(it.status == 200){
-//                    Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
-                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
-                    val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
-                    for(trav in args.data[0].traveler){
-                        if (trav.noKtp == null){
-                            trav.noKtp = ""
-                            trav.idCard = ""
-                        }
-                        if(trav.tittle == null){
-                            trav.tittle = ""
-                        }
-                    }
+//                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
                     try {
+                        val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
+                        for(trav in args.data[0].traveler){
+                            if (trav.noKtp == null){
+                                trav.noKtp = ""
+                                trav.idCard = ""
+                            }
+                            if(trav.tittle == null){
+                                trav.tittle = ""
+                            }
+                        }
                         val act = PaymentFragmentDirections.actionPaymentFragmentToEticketFragment(args,null)
                         findNavController().navigate(act)
                     }catch (e : Exception){

@@ -2,7 +2,6 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -57,7 +56,6 @@ class WishlistFragment : Fragment() {
     private fun getAllWishlist(){
         val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
         val idUser = prefs.getString("idUser",null)
-        Log.e("iduser", idUser.toString())
         if (idUser != null) {
             flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner){
                 if (it != null) {

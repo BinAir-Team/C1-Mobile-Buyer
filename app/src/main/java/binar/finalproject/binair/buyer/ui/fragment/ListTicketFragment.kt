@@ -1,5 +1,6 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +28,7 @@ class ListTicketFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private lateinit var searchedTicket : SearchItem
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +36,7 @@ class ListTicketFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentListTicketBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
+        binding.toolbar.tvTitlePage.text = "Hasil Pencarian"
         return binding.root
     }
 
@@ -50,8 +53,8 @@ class ListTicketFragment : Fragment() {
     private fun getListTicket() {
         var res : List<TicketItem>? = null
         showLoading(true)
-//        flightVM.callGetTicketBySearch(searchedTicket.cityFrom,searchedTicket.airportFrom,searchedTicket.cityTo,searchedTicket.airportTo,searchedTicket.dateGo,searchedTicket.type).observe(viewLifecycleOwner){
-        flightVM.callGetTicketBySearch("","","","","","",).observe(viewLifecycleOwner){
+        flightVM.callGetTicketBySearch(searchedTicket.cityFrom,searchedTicket.airportFrom,searchedTicket.cityTo,searchedTicket.airportTo,searchedTicket.dateGo, searchedTicket.dateBack,searchedTicket.type).observe(viewLifecycleOwner){
+//        flightVM.callGetTicketBySearch("","","","","","",).observe(viewLifecycleOwner){
             if (it != null) {
                 res = it
                 setDataToRecView(it)

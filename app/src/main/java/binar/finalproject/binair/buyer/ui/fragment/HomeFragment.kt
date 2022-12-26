@@ -5,8 +5,6 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
 import android.graphics.Color
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
+import binar.finalproject.binair.buyer.data.isOnline
 import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.CityAirport
@@ -32,6 +31,9 @@ import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import io.socket.emitter.Emitter
+import org.json.JSONArray
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -48,8 +50,10 @@ class HomeFragment : Fragment() {
     private var tripType : String = "oneway"
     private var cityFrom : String = "Jakarta"
     private var airportFrom : String = "Soekarno Hatta"
+    private var airportFromCode : String = "CGK"
     private var cityTo : String = "Surabaya"
     private var airportTo : String = "Juanda"
+    private var airportToCode : String = "SUB"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,6 +99,20 @@ class HomeFragment : Fragment() {
             btnRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_registerFragment)
             }
+            btnSwitch.setOnClickListener {
+                val oldCityFrom = cityFrom
+                val oldAirportFrom = airportFrom
+                val oldAirportFromCode = airportFromCode
+                val oldCityTo = cityTo
+                val oldAirportTo = airportTo
+                val oldAirportToCode = airportToCode
+
+                cityFrom = oldCityTo ; airportFrom = oldAirportTo ; airportFromCode = oldAirportToCode
+                cityTo = oldCityFrom ; airportTo = oldAirportFrom ; airportToCode = oldAirportFromCode
+
+                etFrom.setText("$cityFrom - $airportFromCode")
+                etDestination.setText("$cityTo - $airportToCode")
+            }
             etTglBerangkatInput.setOnClickListener {
                 showDatePickerDialog("berangkat")
             }
@@ -136,14 +154,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun initSocketIO(){
-        SocketHandler.setSocket()
-        val mSocket = SocketHandler.getSocket()
-        mSocket.connect()
-
-        mSocket.on("notify-update"){
-            if(it[0] != null){
-                makeNotification("Binair",it[0].toString(), requireContext())
+        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser", null)
+        val onNewNotif = Emitter.Listener {
+            if(it != null){
+                activity?.runOnUiThread {
+                    val arrObj = it[0] as JSONArray
+                    val obj = arrObj.get(arrObj.length() - 1) as JSONObject
+                    val msg = obj.getString("message")
+                    Log.d("notif", msg)
+                    makeNotification("Binair",msg, requireContext())
+                }
             }
+        }
+        SocketHandler.setSocket()
+        if(idUser != null){
+            val mSocket = SocketHandler.getSocket()
+            mSocket.connect()
+            mSocket.emit("create",idUser)
+            mSocket.on("notify-update", onNewNotif)
         }
     }
 
@@ -156,7 +184,7 @@ class HomeFragment : Fragment() {
         val userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         val token = prefs.getString("token", null)
         val email = prefs.getString("email", null)
-        Log.d("EMAIL",email.toString())
+
         if(token != null){
             if(email != null){
                 binding.bannerLogin.visibility = View.GONE
@@ -167,6 +195,7 @@ class HomeFragment : Fragment() {
                 }else{
                     binding.bannerLogin.visibility = View.VISIBLE
                     prefs.edit().putString("token", null).apply()
+                    prefs.edit().clear().apply()
                 }
             }
         }else{
@@ -201,7 +230,6 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setAutoCompleteClass() {
-        Log.d("isOnline","isOnline : ${isOnline(requireContext())}")
         if(isOnline(requireContext())){
             flightVM.callGetCityAirport().observe(viewLifecycleOwner){
                 if(it != null){
@@ -222,6 +250,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setDataAirport(airportParam : List<CityAirport>?){
         val city = airportParam
         val adapter = AutoCompleteAirportAdapter(requireContext(), city as ArrayList<CityAirport?>)
@@ -234,13 +263,15 @@ class HomeFragment : Fragment() {
                 val data = adapter.getDataAirport(pos)
                 cityFrom = data.city
                 airportFrom = data.airport
-                binding.etFrom.setText("${data.city} - ${data.code}")
+                airportFromCode = data.code
+                binding.etFrom.setText("$cityFrom - $airportFromCode")
             }
             etDestination.setOnItemClickListener { adapterView, view, pos, l ->
                 val data = adapter.getDataAirport(pos)
                 cityTo = data.city
                 airportTo = data.airport
-                binding.etDestination.setText("${data.city} - ${data.code}")
+                airportToCode = data.code
+                binding.etDestination.setText("$cityTo - $airportToCode")
             }
         }
     }
@@ -318,14 +349,25 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPromoAdapter() {
-        flightVM.getAllPromo().observe(viewLifecycleOwner){
-            if (it != null){
-                setDatatoRecycleView(it)
+        if(isOnline(requireContext())){
+            flightVM.getAllPromo().observe(viewLifecycleOwner){
+                if (it != null){
+                    setDataPromoToRV(it)
+                    if(!promoInserted()){
+                        insertPromoLocal(it)
+                    }
+                }
+            }
+        }else{
+            flightVM.getPromoLocal().observe(viewLifecycleOwner){
+                if(it != null){
+                    setDataPromoToRV(it)
+                }
             }
         }
     }
 
-    private fun setDatatoRecycleView(data : List<DataPromo>){
+    private fun setDataPromoToRV(data : List<DataPromo>){
         val adapter = HomePromoAdapter(data)
         val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
         binding.rvPromo.adapter = adapter
@@ -337,26 +379,17 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun isOnline(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
-                    return true
-                }
+    private fun promoInserted() : Boolean{
+        var res : List<DataPromo>? = null
+        flightVM.getPromoLocal().observe(viewLifecycleOwner){
+            if (it != null){
+                res = it
             }
         }
-        return false
+        return res != null
+    }
+
+    private fun insertPromoLocal(listAirport : List<DataPromo>){
+        flightVM.insertPromo(listAirport)
     }
 }

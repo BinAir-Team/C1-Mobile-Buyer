@@ -2,7 +2,7 @@ package binar.finalproject.binair.buyer.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import binar.finalproject.binair.buyer.data.FlightRepository
+import binar.finalproject.binair.buyer.repository.FlightRepository
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.response.*
@@ -25,7 +25,7 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun getChosenTicket() : LiveData<TicketItem?> = flightRepo.chosenTicket
     fun clearChosenTicket() = flightRepo.clearChosenTicket()
     fun callGetAllTicket() : LiveData<List<TicketItem>?> = flightRepo.callGetAllTicket()
-    fun callGetTicketBySearch(from: String, airport_from : String, to: String, airport_to : String, date : String, type : String) : LiveData<List<TicketItem>?> = flightRepo.callGetTicketBySearch(from, airport_from, to, airport_to, date, type)
+    fun callGetTicketBySearch(from: String, airport_from : String, to: String, airport_to : String, dateStart : String, dateEnd : String?, type : String) : LiveData<List<TicketItem>?> = flightRepo.callGetTicketBySearch(from, airport_from, to, airport_to, dateStart, dateEnd, type)
     fun bookTicket(token : String, data : PostBookingBody) = flightRepo.bookTicket(token, data)
     fun updatePayment(token : String, id : String, img : MultipartBody.Part, method : RequestBody) = flightRepo.updatePayment(token, id, img, method)
     fun getTicketById(id : String) : LiveData<GetTicketByIdResponse?> = flightRepo.getTicketById(id)
@@ -41,4 +41,6 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun UpdateNotification(token : String, id: String?) = flightRepo.updateNotification(token,id)
     fun insertAirport(listAirport : List<CityAirport>) = flightRepo.insertAllAirport(listAirport)
     fun getAirportLocal() : LiveData<List<CityAirport>?> = flightRepo.getAllAirport()
+    fun insertPromo(listPromo : List<DataPromo>) = flightRepo.insertPromoLocal(listPromo)
+    fun getPromoLocal() : LiveData<List<DataPromo>?> = flightRepo.getAllPromoLocal()
 }

@@ -1,4 +1,4 @@
-package binar.finalproject.binair.buyer.data
+package binar.finalproject.binair.buyer.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -82,11 +82,12 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
         airport_from: String,
         to: String,
         airport_to: String,
-        date: String,
+        dateStart: String,
+        dateEnd : String?,
         type: String,
         willFly: Boolean = true
     ): LiveData<List<TicketItem>?> {
-        client.getTicketBySearch(from, airport_from, to, airport_to, date, type,willFly)
+        client.getTicketBySearch(from, airport_from, to, airport_to, dateStart, dateEnd, type, willFly)
             .enqueue(object : Callback<AllTicketsResponse> {
                 override fun onResponse(
                     call: Call<AllTicketsResponse>,
@@ -158,7 +159,7 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
                 if (response.isSuccessful) {
                     val result = response.body()
                     if (result != null) {
-                        _allPromo.postValue(result.data)
+                        _allPromo.postValue(result.data.promos)
                         Log.d("RESULT", "Result : $result")
                     }else{
                         _allPromo.postValue(null)
@@ -368,5 +369,19 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
             allAirport.postValue(wishlistDAO.getCityAirport())
         }
         return allAirport
+    }
+
+    fun insertPromoLocal(promo: List<DataPromo>){
+        GlobalScope.async {
+            wishlistDAO.insertPromo(promo)
+        }
+    }
+
+    fun getAllPromoLocal() : LiveData<List<DataPromo>?> {
+        val allPromo = MutableLiveData<List<DataPromo>>()
+        GlobalScope.launch {
+            allPromo.postValue(wishlistDAO.getAllPromo())
+        }
+        return allPromo
     }
 }

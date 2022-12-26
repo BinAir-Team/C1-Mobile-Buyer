@@ -42,7 +42,7 @@ interface APIService {
     fun getAllTicket() : Call<AllTicketsResponse>
 
     @GET("tickets")
-    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date") date : String, @Query("type") type : String, @Query("willFly") willFly : Boolean, @Query("size") size : String = "200") : Call<AllTicketsResponse>
+    fun getTicketBySearch(@Query("from") cityFrom : String, @Query("airport_from") airportFrom : String , @Query("to") cityTo : String, @Query("airport_to") airportTo : String, @Query("date_start") dateStart : String, @Query("date_end") dateEnd : String?, @Query("type") type : String, @Query("willFly") willFly : Boolean, @Query("size") size : String = "200") : Call<AllTicketsResponse>
 
     @GET("tickets/id/{id}")
     fun getTicketById(@Path("id") id : String) : Call<GetTicketByIdResponse>

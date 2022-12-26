@@ -16,12 +16,12 @@
             android:layout_height="?attr/actionBarSize"
             android:backgroundTint="@color/white"
             android:elevation="16dp">
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:src="@drawable/ic_back"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/btnBack"-->
+<!--                android:src="@drawable/ic_back"-->
+<!--                android:background="?android:attr/selectableItemBackground"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content" />-->
             <TextView
                 android:id="@+id/tvTitlePage"
                 android:scaleType="fitStart"

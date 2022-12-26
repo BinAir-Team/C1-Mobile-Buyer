@@ -1,4 +1,4 @@
-package binar.finalproject.binair.buyer.data
+package binar.finalproject.binair.buyer.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
