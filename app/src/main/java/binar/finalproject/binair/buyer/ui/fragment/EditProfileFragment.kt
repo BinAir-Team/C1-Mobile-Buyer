@@ -1,3 +1,7 @@
+@file:Suppress("BlockingMethodInNonBlockingContext", "BlockingMethodInNonBlockingContext",
+    "BlockingMethodInNonBlockingContext", "BlockingMethodInNonBlockingContext"
+)
+
 package binar.finalproject.binair.buyer.ui.fragment
 
 import android.Manifest
@@ -31,8 +35,7 @@ import java.io.File
 @AndroidEntryPoint
 class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
-    lateinit var userVM : UserViewModel
-    private lateinit var oldPassword : String
+    private lateinit var userVM : UserViewModel
     private var image : MultipartBody.Part? = null
     private val galleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
@@ -48,12 +51,11 @@ class EditProfileFragment : Fragment() {
             val reqBody : RequestBody = tempFile.asRequestBody(type!!.toMediaType())
             image = MultipartBody.Part.createFormData("profile_image", tempFile.name, reqBody)
         }
-    private val REQUEST_CODE_PERMISSION = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -144,10 +146,6 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun isEqualPassRepassword(pass: String, repass: String): Boolean {
-        return pass == repass
-    }
-
     private fun checkingPermissions() {
         if (isGranted(
                 requireActivity(),
@@ -224,5 +222,9 @@ class EditProfileFragment : Fragment() {
             }
         }
         return isValid
+    }
+
+    companion object {
+        private const val REQUEST_CODE_PERMISSION = 100
     }
 }

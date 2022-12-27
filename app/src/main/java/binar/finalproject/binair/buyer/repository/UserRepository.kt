@@ -75,8 +75,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
     }
 
     fun loginGoogle(token: String) : LiveData<LoginGoogleResponse?> {
-        val _loginGoogle = MutableLiveData<LoginGoogleResponse?>()
-        val loginGoogle: LiveData<LoginGoogleResponse?> = _loginGoogle
+        val privaLoginGoogle = MutableLiveData<LoginGoogleResponse?>()
+        val loginGoogle: LiveData<LoginGoogleResponse?> = privaLoginGoogle
         apiService.loginGoogle(token).enqueue(object : Callback<LoginGoogleResponse>{
             override fun onResponse(
                 call: Call<LoginGoogleResponse>,
@@ -84,9 +84,9 @@ class UserRepository @Inject constructor(var apiService: APIService) {
             ) {
                 val dataResponse = response.body()
                 if (response.isSuccessful && dataResponse != null) {
-                    _loginGoogle.postValue(dataResponse)
+                    privaLoginGoogle.postValue(dataResponse)
                 } else if(response.code() == 400 || response.code() == 401) {
-                    _loginGoogle.postValue(null)
+                    privaLoginGoogle.postValue(null)
                     val gson = GsonBuilder().create()
                     val errorResponse = gson.fromJson(response.errorBody()?.string(), LoginErrorResponse::class.java)
                     loginErrorMessage.postValue(errorResponse.message)

@@ -22,6 +22,7 @@ import kotlin.random.Random
 
 @AndroidEntryPoint
 @RequiresApi(Build.VERSION_CODES.O)
+@SuppressLint("SetTextI18n")
 class EticketFragment : Fragment() {
     private lateinit var binding : FragmentEticketBinding
     private lateinit var flightVM : FlightViewModel
@@ -77,9 +78,8 @@ class EticketFragment : Fragment() {
 
     private fun createQR(idTrans : String){
         val size = 512 //pixels
-        val qrCodeContent = idTrans
-//        val hints = hashMapOf<EncodeHintType, Int>().also { it[EncodeHintType.MARGIN] = 1 }
-        val bits = QRCodeWriter().encode(qrCodeContent, BarcodeFormat.QR_CODE, size, size)
+        //        val hints = hashMapOf<EncodeHintType, Int>().also { it[EncodeHintType.MARGIN] = 1 }
+        val bits = QRCodeWriter().encode(idTrans, BarcodeFormat.QR_CODE, size, size)
         val bitmp =  Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
             for (x in 0 until size) {
                 for (y in 0 until size) {

@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text='IN123'
+                    android:text='@string/in123'
                     android:layout_toEndOf="@id/logoMaskapai"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="8dp"
@@ -53,7 +53,7 @@
                     android:id="@+id/FlightHour"
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/poppins_medium"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:layout_marginTop="4dp" />
             </RelativeLayout>
 
@@ -78,7 +78,7 @@
                         android:fontFamily="@font/inter_medium" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -87,7 +87,8 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_tujuan"/>
+                        android:text="@string/label_tujuan"
+                        tools:ignore="RtlHardcoded" />
                     <TextView
                         android:id="@+id/Tujuan"
                         android:layout_width="wrap_content"
@@ -129,13 +130,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_tanggal_berangkat"
-                        android:layout_marginTop="4dp"
-                        android:layout_below="@id/tvJenisKelas"/>
+                        android:layout_marginTop="4dp" />
                     <TextView
                         android:id="@+id/tvHargaDewasa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/labelHargaDewasa"
                         android:text='@{dataWishlist.dateStart,default = "0 jan"}' />
                 </LinearLayout>
                 <LinearLayout
@@ -148,15 +147,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/labelJam"
-                        android:layout_marginTop="4dp"
-                        android:layout_below="@id/tvJenisKelas"/>
+                        android:layout_marginTop="4dp" />
 
                     <TextView
                         android:id="@+id/tvHargaAnak"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/labelHargaAnak"
-                        android:layout_toEndOf="@id/labelHargaDewasa"
                         android:text='@{dataWishlist.departureTime,default = "08:20"}'
                         android:textStyle="bold"
                         app:drawableStartCompat="@drawable/ic_money" />

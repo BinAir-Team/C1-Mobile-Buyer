@@ -25,7 +25,7 @@ class ChangePasswordFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentChangePasswordBinding.inflate(inflater, container, false)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)

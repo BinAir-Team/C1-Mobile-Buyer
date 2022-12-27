@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="Berangkat"
+                android:text="@string/berangkat"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/tvTglBerangkat"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
-                android:text="Pulang"
+                android:text="@string/pulang"
                 android:textSize="12sp"
                 android:layout_alignParentEnd="true"/>
 
@@ -67,7 +67,7 @@
                 android:layout_above="@id/iconLogo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="-15dp"
-                android:text="1j 20menit"
+                android:text="@string/ex_durasi"
                 android:textSize="12sp" />
 
             <TextView

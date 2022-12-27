@@ -13,7 +13,7 @@
             android:id="@+id/tvTitleAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apakah data pemesanan Anda sudah benar?"
+            android:text="@string/apakah_data_pemesanan_anda_sudah_benar"
             android:textSize="24sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
@@ -21,7 +21,7 @@
             android:id="@+id/tvDetailAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Anda tidak bisa mengubah data pemesanan setelah proses pembayaran"
+            android:text="@string/anda_tidak_bisa_mengubah_data_pemesanan_setelah_proses_pembayaran"
             android:textSize="18sp"
             android:layout_marginTop="12dp"
             android:layout_below="@id/tvTitleAlert" />
@@ -29,7 +29,7 @@
             android:id="@+id/btnBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kembali ke Edit"
+            android:text="@string/kembali_ke_edit"
             style="@style/button"
             android:backgroundTint="@color/SB_Grey"
             android:layout_marginTop="12dp"
@@ -38,7 +38,7 @@
             android:id="@+id/btnPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lanjutkan Pembayaran"
+            android:text="@string/lanjutkan_pembayaran"
             style="@style/button"
             android:layout_below="@id/btnBack"/>
     </RelativeLayout>

@@ -37,7 +37,7 @@ class ReviewBookingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentReviewBookingBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         binding.toolbar.tvTitlePage.text = "Review Booking"
@@ -81,7 +81,7 @@ class ReviewBookingFragment : Fragment() {
         binding.dataKontakBind = dataKontak
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "InflateParams")
     private fun showDataPenumpang(){
         var counterDewasa = 1
         var counterAnak = 1

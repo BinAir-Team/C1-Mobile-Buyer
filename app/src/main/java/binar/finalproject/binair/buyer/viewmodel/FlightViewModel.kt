@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FlightViewModel @Inject constructor(private val flightRepo : FlightRepository) : ViewModel() {
-    var carouselList = arrayListOf(
+    private var carouselList = arrayListOf(
         Carousel(id = 1,imgUrl = R.drawable.carousel1 ),
         Carousel(id = 2,imgUrl = R.drawable.carousel2 ),
         Carousel(id = 3,imgUrl = R.drawable.carousel3 ),
@@ -51,8 +51,8 @@ class FlightViewModel @Inject constructor(private val flightRepo : FlightReposit
     fun insertWishList(wishlist: DataWishList, user : String) = flightRepo.insertWishlist(wishlist)
     fun deleteWishList(id: String) = flightRepo.deleteWishlist(id)
     //Notification
-    fun GetAllNotification(token : String) : LiveData<List<DataNotif>?> = flightRepo.getAllNotif(token)
-    fun UpdateNotification(token : String, id: String?) = flightRepo.updateNotification(token,id)
+    fun getAllNotification(token : String) : LiveData<List<DataNotif>?> = flightRepo.getAllNotif(token)
+    fun updateNotification(token : String, id: String?) = flightRepo.updateNotification(token,id)
     fun insertAirport(listAirport : List<CityAirport>) = flightRepo.insertAllAirport(listAirport)
     fun getAirportLocal() : LiveData<List<CityAirport>?> = flightRepo.getAllAirport()
     fun insertPromo(listPromo : List<DataPromo>) = flightRepo.insertPromoLocal(listPromo)

@@ -39,7 +39,7 @@ class TicketHistoryAdapter(private val listTicket : List<TransItem>) : RecyclerV
             }
         }
 
-        fun formatDate(date : String) : String {
+        private fun formatDate(date : String) : String {
             try {
                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 val localDate = LocalDate.parse(date, formatter)

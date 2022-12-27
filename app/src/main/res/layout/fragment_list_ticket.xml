@@ -29,7 +29,7 @@
         android:id="@+id/tvTicketNotFound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tiket tidak ditemukan"
+        android:text="@string/tiket_tidak_ditemukan"
         android:textSize="16sp"
         android:layout_centerInParent="true"
         android:visibility="gone"/>

@@ -1,3 +1,5 @@
+@file:Suppress("DeferredResultUnused")
+
 package binar.finalproject.binair.buyer.repository
 
 import android.util.Log
@@ -8,6 +10,7 @@ import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.remote.APIService
 import binar.finalproject.binair.buyer.data.response.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -18,12 +21,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class FlightRepository @Inject constructor(var client: APIService, val wishlistDAO: WishlistDAO) {
+@Suppress("DeferredResultUnused")
+@OptIn(DelicateCoroutinesApi::class)
+class FlightRepository @Inject constructor(private var client: APIService, private val wishlistDAO: WishlistDAO) {
     private val _allTicket = MutableLiveData<List<TicketItem>?>()
-    val allTicket: LiveData<List<TicketItem>?> = _allTicket
+    private val allTicket: LiveData<List<TicketItem>?> = _allTicket
     private val _allCityAirport = MutableLiveData<List<CityAirport>?>()
-    val allCityAirport: LiveData<List<CityAirport>?> = _allCityAirport
-    private val _adultPassenger = MutableLiveData<Int>(1)
+    private val allCityAirport: LiveData<List<CityAirport>?> = _allCityAirport
+    private val _adultPassenger = MutableLiveData(1)
     val adultPassenger: LiveData<Int> = _adultPassenger
     private val _childPassenger = MutableLiveData<Int>()
     val childPassenger: LiveData<Int> = _childPassenger
@@ -32,24 +37,24 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
     private val _chosenTicket = MutableLiveData<TicketItem?>()
     val chosenTicket: MutableLiveData<TicketItem?> = _chosenTicket
     private val _ticketBySearch = MutableLiveData<List<TicketItem>?>()
-    val ticketBySearch: LiveData<List<TicketItem>?> = _ticketBySearch
+    private val ticketBySearch: LiveData<List<TicketItem>?> = _ticketBySearch
     private val _bookTicket = MutableLiveData<BookingTicketResponse?>()
-    val bookTicket: LiveData<BookingTicketResponse?> = _bookTicket
+    private val bookTicket: LiveData<BookingTicketResponse?> = _bookTicket
     private val _updatePayment = MutableLiveData<UpdatePaymentResponse?>()
-    val updatePayment: LiveData<UpdatePaymentResponse?> = _updatePayment
+    private val updatePayment: LiveData<UpdatePaymentResponse?> = _updatePayment
     private val _ticketById = MutableLiveData<GetTicketByIdResponse?>()
-    val ticketById: LiveData<GetTicketByIdResponse?> = _ticketById
+    private val ticketById: LiveData<GetTicketByIdResponse?> = _ticketById
     private val _userTrans = MutableLiveData<List<TransItem>?>()
-    val userTrans: LiveData<List<TransItem>?> = _userTrans
+    private val userTrans: LiveData<List<TransItem>?> = _userTrans
     private val _allPromo = MutableLiveData<List<DataPromo>?>()
-    val allPromo : LiveData<List<DataPromo>?> = _allPromo
+    private val allPromo : LiveData<List<DataPromo>?> = _allPromo
     private val _allWishlist = MutableLiveData<List<DataWishList>?>()
-    val allWishlist : LiveData<List<DataWishList>?> = _allWishlist
-    var isWishlistresult = false
+    private val allWishlist : LiveData<List<DataWishList>?> = _allWishlist
+    private var isWishlistresult = false
     private val _allNotif = MutableLiveData<List<DataNotif>?>()
-    val allNotif: LiveData<List<DataNotif>?> = _allNotif
+    private val allNotif: LiveData<List<DataNotif>?> = _allNotif
     private val _updateNotification = MutableLiveData<UpdateNotificationResponse?>()
-    val updateNotification: LiveData<UpdateNotificationResponse?> = _updateNotification
+    private val updateNotification: LiveData<UpdateNotificationResponse?> = _updateNotification
 
     fun callGetAllTicket(): LiveData<List<TicketItem>?> {
         client.getAllTicket().enqueue(object : Callback<AllTicketsResponse> {
@@ -291,7 +296,7 @@ class FlightRepository @Inject constructor(var client: APIService, val wishlistD
         return isWishlistresult
     }
 
-    fun updateparameter(inputresult : Boolean){
+    private fun updateparameter(inputresult : Boolean){
         isWishlistresult = inputresult
     }
 

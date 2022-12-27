@@ -63,9 +63,9 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swipe Up untuk melanjutkan"
+            android:text="@string/swipe_up"
             android:fontFamily="@font/fredoka_semibold"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="@color/main_blue"/>
     </LinearLayout>
 </FrameLayout>

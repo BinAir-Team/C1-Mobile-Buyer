@@ -27,14 +27,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/toolbar"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/containerDetailKontak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/toolbar"
                     android:layout_margin="12dp"
                     app:cardCornerRadius="12dp"
                     app:contentPadding="16dp">
@@ -48,7 +46,7 @@
                             android:id="@+id/labelDetailKontak"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Detail Kontak (untuk E-Ticket)"
+                            android:text="@string/detail_kontak_untuk_e_ticket"
                             android:textColor="@color/black"
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -117,7 +115,7 @@
                 </LinearLayout>
 
                 <androidx.cardview.widget.CardView
-                    id="@+id/containerBagasi"
+                    android:id="@+id/containerBagasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
@@ -133,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="8dp"
-                            android:text="Bagasi"
+                            android:text="@string/bagasi"
                             android:textColor="@color/black"
                             android:textSize="22sp"
                             android:textStyle="bold"
@@ -144,7 +142,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:text="20 Kg"
+                            android:text="@string/_20_kg"
                             android:textColor="@color/orange"
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -155,14 +153,14 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/totalBagasi"
                             android:padding="8dp"
-                            android:text="Kemaslah barang bawaan Anda! Setiap penumpang hanya diperbolehkan membawa bagasi 20 kg"
+                            android:text="@string/deskripsi_bagasi"
                             android:textColor="@color/orange"
                             android:textSize="16sp" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    id="@+id/containerTotalHarga"
+                    android:id="@+id/containerTotalHarga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
@@ -178,7 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="8dp"
-                            android:text="Total"
+                            android:text="@string/total"
                             android:textColor="@color/black"
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -188,7 +186,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:text="Rp. 1.000.000"
+                            android:text="@string/ex_total_harga"
                             android:textColor="@color/orange"
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -198,7 +196,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tvTotalHarga"
-                            android:text="Berangkat"
+                            android:text="@string/berangkat"
                             android:textColor="@color/MC_Orange"
                             android:textSize="18sp" />
 
@@ -212,7 +210,7 @@
                                 android:id="@+id/tvPenumpangDewasa"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dewasa"
+                                android:text="@string/dewasa"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -221,7 +219,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:layout_toEndOf="@id/tvPenumpangDewasa"
-                                android:text="x2"
+                                android:text="@string/x2"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -229,7 +227,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="Rp. 800.000"
+                                android:text="@string/ex_total_harga"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -244,8 +242,8 @@
                                 android:id="@+id/tvPenumpangAnak"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Anak"
-                                android:textSize="18sp" />
+                                android:text="@string/label_anak"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/tvTotalAnak"
@@ -253,16 +251,16 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:layout_toEndOf="@id/tvPenumpangAnak"
-                                android:text="x2"
-                                android:textSize="18sp" />
+                                android:text="@string/x2"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/tvTotalHargaAnak"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="Rp. 800.000"
-                                android:textSize="18sp" />
+                                android:text="@string/ex_total_harga"
+                                android:textSize="16sp" />
                         </RelativeLayout>
 
                         <TextView
@@ -270,7 +268,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/containerAnak"
-                            android:text="Pulang"
+                            android:text="@string/pulang"
                             android:textColor="@color/MC_Orange"
                             android:textSize="18sp"
                             android:visibility="gone"/>
@@ -285,7 +283,7 @@
                                 android:id="@+id/tvPenumpangDewasaPulang"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dewasa"
+                                android:text="@string/dewasa"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -294,7 +292,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:layout_toEndOf="@id/tvPenumpangDewasaPulang"
-                                android:text="x2"
+                                android:text="@string/x2"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -302,7 +300,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="Rp. 800.000"
+                                android:text="@string/ex_total_harga"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -317,7 +315,7 @@
                                 android:id="@+id/tvPenumpangAnakPulang"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Anak"
+                                android:text="@string/label_anak"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -326,7 +324,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:layout_toEndOf="@id/tvPenumpangAnakPulang"
-                                android:text="x2"
+                                android:text="@string/x2"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -334,7 +332,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:text="Rp. 800.000"
+                                android:text="@string/ex_total_harga"
                                 android:textSize="18sp" />
                         </RelativeLayout>
 
@@ -343,7 +341,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/containerAnakPulang"
-                            android:text="Bagasi"
+                            android:text="@string/bagasi"
                             android:textColor="@color/MC_Green"
                             android:textSize="18sp" />
 
@@ -353,7 +351,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/containerAnakPulang"
                             android:layout_alignParentEnd="true"
-                            android:text="GRATIS"
+                            android:text="@string/gratis"
                             android:textColor="@color/MC_Green"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -366,7 +364,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
-                    android:text="Lanjutkan Pembayaran" />
+                    android:text="@string/lanjutkan_pembayaran" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

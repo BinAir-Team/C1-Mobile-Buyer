@@ -28,10 +28,11 @@ class NotificationFragment : Fragment() {
     private lateinit var flightVM : FlightViewModel
     private lateinit var pop : String
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentNotificationBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
@@ -77,7 +78,7 @@ class NotificationFragment : Fragment() {
         var res : List<DataNotif>? = null
         val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
         if (token != null) {
-            flightVM.GetAllNotification("Bearer $token").observe(viewLifecycleOwner){
+            flightVM.getAllNotification("Bearer $token").observe(viewLifecycleOwner){
                 if (it != null) {
                     res = it
                     setDataToRecView(it.reversed())
@@ -93,15 +94,12 @@ class NotificationFragment : Fragment() {
         binding.rvNotification.adapter = adapter
         binding.rvNotification.layoutManager = layoutManager
 
-        adapter.onupdate = {
+        adapter.onupdate = { it ->
             val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
             Toast.makeText(requireContext(), it.id, Toast.LENGTH_SHORT).show()
-            flightVM.UpdateNotification("Bearer $token",it.id).observe(viewLifecycleOwner){
-                if (it != null) {
-                    if(it.status == 200){
-                    }
-                }else{
-                    Toast.makeText(requireContext(), "Pembayaran gagal $", Toast.LENGTH_SHORT).show()
+            flightVM.updateNotification("Bearer $token",it.id).observe(viewLifecycleOwner){
+                if (it == null) {
+                    Toast.makeText(requireContext(), "Gagal Update Notifikasi", Toast.LENGTH_SHORT).show()
                 }
             }
         }

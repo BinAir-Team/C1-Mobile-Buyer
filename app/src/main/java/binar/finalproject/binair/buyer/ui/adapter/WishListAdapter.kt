@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.ItemWishlistBinding
 
-class WishListAdapter () : RecyclerView.Adapter<WishListAdapter.ViewHolder>(){
+class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>(){
 
     var onClick: ((DataWishList) -> Unit)? = null
     inner class ViewHolder (

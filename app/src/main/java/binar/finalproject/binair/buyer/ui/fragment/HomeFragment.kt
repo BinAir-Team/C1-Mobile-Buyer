@@ -41,7 +41,7 @@ import java.util.*
 
 
 @AndroidEntryPoint
-@Suppress("UNCHECKED_CAST")
+@Suppress("UNCHECKED_CAST", "SetTextI18n")
 @RequiresApi(Build.VERSION_CODES.M)
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
         setupnotification()
     }
 
-    fun setupnotification(){
+    private fun setupnotification(){
         val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
         val token = prefs.getString("token", null)
         if (token == null){
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setListener() {
-        binding.toolbar.menuNotif.setOnClickListener(){
+        binding.toolbar.menuNotif.setOnClickListener {
             val action = HomeFragmentDirections.actionGlobalNotificationFragment("home")
             findNavController().navigate(action)
         }
@@ -202,7 +202,7 @@ class HomeFragment : Fragment() {
             binding.bannerLogin.visibility = View.VISIBLE
             prefs.edit().putString("token", null).apply()
         }
-        binding.btnLogin.setOnClickListener() {
+        binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
     }
@@ -252,8 +252,10 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setDataAirport(airportParam : List<CityAirport>?){
-        val city = airportParam
-        val adapter = AutoCompleteAirportAdapter(requireContext(), city as ArrayList<CityAirport?>)
+        val adapter = AutoCompleteAirportAdapter(
+            requireContext(),
+            airportParam as ArrayList<CityAirport?>
+        )
         binding.apply {
             etFrom.threshold = 1
             etFrom.setAdapter(adapter)

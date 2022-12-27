@@ -7,7 +7,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -28,7 +27,7 @@ class CarouselFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCarouselBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,7 +36,7 @@ class CarouselFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         flightVM.getDataCarousel()
-        flightVM.carouselListLiveData.observe(viewLifecycleOwner, Observer {
+        flightVM.carouselListLiveData.observe(viewLifecycleOwner, {
             viewPagerAdapter.setHeadlineNewsData(it as ArrayList<Carousel>)
         })
         carouselset()
@@ -55,8 +54,8 @@ class CarouselFragment : Fragment() {
         binding.vpHeadline.offscreenPageLimit = 3
         binding.vpHeadline.adapter = viewPagerAdapter
         binding.vpHeadline.setPageTransformer(MarginPageTransformer(50))
-        binding.vpHeadline.clipToPadding = false;
-        binding.vpHeadline.setPadding(10,10,10,0);
+        binding.vpHeadline.clipToPadding = false
+        binding.vpHeadline.setPadding(10,10,10,0)
         binding.dotsIndicator.attachTo(binding.vpHeadline)
     }
 

@@ -7,7 +7,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     android:layout_below="@id/cvDetailKontak"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="Depreceated">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +62,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="none"
-                    android:editable="false"/>
+                    android:editable="false"
+                    android:labelFor="@id/etTitel" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/containerKewarganegaraan"
@@ -114,7 +117,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
-                    android:editable="false"/>
+                    android:editable="false"
+                    android:labelFor="@id/etTipe"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/containerNomerIdnt"

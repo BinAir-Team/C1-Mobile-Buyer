@@ -42,6 +42,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+@Suppress("BlockingMethodInNonBlockingContext")
 @RequiresApi(Build.VERSION_CODES.O)
 class PaymentFragment : Fragment() {
     private lateinit var binding : FragmentPaymentBinding
@@ -61,7 +62,6 @@ class PaymentFragment : Fragment() {
             val reqBody : RequestBody = tempFile.asRequestBody(type!!.toMediaType())
             image = MultipartBody.Part.createFormData("bukti_bayar", tempFile.name, reqBody)
         }
-    private val REQUEST_CODE_PERMISSION = 100
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -267,4 +267,7 @@ class PaymentFragment : Fragment() {
         galleryResult.launch("image/*")
     }
 
+    companion object {
+        private const val REQUEST_CODE_PERMISSION = 100
+    }
 }

@@ -5,8 +5,8 @@ import io.socket.client.IO
 import io.socket.client.Socket
 
 object SocketHandler {
-    val uri = "https://binair-backend-production.up.railway.app/"
-    lateinit var mSocket: Socket
+    private const val uri = "https://binair-backend-production.up.railway.app/"
+    private lateinit var mSocket: Socket
 
     @Synchronized
     fun setSocket() {

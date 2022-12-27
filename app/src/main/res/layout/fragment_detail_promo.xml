@@ -69,35 +69,33 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="159dp"
-                    android:layout_below="@+id/cvDeatilPromoContainer">
+                    android:layout_height="159dp">
 
                     <TextView
                         android:id="@+id/tvBooking"
                         android:layout_width="355dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="18dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="20dp"
-                        android:drawableLeft="@drawable/ic_baseline_phone_android_24"
                         android:drawablePadding="10dp"
-                        android:text="Booking can be made through Airpaz website or mobile app" />
+                        android:text=""
+                        app:drawableLeftCompat="@drawable/ic_baseline_phone_android_24" />
 
                     <TextView
                         android:layout_width="358dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvBooking"
-                        android:layout_marginLeft="18dp"
+                        android:layout_marginStart="18dp"
                         android:layout_marginTop="18dp"
-                        android:drawableLeft="@drawable/ic_schedule"
                         android:drawablePadding="10dp"
-                        android:text="Promo Period 1 December 2022 - 31 Desember 2022" />
+                        android:text=""
+                        app:drawableLeftCompat="@drawable/ic_schedule" />
                 </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/detaildiskon"
                     android:layout_width="match_parent"
                     android:layout_height="172dp"
-                    android:layout_below="@+id/detailtanggal"
                     android:layout_marginTop="10dp"
                     android:background="@color/content_grey">
 
@@ -162,7 +160,8 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/SdanK"
                     android:fontFamily="@font/inter_semibold"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
 
                 <TextView
                     android:paddingBottom="20dp"

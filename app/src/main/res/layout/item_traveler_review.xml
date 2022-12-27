@@ -19,7 +19,7 @@
             android:id="@+id/labelDetailPenumpang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Detail Penumpang 1"
+            android:text="@string/detail_penumpang_1"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Nama"
+            android:text="@string/nama"
             android:textColor="@color/content_grey"
             android:textSize="18sp" />
 
@@ -37,7 +37,7 @@
             android:id="@+id/tvNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bambang Kuncoro"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -61,7 +61,7 @@
             android:id="@+id/labelNoIdnt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nomor Identitas"
+            android:text="@string/nomor_identitas"
             android:textColor="@color/content_grey"
             android:textSize="18sp" />
 
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="590123xxxxxxxxx"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>

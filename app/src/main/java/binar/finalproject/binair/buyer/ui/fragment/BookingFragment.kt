@@ -1,5 +1,6 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
@@ -28,6 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
+@SuppressLint("SetTextI18n")
 class BookingFragment : Fragment() {
     private lateinit var binding : FragmentBookingBinding
     private lateinit var flightVM : FlightViewModel
@@ -38,11 +40,11 @@ class BookingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentBookingBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
-        binding.toolbar.tvTitlePage.setText("Book")
+        binding.toolbar.tvTitlePage.text = "Book"
         return binding.root
     }
 
@@ -80,6 +82,7 @@ class BookingFragment : Fragment() {
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun showFormTraveler(){
         if(jmlDewasa > 0) {
             for (i in 0 until jmlDewasa) {
@@ -116,11 +119,11 @@ class BookingFragment : Fragment() {
     }
 
     private fun setTitelTipe(binding: FormTravelerBinding){
-        val adapterTitel = ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.spinner_titel))
+        val adapterTitel = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.spinner_titel))
         binding.etTitel.setText("Titel",false)
         binding.etTitel.setAdapter(adapterTitel)
 
-        val adapterTipe = ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.spinner_tipe))
+        val adapterTipe = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, resources.getStringArray(R.array.spinner_tipe))
         binding.etTipe.setText("Tipe Identitas",false)
         binding.etTipe.setAdapter(adapterTipe)
     }
@@ -146,7 +149,7 @@ class BookingFragment : Fragment() {
 
     private fun validateInputForm(bindForm : FormTravelerBinding, kategori : String){
         binding.apply {
-            etNamaLengkap.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            etNamaLengkap.setOnFocusChangeListener({ v, hasFocus ->
                 if (!hasFocus) {
                     if(etNamaLengkap.text.isNullOrEmpty()){
                         etNamaLengkap.error = "Nama tidak boleh kosong"
@@ -154,7 +157,7 @@ class BookingFragment : Fragment() {
                     }
                 }
             })
-            etNoTelp.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            etNoTelp.setOnFocusChangeListener({ v, hasFocus ->
                 if (!hasFocus) {
                     if(etNoTelp.text.isNullOrEmpty()){
                         etNoTelp.error = "Nomor Telepon tidak boleh kosong"
@@ -162,7 +165,7 @@ class BookingFragment : Fragment() {
                     }
                 }
             })
-            etEmail.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            etEmail.setOnFocusChangeListener({ v, hasFocus ->
                 if (!hasFocus) {
                     if(etEmail.text.isNullOrEmpty()){
                         etEmail.error = "Email tidak boleh kosong"
@@ -206,30 +209,30 @@ class BookingFragment : Fragment() {
 //                    }
 //                })
 //            }
-            etNamaDepanAdlt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            etNamaDepanAdlt.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
-                    if(etNamaDepanAdlt.text.isNullOrEmpty()){
+                    if (etNamaDepanAdlt.text.isNullOrEmpty()) {
                         etNamaDepanAdlt.error = "Nama Depan tidak boleh kosong"
                         allFormValid = false
                     }
                 }
-            })
-            etNamaBelakangAdlt.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            }
+            etNamaBelakangAdlt.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
-                    if(etNamaBelakangAdlt.text.isNullOrEmpty()){
+                    if (etNamaBelakangAdlt.text.isNullOrEmpty()) {
                         etNamaBelakangAdlt.error = "Nama Belakang tidak boleh kosong"
                         allFormValid = false
                     }
                 }
-            })
-            etTglLahir.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+            }
+            etTglLahir.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
-                    if(etTglLahir.text.isNullOrEmpty()){
+                    if (etTglLahir.text.isNullOrEmpty()) {
                         etTglLahir.error = "Tanggal Lahir tidak boleh kosong"
                         allFormValid = false
                     }
                 }
-            })
+            }
         }
 //        return allFormValid
     }
@@ -259,17 +262,17 @@ class BookingFragment : Fragment() {
             val surname = formTravelerBinding.etNamaBelakangAdlt.text.toString()
             val datebirth = formTravelerBinding.etTglLahir.text.toString()
             val nationality = formTravelerBinding.etKewarganegaraan.text.toString()
-            var id_card : String? = null
-            var no_ktp : String? = null
+            var idCard : String? = null
+            var noKtp : String? = null
             var type : String
             if(formTravelerBinding.labelTipeTraveler.text.contains("Dewasa")){
-                id_card = formTravelerBinding.etNoIdnt.text.toString()
-                no_ktp = formTravelerBinding.etNoIdnt.text.toString()
+                idCard = formTravelerBinding.etNoIdnt.text.toString()
+                noKtp = formTravelerBinding.etNoIdnt.text.toString()
                 type =  "adult"
             }else{
                 type =  "child"
             }
-            val dataPnmp = TravelerItem(datebirth,nationality,surname,no_ktp,name,id_card,type,title)
+            val dataPnmp = TravelerItem(datebirth,nationality,surname,noKtp,name,idCard,type,title)
             arrDataPenumpang.add(dataPnmp)
         }
         return arrDataPenumpang

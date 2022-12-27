@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
@@ -23,12 +22,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
-    lateinit var userVM : UserViewModel
+    private lateinit var userVM : UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -186,7 +185,7 @@ class RegisterFragment : Fragment() {
     private fun registerUser() {
         val firstName = binding.firstNameInput.text.toString()
         val lastName = binding.lastNameInput.text.toString()
-        var gender = getGender()
+        val gender = getGender()
         val email = binding.emailInput.text.toString()
         val password = binding.passwordInput.text.toString()
         val confirmPassword = binding.confirmPassInput.text.toString()
@@ -201,7 +200,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun regisObserveUser(dataRegis : DataRegister){
-        userVM.registerUser(dataRegis).observe(viewLifecycleOwner, Observer {
+        userVM.registerUser(dataRegis).observe(viewLifecycleOwner, {
             if(it != null && it.status == "success"){
                 Toast.makeText(context, "Berhasil mendaftar", Toast.LENGTH_SHORT).show()
                 gotoLogin()

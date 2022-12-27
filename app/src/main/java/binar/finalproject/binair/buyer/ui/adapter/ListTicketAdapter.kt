@@ -1,5 +1,6 @@
 package binar.finalproject.binair.buyer.ui.adapter
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,8 @@ import java.time.format.DateTimeFormatter
 class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerView.Adapter<ListTicketAdapter.ViewHolder>() {
     var onClick: ((TicketItem) -> Unit)? = null
     var onClickWishlist : ((TicketItem) -> Unit)? = null
-    class ViewHolder(val binding : ItemTicketBinding, private var onClick : (((TicketItem) -> Unit)?), private var onClickWishlist : (((TicketItem) -> Unit)?)): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: ItemTicketBinding, private var onClick: ((TicketItem) -> Unit)?): RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SimpleDateFormat", "SetTextI18n")
         fun bind(item: TicketItem) {
             try{
                 item.dateStart = formatDate(item.dateStart)
@@ -27,7 +29,7 @@ class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerVie
             }
             val dpTime = SimpleDateFormat("HH:mm").parse(item.departureTime)
             val arTime = SimpleDateFormat("HH:mm").parse(item.arrivalTime)
-            val difference = arTime.time - dpTime.time
+            val difference = (arTime?.time ?: 0) - (dpTime?.time ?: 0)
             val days = (difference / (1000 * 60 * 60 * 24)).toInt()
             val hours = ((difference - 1000 * 60 * 60 * 24 * days) / (1000 * 60 * 60))
             val min = (difference - 1000 * 60 * 60 * 24 * days - 1000 * 60 * 60 * hours) / (1000 * 60)
@@ -58,7 +60,7 @@ class ListTicketAdapter(private val listTicket : List<TicketItem>) : RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = ItemTicketBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(v,onClick,onClickWishlist)
+        return ViewHolder(v, onClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

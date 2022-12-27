@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.model.DataWishList
@@ -88,7 +87,7 @@ class TicketDetailsFragment : Fragment() {
             }
         }
         binding.apply {
-            val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+            val idUser = requireActivity().getSharedPreferences(dataUser, Context.MODE_PRIVATE).getString("idUser",null)
             if(idUser != null){
                 flightVM.getChosenTicket().observe(viewLifecycleOwner){
                     val dataWishlist = it?.let { it1 ->
@@ -111,12 +110,12 @@ class TicketDetailsFragment : Fragment() {
 
                     }
                     if (dataWishlist != null) {
-                        binding.btnWishlist.setOnClickListener(){
+                        binding.btnWishlist.setOnClickListener {
                             flightVM.insertWishList(dataWishlist,idUser)
                             showbookmark(true)
                             Toast.makeText(context, "WishList Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
                         }
-                        binding.btnRemoveWishlist.setOnClickListener(){
+                        binding.btnRemoveWishlist.setOnClickListener {
                             flightVM.deleteWishList(dataWishlist.id)
                             showbookmark(false)
                             Toast.makeText(context, "WishList Berhasil Dihapus", Toast.LENGTH_SHORT).show()
@@ -125,8 +124,8 @@ class TicketDetailsFragment : Fragment() {
                 }
             }
         }
-        binding.btnWishlist.setOnClickListener(){
-            val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        binding.btnWishlist.setOnClickListener {
+            val idUser = requireActivity().getSharedPreferences(dataUser, Context.MODE_PRIVATE).getString("idUser",null)
             if(idUser != null){
                 flightVM.getChosenTicket().observe(viewLifecycleOwner){
                     val dataWishlist = it?.let { it1 ->
@@ -176,17 +175,16 @@ class TicketDetailsFragment : Fragment() {
     }
 
     private fun bookmarkinit(){
-        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+        val idUser = requireActivity().getSharedPreferences(dataUser, Context.MODE_PRIVATE).getString("idUser",null)
         if (clickedTicket != null && idUser != null) {
-            val condition : Boolean
-            condition = flightVM.isWishlisted(clickedTicket.id,idUser)
+            val condition : Boolean = flightVM.isWishlisted(clickedTicket.id,idUser)
 //            Toast.makeText(context,condition.toString(),Toast.LENGTH_SHORT).show()
             showbookmark(condition)
         }
     }
 
     private fun showbookmark(condition : Boolean) {
-        if (condition == true) {
+        if (condition) {
             binding.btnWishlist.visibility = View.GONE
             binding.btnRemoveWishlist.visibility = View.VISIBLE
         } else {

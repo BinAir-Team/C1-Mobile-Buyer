@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.EditProfileFragment"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="autofillHints">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -129,7 +130,9 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="@{dataUser.firstname}"
                                 android:textColor="@color/C2"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:labelFor="@id/etNamaDepan"
+                                android:inputType="textPersonName"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -154,7 +157,9 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="@{dataUser.lastname}"
                                 android:textColor="@color/C2"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:labelFor="@id/etNamaBelakang"
+                                android:inputType="textPersonName"/>
                         </LinearLayout>
 
                         <TextView
@@ -207,7 +212,9 @@
                                 android:text="@{dataUser.email}"
                                 android:fontFamily="@font/poppins_regular"
                                 android:textSize="14sp"
-                                android:textColor="@color/C2" />
+                                android:textColor="@color/C2"
+                                android:labelFor="@id/etEmail"
+                                android:inputType="textEmailAddress"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -232,7 +239,9 @@
                                 android:text="@{dataUser.phone}"
                                 android:fontFamily="@font/poppins_regular"
                                 android:textSize="14sp"
-                                android:textColor="@color/C2" />
+                                android:textColor="@color/C2"
+                                android:labelFor="@id/etPhone"
+                                android:inputType="phone"/>
                         </LinearLayout>
 
                         <RelativeLayout

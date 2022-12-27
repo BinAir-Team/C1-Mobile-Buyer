@@ -81,7 +81,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"
-                            android:text="Member Silver"
+                            android:text="@string/member_silver"
                             android:textColor="@color/white"
                             android:textSize="9sp"
                             tools:ignore="SmallSp" />
@@ -182,7 +182,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="10dp"
-                                    android:text="Waiting Trip"
+                                    android:text="@string/lunas"
                                     android:textSize="10.79sp" />
 
                                 <ImageView
@@ -199,7 +199,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="16dp"
                                 android:background="@drawable/profile_cardofcardbackground"
-
                                 android:orientation="horizontal"
                                 android:padding="10dp">
 
@@ -212,38 +211,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="10dp"
-                                    android:text="Rate Trip"
-                                    android:textSize="10sp"
-                                    tools:ignore="SmallSp" />
-
-                                <ImageView
-                                    android:layout_width="8dp"
-                                    android:layout_height="9dp"
-                                    android:layout_marginStart="24dp"
-                                    android:layout_marginTop="4dp"
-                                    android:src="@drawable/profileblackarrow" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/profile_cardofcardbackground"
-
-                                android:orientation="horizontal"
-                                android:padding="10dp">
-
-                                <ImageView
-                                    android:layout_width="17.55dp"
-                                    android:layout_height="13.49dp"
-                                    android:src="@drawable/profile_unpaidpayment" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="Waiting Trip"
                                     android:textSize="10sp"
                                     tools:ignore="SmallSp" />
 

@@ -7,7 +7,9 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="12dp"
+        android:elevation="12dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -29,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:layout_marginStart="24dp"
-                android:text="Search Result"
+                android:text="@string/hasil_pencarian"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </com.google.android.material.appbar.MaterialToolbar>

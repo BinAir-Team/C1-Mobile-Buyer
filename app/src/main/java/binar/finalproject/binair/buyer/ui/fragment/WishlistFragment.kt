@@ -1,13 +1,11 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import androidx.annotation.MenuRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -27,7 +25,7 @@ class WishlistFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentWishlistBinding.inflate(inflater, container, false)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
@@ -37,22 +35,8 @@ class WishlistFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         getAllWishlist()
     }
-    
-    private fun showMenu(v: View, @MenuRes menuRes: Int) {
-        val popup = PopupMenu(context, v)
-        popup.menuInflater.inflate(menuRes, popup.menu)
 
-        popup.setOnMenuItemClickListener {
-                menuItem: MenuItem -> true
-            // Respond to menu item click.
-        }
-        popup.setOnDismissListener {
-            // Respond to popup being dismissed.
-        }
-        // Show the popup menu.
-        popup.show()
-    }
-
+    @SuppressLint("SetTextI18n")
     private fun getAllWishlist(){
         val prefs = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE)
         val idUser = prefs.getString("idUser",null)

@@ -3,10 +3,9 @@ package binar.finalproject.binair.buyer.data.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+@kotlinx.parcelize.Parcelize
 @Entity
 data class DataWishList(
     @PrimaryKey(autoGenerate = true)
@@ -26,7 +25,7 @@ data class DataWishList(
     val user : String
 ):Parcelable
 
-@Parcelize
+@kotlinx.parcelize.Parcelize
 data class TrueFalseWishlist(
     val isWishlist : Boolean
 ) : Parcelable

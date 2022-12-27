@@ -41,7 +41,7 @@ android {
         dataBinding true
     }
     lintOptions {
-        disable 'contentDescription'
+        disable 'ContentDescription', 'UnusedResources', 'SmallSp', 'SetTextl18n', 'UnusedDeclaration'
     }
 }
 

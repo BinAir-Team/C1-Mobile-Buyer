@@ -33,10 +33,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    lateinit var userVM: UserViewModel
+    private lateinit var userVM: UserViewModel
     private lateinit var sharedPrefs: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-    private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     private var showOneTapUI = true
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
@@ -97,16 +96,14 @@ class LoginFragment : Fragment() {
     private fun validateInput(): Boolean {
         var isValid = true
         binding.apply {
-            emailInput.setOnFocusChangeListener(object : View.OnFocusChangeListener {
-                override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                    if (!hasFocus) {
-                        if (emailIsEmpty()) {
-                            emailInput.error = "Email tidak boleh kosong"
-                            isValid = false
-                        }
+            emailInput.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) {
+                    if (emailIsEmpty()) {
+                        emailInput.error = "Email tidak boleh kosong"
+                        isValid = false
                     }
                 }
-            })
+            }
             emailInput.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
@@ -220,38 +217,24 @@ class LoginFragment : Fragment() {
             .addOnFailureListener(requireActivity()) { e ->
                 // No saved credentials found. Launch the One Tap sign-up flow, or
                 // do nothing and continue presenting the signed-out UI.
-                Log.d("LOGIN GOOGLE", e.localizedMessage)
+                e.localizedMessage?.let { Log.d("LOGIN GOOGLE", it) }
             }
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val TAG = "LOGIN GOOGLE"
         when (requestCode) {
             REQ_ONE_TAP -> {
                 try {
                     val credential = oneTapClient.getSignInCredentialFromIntent(data)
                     val idToken = credential.googleIdToken
-//                    val username = credential.displayName
-//                    val email = credential.id
-//                    val img = credential.profilePictureUri
-//                    Log.d("RESULT_GOOGLE", "onActivityResult: $idToken $username $email $img")
                     when {
                         idToken != null -> {
-//                            with(editor) {
-//                                putString("token", idToken)
-//                                putString("namaLengkap", username)
-//                                putString("email", email)
-//                                putString("img", img.toString())
-//                                putBoolean("isLogin", true)
-//                                apply()
-//                            }
-//                            gotoHome()
                             loginGoogleAPI(idToken)
                         }
                         else -> {
-                            Log.d(TAG, "No ID token or password!")
+                            Log.d("LoginGoogle", "No ID token or password!")
                         }
                     }
 
@@ -259,17 +242,17 @@ class LoginFragment : Fragment() {
                     // ...
                     when (e.statusCode) {
                         CommonStatusCodes.CANCELED -> {
-                            Log.d(TAG, "One-tap dialog was closed.")
+                            Log.d("LoginGoogle", "One-tap dialog was closed.")
                             // Don't re-prompt the user.
                             showOneTapUI = false
                         }
                         CommonStatusCodes.NETWORK_ERROR -> {
-                            Log.d(TAG, "One-tap encountered a network error.")
+                            Log.d("LoginGoogle", "One-tap encountered a network error.")
                             // Try again or just ignore.
                         }
                         else -> {
                             Log.d(
-                                TAG, "Couldn't get credential from result." +
+                                "LoginGoogle", "Couldn't get credential from result." +
                                         " (${e.localizedMessage})"
                             )
                         }
@@ -281,7 +264,7 @@ class LoginFragment : Fragment() {
 
     private fun loginGoogleAPI(tokenGoogle : String){
         showLoading(true)
-        userVM.loginGoogle(tokenGoogle).observe(viewLifecycleOwner){
+        userVM.loginGoogle(tokenGoogle).observe(viewLifecycleOwner){ it ->
             if (it != null){
                 showLoading(false)
                 saveUserToSharedPref(it.data.id,it.data.firstname,it.data.lastname,it.data.accessToken)
@@ -318,7 +301,7 @@ class LoginFragment : Fragment() {
         findNavController().navigateSafe(R.id.action_loginFragment_to_homeFragment)
     }
 
-    fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {
+    private fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {
         val destinationId = currentDestination?.getAction(resId)?.destinationId.orEmpty()
         currentDestination?.let { node ->
             val currentNode = when (node) {
@@ -331,7 +314,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun Int?.orEmpty(default: Int = 0): Int {
+    private fun Int?.orEmpty(default: Int = 0): Int {
         return this ?: default
     }
 
@@ -341,5 +324,9 @@ class LoginFragment : Fragment() {
         } else {
             binding.pbLogin.visibility = View.GONE
         }
+    }
+    
+    companion object {
+        private const val REQ_ONE_TAP = 2
     }
 }

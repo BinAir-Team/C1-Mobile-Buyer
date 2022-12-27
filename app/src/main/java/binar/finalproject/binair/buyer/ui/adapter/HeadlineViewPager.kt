@@ -1,18 +1,12 @@
 package binar.finalproject.binair.buyer.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import binar.finalproject.binair.buyer.R
-import binar.finalproject.binair.buyer.data.model.News
+import binar.finalproject.binair.buyer.data.model.Carousel
 import binar.finalproject.binair.buyer.databinding.HeadlineNewsBinding
-import binar.finalproject.binair.buyer.databinding.ItemPromoBinding
-import com.bumptech.glide.Glide
 
-class HeadlineViewPager(var headlineNewsList: ArrayList<News>): RecyclerView.Adapter<HeadlineViewPager.ViewHolder>() {
+class HeadlineViewPager(private var headlineNewsList: ArrayList<Carousel>): RecyclerView.Adapter<HeadlineViewPager.ViewHolder>() {
 
     class ViewHolder(val binding: HeadlineNewsBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(img : Int){
@@ -41,7 +35,7 @@ class HeadlineViewPager(var headlineNewsList: ArrayList<News>): RecyclerView.Ada
         return headlineNewsList.size
     }
 
-    fun setHeadlineNewsData(headlineNewsList: ArrayList<News>){
+    fun setHeadlineNewsData(headlineNewsList: ArrayList<Carousel>){
         this.headlineNewsList = headlineNewsList
     }
 }

@@ -7,7 +7,7 @@ import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.ItemPromoBinding
 import com.bumptech.glide.Glide
 
-class HomePromoAdapter(val listPromo : List<DataPromo>) : RecyclerView.Adapter<HomePromoAdapter.ViewHolder>(){
+class HomePromoAdapter(private val listPromo : List<DataPromo>) : RecyclerView.Adapter<HomePromoAdapter.ViewHolder>(){
     var onClick: ((DataPromo) -> Unit)? = null
     class ViewHolder(
         private val binding: ItemPromoBinding,

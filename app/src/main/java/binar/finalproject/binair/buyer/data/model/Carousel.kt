@@ -7,9 +7,8 @@ data class Carousel(val id: Int,  val imgUrl: Int):
     Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
-        parcel.readInt()!!,
-    ) {
-    }
+        parcel.readInt(),
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

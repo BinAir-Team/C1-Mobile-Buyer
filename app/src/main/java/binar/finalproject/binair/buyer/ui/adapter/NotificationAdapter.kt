@@ -25,7 +25,7 @@ class NotificationAdapter(private val listNotif : List<DataNotif>) :
                 binding.belumdibaca.visibility = View.GONE
                 binding.sudahdibaca.visibility = View.VISIBLE
             }
-            binding.belumdibaca.setOnClickListener(){
+            binding.belumdibaca.setOnClickListener {
                 onupdate?.invoke(item)
                 if(item.isRead == true){
                     binding.lvNotif.setBackgroundColor(Color.parseColor("#EBEEF1"))
