@@ -50,13 +50,6 @@ class NotificationFragment : Fragment() {
 
     private fun setListener() {
         pop = arguments?.getString("pop", null)!!
-//        binding.toolbar.btnBack.setOnClickListener() {
-//            if (pop == "home"){
-//                findNavController().navigate(R.id.action_global_homeFragment)
-//            }
-//            else
-//                findNavController().navigate(R.id.action_global_homeFragment)
-//        }
     }
 
     private fun initSocketIO(){
@@ -96,7 +89,6 @@ class NotificationFragment : Fragment() {
 
         adapter.onupdate = { it ->
             val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
-            Toast.makeText(requireContext(), it.id, Toast.LENGTH_SHORT).show()
             flightVM.updateNotification("Bearer $token",it.id).observe(viewLifecycleOwner){
                 if (it == null) {
                     Toast.makeText(requireContext(), "Gagal Update Notifikasi", Toast.LENGTH_SHORT).show()

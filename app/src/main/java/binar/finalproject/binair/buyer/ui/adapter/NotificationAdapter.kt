@@ -32,7 +32,9 @@ class NotificationAdapter(private val listNotif : List<DataNotif>) :
                     binding.belumdibaca.visibility = View.GONE
                     binding.sudahdibaca.visibility = View.VISIBLE
                 }
-
+                binding.lvNotif.setBackgroundColor(Color.parseColor("#EBEEF1"))
+                binding.belumdibaca.visibility = View.GONE
+                binding.sudahdibaca.visibility = View.VISIBLE
             }
         }
 
