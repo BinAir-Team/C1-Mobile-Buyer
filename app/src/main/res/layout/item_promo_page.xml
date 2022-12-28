@@ -68,8 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelPeriod"
                 android:layout_marginTop="5dp"
-                android:drawablePadding="5dp"
-                android:text="@{promo.expire}" />
+                android:drawablePadding="5dp" />
 
 <!--            <Button-->
 <!--                android:id="@+id/btnDetails"-->
