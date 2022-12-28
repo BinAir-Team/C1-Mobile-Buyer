@@ -2,7 +2,6 @@ package binar.finalproject.binair.buyer.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
 import binar.finalproject.binair.buyer.databinding.FragmentProfileBinding
-import binar.finalproject.binair.buyer.ui.adapter.WishListAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 import com.bumptech.glide.Glide
@@ -48,7 +45,7 @@ class ProfileFragment : Fragment() {
 
         setListener()
         getDataUser()
-        getWishlist()
+//        getWishlist()
     }
 
     private fun setListener(){
@@ -70,19 +67,32 @@ class ProfileFragment : Fragment() {
             btnLogout.setOnClickListener {
                 logout()
             }
-            toolbar.setOnMenuItemClickListener {
-                when(it.itemId){
-                    R.id.change_pass -> {
-                        if(token != null){
-                            gotoChangePassword()
-                        }else{
-                            Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-                        }
-                        true
-                    }
-                    else -> false
-                }
+            tvUpdateProfile.setOnClickListener {
+                gotoEditProfile()
             }
+            tvChangePassword.setOnClickListener {
+                gotoChangePassword()
+            }
+            tvWishlist.setOnClickListener {
+                gotoWishlist()
+            }
+            tvTransaction.setOnClickListener {
+                gotoTransaction()
+            }
+            toolbar.menuNotif.visibility = View.GONE
+//            toolbar.setOnMenuItemClickListener {
+//                when(it.itemId){
+//                    R.id.change_pass -> {
+//                        if(token != null){
+//                            gotoChangePassword()
+//                        }else{
+//                            Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+//                        }
+//                        true
+//                    }
+//                    else -> false
+//                }
+//            }
         }
     }
 
@@ -92,6 +102,14 @@ class ProfileFragment : Fragment() {
 
     private fun gotoChangePassword() {
         findNavController().navigate(R.id.action_profileFragment2_to_changePasswordFragment)
+    }
+
+    private fun gotoWishlist() {
+        findNavController().navigate(R.id.action_global_wishlistFragment2)
+    }
+
+    private fun gotoTransaction() {
+        findNavController().navigate(R.id.action_global_ticketHistoryFragment2)
     }
 
     @SuppressLint("SetTextI18n")
@@ -145,19 +163,19 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun getWishlist(){
-        val idUser = requireActivity().getSharedPreferences(dataUser, Context.MODE_PRIVATE).getString("idUser",null)
-        if (idUser != null) {
-            flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner) {
-                if(it != null){
-                    val adapter = WishListAdapter()
-                    adapter.setData(it)
-                    binding.rvWishlist.adapter = adapter
-                    binding.rvWishlist.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                }
-            }
-        }
-    }
+//    private fun getWishlist(){
+//        val idUser = requireActivity().getSharedPreferences(dataUser, Context.MODE_PRIVATE).getString("idUser",null)
+//        if (idUser != null) {
+//            flightVM.getAllWishlist(idUser).observe(viewLifecycleOwner) {
+//                if(it != null){
+//                    val adapter = WishListAdapter()
+//                    adapter.setData(it)
+//                    binding.rvWishlist.adapter = adapter
+//                    binding.rvWishlist.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+//                }
+//            }
+//        }
+//    }
 
     private fun showLoadingProfile(state : Boolean) {
         if(state){

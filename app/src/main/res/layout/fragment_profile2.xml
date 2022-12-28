@@ -12,19 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar_home" />
+        <include android:id="@+id/toolbar" layout="@layout/toolbar_home" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userprofile"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_below="@+id/toolbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
             android:outlineSpotShadowColor="@color/black"
-            android:src="@drawable/profil" />
+            android:src="@drawable/profil"
+            android:layout_below="@+id/toolbar"/>
 
         <TextView
             android:id="@+id/tvName"
@@ -42,101 +40,99 @@
             android:id="@+id/tvUpdateProfile"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/tvName"
             android:layout_marginHorizontal="23dp"
             android:layout_marginTop="40dp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:drawablePadding="16dp"
             android:gravity="center_vertical"
             android:text="@string/ubah_profil"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_person" />
+            android:drawablePadding="16dp"
+            android:drawableEnd="@drawable/ic_right_arrow"
+            app:drawableStartCompat="@drawable/ic_person"
+            android:layout_below="@id/tvName"/>
 
         <TextView
             android:id="@+id/tvChangePassword"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/tvUpdateProfile"
             android:layout_marginHorizontal="23dp"
             android:drawableEnd="@drawable/ic_right_arrow"
             android:drawablePadding="16dp"
             android:gravity="center_vertical"
             android:text="@string/ubah_password"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_password" />
+            app:drawableStartCompat="@drawable/ic_password"
+            android:layout_below="@id/tvUpdateProfile"/>
 
         <TextView
             android:id="@+id/tvTransaction"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/tvChangePassword"
             android:layout_marginHorizontal="23dp"
             android:drawableEnd="@drawable/ic_right_arrow"
             android:drawablePadding="16dp"
             android:gravity="center_vertical"
             android:text="@string/riwayat_pemesanan"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_history" />
+            app:drawableStartCompat="@drawable/ic_history"
+            android:layout_below="@id/tvChangePassword"/>
 
         <TextView
             android:id="@+id/tvWishlist"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/tvTransaction"
             android:layout_marginHorizontal="23dp"
             android:drawableEnd="@drawable/ic_right_arrow"
             android:drawablePadding="16dp"
             android:gravity="center_vertical"
             android:text="@string/wishlist"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_wishlist_profile" />
+            app:drawableStartCompat="@drawable/ic_wishlist_profile"
+            android:layout_below="@id/tvTransaction"/>
 
         <TextView
-            android:id="@+id/btnLogout"
+            android:id="@+id/tvLogout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="23dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="40dp"
             android:drawablePadding="16dp"
             android:gravity="center_vertical"
             android:text="@string/keluar"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_logout" />
+            app:drawableStartCompat="@drawable/ic_logout"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:id="@+id/containerShimmerProfile"
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:elevation="10dp">
+            android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/shimmerImage"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginStart="24dp"
-                android:backgroundTint="@color/content_grey"
-                app:cardCornerRadius="100dp"
-                android:layout_centerHorizontal="true"/>
+            <RelativeLayout
+                android:id="@+id/containerShimmerProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:elevation="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/shimmerName"
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/content_grey"
-                app:cardCornerRadius="8dp"
-                android:layout_below="@id/shimmerImage"
-                android:layout_centerHorizontal="true"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shimmerImage"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="24dp"
+                    android:backgroundTint="@color/content_grey"
+                    app:cardCornerRadius="50dp" />
 
-        </RelativeLayout>
-    </com.facebook.shimmer.ShimmerFrameLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shimmerName"
+                    android:layout_width="250dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@id/shimmerImage"
+                    android:backgroundTint="@color/content_grey"
+                    app:cardCornerRadius="8dp" />
+
+            </RelativeLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 </FrameLayout>
