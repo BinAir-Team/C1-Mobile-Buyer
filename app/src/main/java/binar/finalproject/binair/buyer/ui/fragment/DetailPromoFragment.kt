@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import binar.finalproject.binair.buyer.data.formatDateFromISO
 import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.FragmentDetailPromoBinding
 import com.bumptech.glide.Glide
@@ -29,7 +30,6 @@ class DetailPromoFragment : Fragment() {
 
         getDataFromBundle()
         setDataToView()
-
     }
 
     private fun getDataFromBundle() {
@@ -38,6 +38,7 @@ class DetailPromoFragment : Fragment() {
 
     private fun setDataToView() {
         binding.promo = clickedpromo
+        binding.tvExpired.text = formatDateFromISO(clickedpromo.expire)
         context?.let {
             Glide.with(it)
                 .load(clickedpromo.promoImage)

@@ -3,6 +3,7 @@ package binar.finalproject.binair.buyer.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import binar.finalproject.binair.buyer.data.formatDateFromISO
 import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.ItemPromoPageBinding
 import com.bumptech.glide.Glide
@@ -14,6 +15,7 @@ class PagePromoAdapter(private val listPromo : List<DataPromo>) : RecyclerView.A
                      private var onClick : (((DataPromo) -> Unit)?) ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DataPromo){
             binding.promo = item
+            binding.tvDateEnd.text = formatDateFromISO(item.expire)
             binding.cvPromo.setOnClickListener {
                 onClick?.invoke(item)
             }
