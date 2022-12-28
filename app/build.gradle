@@ -116,4 +116,11 @@ dependencies {
     implementation ('io.socket:socket.io-client:2.0.0') {
         exclude group: 'org.json', module: 'json'
     }
+
+    //mocktito
+    testImplementation 'org.mockito:mockito-core:3.6.0'
+    testImplementation 'org.mockito:mockito-inline:3.6.0'
+
+    //test live data
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 }

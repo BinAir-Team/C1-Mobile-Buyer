@@ -169,4 +169,5 @@
     <string name="anda_tidak_bisa_mengubah_data_pemesanan_setelah_proses_pembayaran">Anda tidak bisa mengubah data pemesanan setelah proses pembayaran</string>
     <string name="kembali_ke_edit">Kembali ke Edit</string>
     <string name="hasil_pencarian">Hasil Pencarian</string>
+    <string name="kode_promo">Kode Promo</string>
 </resources>

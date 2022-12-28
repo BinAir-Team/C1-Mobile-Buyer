@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
+import binar.finalproject.binair.buyer.data.formatRupiah
 import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.databinding.FragmentWishListDetailBinding
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
@@ -41,6 +42,8 @@ class WishListDetailFragment : Fragment() {
     private fun setDataToView() {
         clickedWishlist = arguments?.getParcelable("clickedWishlist")!!
         binding.ticket = clickedWishlist
+        binding.tvHargaDewasa.text = formatRupiah(clickedWishlist.adultPrice)
+        binding.tvHargaAnak.text = formatRupiah(clickedWishlist.childPrice)
     }
 
     private fun setListener(){

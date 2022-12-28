@@ -150,7 +150,7 @@ class LoginFragment : Fragment() {
     private fun observeLoginResult(email: String, pass: String) {
         showLoading(true)
         userVM.loginUser(email, pass).observe(viewLifecycleOwner) { it ->
-            if (it != null) {
+            if (it?.data != null) {
                 showLoading(false)
                 saveUserToSharedPref(it.data.id,it.data.firstname,it.data.lastname,it.data.accessToken)
             } else {
