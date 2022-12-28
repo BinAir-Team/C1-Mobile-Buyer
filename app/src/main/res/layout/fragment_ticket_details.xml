@@ -39,8 +39,8 @@
                     android:src="@drawable/ic_bookmark_blue"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
                     />
                 <ImageView
                     android:id="@+id/btnWishlist"
@@ -50,8 +50,8 @@
                     android:src="@drawable/ic_bookmark_blue_plain"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
                     />
                 <LinearLayout
                     android:layout_marginTop="16dp"
@@ -123,6 +123,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:textColor="@color/MC_Blue"
                     android:id="@+id/tvKotaBerangkat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -145,24 +146,26 @@
 
                 <LinearLayout
                     android:id="@+id/tvJenisKelas"
-                    android:layout_centerInParent="true"
-                    android:layout_below="@id/tvTanggal"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvTanggal"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center">
+
                     <TextView
-                        android:layout_marginTop="16dp"
-                        android:drawablePadding="10dp"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/inter_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/inter_regular"
                         android:text="@string/label_economy_class"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         app:drawableStartCompat="@drawable/ic_chair" />
                 </LinearLayout>
 
                 <TextView
+                    android:textColor="@color/MC_Blue"
                     android:id="@+id/tvKotaTujuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,16 +188,18 @@
                     android:textSize="10sp"
                     android:layout_below="@id/iconLogo"/>
                 <TextView
+
+                    android:textSize="12dp"
                     android:id="@+id/labelTglBrkt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_tanggal_berangkat"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginStart="16dp"
                     android:layout_below="@id/tvType"/>
 
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:id="@+id/tvTanggal"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
@@ -206,17 +211,18 @@
                     app:drawableStartCompat="@drawable/ic_schedule_blue" />
 
                 <TextView
+                    android:textSize="12dp"
                     android:id="@+id/labelTglPulang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_tanggal_pulang"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginEnd="16dp"
                     android:layout_alignParentEnd="true"
                     android:layout_below="@id/tvType"/>
 
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:id="@+id/tvTglPulang"
                     android:drawablePadding="4dp"
                     android:layout_width="wrap_content"
@@ -236,7 +242,7 @@
                     android:text="@string/harga_dewasa"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
-                    android:layout_below="@id/tvJenisKelas"/>
+                    android:layout_below="@id/ivLineBottom2"/>
 
                 <TextView
                     android:id="@+id/tvHargaDewasa"
@@ -258,7 +264,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@id/tvJenisKelas"/>
+                    android:layout_below="@id/ivLineBottom2"/>
 
                 <TextView
                     android:id="@+id/tvHargaAnak"
@@ -272,14 +278,6 @@
                     android:layout_below="@id/labelHargaAnak"
                     app:drawableStartCompat="@drawable/ic_money" />
 
-                <ImageView
-                    android:id="@+id/ivLineBottom"
-                    android:src="@drawable/line"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_below="@id/tvHargaDewasa" />
 
                 <TextView
                     android:id="@+id/labelKeuntungan"
@@ -287,7 +285,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_below="@id/ivLineBottom"
+                    android:layout_below="@id/tvJenisKelas"
                     android:text="@string/keuntungan"
                     android:textSize="12sp" />
 
@@ -341,9 +339,12 @@
                     style="@style/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pesan_tiket"
-                    android:layout_below="@id/ivLineBottom2"
-                    android:layout_margin="16dp"/>
+                    android:layout_below="@id/tvHargaDewasa"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/pesan_tiket" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

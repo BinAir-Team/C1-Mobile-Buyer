@@ -24,39 +24,44 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textColor="@color/MC_Blue"
                 android:id="@+id/labelTglBerangkat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/berangkat"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
             <TextView
+                android:layout_marginTop="5dp"
                 android:id="@+id/tvTglBerangkat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@{ticket.dateStart, default=`31 Des 22`}"
-                android:textSize="11sp"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 android:layout_below="@id/labelTglBerangkat"/>
 
             <TextView
+                android:textColor="@color/MC_Blue"
                 android:id="@+id/labelTglPulang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:text="@string/pulang"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:layout_alignParentEnd="true"/>
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/tvTglPulang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:text="@{ticket.dateEnd, default=`31 Des 22`}"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:layout_below="@id/labelTglBerangkat"
                 android:layout_alignParentEnd="true"/>
 
@@ -107,6 +112,20 @@
                 android:src="@drawable/logoestimasi" />
 
             <TextView
+                android:id="@+id/labelekonomi"
+                android:layout_marginStart="18dp"
+                android:layout_below="@id/iconLogo"
+                android:layout_marginTop="30dp"
+                android:drawablePadding="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_economy_class"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_chair" />
+
+            <TextView
                 android:id="@+id/tvJamDatang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -142,8 +161,8 @@
                 android:id="@+id/labelHargaDewasa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/garis"
-                android:layout_marginTop="16dp"
+                android:layout_below="@id/labelekonomi"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="18dp"
                 android:text="@string/harga_dewasa"
                 android:textSize="12sp" />
@@ -161,9 +180,9 @@
                 android:id="@+id/labelHargaAnak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/garis"
+                android:layout_below="@id/labelekonomi"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="18dp"
                 android:text="@string/harga_anak"
                 android:textSize="12sp" />
