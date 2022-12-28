@@ -35,73 +35,131 @@
             android:text="Richard Lois"
             android:textSize="22sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvUpdateProfile"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+        <LinearLayout
             android:layout_marginHorizontal="23dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center_vertical"
-            android:text="@string/ubah_profil"
-            android:textSize="18sp"
-            android:drawablePadding="16dp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            app:drawableStartCompat="@drawable/ic_person"
-            android:layout_below="@id/tvName"/>
-
-        <TextView
-            android:id="@+id/tvChangePassword"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="23dp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:drawablePadding="16dp"
-            android:gravity="center_vertical"
-            android:text="@string/ubah_password"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_password"
-            android:layout_below="@id/tvUpdateProfile"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName">
+            <RelativeLayout
+                android:id="@+id/tvUpdateProfile"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_profile"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:textColor="@color/SB_Grey"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginStart="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/ubah_profil"
+                    android:textSize="18sp"
+                    android:drawablePadding="16dp" />
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:padding="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_right_arrow"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/tvChangePassword"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_baseline_lock_24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:textColor="@color/SB_Grey"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginStart="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/ubah_password"
+                    android:textSize="18sp"
+                    android:drawablePadding="16dp" />
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:padding="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_right_arrow"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/tvTransaction"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_baseline_history_24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:textColor="@color/SB_Grey"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginStart="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/riwayat_pemesanan"
+                    android:textSize="18sp"
+                    android:drawablePadding="16dp" />
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:padding="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_right_arrow"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/tvWishlist"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_wishlist_profile"
+                    app:tint="#7D8C9C" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:textColor="@color/SB_Grey"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginStart="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/wishlist"
+                    android:textSize="18sp"
+                    android:drawablePadding="16dp" />
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:padding="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_right_arrow"/>
+            </RelativeLayout>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvTransaction"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="23dp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:drawablePadding="16dp"
-            android:gravity="center_vertical"
-            android:text="@string/riwayat_pemesanan"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_history"
-            android:layout_below="@id/tvChangePassword"/>
-
-        <TextView
-            android:id="@+id/tvWishlist"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="23dp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:drawablePadding="16dp"
-            android:gravity="center_vertical"
-            android:text="@string/wishlist"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_wishlist_profile"
-            android:layout_below="@id/tvTransaction"/>
-
-        <TextView
-            android:id="@+id/tvLogout"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginHorizontal="23dp"
+        <Button
             android:layout_marginBottom="40dp"
-            android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="23dp"
+            android:backgroundTint="@color/MC_SoftRed"
             android:text="@string/keluar"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_logout"
-            android:layout_alignParentBottom="true"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
