@@ -136,6 +136,8 @@ class LoginFragment : Fragment() {
                 }
             })
         }
+
+        isValid = !(passwordIsEmpty() or emailIsEmpty())
         return isValid
     }
 
@@ -144,6 +146,8 @@ class LoginFragment : Fragment() {
         val pass = binding.passwordInput.text.toString()
         if (validateInput()) {
             observeLoginResult(email, pass)
+        }else{
+            Toast.makeText(requireContext(), "Email atau password tidak boleh kosong", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -201,11 +205,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginUsingGoogle() {
-        showLoading(true)
+        showLoadingGoogle(true)
         oneTapClient.beginSignIn(signInRequest)
             .addOnSuccessListener(requireActivity()) { result ->
                 try {
-                    showLoading(false)
+                    showLoadingGoogle(false)
                     startIntentSenderForResult(
                         result.pendingIntent.intentSender, REQ_ONE_TAP,
                         null, 0, 0, 0, null
@@ -320,9 +324,17 @@ class LoginFragment : Fragment() {
 
     private fun showLoading(status: Boolean) {
         if (status) {
-            binding.pbLogin.visibility = View.VISIBLE
+            binding.containerLoading.visibility = View.VISIBLE
         } else {
-            binding.pbLogin.visibility = View.GONE
+            binding.containerLoading.visibility = View.GONE
+        }
+    }
+
+    private fun showLoadingGoogle(status: Boolean) {
+        if (status) {
+            binding.containerLoadingGoogle.visibility = View.VISIBLE
+        } else {
+            binding.containerLoadingGoogle.visibility = View.GONE
         }
     }
     
