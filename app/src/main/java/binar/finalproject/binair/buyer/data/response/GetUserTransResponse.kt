@@ -104,7 +104,7 @@ data class User(
 	val profileImage: String,
 
 	@field:SerializedName("gender")
-	val gender: String,
+	var gender: String? = null,
 
 	@field:SerializedName("verified")
 	val verified: Boolean,

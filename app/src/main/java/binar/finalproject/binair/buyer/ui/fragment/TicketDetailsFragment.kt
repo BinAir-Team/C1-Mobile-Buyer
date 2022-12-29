@@ -107,7 +107,6 @@ class TicketDetailsFragment : Fragment() {
                             it1.departureTime,
                             idUser
                         )
-
                     }
                     if (dataWishlist != null) {
                         binding.btnWishlist.setOnClickListener {
@@ -148,7 +147,7 @@ class TicketDetailsFragment : Fragment() {
 
                     }
                     if (dataWishlist != null) {
-                            Toast.makeText(context, "WishList Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Wishlist Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
                             flightVM.insertWishList(dataWishlist,idUser)
 //                            flightVM.deleteWishList(dataWishlist)
                     }
@@ -176,7 +175,8 @@ class TicketDetailsFragment : Fragment() {
 
     private fun bookmarkinit(){
         val idUser = requireActivity().getSharedPreferences(dataUser, Context.MODE_PRIVATE).getString("idUser",null)
-        if (clickedTicket != null && idUser != null) {
+        Toast.makeText(context, "idUser $idUser", Toast.LENGTH_SHORT).show()
+        if (idUser != null) {
             val condition : Boolean = flightVM.isWishlisted(clickedTicket.id,idUser)
 //            Toast.makeText(context,condition.toString(),Toast.LENGTH_SHORT).show()
             showbookmark(condition)

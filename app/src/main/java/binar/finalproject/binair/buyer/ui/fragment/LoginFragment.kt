@@ -290,7 +290,7 @@ class LoginFragment : Fragment() {
 
     private fun saveUserToSharedPref(idUser : String, firstName : String, lastName : String, token : String){
         with(editor) {
-            val namaLengkap = firstName + " " + lastName
+            val namaLengkap = "$firstName $lastName"
             putString("token", token)
             putString("idUser", idUser)
             putString("namaLengkap", namaLengkap)

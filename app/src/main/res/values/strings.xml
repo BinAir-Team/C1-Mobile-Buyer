@@ -7,7 +7,7 @@
     </string>
     <string name="btn_cari_penerbangan">Cari Penerbangan</string>
     <string name="lupa_password">Lupa password?</string>
-    <string name="login">Login</string>
+    <string name="login">Masuk</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="detail_login">Isi form di bawah untuk mendapatkan akses</string>
@@ -16,7 +16,7 @@
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="konfirmasi_password">Konfirmasi Password</string>
     <string name="daftar">Daftar</string>
-    <string name="sudah_punya_akun"><font color="#000000">Sudah punya akun? </font><font color="#F37C20">Login</font></string>
+    <string name="sudah_punya_akun"><font color="#000000">Sudah punya akun? </font><font color="#F37C20">Masuk</font></string>
     <string name="cari_penerbangan">Cari Penerbangan</string>
     <string name="label_dari">Dari</string>
     <string name="ex_kota_dari">Jakarta - CGK</string>
@@ -30,7 +30,7 @@
     <string name="label_kelas">Kelas</string>
     <string name="label_sekali_jalan">Sekali Jalan</string>
     <string name="label_pulang_pergi">Pulang Pergi</string>
-    <string name="buy_ticket">Buy Ticket</string>
+    <string name="buy_ticket">Beli Tiket</string>
     <string name="label_promo_tiket">Promo Tiket</string>
     <string name="ex_promo_title">Stay Happy Weekly Bersama OCBC NISP, Dapatkan Diskon 12%</string>
     <string name="simpan">Simpan</string>
@@ -55,10 +55,10 @@
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="laki_laki">Laki-laki</string>
     <string name="perempuan">Perempuan</string>
-    <string name="book">Book</string>
+    <string name="book">Pesan</string>
     <string name="review">Review</string>
-    <string name="pay">Pay</string>
-    <string name="e_ticket">E-Ticket</string>
+    <string name="pay">Pembayaran</string>
+    <string name="e_ticket">E-Tiket</string>
     <string name="bukti_pembayaran">Bukti Pembayaran</string>
     <string name="detail_pemesanan">Detail Pemesanan</string>
     <string name="id_pemesanan">ID Pemesanan</string>
@@ -72,7 +72,7 @@
     <string name="nominal_harga">Rp. 830.000</string>
     <string name="bayar">Bayar</string>
     <string name="payment_logo">Payment Logo</string>
-    <string name="setuju_bayar"><![CDATA[Dengan menekan tombol bayar maka Anda menyetujuai syarat dan ketentuan Binair Airline & Ketentuan dan Kebijakan Privase]]></string>
+    <string name="setuju_bayar"><![CDATA[Dengan menekan tombol bayar maka Anda menyetujui syarat dan ketentuan Binair Airline & Ketentuan dan Kebijakan Privasi]]></string>
     <string name="tanggal">Tanggal</string>
     <string name="waktu">Waktu</string>
     <string name="ex_kode_penerbangan">IN 230</string>
@@ -82,10 +82,10 @@
     <string name="ex_kursi">2B</string>
     <string name="unduh_e_tiket">Unduh E-Tiket</string>
     <string name="pesan_tiket_penerbangan_lagi">Pesan tiket penerbangan lagi</string>
-    <string name="login_untuk_melanjutkan">Login untuk melanjutkan</string>
+    <string name="login_untuk_melanjutkan">Masuk untuk melanjutkan</string>
     <string name="anda_tidak_dapat_melanjutkan_pemesanan_tanpa_login_terlebih_dahulu">Anda tidak dapat melanjutkan pemesanan tanpa login terlebih dahulu</string>
     <string name="batal">Batal</string>
-    <string name="log_out">Log Out</string>
+    <string name="log_out">Keluar</string>
     <string name="tidak_ada_wishlist">Tidak ada wishlist</string>
     <string name="wishlist">Wishlist</string>
     <string name="riwayat_pemesanan">Riwayat Pemesanan</string>
@@ -121,7 +121,7 @@
     <string name="voucher_promo_code" />
     <string name="client_id">214017739948-b18qptodbi5i0sth8fgukauks2raoi61.apps.googleusercontent.com</string>
     <string name="label_economy_class">Kelas Ekonomi</string>
-    <string name="label_tujuan">tujuan</string>
+    <string name="label_tujuan">Tujuan</string>
     <string name="labelJam">Jam</string>
     <string name="lanjutkan_pemesanan">Lanjutkan Pemesanan</string>
     <string name="gratis_bagasi_20_kg">Gratis bagasi 20 Kg</string>

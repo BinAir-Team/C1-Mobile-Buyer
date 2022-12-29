@@ -97,7 +97,7 @@ class EditProfileFragment : Fragment() {
                     binding.etPhone.setText(data.phone)
                     if(data.gender == "Laki-laki"){
                         binding.radioLaki.isChecked = true
-                    } else {
+                    }else if(data.gender == "Perempuan") {
                         binding.radioPerempuan.isChecked = true
                     }
                     Glide.with(requireContext())
@@ -105,8 +105,6 @@ class EditProfileFragment : Fragment() {
                         .into(binding.imgProfile)
                 }
             }
-        }else{
-            Toast.makeText(requireContext(), "Token is null", Toast.LENGTH_SHORT).show()
         }
     }
 

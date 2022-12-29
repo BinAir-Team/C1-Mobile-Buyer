@@ -32,7 +32,7 @@ class TicketHistoryAdapter(private val listTicket : List<TransItem>) : RecyclerV
                 tvDepartureCity.text = item.ticket.from
                 tvArrivalTime.text = item.ticket.arrivalTime
                 tvArrivalCity.text = item.ticket.to
-
+                tvType.text = if(item.ticket.type.equals("oneway")) "Sekali Jalan" else("Pulang Pergi")
                 cvHistory.setOnClickListener {
                     onClick?.invoke(item)
                 }

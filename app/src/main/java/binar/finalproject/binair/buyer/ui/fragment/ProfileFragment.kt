@@ -54,45 +54,52 @@ class ProfileFragment : Fragment() {
                 if(token != null){
                     gotoEditProfile()
                 }else{
-                    Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                    toastLogin()
                 }
             }
             userprofile.setOnClickListener {
                 if(token != null){
                     gotoEditProfile()
                 }else{
-                    Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                    toastLogin()
                 }
             }
             btnLogout.setOnClickListener {
-                logout()
+                if(token != null){
+                    logout()
+                }else{
+                    toastLogin()
+                }
             }
             tvUpdateProfile.setOnClickListener {
-                gotoEditProfile()
+                if(token != null){
+                    gotoEditProfile()
+                }else{
+                    toastLogin()
+                }
             }
             tvChangePassword.setOnClickListener {
-                gotoChangePassword()
+                if(token != null){
+                    gotoChangePassword()
+                }else{
+                    toastLogin()
+                }
             }
             tvWishlist.setOnClickListener {
-                gotoWishlist()
+                if(token != null){
+                    gotoWishlist()
+                }else{
+                    toastLogin()
+                }
             }
             tvTransaction.setOnClickListener {
-                gotoTransaction()
+                if(token != null){
+                    gotoTransaction()
+                }else{
+                    toastLogin()
+                }
             }
             toolbar.menuNotif.visibility = View.GONE
-//            toolbar.setOnMenuItemClickListener {
-//                when(it.itemId){
-//                    R.id.change_pass -> {
-//                        if(token != null){
-//                            gotoChangePassword()
-//                        }else{
-//                            Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-//                        }
-//                        true
-//                    }
-//                    else -> false
-//                }
-//            }
         }
     }
 
@@ -110,6 +117,10 @@ class ProfileFragment : Fragment() {
 
     private fun gotoTransaction() {
         findNavController().navigate(R.id.action_global_ticketHistoryFragment2)
+    }
+
+    private fun toastLogin(){
+        Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")

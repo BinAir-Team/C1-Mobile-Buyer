@@ -339,22 +339,13 @@
                             android:layout_centerHorizontal="true" />
 
                         <Button
-                            android:id="@+id/btnDownloadTicket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/unduh_e_tiket"
-                            style="@style/button"
-                            android:layout_marginTop="12dp"
-                            android:layout_below="@id/ivQr" />
-
-                        <Button
                             android:id="@+id/btnBookAnother"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/Widget.Material3.Button.TextButton"
                             android:text="@string/pesan_tiket_penerbangan_lagi"
                             android:textColor="@color/content_grey"
-                            android:layout_below="@id/btnDownloadTicket" />
+                            android:layout_below="@id/ivQr" />
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>

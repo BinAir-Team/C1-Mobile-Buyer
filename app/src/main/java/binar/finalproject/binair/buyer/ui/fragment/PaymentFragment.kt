@@ -160,7 +160,7 @@ class PaymentFragment : Fragment() {
         flightVM.updatePayment("Bearer $token",id,image!!,method).observe(viewLifecycleOwner){
             if (it != null) {
                 if(it.status == 200){
-//                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
+                    makeNotification("Pembayaran","Pembayaran Berhasil Dilakukan",requireContext())
                     try {
                         val args = arguments?.getSerializable("dataBooking") as BookingTicketResponse
                         for(trav in args.data[0].traveler){

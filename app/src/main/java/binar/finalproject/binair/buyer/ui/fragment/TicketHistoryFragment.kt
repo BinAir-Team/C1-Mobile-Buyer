@@ -69,6 +69,9 @@ class TicketHistoryFragment : Fragment() {
             if(it.ticket.dateEnd == null){
                 it.ticket.dateEnd = ""
             }
+            if(it.user.gender == null){
+                it.user.gender = ""
+            }
             if(it.status.contains("PENDING PAYMENT")){
                 val act = TicketHistoryFragmentDirections.actionTicketHistoryFragment2ToPaymentFragment(it)
                 findNavController().navigate(act)

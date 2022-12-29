@@ -46,15 +46,15 @@
                     android:layout_marginStart="8dp"
                     tools:ignore="ExtraText" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text='@{dataWishlist.departureTime, default="10 hr 40min"}'
-                    android:id="@+id/FlightHour"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text='@{dataWishlist.departureTime, default="10 hr 40min"}'-->
+<!--                    android:id="@+id/FlightHour"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:layout_marginTop="4dp" />-->
             </RelativeLayout>
 
             <RelativeLayout
@@ -96,15 +96,16 @@
                         android:text='@{dataWishlist.to, default="Jember"}'
                         android:fontFamily="@font/inter_medium" />
                 </LinearLayout>
-                <!--                <TextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text='@{Integer.toString(dataWishlist.adultPrice)}'-->
-                <!--                    android:layout_alignParentEnd="true"-->
-                <!--                    android:fontFamily="@font/inter_light"-->
-                <!--                    android:textSize="10dp"-->
-                <!--                    android:textColor="@color/main_blue"-->
-                <!--                    android:layout_marginTop="4dp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:fontFamily="@font/inter_light"-->
+<!--                    android:text='@{Integer.toString(dataWishlist.adultPrice)}'-->
+<!--                    android:textColor="@color/main_blue"-->
+<!--                    android:textSize="10dp" />-->
 
             </RelativeLayout>
 
@@ -135,7 +136,8 @@
                         android:id="@+id/tvHargaDewasa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{dataWishlist.dateStart,default = "0 jan"}' />
+                        android:text='@{dataWishlist.dateStart,default = "0 jan"}'
+                        android:drawableStart="@drawable/ic_schedule_blue"/>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -147,15 +149,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/labelJam"
-                        android:layout_marginTop="4dp" />
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="end"/>
 
                     <TextView
-                        android:id="@+id/tvHargaAnak"
+                        android:id="@+id/tvJamBerangkat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text='@{dataWishlist.departureTime,default = "08:20"}'
                         android:textStyle="bold"
-                        app:drawableStartCompat="@drawable/ic_money" />
+                        app:drawableStartCompat="@drawable/ic_clock"
+                        android:layout_gravity="end"/>
                 </LinearLayout>
             </LinearLayout>
 
