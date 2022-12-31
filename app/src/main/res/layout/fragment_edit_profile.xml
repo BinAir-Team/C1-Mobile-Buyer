@@ -22,13 +22,6 @@
             android:padding="16dp"
             android:background="@color/MC_Blue">
 
-            <ImageView
-                android:layout_marginTop="5dp"
-                android:id="@+id/backButton"
-                android:layout_width="7dp"
-                android:layout_height="12.23dp"
-                android:src="@drawable/left_arrow" />
-
             <TextView
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
@@ -36,8 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/profil"
                 android:textColor="@color/MBC_HighlightBase"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@id/backButton" />
+                android:layout_marginStart="20dp" />
         </RelativeLayout>
 
         <ScrollView
@@ -182,12 +174,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/laki_laki"
-                                android:layout_marginEnd="16dp" />
+                                android:layout_marginEnd="16dp"
+                                android:buttonTint="@color/MC_Blue" />
                             <com.google.android.material.radiobutton.MaterialRadioButton
                                 android:id="@+id/radioPerempuan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/perempuan" />
+                                android:text="@string/perempuan"
+                                android:buttonTint="@color/MC_Blue" />
                         </RadioGroup>
 
                         <LinearLayout

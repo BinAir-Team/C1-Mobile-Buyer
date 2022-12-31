@@ -19,21 +19,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant
 import binar.finalproject.binair.buyer.data.isOnline
-import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.model.SearchItem
 import binar.finalproject.binair.buyer.data.response.CityAirport
 import binar.finalproject.binair.buyer.data.response.DataPromo
 import binar.finalproject.binair.buyer.databinding.FragmentHomeBinding
-import binar.finalproject.binair.buyer.socketio.SocketHandler
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.buyer.ui.adapter.HomePromoAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.socket.emitter.Emitter
-import org.json.JSONArray
-import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -69,7 +64,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListener()
         initData()
-        initSocketIO()
         showBottomNavigation()
         showBannerLogin()
         changeTripType()
@@ -151,28 +145,6 @@ class HomeFragment : Fragment() {
         val formatedDate = formatDate(now)
         binding.etTglBerangkatInput.setText(formatedDate)
         binding.etTglPulangInput.setText(formatedDate)
-    }
-
-    private fun initSocketIO(){
-        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser", null)
-        val onNewNotif = Emitter.Listener {
-            if(it != null){
-                activity?.runOnUiThread {
-                    val arrObj = it[0] as JSONArray
-                    val obj = arrObj.get(arrObj.length() - 1) as JSONObject
-                    val msg = obj.getString("message")
-                    Log.d("notif", msg)
-                    makeNotification("Binair",msg, requireContext())
-                }
-            }
-        }
-        SocketHandler.setSocket()
-        if(idUser != null){
-            val mSocket = SocketHandler.getSocket()
-            mSocket.connect()
-            mSocket.emit("create",idUser)
-            mSocket.on("notify-update", onNewNotif)
-        }
     }
 
     private fun showBottomNavigation() {
