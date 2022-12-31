@@ -213,4 +213,29 @@ class UserRepository @Inject constructor(var apiService: APIService) {
             })
         return updatePass
     }
+
+    fun forgetPassword(email : String) : LiveData<ForgetPasswordResponse?> {
+        val _forgetPassword = MutableLiveData<ForgetPasswordResponse?>()
+        val forgetPass = _forgetPassword
+        apiService.forgetPassword(email).enqueue(object : Callback<ForgetPasswordResponse>{
+            override fun onResponse(
+                call: Call<ForgetPasswordResponse>,
+                response: Response<ForgetPasswordResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val dataResponse = response.body()
+                    _forgetPassword.postValue(dataResponse)
+                } else {
+                    _forgetPassword.postValue(null)
+                    Log.e("Error not successful : ", response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<ForgetPasswordResponse>, t: Throwable) {
+                _forgetPassword.postValue(null)
+                Log.d("Error onFailure : ", t.message!!)
+            }
+        })
+        return forgetPass
+    }
 }

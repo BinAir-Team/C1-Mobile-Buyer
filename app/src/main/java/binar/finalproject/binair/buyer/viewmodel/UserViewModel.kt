@@ -2,9 +2,9 @@ package binar.finalproject.binair.buyer.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import binar.finalproject.binair.buyer.repository.UserRepository
 import binar.finalproject.binair.buyer.data.model.DataRegister
 import binar.finalproject.binair.buyer.data.response.*
+import binar.finalproject.binair.buyer.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -20,4 +20,5 @@ class UserViewModel @Inject constructor(private var userRepo : UserRepository) :
     fun updateUser(token : String, firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody, profileImage : MultipartBody.Part): LiveData<UpdateUserResponse?> = userRepo.updateUser(token, firstName,lastName,gender, phone, profileImage)
     fun updateUserWithoutImage(token : String, firstName : RequestBody, lastName : RequestBody, gender : RequestBody, phone : RequestBody) : LiveData<UpdateUserResponse?> = userRepo.updateUserWithoutImage(token, firstName, lastName, gender, phone)
     fun updatePassword(token : String, oldPassword : String, newPassword : String, confirmPass : String) : LiveData<UpdateUserPasswordResponse?> = userRepo.updatePassword(token, oldPassword, newPassword, confirmPass)
+    fun forgetPassword(email : String) : LiveData<ForgetPasswordResponse?> = userRepo.forgetPassword(email)
 }

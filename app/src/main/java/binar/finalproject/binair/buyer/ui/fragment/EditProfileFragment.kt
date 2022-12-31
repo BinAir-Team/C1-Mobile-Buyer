@@ -41,7 +41,7 @@ class EditProfileFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
             binding.imgProfile.setImageURI(result)
             val contentResolver = activity?.contentResolver
-            val type = contentResolver?.getType(result!!)
+            val type = result?.let { contentResolver?.getType(it) }
 
             val tempFile = File.createTempFile("image", ".jpg",null)
             val inputStream = contentResolver?.openInputStream(result!!)

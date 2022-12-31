@@ -66,4 +66,8 @@ interface APIService {
     @PUT("notify")
     @FormUrlEncoded
     fun updateNotif(@Header("Authorization") token : String, @Field("id") id: String?) : Call<UpdateNotificationResponse>
+
+    @POST("forget-password")
+    @FormUrlEncoded
+    fun forgetPassword(@Field("email") email : String) : Call<ForgetPasswordResponse>
 }

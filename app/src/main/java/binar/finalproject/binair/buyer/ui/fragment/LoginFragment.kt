@@ -1,5 +1,6 @@
 package binar.finalproject.binair.buyer.ui.fragment
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentSender
 import android.content.SharedPreferences
@@ -19,6 +20,7 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.buyer.R
 import binar.finalproject.binair.buyer.data.Constant.dataUser
+import binar.finalproject.binair.buyer.databinding.ForgetPasswordDialogBinding
 import binar.finalproject.binair.buyer.databinding.FragmentLoginBinding
 import binar.finalproject.binair.buyer.ui.activity.MainActivity
 import binar.finalproject.binair.buyer.viewmodel.UserViewModel
@@ -76,6 +78,9 @@ class LoginFragment : Fragment() {
             }
             btnLoginGoogle.setOnClickListener {
                 loginUsingGoogle()
+            }
+            tvLupaPassword.setOnClickListener {
+                forgetPassword()
             }
         }
     }
@@ -299,6 +304,29 @@ class LoginFragment : Fragment() {
             apply()
         }
         gotoHome()
+    }
+
+    private fun forgetPassword(){
+        val builder = AlertDialog.Builder(context)
+        val alertDialog = builder.create()
+        val dialogView = layoutInflater.inflate(R.layout.forget_password_dialog, null)
+        val dialogBinding = ForgetPasswordDialogBinding.bind(dialogView)
+        alertDialog.setView(dialogView)
+        alertDialog.create()
+        dialogBinding.btnSend.setOnClickListener {
+            val email = dialogBinding.etEmail.text.toString()
+            userVM.forgetPassword(email).observe(viewLifecycleOwner){ it ->
+                if (it != null){
+                    Toast.makeText(context,"Silahkan cek email anda",Toast.LENGTH_SHORT).show()
+                    alertDialog.dismiss()
+                }
+            }
+            alertDialog.dismiss()
+        }
+        dialogBinding.btnCancel.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 
     private fun gotoHome() {
