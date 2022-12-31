@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.buyer.data.Constant
-import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.data.response.DataNotif
 import binar.finalproject.binair.buyer.databinding.FragmentNotificationBinding
-import binar.finalproject.binair.buyer.socketio.SocketHandler
 import binar.finalproject.binair.buyer.ui.adapter.NotificationAdapter
 import binar.finalproject.binair.buyer.viewmodel.FlightViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,30 +50,16 @@ class NotificationFragment : Fragment() {
         pop = arguments?.getString("pop", null)!!
     }
 
-    private fun initSocketIO(){
-        val idUser = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser", null)
-        SocketHandler.setSocket()
-        if(idUser != null){
-            val mSocket = SocketHandler.getSocket()
-            mSocket.connect()
-            mSocket.emit("create",idUser)
-            mSocket.on("notify-update"){
-                if(it[0] != null){
-                    makeNotification("Binair",it[0].toString(), requireContext())
-                }
-            }
-        }
-    }
-
     private fun getNotification() {
+        showLoading(true)
         var res : List<DataNotif>? = null
         val token = requireActivity().getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("token", null)
         if (token != null) {
             flightVM.getAllNotification("Bearer $token").observe(viewLifecycleOwner){
                 if (it != null) {
+                    showLoading(false)
                     res = it
                     setDataToRecView(it.reversed())
-//                    showLoading(false)
                 }
             }
         }
@@ -94,6 +78,14 @@ class NotificationFragment : Fragment() {
                     Toast.makeText(requireContext(), "Gagal Update Notifikasi", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
         }
     }
 }

@@ -1,11 +1,18 @@
 package binar.finalproject.binair.buyer.ui.activity
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import binar.finalproject.binair.buyer.R
+import binar.finalproject.binair.buyer.data.Constant
+import binar.finalproject.binair.buyer.data.makeNotification
 import binar.finalproject.binair.buyer.databinding.ActivityMainBinding
+import binar.finalproject.binair.buyer.socketio.SocketHandler
 import dagger.hilt.android.AndroidEntryPoint
+import io.socket.emitter.Emitter
+import org.json.JSONArray
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -15,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        initSocketIO()
         setBottomNavListener()
     }
 
@@ -44,6 +51,35 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun initSocketIO(){
+        val idUser = getSharedPreferences(Constant.dataUser, Context.MODE_PRIVATE).getString("idUser", null)
+        val onNewNotif = Emitter.Listener {
+            if(it != null){
+                runOnUiThread {
+                    val arrObj = it[0] as JSONArray
+                    val obj = arrObj.get(arrObj.length() - 1) as JSONObject
+                    val msg = obj.getString("message")
+                    var title = ""
+                    if(msg.contains("Login")) {
+                        title = "Login"
+                    }else if(msg.contains("Transaksi")){
+                        title = "Pembelian Tiket"
+                    }else if(msg.contains("Pembayaran")){
+                        title = "Status Pembayaran"
+                    }
+                    makeNotification(title,msg,this)
+                }
+            }
+        }
+        SocketHandler.setSocket()
+        if(idUser != null){
+            val mSocket = SocketHandler.getSocket()
+            mSocket.connect()
+            mSocket.emit("create",idUser)
+            mSocket.on("notify-update", onNewNotif)
         }
     }
 }
