@@ -9,6 +9,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.test.espresso.idling.CountingIdlingResource
 import binar.finalproject.binair.buyer.R
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -72,3 +73,29 @@ fun isOnline(context: Context): Boolean {
     return false
 }
 
+object EspressoIdlingResource {
+
+    private const val RESOURCE = "GLOBAL"
+
+    @JvmField
+    val countingIdlingResource = CountingIdlingResource(RESOURCE)
+
+    fun increment() {
+        countingIdlingResource.increment()
+    }
+
+    fun decrement() {
+        if (!countingIdlingResource.isIdleNow) {
+            countingIdlingResource.decrement()
+        }
+    }
+}
+
+inline fun <T> wrapEspressoIdlingResource(function: () -> T): T {
+    EspressoIdlingResource.increment() // Set app as busy.
+    return try {
+        function()
+    } finally {
+        EspressoIdlingResource.decrement() // Set app as idle.
+    }
+}

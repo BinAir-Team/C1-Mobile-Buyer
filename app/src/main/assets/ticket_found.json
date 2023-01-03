@@ -1,0 +1,31 @@
+{
+  "status": "success",
+  "message": "ticket found",
+  "data": {
+    "totalItems": 1,
+    "tickets": [
+      {
+        "id": "31588def-1557-4a4c-8083-a2a3010790f5",
+        "from": "Surabaya",
+        "to": "Makassar",
+        "airport_from": "Juanda International Airport",
+        "airport_to": "Sultan Hasanuddin International Airport",
+        "departure_time": "12:00",
+        "arrival_time": "13:00",
+        "date_start": "2023-01-12",
+        "date_end": null,
+        "type": "oneway",
+        "adult_price": 1420000,
+        "child_price": 1200000,
+        "available": true,
+        "init_stock": 200,
+        "curr_stock": 200,
+        "createdAt": "2022-12-23T12:49:34.710Z",
+        "updatedAt": "2022-12-23T12:49:34.710Z",
+        "wishlists": []
+      }
+    ],
+    "totalPages": 1,
+    "currentPage": 0
+  }
+}

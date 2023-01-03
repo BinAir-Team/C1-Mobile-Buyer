@@ -16,11 +16,14 @@ interface WishlistDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertWishList(wishlist: DataWishList)
 
-    @Query("DELETE FROM datawishlist WHERE id = :id")
-    fun deleteWishList(id: String) : Int
+    @Query("DELETE FROM DataWishList WHERE id = :id")
+    fun deleteWishList(id: String)
+
+    @Delete
+    fun delWishList(wishlist: DataWishList)
 
     @Update
-    fun updateWishList(note: DataWishList)
+    fun updateWishList(wishlist: DataWishList)
 
     @Query("SELECT * FROM CityAirport")
     fun getCityAirport() : List<CityAirport>

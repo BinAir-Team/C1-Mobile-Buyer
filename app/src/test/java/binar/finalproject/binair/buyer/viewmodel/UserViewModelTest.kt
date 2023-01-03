@@ -4,11 +4,12 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.buyer.data.model.DataRegister
-import binar.finalproject.binair.buyer.data.response.LoginResponse
-import binar.finalproject.binair.buyer.data.response.RegisterUserResponse
+import binar.finalproject.binair.buyer.data.response.*
 import binar.finalproject.binair.buyer.repository.UserRepository
 import binar.finalproject.binair.buyer.utils.DataDummy
 import binar.finalproject.binair.buyer.utils.getOrAwaitValue
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -37,9 +39,9 @@ class UserViewModelTest {
     @Test
     fun `Register user success not return null`() {
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail.com",
             gender = "Laki-laki",
             phone = "08123456789",
             password = "123456",
@@ -59,9 +61,9 @@ class UserViewModelTest {
     @Test
     fun `Register user success return correct response`() {
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail.com",
             gender = "Laki-laki",
             phone = "08123456789",
             password = "123456",
@@ -81,8 +83,8 @@ class UserViewModelTest {
     @Test
     fun `Register failed email empty`(){
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
+            firstname = "Richard",
+            lastname = "Lois",
             email = "",
             gender = "Laki-laki",
             phone = "08123456789",
@@ -103,9 +105,9 @@ class UserViewModelTest {
     @Test
     fun `Register failed password empty`(){
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail.com",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail.com",
             gender = "Laki-laki",
             phone = "08123456789",
             password = "",
@@ -125,8 +127,8 @@ class UserViewModelTest {
     @Test
     fun `Register email invalid`(){
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
+            firstname = "Richard",
+            lastname = "Lois",
             email = "johndoegmail.com",
             gender = "Laki-laki",
             phone = "08123456789",
@@ -147,9 +149,9 @@ class UserViewModelTest {
     @Test
     fun `Register email already exist`(){
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail.com",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail.com",
             gender = "Laki-laki",
             phone = "08123456789",
             password = "123456",
@@ -169,9 +171,9 @@ class UserViewModelTest {
     @Test
     fun `Register failed if pass and conf pass not same`(){
         val dataRegister = DataRegister(
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail.com",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail.com",
             gender = "Laki-laki",
             phone = "08123456789",
             password = "123456",
@@ -193,10 +195,10 @@ class UserViewModelTest {
         val dummyMutLD = MutableLiveData<LoginResponse>()
         dummyMutLD.value = DataDummy.loginSuccess()
         val expectedResponse: LiveData<LoginResponse?> = dummyMutLD
-        `when`(userRepo.loginUser("johndoe@gmail.com", "123456")).thenReturn(expectedResponse)
+        `when`(userRepo.loginUser("richardlois1@gmail.com", "123456")).thenReturn(expectedResponse)
 
-        val actualResp = userVM.loginUser("johndoe@gmail.com", "123456").getOrAwaitValue()
-        Mockito.verify(userRepo).loginUser("johndoe@gmail.com", "123456")
+        val actualResp = userVM.loginUser("richardlois1@gmail.com", "123456").getOrAwaitValue()
+        Mockito.verify(userRepo).loginUser("richardlois1@gmail.com", "123456")
         Assert.assertEquals(expectedResponse.value, actualResp)
     }
 
@@ -217,10 +219,10 @@ class UserViewModelTest {
         val dummyMutLD = MutableLiveData<LoginResponse>()
         dummyMutLD.value = DataDummy.loginFailedPassWrong()
         val expectedResponse: LiveData<LoginResponse?> = dummyMutLD
-        `when`(userRepo.loginUser("johndoe@gmail.com", "abcdef")).thenReturn(expectedResponse)
+        `when`(userRepo.loginUser("richardlois1@gmail.com", "abcdef")).thenReturn(expectedResponse)
 
-        val actualResp = userVM.loginUser("johndoe@gmail.com", "abcdef").getOrAwaitValue()
-        Mockito.verify(userRepo).loginUser("johndoe@gmail.com", "abcdef")
+        val actualResp = userVM.loginUser("richardlois1@gmail.com", "abcdef").getOrAwaitValue()
+        Mockito.verify(userRepo).loginUser("richardlois1@gmail.com", "abcdef")
         Assert.assertEquals(expectedResponse.value, actualResp)
     }
 
@@ -233,6 +235,117 @@ class UserViewModelTest {
 
         val actualResp = userVM.loginUser("john@gmail.com", "abcdef").getOrAwaitValue()
         Mockito.verify(userRepo).loginUser("john@gmail.com", "abcdef")
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Update profile success`(){
+        val firstName = "Richard".toRequestBody()
+        val lastName = "Lois".toRequestBody()
+        val gender = "Laki-laki".toRequestBody()
+        val phone = "08123456789".toRequestBody()
+        val image = mock(MultipartBody.Part::class.java)
+        val dummyMutLD = MutableLiveData<UpdateUserResponse>()
+        dummyMutLD.value = DataDummy.updateUserSuccess()
+        val expectedResponse: LiveData<UpdateUserResponse?> = dummyMutLD
+        `when`(userRepo.updateUser("1",firstName,lastName,gender,phone,image)).thenReturn(expectedResponse)
+
+        val actualResp = userVM.updateUser("1",firstName,lastName,gender,phone,image).getOrAwaitValue()
+        Mockito.verify(userRepo).updateUser("1",firstName,lastName,gender,phone,image)
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Update profile without image success`(){
+        val firstName = "Richard".toRequestBody()
+        val lastName = "Lois".toRequestBody()
+        val gender = "Laki-laki".toRequestBody()
+        val phone = "08123456789".toRequestBody()
+
+        val dummyMutLD = MutableLiveData<UpdateUserResponse>()
+        dummyMutLD.value = DataDummy.updateUserSuccess()
+        val expectedResponse: LiveData<UpdateUserResponse?> = dummyMutLD
+        `when`(userRepo.updateUserWithoutImage("1",firstName,lastName,gender,phone)).thenReturn(expectedResponse)
+
+        val actualResp = userVM.updateUserWithoutImage("1",firstName,lastName,gender,phone).getOrAwaitValue()
+        Mockito.verify(userRepo).updateUserWithoutImage("1",firstName,lastName,gender,phone)
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Update profile failed user not found`(){
+        val firstName = "Richard".toRequestBody()
+        val lastName = "Lois".toRequestBody()
+        val gender = "Laki-laki".toRequestBody()
+        val phone = "08123456789".toRequestBody()
+        val image = mock(MultipartBody.Part::class.java)
+        val dummyMutLD = MutableLiveData<UpdateUserResponse>()
+        dummyMutLD.value = DataDummy.updateUserSuccess()
+        val expectedResponse: LiveData<UpdateUserResponse?> = dummyMutLD
+        `when`(userRepo.updateUser("xx",firstName,lastName,gender,phone,image)).thenReturn(expectedResponse)
+
+        val actualResp = userVM.updateUser("xx",firstName,lastName,gender,phone,image).getOrAwaitValue()
+        Mockito.verify(userRepo).updateUser("xx",firstName,lastName,gender,phone,image)
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Change password success`(){
+        val dummyMutLD = MutableLiveData<UpdateUserPasswordResponse>()
+        dummyMutLD.value = DataDummy.changePassSuccess()
+        val expectedResponse: LiveData<UpdateUserPasswordResponse?> = dummyMutLD
+        `when`(userRepo.updatePassword("1","123456","johndoe1","johndoe1")).thenReturn(expectedResponse)
+
+        val actualResp = userVM.updatePassword("1","123456","johndoe1","johndoe1").getOrAwaitValue()
+        Mockito.verify(userRepo).updatePassword("1","123456","johndoe1","johndoe1")
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Change password failed old pass wrong`(){
+        val dummyMutLD = MutableLiveData<UpdateUserPasswordResponse>()
+        dummyMutLD.value = DataDummy.changePassSuccess()
+        val expectedResponse: LiveData<UpdateUserPasswordResponse?> = dummyMutLD
+        `when`(userRepo.updatePassword("1","zzzzzz","johndoe1","johndoe1")).thenReturn(expectedResponse)
+
+        val actualResp = userVM.updatePassword("1","zzzzzz","johndoe1","johndoe1").getOrAwaitValue()
+        Mockito.verify(userRepo).updatePassword("1","zzzzzz","johndoe1","johndoe1")
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Change password failed new pass not equal`(){
+        val dummyMutLD = MutableLiveData<UpdateUserPasswordResponse>()
+        dummyMutLD.value = DataDummy.changePassSuccess()
+        val expectedResponse: LiveData<UpdateUserPasswordResponse?> = dummyMutLD
+        `when`(userRepo.updatePassword("1","123456","johndoe1","john")).thenReturn(expectedResponse)
+
+        val actualResp = userVM.updatePassword("1","123456","johndoe1","john").getOrAwaitValue()
+        Mockito.verify(userRepo).updatePassword("1","123456","johndoe1","john")
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Forget password success`(){
+        val dummyMutLD = MutableLiveData<ForgetPasswordResponse>()
+        dummyMutLD.value = DataDummy.forgetPassSuccess()
+        val expectedResponse: LiveData<ForgetPasswordResponse?> = dummyMutLD
+        `when`(userRepo.forgetPassword("richardlois1@gmail.com")).thenReturn(expectedResponse)
+
+        val actualResp = userVM.forgetPassword("richardlois1@gmail.com").getOrAwaitValue()
+        Mockito.verify(userRepo).forgetPassword("richardlois1@gmail.com")
+        Assert.assertEquals(expectedResponse.value, actualResp)
+    }
+
+    @Test
+    fun `Forget password failed email not found`(){
+        val dummyMutLD = MutableLiveData<ForgetPasswordResponse>()
+        dummyMutLD.value = DataDummy.forgetPassFailedEmailNotFound()
+        val expectedResponse: LiveData<ForgetPasswordResponse?> = dummyMutLD
+        `when`(userRepo.forgetPassword("richard@gmail.com")).thenReturn(expectedResponse)
+
+        val actualResp = userVM.forgetPassword("richard@gmail.com").getOrAwaitValue()
+        Mockito.verify(userRepo).forgetPassword("richard@gmail.com")
         Assert.assertEquals(expectedResponse.value, actualResp)
     }
 }

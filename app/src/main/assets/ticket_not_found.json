@@ -1,0 +1,10 @@
+{
+  "status": "error",
+  "message": "ticket not found",
+  "data": {
+    "totalItems": 0,
+    "tickets": [],
+    "totalPages": 0,
+    "currentPage": 0
+  }
+}

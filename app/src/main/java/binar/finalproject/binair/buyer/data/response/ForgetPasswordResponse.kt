@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class ForgetPasswordResponse(
 
-	@field:SerializedName("data")
-	val data: DataForgetPass,
+    @field:SerializedName("data")
+    val data: DataForgetPass?,
 
-	@field:SerializedName("message")
-	val message: String,
+    @field:SerializedName("message")
+    val message: String,
 
-	@field:SerializedName("status")
-	val status: String
+    @field:SerializedName("status")
+    val status: String
 )
 
 data class DataForgetPass(

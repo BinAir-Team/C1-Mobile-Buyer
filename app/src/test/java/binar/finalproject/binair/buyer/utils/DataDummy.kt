@@ -224,9 +224,9 @@ object DataDummy {
     fun generateUserLogin(): DataLogin {
         return DataLogin(
             id = "1",
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail",
             gender = "Laki-laki",
             phone = "08123456789",
             role = "member",
@@ -238,9 +238,9 @@ object DataDummy {
     fun generateUserRegister(): RegisterUserResponse {
         val dtUser = DataUser(
             id = "1",
-            firstname = "John",
-            lastname = "Doe",
-            email = "johndoe@gmail",
+            firstname = "Richard",
+            lastname = "Lois",
+            email = "richardlois1@gmail",
             gender = "Laki-laki",
             phone = "08123456789",
             role = "member",
@@ -280,7 +280,7 @@ object DataDummy {
     fun registerFailedPassNotEqual(): RegisterUserResponse {
         return RegisterUserResponse(
             status = "error",
-            message = "Password and confirm password does not match",
+            message = "Password and confirm password Loiss not match",
             data = null
         )
     }
@@ -296,7 +296,7 @@ object DataDummy {
     fun loginFailedEmailNotFound(): LoginResponse {
         return LoginResponse(
             status = "error",
-            message = "Email does not exist",
+            message = "Email Loiss not exist",
             data = null
         )
     }
@@ -325,6 +325,10 @@ object DataDummy {
         return listTicketRoundtrip
     }
 
+    fun searchTicketNotFound(): List<TicketItem> {
+        return emptyList()
+    }
+
     fun bookTicketSuccess(): BookingTicketResponse {
         return BookingTicketResponse(
             status = 200,
@@ -349,4 +353,95 @@ object DataDummy {
             )
         )
     }
+
+    fun getTicketById() : GetTicketByIdResponse {
+        return GetTicketByIdResponse(
+            status = "200",
+            message = "success",
+            data = DataTicketId(
+                id = "31588def-1557-4a4c-8083-a2a3010790f5",
+                from = "Surabaya",
+                to = "Makassar",
+                dateStart = "2023-01-12",
+                dateEnd = null,
+                departureTime = "12:00",
+                arrivalTime = "13:00",
+                airportFrom = "Juanda International Airport",
+                airportTo = "Sultan Hasanuddin International Airport",
+                adultPrice = 1420000,
+                childPrice = 1200000,
+                initStock = 200,
+                currStock = 200,
+                available = true,
+                type = "roundtrip",
+                createdAt = "2022-12-23T12:49:34.710Z",
+                updatedAt = "2022-12-23T12:49:34.710Z"
+            )
+        )
+    }
+
+    fun updateUserSuccess() : UpdateUserResponse {
+        return UpdateUserResponse(
+            status = "success",
+            message = "Update success",
+            data = Data("Richard", "Lois", "Laki-laki", "08123456789","image.jpg")
+        )
+    }
+
+    fun updateProfileWoImageSuccess() : UpdateUserResponse {
+        return UpdateUserResponse(
+            status = "success",
+            message = "User updated",
+            data = Data("Richard", "Lois", "Laki-laki", "08123456789","")
+        )
+    }
+
+    fun updateProfileFailedUserNotFound() : UpdateUserResponse {
+        return UpdateUserResponse(
+            status = "error",
+            message = "User not found",
+            data = null
+        )
+    }
+
+    fun changePassSuccess() : UpdateUserPasswordResponse {
+        return UpdateUserPasswordResponse(
+            status = "success",
+            message = "User new password updated",
+            data = null
+        )
+    }
+
+    fun changePassFailedOldPassWrong() : UpdateUserPasswordResponse {
+        return UpdateUserPasswordResponse(
+            status = "error",
+            message = "Old password is wrong",
+            data = null
+        )
+    }
+
+    fun changePassFailedPassNotEqual() : UpdateUserPasswordResponse {
+        return UpdateUserPasswordResponse(
+            status = "error",
+            message = "User not found",
+            data = null
+        )
+    }
+
+    fun forgetPassSuccess() : ForgetPasswordResponse {
+        return ForgetPasswordResponse(
+            status = "success",
+            message = "Check your email to reset password",
+            data = null
+        )
+    }
+
+    fun forgetPassFailedEmailNotFound() : ForgetPasswordResponse {
+        return ForgetPasswordResponse(
+            status = "error",
+            message = "Email not found",
+            data = null
+        )
+    }
+
 }

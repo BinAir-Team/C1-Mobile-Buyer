@@ -3,10 +3,10 @@ package binar.finalproject.binair.buyer.di
 import android.content.Context
 import androidx.room.Room
 import binar.finalproject.binair.buyer.BuildConfig
-import binar.finalproject.binair.buyer.repository.UserRepository
 import binar.finalproject.binair.buyer.data.local.WishListDatabase
 import binar.finalproject.binair.buyer.data.local.WishlistDAO
 import binar.finalproject.binair.buyer.data.remote.APIService
+import binar.finalproject.binair.buyer.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +33,7 @@ class AppModule {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://binair-backend-production.up.railway.app/api/v1/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -56,5 +56,9 @@ class AppModule {
             "wishlist.db")
             .fallbackToDestructiveMigration()
             .build()
+    }
+
+    companion object {
+        var BASE_URL = "https://binair-backend-production.up.railway.app/api/v1/"
     }
 }

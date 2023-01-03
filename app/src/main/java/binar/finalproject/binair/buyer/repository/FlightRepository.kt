@@ -10,6 +10,7 @@ import binar.finalproject.binair.buyer.data.model.DataWishList
 import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.remote.APIService
 import binar.finalproject.binair.buyer.data.response.*
+import binar.finalproject.binair.buyer.data.wrapEspressoIdlingResource
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -92,30 +93,36 @@ class FlightRepository @Inject constructor(private var client: APIService, priva
         type: String,
         willFly: Boolean = true
     ): LiveData<List<TicketItem>?> {
-        client.getTicketBySearch(from, airport_from, to, airport_to, dateStart, dateEnd, type, willFly)
-            .enqueue(object : Callback<AllTicketsResponse> {
-                override fun onResponse(
-                    call: Call<AllTicketsResponse>,
-                    response: Response<AllTicketsResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val result = response.body()
-                        if (result != null) {
-                            _ticketBySearch.postValue(result.dataTicketPage?.tickets)
-                        } else {
-                            _ticketBySearch.postValue(null)
+        wrapEspressoIdlingResource {
+            try {
+                client.getTicketBySearch(from, airport_from, to, airport_to, dateStart, dateEnd, type, willFly)
+                    .enqueue(object : Callback<AllTicketsResponse> {
+                        override fun onResponse(
+                            call: Call<AllTicketsResponse>,
+                            response: Response<AllTicketsResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val result = response.body()
+                                if (result != null) {
+                                    _ticketBySearch.postValue(result.dataTicketPage?.tickets)
+                                } else {
+                                    _ticketBySearch.postValue(null)
+                                }
+                            } else {
+                                _ticketBySearch.postValue(null)
+                                Log.e("Error : ", "onFailed: ${response.message()}")
+                            }
                         }
-                    } else {
-                        _ticketBySearch.postValue(null)
-                        Log.e("Error : ", "onFailed: ${response.message()}")
-                    }
-                }
 
-                override fun onFailure(call: Call<AllTicketsResponse>, t: Throwable) {
-                    _ticketBySearch.postValue(null)
-                    Log.e("Error : ", "onFailure: ${t.message}")
-                }
-            })
+                        override fun onFailure(call: Call<AllTicketsResponse>, t: Throwable) {
+                            _ticketBySearch.postValue(null)
+                            Log.e("Error : ", "onFailure: ${t.message}")
+                        }
+                    })
+            }catch (e: Exception){
+                Log.e("Error : ", "onFailure: ${e.message}")
+            }
+        }
         return ticketBySearch
     }
 

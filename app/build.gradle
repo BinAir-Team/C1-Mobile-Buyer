@@ -123,4 +123,21 @@ dependencies {
 
     //test live data
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+
+    //TestCoroutineDispatcher
+    debugImplementation "androidx.fragment:fragment-testing:1.5.5" //launchFragmentInContainer
+
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'
+
+    //mock web server
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.9.3"
+    androidTestImplementation "com.squareup.okhttp3:okhttp-tls:4.9.3"
+
+    //idling resource
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.5.0'
+    implementation 'androidx.test:core-ktx:1.5.0'
+    androidTestImplementation "com.google.dagger:hilt-android-testing:2.44"
 }
