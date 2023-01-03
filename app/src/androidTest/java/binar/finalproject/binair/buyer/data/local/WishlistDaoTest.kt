@@ -35,14 +35,40 @@ class WishlistDaoTest{
     fun closeDB() = db.close()
 
     @Test
-    fun insertWishlistSuccess() = runBlockingTest {
+    // Add Wishlist - Positive test case
+    fun wishlist1() = runBlockingTest {
         dao.insertWishList(sampleWishlist)
         val actualWishlist = dao.getWishList("1")
         Assert.assertEquals(sampleWishlist,actualWishlist[0])
     }
 
     @Test
-    fun deleteWishlistSuccess() = runBlockingTest {
+    // Get Wishlist - Positive test case
+    fun wishlist3() = runBlockingTest {
+        dao.insertWishList(sampleWishlist)
+        val actualWishlist = dao.getWishList("1")
+        Assert.assertEquals(sampleWishlist,actualWishlist[0])
+    }
+
+    @Test
+    // Get Wishlist - Positive test case wishlist kosong
+    fun wishlist4() = runBlockingTest {
+        val actualWishlist = dao.getWishList("1")
+        Assert.assertEquals(emptyArray(),actualWishlist.toTypedArray())
+    }
+
+    @Test
+    // Get Wishlist - Positive test case user lain yang login
+    fun wishlist5() = runBlockingTest {
+        dao.insertWishList(sampleWishlist)
+        dao.insertWishList(sampleWishlist)
+        val actualWishlist = dao.getWishList("2")
+        Assert.assertEquals(0,actualWishlist.size)
+    }
+
+    @Test
+    // Delete Wishlist - Positive test case
+    fun wishlist6() = runBlockingTest {
         dao.insertWishList(sampleWishlist)
         dao.delWishList(sampleWishlist)
         val actualWishlist = dao.getWishList("1")

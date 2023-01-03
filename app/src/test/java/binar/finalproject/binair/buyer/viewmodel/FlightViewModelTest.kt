@@ -7,7 +7,6 @@ import binar.finalproject.binair.buyer.data.model.PostBookingBody
 import binar.finalproject.binair.buyer.data.model.Quantity
 import binar.finalproject.binair.buyer.data.model.TravelerItem
 import binar.finalproject.binair.buyer.data.response.BookingTicketResponse
-import binar.finalproject.binair.buyer.data.response.GetTicketByIdResponse
 import binar.finalproject.binair.buyer.data.response.TicketItem
 import binar.finalproject.binair.buyer.repository.FlightRepository
 import binar.finalproject.binair.buyer.utils.DataDummy
@@ -48,7 +47,7 @@ class FlightViewModelTest{
     }
 
     @Test
-    fun `Success search ticket oneway`(){
+    fun `Search Ticket - 1 (Oneway found)`(){
         val dummyMutLD = MutableLiveData<List<TicketItem>?>()
         dummyMutLD.value = DataDummy.searchTicketFound()
         val expectedResponse: LiveData<List<TicketItem>?> = dummyMutLD
@@ -60,7 +59,7 @@ class FlightViewModelTest{
     }
 
     @Test
-    fun `Success search ticket roundtrip`(){
+    fun `Search Ticket - 2 (Round Trip Found)`(){
         val dummyMutLD = MutableLiveData<List<TicketItem>?>()
         dummyMutLD.value = DataDummy.successSearchTicketRoundTrip()
         val expectedResponse: LiveData<List<TicketItem>?> = dummyMutLD
@@ -72,26 +71,38 @@ class FlightViewModelTest{
     }
 
     @Test
-    fun `Search ticket not found`(){
+    fun `Search Ticket - 3 (Ticket not found)`(){
         val dummyMutLD = MutableLiveData<List<TicketItem>?>()
         dummyMutLD.value = DataDummy.searchTicketNotFound()
         val expectedResponse: LiveData<List<TicketItem>?> = dummyMutLD
-        Mockito.`when`(flightVM.callGetTicketBySearch("Surabaya","Juanda","Makasaar","Sultan Hasanuddin","2023-01-01","2023-01-10","roundtrip")).thenReturn(expectedResponse)
+        Mockito.`when`(flightVM.callGetTicketBySearch("Surabaya","Juanda","Makasar","Sultan Hasanuddin","2023-01-01","2023-01-10","roundtrip")).thenReturn(expectedResponse)
 
-        val actualResp = flightVM.callGetTicketBySearch("Surabaya","Juanda","Makasaar","Sultan Hasanuddin","2023-01-01","2023-01-10","roundtrip").getOrAwaitValue()
-        Mockito.verify(flightRepo).callGetTicketBySearch("Surabaya","Juanda","Makasaar","Sultan Hasanuddin","2023-01-01","2023-01-10","roundtrip")
+        val actualResp = flightVM.callGetTicketBySearch("Surabaya","Juanda","Makasar","Sultan Hasanuddin","2023-01-01","2023-01-10","roundtrip").getOrAwaitValue()
+        Mockito.verify(flightRepo).callGetTicketBySearch("Surabaya","Juanda","Makasar","Sultan Hasanuddin","2023-01-01","2023-01-10","roundtrip")
         Assert.assertEquals(expectedResponse.value,actualResp)
     }
 
     @Test
-    fun `Success get ticket by id`(){
-        val dummyMutLD = MutableLiveData<GetTicketByIdResponse>()
-        dummyMutLD.value = DataDummy.getTicketById()
-        val expectedResponse: LiveData<GetTicketByIdResponse?> = dummyMutLD
-        Mockito.`when`(flightVM.getTicketById("31588def-1557-4a4c-8083-a2a3010790f5")).thenReturn(expectedResponse)
+    fun `Search Ticket - 4 (From and To in the same city)`(){
+        val dummyMutLD = MutableLiveData<List<TicketItem>?>()
+        dummyMutLD.value = DataDummy.searchTicketNotFound()
+        val expectedResponse: LiveData<List<TicketItem>?> = dummyMutLD
+        Mockito.`when`(flightVM.callGetTicketBySearch("Surabaya","Juanda","Surabaya","Juanda","2023-01-01",null,"oneway")).thenReturn(expectedResponse)
 
-        val actualResp = flightVM.getTicketById("31588def-1557-4a4c-8083-a2a3010790f5").getOrAwaitValue()
-        Mockito.verify(flightRepo).getTicketById("31588def-1557-4a4c-8083-a2a3010790f5")
+        val actualResp = flightVM.callGetTicketBySearch("Surabaya","Juanda","Surabaya","Juanda","2023-01-01",null,"oneway").getOrAwaitValue()
+        Mockito.verify(flightRepo).callGetTicketBySearch("Surabaya","Juanda","Surabaya","Juanda","2023-01-01",null,"oneway")
+        Assert.assertEquals(expectedResponse.value,actualResp)
+    }
+
+    @Test
+    fun `Search Ticket - 5 (Date end before date start)`(){
+        val dummyMutLD = MutableLiveData<List<TicketItem>?>()
+        dummyMutLD.value = DataDummy.searchTicketNotFound()
+        val expectedResponse: LiveData<List<TicketItem>?> = dummyMutLD
+        Mockito.`when`(flightVM.callGetTicketBySearch("Surabaya","Juanda","Makasaar","Sultan Hasanuddin","2023-01-01","2022-12-01","roundtrip")).thenReturn(expectedResponse)
+
+        val actualResp = flightVM.callGetTicketBySearch("Surabaya","Juanda","Makasaar","Sultan Hasanuddin","2023-01-01","2022-12-01","roundtrip").getOrAwaitValue()
+        Mockito.verify(flightRepo).callGetTicketBySearch("Surabaya","Juanda","Makasaar","Sultan Hasanuddin","2023-01-01","2022-12-01","roundtrip")
         Assert.assertEquals(expectedResponse.value,actualResp)
     }
 

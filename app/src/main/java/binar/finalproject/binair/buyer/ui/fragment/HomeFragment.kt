@@ -37,7 +37,7 @@ import java.util.*
 
 @AndroidEntryPoint
 @Suppress("UNCHECKED_CAST", "SetTextI18n")
-@RequiresApi(Build.VERSION_CODES.M)
+@RequiresApi(Build.VERSION_CODES.O)
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var flightVM : FlightViewModel
@@ -320,6 +320,40 @@ class HomeFragment : Fragment() {
         val data = SearchItem(cityFrom,airportFrom,cityTo,airportTo, dateGo, dateBack,tripType,totalPassenger)
         val action = HomeFragmentDirections.actionHomeFragmentToListTicketFragment(data)
         findNavController().navigate(action)
+    }
+
+    private fun validateInput(cityFrom : String, airportFrom : String, cityTo : String, airportTo : String, dateGo : String, dateBack : String) : Boolean{
+        return isFilled(cityFrom,airportFrom,cityTo,airportTo,dateGo,dateBack) && isNotSameAirport(cityFrom,airportFrom,cityTo,airportTo) && isNotSameDate(dateGo,dateBack) && isAfterDateGo(dateGo,dateBack)
+    }
+
+    private fun isFilled(cityFrom : String, airportFrom : String, cityTo : String, airportTo : String, dateGo : String, dateBack : String) : Boolean{
+        if(cityFrom.isEmpty() || airportFrom.isEmpty() || cityTo.isEmpty() || airportTo.isEmpty() || dateGo.isEmpty() || dateBack.isEmpty()){
+            return false
+        }
+        return true
+    }
+
+    private fun isNotSameAirport(cityFrom : String, airportFrom : String, cityTo : String, airportTo : String) : Boolean{
+        if(cityFrom == cityTo && airportFrom == airportTo){
+            return false
+        }
+        return true
+    }
+
+    private fun isNotSameDate(dateGo : String, dateBack : String) : Boolean{
+        if(dateGo == dateBack){
+            return false
+        }
+        return true
+    }
+
+    private fun isAfterDateGo(dateGo : String, dateBack : String) : Boolean{
+        val dateGoFormat = LocalDate.parse(dateGo, DateTimeFormatter.ofPattern("EEEE, dd MMM yy",Locale("id", "ID")))
+        val dateBackFormat = LocalDate.parse(dateBack, DateTimeFormatter.ofPattern("EEEE, dd MMM yy",Locale("id", "ID")))
+        if(dateGoFormat.isAfter(dateBackFormat)){
+            return false
+        }
+        return true
     }
 
     private fun setPromoAdapter() {
